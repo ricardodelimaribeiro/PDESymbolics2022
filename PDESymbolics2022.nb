@@ -1,0 +1,241 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      8885,        233]
+NotebookOptionsPosition[      8534,        219]
+NotebookOutlinePosition[      8931,        235]
+CellTagsIndexPosition[      8888,        232]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "TODO", " ", "implement", " ", "a", " ", "version", " ", "with", " ", 
+    "Kleisli"}], "*)"}], 
+  RowBox[{
+   RowBox[{
+    RowBox[{"MonomialDependenceOperator", "[", "variables_Association", "]"}],
+     "[", "monomials_", "]"}], ":=", 
+   RowBox[{"Which", "[", 
+    RowBox[{
+     RowBox[{"monomials", "===", "$Failed"}], ",", "$Failed", ",", 
+     RowBox[{
+      RowBox[{"Head", "[", "monomials", "]"}], "===", "Piecewise"}], ",", 
+     RowBox[{"PiecewiseOperatorMap", "[", 
+      RowBox[{
+      "MonomialDependenceOperator", ",", "variables", ",", "monomials"}], 
+      "]"}], ",", 
+     RowBox[{
+      RowBox[{"Head", "[", "monomials", "]"}], "===", "List"}], ",", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "generators", ",", "depVars", ",", "indVars", ",", "pars", ",", 
+         "localvariables", ",", "zerosofmonomials", ",", "quotients", ",", 
+         "derivatives", ",", "zerosofderivatives", ",", "constantmonomials"}],
+         "}"}], ",", 
+       RowBox[{"(*", 
+        RowBox[{
+        "generic", " ", "functions", " ", "are", " ", "handled", " ", "here", 
+         " ", "like", " ", "dependent", " ", "variables"}], "*)"}], 
+       RowBox[{
+        RowBox[{"depVars", "=", 
+         RowBox[{"Join", "[", 
+          RowBox[{
+           RowBox[{"Lookup", "[", 
+            RowBox[{"variables", ",", "\"\<depVars\>\"", ",", 
+             RowBox[{"{", "}"}]}], "]"}], ",", 
+           RowBox[{"Lookup", "[", 
+            RowBox[{"variables", ",", "\"\<genFuns\>\"", ",", 
+             RowBox[{"{", "}"}]}], "]"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{
+         "generators", " ", "are", " ", "handled", " ", "like", " ", 
+          "independent", " ", "variables"}], "*)"}], 
+        RowBox[{"(*", 
+         RowBox[{
+          RowBox[{
+          "TODO", " ", "KroenckerDelta", " ", "should", " ", "be", " ", 
+           "included", " ", "here"}], "..."}], "*)"}], 
+        RowBox[{"indVars", "=", 
+         RowBox[{"Join", "[", 
+          RowBox[{
+           RowBox[{"Lookup", "[", 
+            RowBox[{"variables", ",", "\"\<indVars\>\"", ",", 
+             RowBox[{"{", "}"}]}], "]"}], ",", 
+           RowBox[{"Lookup", "[", 
+            RowBox[{"variables", ",", "\"\<generators\>\"", ",", 
+             RowBox[{"{", "}"}]}], "]"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"pars", "=", 
+         RowBox[{"Lookup", "[", 
+          RowBox[{"variables", ",", "\"\<pars\>\"", ",", 
+           RowBox[{"{", "}"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{
+         "compute", " ", "the", " ", "generators", " ", "from", " ", "the", 
+          " ", "expressions"}], "*)"}], 
+        RowBox[{"generators", "=", 
+         RowBox[{"DeleteDuplicates", "@", 
+          RowBox[{"Join", "[", 
+           RowBox[{
+            RowBox[{"Join", "@@", 
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"DeleteDuplicates", "/@", 
+                 RowBox[{"Cases", "[", 
+                  RowBox[{"monomials", ",", 
+                   RowBox[{
+                    RowBox[{
+                    RowBox[{"Derivative", "[", "__", "]"}], "[", "#", "]"}], 
+                    "[", "__", "]"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{"0", ",", "Infinity"}], "}"}]}], "]"}]}], "&"}], "/@",
+                "depVars"}], ")"}]}], ",", 
+            RowBox[{"Join", "@@", 
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"DeleteDuplicates", "/@", 
+                 RowBox[{"Cases", "[", 
+                  RowBox[{"monomials", ",", 
+                   RowBox[{"#", "[", "__", "]"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{"0", ",", "Infinity"}], "}"}]}], "]"}]}], "&"}], "/@",
+                "depVars"}], ")"}]}], ",", "indVars"}], "]"}]}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"localvariables", "=", 
+         RowBox[{"Append", "[", 
+          RowBox[{"variables", ",", 
+           RowBox[{"\"\<generators\>\"", "->", "generators"}]}], "]"}]}], ";",
+         "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{
+         "compute", " ", "when", " ", "the", " ", "monomials", " ", "are", 
+          " ", "zero"}], "*)"}], 
+        RowBox[{"zerosofmonomials", "=", 
+         RowBox[{
+          RowBox[{"EqualToZeroOperator", "[", "localvariables", "]"}], "/@", 
+          RowBox[{"Flatten", "[", "monomials", "]"}]}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{
+         "compute", " ", "when", " ", "monomials", " ", "are", " ", 
+          "constant"}], "*)"}], 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"Lookup", "[", 
+           RowBox[{
+           "variables", ",", "\"\<refineconstantmonomials\>\"", ",", 
+            "False"}], "]"}], ",", 
+          RowBox[{"constantmonomials", "=", 
+           RowBox[{
+            RowBox[{"EqualToZeroOperator", "[", "localvariables", "]"}], "/@", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"Grad", "[", 
+                RowBox[{"#", ",", "generators"}], "]"}], "&"}], "/@", 
+              "monomials"}], ")"}]}]}], ",", 
+          RowBox[{"constantmonomials", "=", 
+           RowBox[{"{", "}"}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{"compute", " ", "quotients"}], "*)"}], 
+        RowBox[{"quotients", "=", 
+         RowBox[{"Select", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"With", "[", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"nonzeromonomials", "=", 
+                 RowBox[{"Select", "[", 
+                  RowBox[{
+                   RowBox[{"Flatten", "[", "monomials", "]"}], ",", 
+                   RowBox[{
+                    RowBox[{"#", "=!=", "0"}], "&"}]}], "]"}]}], "}"}], ",", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{"Flatten", "[", "monomials", "]"}], "/", "#"}], 
+                  ")"}], "&"}], "/@", "nonzeromonomials"}]}], "]"}], "//", 
+             "Flatten"}], "//", "DeleteDuplicates"}], ",", 
+           RowBox[{
+            RowBox[{"#", "=!=", "1"}], "&"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"derivatives", "=", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Grad", "[", 
+            RowBox[{"#", ",", "generators"}], "]"}], "&"}], "/@", 
+          "quotients"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"zerosofderivatives", "=", 
+         RowBox[{
+          RowBox[{"EqualToZeroOperator", "[", "localvariables", "]"}], "/@", 
+          "derivatives"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"PiecewiseMap", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"rulesclean", "[", 
+            RowBox[{"DeleteDuplicates", "[", 
+             RowBox[{"Flatten", "[", "#", "]"}], "]"}], "]"}], "&"}], ",", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"Piecewise", "[", 
+              RowBox[{"#", ",", 
+               RowBox[{"{", "}"}]}], "]"}], "&"}], "/@", 
+            RowBox[{"Select", "[", 
+             RowBox[{
+              RowBox[{"Join", "[", 
+               RowBox[{
+               "zerosofmonomials", ",", "zerosofderivatives", ",", 
+                "constantmonomials"}], "]"}], ",", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"#", "=!=", "True"}], "&&", 
+                RowBox[{"#", "=!=", "False"}]}], "&"}]}], "]"}]}], "//", 
+           "PiecewiseExpand"}]}], "]"}]}]}], "]"}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.873562055827406*^9, 
+  3.873562055832732*^9}},ExpressionUUID->"76fb1c79-146f-438f-b053-\
+890c643cdf7f"]
+},
+WindowSize->{808, 686},
+WindowMargins->{{316, Automatic}, {Automatic, 50}},
+FrontEndVersion->"13.0 for Mac OS X x86 (64-bit) (February 4, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"2de5d581-3826-4146-9aab-f8853965e690"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 7972, 197, 850, "Input",ExpressionUUID->"76fb1c79-146f-438f-b053-890c643cdf7f"]
+}
+]
+*)
+

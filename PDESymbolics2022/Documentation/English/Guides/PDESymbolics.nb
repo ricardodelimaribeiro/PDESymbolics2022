@@ -1,0 +1,1222 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     49007,       1214]
+NotebookOptionsPosition[     36702,        975]
+NotebookOutlinePosition[     37168,        992]
+CellTagsIndexPosition[     37125,        989]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ "New in: ",
+ Cell["0.0", "HistoryData",
+  CellTags->"New",ExpressionUUID->"03e901a4-0273-4924-8c37-1d0f846a6c75"],
+ " | Modified in: ",
+ Cell[" ", "HistoryData",
+  CellTags->"Modified",ExpressionUUID->"b4986b4f-f529-4327-bf52-273917f2a2fa"],
+ " | Obsolete in: ",
+ Cell[" ", "HistoryData",
+  CellTags->"Obsolete",ExpressionUUID->"fb9f7de2-5343-4966-8284-60dab5a7d63f"],
+ " | Excised in: ",
+ Cell[" ", "HistoryData",
+  CellTags->"Excised",ExpressionUUID->"31be1c55-074c-465d-83b5-e5b4f17ccee9"]
+}], "History",
+ CellID->1247902091,ExpressionUUID->"112b80ed-53e8-497d-a97e-cc73b41acd65"],
+
+Cell[CellGroupData[{
+
+Cell["Categorization", "CategorizationSection",
+ CellID->1122911449,ExpressionUUID->"0385e48d-b4d6-4b00-a536-80db66c827b1"],
+
+Cell["Guide", "Categorization",
+ CellLabel->"Entity Type",
+ CellID->686433507,ExpressionUUID->"7ffe4f63-1b5c-4316-9eea-7bafde48c172"],
+
+Cell["PDESymbolics2022", "Categorization",
+ CellLabel->"Paclet Name",
+ CellID->605800465,ExpressionUUID->"399f11bf-a720-4ae8-96af-214587f84e02"],
+
+Cell["PDESymbolics2022`", "Categorization",
+ CellLabel->"Context",
+ CellID->468444828,ExpressionUUID->"e993b29e-1f2c-46a1-a2b6-db3ec15b72a6"],
+
+Cell["PDESymbolics2022/guide/PDESymbolics", "Categorization",
+ CellLabel->"URI",ExpressionUUID->"dd5bbbc0-9ff7-4f2c-ae02-e2416eafa267"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Keywords", "KeywordsSection",
+ CellID->1427428552,ExpressionUUID->"940ff5f5-1fd3-4642-9bf0-4c0b90b4efe8"],
+
+Cell["Partial Differential Equations", "Keywords",
+ CellChangeTimes->{{3.797771564622224*^9, 3.7977715793362503`*^9}},
+ CellID->1251852827,ExpressionUUID->"0ab85666-f175-435f-8875-3a5b7b4cae28"],
+
+Cell["Variational Derivative", "Keywords",
+ CellChangeTimes->{{3.797771564622224*^9, 3.7977715939829197`*^9}},
+ CellID->477098209,ExpressionUUID->"561ed0d9-4857-4a19-869c-3037d06ac773"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Details", "DetailsSection",
+ CellID->307771771,ExpressionUUID->"dc0c181b-023f-4a37-8291-c6ba163fa968"],
+
+Cell["XXXX", "Details",
+ CellLabel->"Lead",
+ CellID->795394057,ExpressionUUID->"ba0117c7-287e-42e3-9754-85746b84e0a4"],
+
+Cell["XXXX", "Details",
+ CellLabel->"Developers",
+ CellID->350963985,ExpressionUUID->"2c5f50ce-36a8-4f38-bbfe-73e8dff25699"],
+
+Cell["XXXX", "Details",
+ CellLabel->"Authors",
+ CellID->802101,ExpressionUUID->"d6cd2860-1142-491c-b1b3-79b56812465d"],
+
+Cell["XXXX", "Details",
+ CellLabel->"Feature Name",
+ CellID->509823116,ExpressionUUID->"73143066-0980-4699-ab1a-9a22ddd93651"],
+
+Cell["XXXX", "Details",
+ CellLabel->"QA",
+ CellID->199884516,ExpressionUUID->"bd1dfa41-5863-4ac1-baf8-a52ba0c7d77e"],
+
+Cell["XXXX", "Details",
+ CellLabel->"DA",
+ CellID->463951815,ExpressionUUID->"760c067e-2764-4e41-9f65-43cfd8701b0a"],
+
+Cell["XXXX", "Details",
+ CellLabel->"Docs",
+ CellID->8237523,ExpressionUUID->"86cd05fe-bc73-410a-b392-fe835af2a17c"],
+
+Cell["XXXX", "Details",
+ CellLabel->"Features Page Notes",
+ CellID->813936640,ExpressionUUID->"507594d6-ab66-48e2-a4f2-d04e93e8bf11"],
+
+Cell["XXXX", "Details",
+ CellLabel->"Comments",
+ CellID->240026365,ExpressionUUID->"93e45177-7ac9-43ee-8d62-c364c92ccd0d"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["PDESymbolics", "GuideTitle",
+ CellID->942062912,ExpressionUUID->"267293a3-6e38-4cb2-8154-f169ed5c0b57"],
+
+Cell["\<\
+When searching for conserved or dissipated quantities in Partial Differential \
+Equations (PDEs) we often have to carry out some lengthy (maybe also tedious) \
+computations. 
+This package gives a big hand in this process.  \
+\>", "GuideAbstract",
+ CellChangeTimes->{3.797770069881771*^9},
+ CellID->2001916300,ExpressionUUID->"b90431fe-e882-4291-b958-8d1c32baf1e3"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["", "GuideFunctionsSection",
+ CellID->1866139230,ExpressionUUID->"3d7dd8f1-3efe-4de1-8ef3-dc6b37faad5c"],
+
+Cell[CellGroupData[{
+
+Cell["Variational Calculus", "GuideFunctionsSubsection",
+ CellChangeTimes->{{3.797770619546036*^9, 3.797770638033923*^9}, {
+  3.81953498005299*^9, 3.819534985692453*^9}},
+ CellID->394513778,ExpressionUUID->"7b988c8d-f702-4d45-a4d6-19577031e7be"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["VarDOperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/VarDOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "372fa1c3-16f7-472b-85a0-259c8d9447a0"],
+ " \[LongDash] variational derivative"
+}], "GuideText",
+ CellChangeTimes->{{3.797769666913763*^9, 3.797769683168309*^9}, {
+  3.7977697483210077`*^9, 3.797769755463258*^9}, {3.797771198878336*^9, 
+  3.797771198983307*^9}},
+ CellID->203374175,ExpressionUUID->"ac164cbc-ee99-4a50-bc79-8e63ec3c1193"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["DVarDOperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/DVarDOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "cdce1199-735e-495d-a3ed-2d036705dbf6"],
+ " \[LongDash] discrete variational derivative"
+}], "GuideText",
+ CellChangeTimes->{{3.7977697619833527`*^9, 3.7977697805146227`*^9}, {
+  3.797771203328392*^9, 3.797771203446751*^9}},
+ CellID->1463276848,ExpressionUUID->"9adc71d7-6c47-436a-aab5-0c2c5137181e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\t", "GuideDelimiter",
+ CellID->311258892,ExpressionUUID->"b405f7d5-f969-4674-9344-006b4ba19487"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["CleanNullLagrangiansOperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/CleanNullLagrangiansOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "e7a40bdc-ddcc-4cca-b9f3-3755601e0aef"],
+ " \[LongDash] removes null Lagrangians from lists"
+}], "GuideText",
+ CellChangeTimes->{{3.797770172688374*^9, 3.7977702244999523`*^9}, {
+  3.79777121089659*^9, 3.797771210979887*^9}},
+ CellID->1282229373,ExpressionUUID->"a210b4fd-aa9f-4f26-aaf1-2cbf2cfdeacb"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\t", "GuideDelimiter",
+ CellID->1640115810,ExpressionUUID->"35b26011-a43e-4512-a12b-61331ad20b0e"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["BasisModNullLagrangiansOperator",
+   BaseStyle->"Link",
+   ButtonData->
+    "paclet:PDESymbolics2022/ref/BasisModNullLagrangiansOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "d71a8191-9329-4325-bb4d-7200193ebb8c"],
+ " \[LongDash] gives a basis mod null Lagrangians for a list of generators"
+}], "GuideText",
+ CellChangeTimes->{{3.797770230376683*^9, 3.79777024446765*^9}, {
+  3.79777028390946*^9, 3.797770321708704*^9}, {3.797771215862502*^9, 
+  3.797771215980612*^9}},
+ CellID->430674366,ExpressionUUID->"da950914-ad33-444b-9aff-da5cc61b5039"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["RepresentModNullLagrangiansOperator",
+   BaseStyle->"Link",
+   ButtonData->
+    "paclet:PDESymbolics2022/ref/RepresentModNullLagrangiansOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "7b88b349-0bf6-47fe-aa51-b04c98cca0fa"],
+ " \[LongDash] gives a representation for expressions in a basis mod null \
+Lagrangians"
+}], "GuideText",
+ CellChangeTimes->{{3.797770336501803*^9, 3.797770405484359*^9}, {
+  3.797771219471221*^9, 3.797771219575054*^9}},
+ CellID->1152359022,ExpressionUUID->"b12d857d-b3e5-4c5a-a39e-fef2f907837b"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["DisintegrateOperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/DisintegrateOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "01f16f14-b68b-44f8-9d43-ef3630d12fe9"],
+ " \[LongDash] writes the expression as a linear combination of terms \
+appearing in the successive integrations by parts."
+}], "GuideText",
+ CellChangeTimes->{{3.814696921681527*^9, 3.814697014545341*^9}, {
+  3.8146970466325397`*^9, 3.81469704840666*^9}},
+ CellID->1456692346,ExpressionUUID->"91a2fe5f-7acb-465a-b0e4-d9a21f18d2d7"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["EquivalentsByIntergationByPartsOperator",
+   BaseStyle->"Link",
+   ButtonData->
+    "paclet:PDESymbolics2022/ref/EquivalentsByIntergationByPartsOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "05106390-60ec-442c-94d4-507efb480f2e"],
+ " \[LongDash] produces terms that appear in the successive integrations by \
+parts"
+}], "GuideText",
+ CellChangeTimes->{{3.8146971542481737`*^9, 3.8146971923023233`*^9}, {
+  3.814697237208392*^9, 3.814697263353753*^9}},
+ CellID->188592151,ExpressionUUID->"9ede22e6-5027-4a37-8c2a-23f5b39e54e9"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Beautify", "GuideFunctionsSubsection",
+ CellChangeTimes->{{3.797770619546036*^9, 3.797770638033923*^9}},
+ CellID->1496468265,ExpressionUUID->"722cfecf-edbc-4fe1-975f-d19e6adc27da"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["IntegrateByPartsOperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/IntegrateByOartsOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "435738df-b90c-4db5-8ede-fb071a5e2140"],
+ " \[LongDash] integrates by parts, choosing a representation"
+}], "GuideText",
+ CellChangeTimes->{{3.797770651611121*^9, 3.797770710989683*^9}, {
+  3.797771357611392*^9, 3.797771357714362*^9}, {3.797837976082513*^9, 
+  3.797837976323409*^9}, {3.801988999807349*^9, 3.8019890121597853`*^9}},
+ CellID->273237678,ExpressionUUID->"4ab23d8f-8196-4382-9c33-04abdadc5649"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["FastEquivalentsByIntegrationByPartsOperator",
+   BaseStyle->"Link",
+   ButtonData->
+    "paclet:PDESymbolics2022/ref/FastEquivalentsByIntegrationByPartsOperator"]\
+], "InlineGuideFunction",ExpressionUUID->
+  "b49e9f36-ef29-4f77-80dc-3c1778fa9882"],
+ " \[LongDash] check difference (2021.01.13)"
+}], "GuideText",
+ CellChangeTimes->{{3.817038929411498*^9, 3.817038951761256*^9}, {
+  3.817038991724655*^9, 3.81703901170889*^9}, {3.8195352914025507`*^9, 
+  3.8195353074655933`*^9}},
+ CellID->113740153,ExpressionUUID->"7964c697-586d-4a89-977e-1b0aeb30a613"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["BeautifyOperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/BeautifyOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "b9a4622b-d184-4130-adfe-63292d90ed47"],
+ " \[LongDash] need to learn what it does..."
+}], "GuideText",
+ CellChangeTimes->{{3.7977707420188503`*^9, 3.7977707620670137`*^9}, {
+  3.797771361768838*^9, 3.7977713618712797`*^9}},
+ CellID->1058372001,ExpressionUUID->"61541eda-1b31-423e-bf7e-0ac1938c27a5"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\t", "GuideDelimiter",
+ CellID->1895658979,ExpressionUUID->"1dac5181-7d41-4b74-9944-6ef17ae2f6af"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["RemoveDersOperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/RemoveDersOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "d8d978aa-0dc5-4f5f-b2b9-701b4c5b2ff5"],
+ " \[LongDash] need to learn what it does..."
+}], "GuideText",
+ CellChangeTimes->{{3.797770767123455*^9, 3.7977707815096073`*^9}, {
+  3.7977713654894543`*^9, 3.797771365619713*^9}, {3.797836775282213*^9, 
+  3.797836776042603*^9}},
+ CellID->94912185,ExpressionUUID->"26ada4d8-5041-4a33-a69a-42d163a1c787"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["TimeDerOperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/TimeDerOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "45251b3b-59a5-42de-a487-bbdd69eaf73e"],
+ " \[LongDash] derivates integral expressions with respect to time"
+}], "GuideText",
+ CellChangeTimes->{{3.797770787239497*^9, 3.797770836859399*^9}, {
+  3.797771368672558*^9, 3.7977713688107557`*^9}},
+ CellID->1756227221,ExpressionUUID->"984034f7-b665-4078-85f8-4f5d47cb0eda"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Linear algebra", "GuideFunctionsSubsection",
+ CellChangeTimes->{{3.7977708974431057`*^9, 3.7977709040464993`*^9}},
+ CellID->750208229,ExpressionUUID->"aea88142-44ec-4779-9bc4-28089d7b01be"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["BasisOperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/BasisOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "25a6ddf0-3d07-4b63-b85b-b718d25145a7"],
+ " \[LongDash] eliminates linearly dependent functions from a generator"
+}], "GuideText",
+ CellChangeTimes->{{3.814696854345159*^9, 3.8146968950675488`*^9}, {
+  3.819531448583805*^9, 3.819531498930204*^9}},
+ CellID->1808168054,ExpressionUUID->"399afa47-e162-449b-b236-cbf526077e4f"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["GaussianEliminationOpperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/GaussianEliminationOpperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "6309f508-0aad-4205-b646-ca489d3cf53b"],
+ " \[LongDash] generalized Gaussian Elimination for functions"
+}], "GuideText",
+ CellChangeTimes->{{3.797770963873629*^9, 3.797770980871436*^9}, {
+  3.797771372948971*^9, 3.797771373073365*^9}, {3.797836705308226*^9, 
+  3.7978367280698442`*^9}},
+ CellID->1355485536,ExpressionUUID->"0aae8275-27d5-428c-b77f-fc12fe5fa65d"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["UndeterminedCoefficientsOperator",
+   BaseStyle->"Link",
+   ButtonData->
+    "paclet:PDESymbolics2022/ref/UndeterminedCoefficientsOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "d7da64ff-a95b-409e-a563-2932d98b12b0"],
+ " \[LongDash] need to learn what it does..."
+}], "GuideText",
+ CellChangeTimes->{{3.797770985442706*^9, 3.79777100756308*^9}, {
+  3.7977713773544197`*^9, 3.797771377460104*^9}, {3.797836732269405*^9, 
+  3.797836752343421*^9}},
+ CellID->1138876176,ExpressionUUID->"6a139ed3-77a1-42b1-bf73-fbefc6f1d5c4"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["SolveUndeterminedCoefficientsOperator",
+   BaseStyle->"Link",
+   ButtonData->
+    "paclet:PDESymbolics2022/ref/SolveUndeterminedCoefficientsOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "b704b0ec-d403-4272-8e14-f6480b79a300"],
+ " \[LongDash] need to learn what it does..."
+}], "GuideText",
+ CellChangeTimes->{{3.7977710107867928`*^9, 3.797771033412498*^9}, {
+  3.7977713829230824`*^9, 3.797771383064118*^9}, {3.797836764312738*^9, 
+  3.797836767412613*^9}},
+ CellID->570144321,ExpressionUUID->"18d41f80-c6f4-4f2e-9ac7-5759202c44f0"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["ParametricRefineOperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/ParametricRefineOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "dfd50658-2a6d-4675-a935-ace9ead846e5"],
+ " \[LongDash] need to learn what it does..."
+}], "GuideText",
+ CellChangeTimes->{{3.797771039863167*^9, 3.7977710483183737`*^9}, {
+  3.797771386671454*^9, 3.797771386754879*^9}, {3.7978367701727047`*^9, 
+  3.797836771537608*^9}},
+ CellID->343570133,ExpressionUUID->"525343e8-b137-46b8-9fec-357249e499fb"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["EqualToZeroOperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/EqualToZeroOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "f5c37b63-43fc-4aff-8207-7b93f9005f42"],
+ " \[LongDash] shows the properties of parameters for which the expression is \
+identically zero"
+}], "GuideText",
+ CellChangeTimes->{{3.814697134161387*^9, 3.8146971852127647`*^9}, 
+   3.81953151277136*^9, {3.819532238052972*^9, 3.81953227928648*^9}},
+ CellID->48437252,ExpressionUUID->"3cab40b8-dc66-4e87-9417-ea59b3d1e65a"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["GenericLinearCombinationOperator",
+   BaseStyle->"Link",
+   ButtonData->
+    "paclet:PDESymbolics2022/ref/GenericLinearCombinationOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "22b820de-51e0-4878-9d52-a9e45525ecb5"],
+ " \[LongDash] combines linearly, with free coefficients"
+}], "GuideText",
+ CellChangeTimes->{{3.814697350670464*^9, 3.814697408523505*^9}},
+ CellID->1685560599,ExpressionUUID->"71a6f63d-961c-4b3a-9ef8-54b843098e12"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["ImprovedHomogeneousSolveAlwaysOperator",
+   BaseStyle->"Link",
+   ButtonData->
+    "paclet:PDESymbolics2022/ref/ImprovedHomogeneousSolveAlwaysOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "0af5fb29-e54c-4396-900e-7ce290596566"],
+ " \[LongDash] gives properties of parameters for which the homogeneous \
+equation is always true"
+}], "GuideText",
+ CellChangeTimes->{{3.814697429751293*^9, 3.814697508761929*^9}, {
+  3.814697953045732*^9, 3.814697956986825*^9}},
+ CellID->1848341412,ExpressionUUID->"460297f9-0b34-437d-89a5-d5b3a0cd692f"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["LinearSystemSolveOperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/LinearSystemSolveOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "4ad43d7e-67f0-47b9-b5a9-3de99b01b8cf"],
+ " \[LongDash] solves linear systems"
+}], "GuideText",
+ CellChangeTimes->{{3.814697569731444*^9, 3.814697587965617*^9}, {
+  3.819533385062964*^9, 3.819533387108631*^9}, {3.8195334770659313`*^9, 
+  3.819533497379299*^9}},
+ CellID->290248320,ExpressionUUID->"b8590237-8865-4a0d-a1fb-41c525370ca5"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["MatrixInverseOperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/MatrixInverseOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "5e8f5989-948a-4388-a10d-646411413133"],
+ " \[LongDash] inverts matrices of unknowns"
+}], "GuideText",
+ CellChangeTimes->{{3.814697591325877*^9, 3.814697602266531*^9}, {
+  3.819533500274349*^9, 3.8195335180031357`*^9}},
+ CellID->807924042,ExpressionUUID->"edffc39c-db23-48b5-a310-ff6a6e1e842e"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["MonomialDependenceOperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/MonomialDependenceOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "63688f17-904f-4c99-8f3e-60a0ced31aac"],
+ " \[LongDash] shows the properties of parameters for which the monomials are \
+linearly dependent"
+}], "GuideText",
+ CellChangeTimes->{{3.814697605758156*^9, 3.8146976180464497`*^9}, {
+  3.819533521960821*^9, 3.819533522710322*^9}, {3.819533718672431*^9, 
+  3.819533753195099*^9}},
+ CellID->699411806,ExpressionUUID->"a6c57080-c342-4aeb-be61-1faa351aa738"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["MonomialsOperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/MonomialsOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "70540cfe-2e51-41df-bfb9-8ec91fd51cd8"],
+ " \[LongDash] generates monomials with some properties"
+}], "GuideText",
+ CellChangeTimes->{{3.814697619882915*^9, 3.8146976269578238`*^9}, {
+  3.819533756942421*^9, 3.81953379215158*^9}},
+ CellID->1836223411,ExpressionUUID->"17f569b2-fec1-4396-ad47-e69cf68aee00"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["SolveAlwaysOperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/SolveAlwaysOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "ae2bffd3-d12c-4232-9933-630700d6575a"],
+ " \[LongDash] XXXX"
+}], "GuideText",
+ CellChangeTimes->{{3.814697892038783*^9, 3.814697901407259*^9}, {
+  3.819534578952825*^9, 3.819534579571136*^9}, {3.819534618555396*^9, 
+  3.819534619071479*^9}},
+ CellID->2080638905,ExpressionUUID->"7d10581f-840b-44b3-8170-b9367a0fc165"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["UndeterminedCoefficientsEquationOperator",
+   BaseStyle->"Link",
+   ButtonData->
+    "paclet:PDESymbolics2022/ref/UndeterminedCoefficientsEquationOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "edba9847-ce1a-4ba5-8b37-cb08cec4dfa1"],
+ " \[LongDash] XXXX"
+}], "GuideText",
+ CellChangeTimes->{{3.8146980048282623`*^9, 3.814698040243218*^9}},
+ CellID->539388957,ExpressionUUID->"42538dfb-52c6-44f7-af9e-337ff87e0f97"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["UndeterminedCoefficientsMatrixOparator",
+   BaseStyle->"Link",
+   ButtonData->
+    "paclet:PDESymbolics2022/ref/UndeterminedCoefficientsMatrixOparator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "376fbe90-b460-4268-a276-72e3b11fea37"],
+ " \[LongDash] XXXX"
+}], "GuideText",
+ CellChangeTimes->{{3.814698023144671*^9, 3.8146980433347816`*^9}},
+ CellID->1211502701,ExpressionUUID->"4e7cc571-d22b-46eb-8d6e-a08ea432a56e"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["MatrixKernelOperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/MatrixKernelOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "c1c65869-5663-44e0-b580-02b161a05623"],
+ " \[LongDash] XXXX"
+}], "GuideText",
+ CellChangeTimes->{{3.8165109715083523`*^9, 3.816510979440098*^9}},
+ CellID->636458044,ExpressionUUID->"2f7cb41b-6a3c-4311-8f6f-6317acdfa8a8"]
+}, Open  ]],
+
+Cell["\t", "GuideDelimiter",
+ CellID->1858333798,ExpressionUUID->"707f5db1-1dca-4921-b780-f43620af0af0"],
+
+Cell[CellGroupData[{
+
+Cell["Piecewise", "GuideFunctionsSubsection",
+ CellChangeTimes->{{3.797770937149907*^9, 3.797770939915659*^9}},
+ CellID->1947182195,ExpressionUUID->"eb64953f-be8a-48c8-b9ab-de9c049cbdd2"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["PiecewiseSimplify",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/PiecewiseSimplify"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "eba7a320-45c0-41db-a470-7aee4fb2f6e3"],
+ " \[LongDash] simplifies the cases in Piecewise functions"
+}], "GuideText",
+ CellChangeTimes->{{3.797771057519936*^9, 3.7977710687620497`*^9}, {
+  3.797771392424656*^9, 3.797771392514228*^9}, {3.797836622551536*^9, 
+  3.797836652855152*^9}},
+ CellID->1035551958,ExpressionUUID->"fb0bd996-0c80-45e6-a218-7bdc19e0a0bc"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["PiecewiseFullSimplify",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/PiecewiseFullSimplify"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "53d04cf8-9e07-458d-b679-4e16396048b7"],
+ " \[LongDash] performs FullSimplify on Piecewise functions"
+}], "GuideText",
+ CellChangeTimes->{{3.797771071800036*^9, 3.797771080394533*^9}, {
+  3.797771396700933*^9, 3.797771396830059*^9}, {3.797836656062606*^9, 
+  3.79783667761763*^9}},
+ CellID->1314282818,ExpressionUUID->"69a5dd8b-d376-479b-b215-6ef6a00e8844"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["PiecewiseBeautify",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/PiecewiseBeautify"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "d63d8b0b-1d29-4824-8f79-07f5cee30636"],
+ " \[LongDash] does some PDE magic ;-)"
+}], "GuideText",
+ CellChangeTimes->{{3.797771086059464*^9, 3.797771100074335*^9}, {
+   3.797771401079241*^9, 3.797771401181807*^9}, {3.7978366813047533`*^9, 
+   3.797836700291009*^9}, 3.797838203087851*^9},
+ CellID->134529084,ExpressionUUID->"bcf0d47e-c4aa-4d33-9431-b1b7a8b55daa"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["PiecewiseReplace",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/PiecewiseReplace"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "4b8a4b66-d45e-4b10-9f71-3a8d5cc73cb0"],
+ " \[LongDash] replaces piecewise rules in piecewise expressions"
+}], "GuideText",
+ CellChangeTimes->{{3.8146976869424467`*^9, 3.8146976968583803`*^9}, {
+  3.819533794990219*^9, 3.81953379553167*^9}, {3.8195338491985283`*^9, 
+  3.819533859925715*^9}},
+ CellID->1905996736,ExpressionUUID->"f7caab38-772a-4dcc-96cd-55da35720ca3"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["PiecewiseMap",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/PieceewiseMap"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "c561a9cf-da16-4345-ba16-171786d8933e"],
+ " \[LongDash] maps a function through a piecewise expression"
+}], "GuideText",
+ CellChangeTimes->{{3.797771104467252*^9, 3.797771111131344*^9}, {
+  3.797771405805691*^9, 3.797771405940689*^9}, {3.797836786138427*^9, 
+  3.7978367877149754`*^9}, {3.797838029432288*^9, 3.7978380294343643`*^9}, {
+  3.819530346197426*^9, 3.819530357700634*^9}, {3.819530434943406*^9, 
+  3.819530449511973*^9}},
+ CellID->1877518144,ExpressionUUID->"6c3f3002-6b06-4394-a850-cf4a3d1afb86"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["ConditionalPiecewiseMap",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/ConditionalPiecewiseMap"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "e536c9b9-08af-47eb-8ab8-c7413e0344bb"],
+ " \[LongDash] need to learn what it does..."
+}], "GuideText",
+ CellChangeTimes->{{3.797771123876669*^9, 3.797771139639372*^9}, {
+  3.797771410094145*^9, 3.7977714101804323`*^9}, {3.797836789674652*^9, 
+  3.7978367908353167`*^9}, {3.819531430465222*^9, 3.8195314416936626`*^9}},
+ CellID->1976401681,ExpressionUUID->"4c400cb1-8dc1-41c3-8d34-0aeaed67238a"]
+}, Open  ]],
+
+Cell["\t", "GuideDelimiter",
+ CellID->445000417,ExpressionUUID->"483f64a2-d990-4ea7-a637-788dd6513ff7"],
+
+Cell[CellGroupData[{
+
+Cell["Time dependent PDEs", "GuideFunctionsSubsection",
+ CellChangeTimes->{{3.797770937149907*^9, 3.797770939915659*^9}, {
+  3.81953509001086*^9, 3.819535103143005*^9}},
+ CellID->440513265,ExpressionUUID->"ed649031-3419-4f4a-833a-4f517311b4a5"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["FindConservedQuantityOperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/FindConservedQuantityOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "6a0c8e00-c6d7-4010-9c09-169b1d280e4d"],
+ " \[LongDash] finds conserved quantities for a time dependent PDE"
+}], "GuideText",
+ CellChangeTimes->{{3.8146972679346*^9, 3.814697326906683*^9}},
+ CellID->1886285954,ExpressionUUID->"d905d555-93c3-4db1-a1f3-4223d60dc09a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Positivity", "GuideFunctionsSubsection",
+ CellChangeTimes->{{3.797770937149907*^9, 3.797770939915659*^9}, {
+  3.81953509001086*^9, 3.819535103143005*^9}, {3.819535155474701*^9, 
+  3.8195351592084093`*^9}},
+ CellID->1457804625,ExpressionUUID->"b8b76092-0b39-4270-b80c-4bf2d0a06856"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["PositivityOperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/PositivityOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "e7478e75-77b6-4ebb-95d9-c3fd09fde5a4"],
+ " \[LongDash] is not ready (as of 2021.01.13)"
+}], "GuideText",
+ CellChangeTimes->{{3.8146977124627953`*^9, 3.814697727236891*^9}, {
+  3.8195338625598497`*^9, 3.819533863033063*^9}, {3.8195338988279877`*^9, 
+  3.819533915938526*^9}},
+ CellID->657609037,ExpressionUUID->"49aaa9e5-6d34-45cf-806b-c9f6fa70342e"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["PositivityQEOperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/PositivityQEOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "a775d58c-6a12-415c-ba3f-9007c0423dfb"],
+ " \[LongDash] is not ready (as of 2021.01.13) (will this be a thing?)"
+}], "GuideText",
+ CellChangeTimes->{{3.814697736995421*^9, 3.814697756574606*^9}, {
+  3.819534263797885*^9, 3.819534290354453*^9}},
+ CellID->1285414505,ExpressionUUID->"a3ba67e3-1791-4e08-a4c3-4fc93351da54"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["SimplifyPositivityOperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/SimplifyPositivityOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "7d4b706b-76fc-417f-99d1-e368917650ec"],
+ " \[LongDash] returns a simpler expression assuming the necessary conditions \
+on the parameters for positivity"
+}], "GuideText",
+ CellChangeTimes->{{3.814697859013726*^9, 3.814697875248392*^9}, {
+  3.819534400438162*^9, 3.8195344011610527`*^9}, {3.819534517482423*^9, 
+  3.819534573685528*^9}},
+ CellID->1941622289,ExpressionUUID->"f0891185-d880-447d-b898-2248c4789fc9"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["SimplifyPositivityQEOperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/SimplifyPositivityQEOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "30788d83-3851-4415-9514-3db639bd956a"],
+ " \[LongDash] XXXX"
+}], "GuideText",
+ CellChangeTimes->{{3.817038870006652*^9, 3.817038874767193*^9}, {
+  3.8170389119924517`*^9, 3.817038912023428*^9}},
+ CellID->303603988,ExpressionUUID->"e363a14b-896a-489a-8262-5d20fc45f2d9"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["PositivityConditionQEOperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/PositivityConditionQEOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "5a16be64-2b42-4505-9fd8-717a105ebb40"],
+ " \[LongDash] XXXX"
+}], "GuideText",
+ CellChangeTimes->{{3.817038956138433*^9, 3.8170389749897137`*^9}, {
+  3.81703901972959*^9, 3.817039024742999*^9}},
+ CellID->843407165,ExpressionUUID->"8b7a316d-6285-41f0-91fb-46efe571ca35"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Testing", "GuideFunctionsSubsection",
+ CellChangeTimes->{{3.797770937149907*^9, 3.797770939915659*^9}, {
+  3.81953509001086*^9, 3.819535103143005*^9}, {3.819535155474701*^9, 
+  3.8195351592084093`*^9}, {3.819535208878332*^9, 3.819535211864272*^9}},
+ CellID->1191805547,ExpressionUUID->"f4fcdfb8-ef8e-421b-90ca-53655be55a0d"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["TestOperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/TestOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "aaeeb5ed-72a9-409c-8593-19a1d27e95e2"],
+ " \[LongDash] Traces evaluation and applies systematic tests to the \
+intermediate computations"
+}], "GuideText",
+ CellChangeTimes->{{3.814697914770293*^9, 3.8146979219807997`*^9}, {
+  3.8195347490762577`*^9, 3.819534754794921*^9}},
+ CellID->597503863,ExpressionUUID->"9ad094f4-4e2f-4eb8-b601-02dff5cb016c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Discrete", "GuideFunctionsSubsection",
+ CellChangeTimes->{{3.797770937149907*^9, 3.797770939915659*^9}, {
+  3.81953509001086*^9, 3.819535103143005*^9}, {3.819535155474701*^9, 
+  3.8195351592084093`*^9}, {3.819535222179834*^9, 3.819535237319075*^9}},
+ CellID->2074188339,ExpressionUUID->"f3c40734-9915-4fab-a69e-9e84bd33c597"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["StencilOperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/StencilOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "767c36f3-8e01-4a5d-99db-f169d5ef246c"],
+ " \[LongDash] the smallest stencil on which the (finite-) difference formula \
+is defined"
+}], "GuideText",
+ CellChangeTimes->{{3.816416159109064*^9, 3.816416173314373*^9}, {
+  3.819534794652192*^9, 3.819534839930723*^9}},
+ CellID->326490194,ExpressionUUID->"f12acb93-7529-47e0-b770-31188282fa32"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["DiscreteEquivalentsOperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/DiscreteEquivalentsOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "b777eff1-a9d0-4288-b690-a0aec2b691a5"],
+ " \[LongDash] produces terms that appear in the successive summation by parts"
+}], "GuideText",
+ CellChangeTimes->{{3.816416176952622*^9, 3.816416206893903*^9}, {
+  3.8195348439422617`*^9, 3.819534871860306*^9}},
+ CellID->499972473,ExpressionUUID->"81c6c3d5-d653-42c9-82a6-304c6a455a6f"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["RegroupParametersOperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/RegroupParametersOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "1558ff14-14a6-400a-96cf-215e0e961f00"],
+ " \[LongDash] factorizes parameters in the expressions "
+}], "GuideText",
+ CellChangeTimes->{{3.814697769432047*^9, 3.814697835900442*^9}},
+ CellID->1303728960,ExpressionUUID->"df1f2381-720f-425b-9554-ffcd8ef14a17"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["DiscreteConservedQOperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/DiscreteConservedQOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "97a7970f-e445-4f92-bb96-40620d5f8a49"],
+ " \[LongDash] answers with true of false the question of quantity \
+conservation"
+}], "GuideText",
+ CellChangeTimes->{{3.847181518357499*^9, 3.847181524140333*^9}, {
+  3.847181705899067*^9, 3.847181705899088*^9}, {3.847181780657205*^9, 
+  3.847181825206053*^9}},
+ CellID->1438139417,ExpressionUUID->"b708bf74-1ad2-4dca-8e14-602d83bddefd"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["PiecewiseExtractGeneratorsOperator",
+   BaseStyle->"Link",
+   ButtonData->
+    "paclet:PDESymbolics2022/ref/PiecewiseExtractGeneratorsOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "e3dcce34-bf8f-4982-afab-981c20d39946"],
+ " \[LongDash] XXXX"
+}], "GuideText",
+ CellChangeTimes->{{3.8471820186792917`*^9, 3.8471820533445683`*^9}},
+ CellID->1600841778,ExpressionUUID->"204090a5-dc73-4dde-acaa-4c4480d06e63"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["RangeSchemeTranslationsOperator",
+   BaseStyle->"Link",
+   ButtonData->
+    "paclet:PDESymbolics2022/ref/RangeSchemeTranslationsOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "a8fdbbee-8b36-448c-9c15-da8240e935b0"],
+ " \[LongDash] XXXX"
+}], "GuideText",
+ CellChangeTimes->{{3.84718160370957*^9, 3.847181621538157*^9}, {
+  3.8471817117001867`*^9, 3.847181711700211*^9}},
+ CellID->1432304733,ExpressionUUID->"62c2cdfd-7b5b-4d24-bf8a-11a4921c0243"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["ReduceModSchemeOperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/ReduceModSchemeOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "6d4a1393-9261-4f3e-94d8-b034e090a8ef"],
+ " \[LongDash] XXXX"
+}], "GuideText",
+ CellChangeTimes->{{3.847181635010592*^9, 3.847181644998802*^9}, {
+  3.8471817144593287`*^9, 3.8471817144593554`*^9}},
+ CellID->1308757615,ExpressionUUID->"e139f70e-b45d-4563-b60a-31641ee44e2d"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["TimeDifferenceOperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/TimeDifferenceOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "1e308b50-2571-4477-8aff-9b30fba09a1e"],
+ " \[LongDash] time difference, given right-hand-side or scheme"
+}], "GuideText",
+ CellChangeTimes->{{3.847181648875216*^9, 3.847181659173595*^9}, {
+  3.847181717021729*^9, 3.84718171702176*^9}, {3.847181922487121*^9, 
+  3.847181947044489*^9}},
+ CellID->408939684,ExpressionUUID->"62db7ae4-373d-40aa-9d4a-90e53397c9bc"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["TimeOrderedQOperator",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/ref/TimeOrderedQOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "ba55a4f4-7302-4657-a4fb-dda91d27cfe9"],
+ " \[LongDash] are two time-dependent expressions ordered with respect to \
+time?"
+}], "GuideText",
+ CellChangeTimes->{{3.847181665072528*^9, 3.847181676576707*^9}, {
+  3.847181719510343*^9, 3.8471817195103693`*^9}, {3.847181953694521*^9, 
+  3.847181980661018*^9}},
+ CellID->585144831,ExpressionUUID->"99723a97-16e0-441f-824d-ec63580bb071"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["VariationalTimeDifferenceOperator",
+   BaseStyle->"Link",
+   ButtonData->
+    "paclet:PDESymbolics2022/ref/VariationalTimeDifferenceOperator"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "21c54571-4fd6-4fe8-898e-eb6fad8b6c7f"],
+ " \[LongDash] XXXX"
+}], "GuideText",
+ CellChangeTimes->{{3.84718168110021*^9, 3.847181722190175*^9}},
+ CellID->1947614847,ExpressionUUID->"c4141d37-63b2-4faa-9030-7b115f3fec42"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Tutorials", "GuideTutorialsSection",
+ CellID->415694126,ExpressionUUID->"58615520-15e2-496b-b2f5-14ebd964d32f"],
+
+Cell["There is no tutorial yet. This should be a link.", "GuideTutorial",
+ CellChangeTimes->{{3.797769914470405*^9, 3.797769924007146*^9}, {
+  3.7978365941639023`*^9, 3.797836608771612*^9}},
+ CellID->806871991,ExpressionUUID->"6ce58281-64ce-4ee3-9b43-9b86ce10ac17"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  ButtonBox["Simplification",
+   BaseStyle->"Link",
+   ButtonData->"paclet:PDESymbolics2022/tutorial/Simplification"]], 
+  "InlineGuideFunction",ExpressionUUID->
+  "a3df2254-1407-4906-92a7-65890900f1b4"],
+ " \[LongDash] based on accompanying paper"
+}], "GuideText",
+ CellChangeTimes->{{3.814698391342636*^9, 3.8146984360999413`*^9}},
+ CellID->1111362318,ExpressionUUID->"cc2d03e0-51e4-4d4d-b3f9-3b3a7bad6d26"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["More About", "GuideMoreAboutSection",
+ CellID->23220180,ExpressionUUID->"521f0cf2-a5cb-434a-abca-20374a6846fc"],
+
+Cell["XXXX", "GuideMoreAbout",
+ CellID->1567025153,ExpressionUUID->"df1af299-1950-4070-8d09-7f09017b9340"],
+
+Cell["XXXX", "GuideMoreAbout",
+ CellID->252299663,ExpressionUUID->"7cb8cb34-de98-4675-b9bf-d1f0e9adedbe"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Related Links", "GuideRelatedLinksSection",
+ CellID->415694148,ExpressionUUID->"a150337e-1b9b-4384-bdcd-d58e9b72d543"],
+
+Cell[TextData[ButtonBox["VariationalMethods",
+ BaseStyle->"Link",
+ ButtonData->
+  "paclet:PDESymbolics2022/guide/VariationalMethods"]], "GuideRelatedLinks",
+ CellChangeTimes->{{3.7977699339730883`*^9, 3.797769941810905*^9}, {
+  3.797771419388235*^9, 3.797771419552745*^9}},
+ CellID->255555891,ExpressionUUID->"2841a001-8861-4246-9833-032442af41c4"]
+}, Open  ]]
+},
+WindowSize->{700, 798},
+WindowMargins->{{350, Automatic}, {Automatic, 25}},
+FrontEndVersion->"12.3 for Mac OS X x86 (64-bit) (July 9, 2021)",
+StyleDefinitions->FrontEnd`FileName[{"Wolfram"}, "GuidePageStyles.nb", 
+  CharacterEncoding -> "UTF-8"],
+ExpressionUUID->"c40ea509-c608-4597-8410-0c5564287d73"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 600, 14, 24, "History",ExpressionUUID->"112b80ed-53e8-497d-a97e-cc73b41acd65",
+ CellID->1247902091],
+Cell[CellGroupData[{
+Cell[1183, 38, 123, 1, 29, "CategorizationSection",ExpressionUUID->"0385e48d-b4d6-4b00-a536-80db66c827b1",
+ CellID->1122911449],
+Cell[1309, 41, 133, 2, 30, "Categorization",ExpressionUUID->"7ffe4f63-1b5c-4316-9eea-7bafde48c172",
+ CellID->686433507],
+Cell[1445, 45, 144, 2, 30, "Categorization",ExpressionUUID->"399f11bf-a720-4ae8-96af-214587f84e02",
+ CellID->605800465],
+Cell[1592, 49, 141, 2, 30, "Categorization",ExpressionUUID->"e993b29e-1f2c-46a1-a2b6-db3ec15b72a6",
+ CellID->468444828],
+Cell[1736, 53, 135, 1, 30, "Categorization",ExpressionUUID->"dd5bbbc0-9ff7-4f2c-ae02-e2416eafa267"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[1908, 59, 111, 1, 19, "KeywordsSection",ExpressionUUID->"940ff5f5-1fd3-4642-9bf0-4c0b90b4efe8",
+ CellID->1427428552],
+Cell[2022, 62, 194, 2, 19, "Keywords",ExpressionUUID->"0ab85666-f175-435f-8875-3a5b7b4cae28",
+ CellID->1251852827],
+Cell[2219, 66, 185, 2, 19, "Keywords",ExpressionUUID->"561ed0d9-4857-4a19-869c-3037d06ac773",
+ CellID->477098209]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2441, 73, 108, 1, 29, "DetailsSection",ExpressionUUID->"dc0c181b-023f-4a37-8291-c6ba163fa968",
+ CellID->307771771],
+Cell[2552, 76, 118, 2, 30, "Details",ExpressionUUID->"ba0117c7-287e-42e3-9754-85746b84e0a4",
+ CellID->795394057],
+Cell[2673, 80, 124, 2, 30, "Details",ExpressionUUID->"2c5f50ce-36a8-4f38-bbfe-73e8dff25699",
+ CellID->350963985],
+Cell[2800, 84, 118, 2, 30, "Details",ExpressionUUID->"d6cd2860-1142-491c-b1b3-79b56812465d",
+ CellID->802101],
+Cell[2921, 88, 126, 2, 30, "Details",ExpressionUUID->"73143066-0980-4699-ab1a-9a22ddd93651",
+ CellID->509823116],
+Cell[3050, 92, 116, 2, 30, "Details",ExpressionUUID->"bd1dfa41-5863-4ac1-baf8-a52ba0c7d77e",
+ CellID->199884516],
+Cell[3169, 96, 116, 2, 30, "Details",ExpressionUUID->"760c067e-2764-4e41-9f65-43cfd8701b0a",
+ CellID->463951815],
+Cell[3288, 100, 116, 2, 30, "Details",ExpressionUUID->"86cd05fe-bc73-410a-b392-fe835af2a17c",
+ CellID->8237523],
+Cell[3407, 104, 133, 2, 30, "Details",ExpressionUUID->"507594d6-ab66-48e2-a4f2-d04e93e8bf11",
+ CellID->813936640],
+Cell[3543, 108, 122, 2, 30, "Details",ExpressionUUID->"93e45177-7ac9-43ee-8d62-c364c92ccd0d",
+ CellID->240026365]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[3702, 115, 109, 1, 77, "GuideTitle",ExpressionUUID->"267293a3-6e38-4cb2-8154-f169ed5c0b57",
+ CellID->942062912],
+Cell[3814, 118, 374, 7, 69, "GuideAbstract",ExpressionUUID->"b90431fe-e882-4291-b958-8d1c32baf1e3",
+ CellID->2001916300]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4225, 130, 109, 1, 70, "GuideFunctionsSection",ExpressionUUID->"3d7dd8f1-3efe-4de1-8ef3-dc6b37faad5c",
+ CellID->1866139230],
+Cell[CellGroupData[{
+Cell[4359, 135, 245, 3, 35, "GuideFunctionsSubsection",ExpressionUUID->"7b988c8d-f702-4d45-a4d6-19577031e7be",
+ CellID->394513778],
+Cell[4607, 140, 523, 12, 25, "GuideText",ExpressionUUID->"ac164cbc-ee99-4a50-bc79-8e63ec3c1193",
+ CellID->203374175],
+Cell[5133, 154, 488, 11, 25, "GuideText",ExpressionUUID->"9adc71d7-6c47-436a-aab5-0c2c5137181e",
+ CellID->1463276848]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5658, 170, 103, 1, 26, "GuideDelimiter",ExpressionUUID->"b405f7d5-f969-4674-9344-006b4ba19487",
+ CellID->311258892],
+Cell[5764, 173, 519, 11, 25, "GuideText",ExpressionUUID->"a210b4fd-aa9f-4f26-aaf1-2cbf2cfdeacb",
+ CellID->1282229373]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6320, 189, 104, 1, 26, "GuideDelimiter",ExpressionUUID->"35b26011-a43e-4512-a12b-61331ad20b0e",
+ CellID->1640115810],
+Cell[6427, 192, 599, 13, 41, "GuideText",ExpressionUUID->"da950914-ad33-444b-9aff-da5cc61b5039",
+ CellID->430674366],
+Cell[7029, 207, 574, 13, 41, "GuideText",ExpressionUUID->"b12d857d-b3e5-4c5a-a39e-fef2f907837b",
+ CellID->1152359022],
+Cell[7606, 222, 575, 12, 41, "GuideText",ExpressionUUID->"91a2fe5f-7acb-465a-b0e4-d9a21f18d2d7",
+ CellID->1456692346],
+Cell[8184, 236, 581, 13, 41, "GuideText",ExpressionUUID->"9ede22e6-5027-4a37-8c2a-23f5b39e54e9",
+ CellID->188592151]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8802, 254, 186, 2, 35, "GuideFunctionsSubsection",ExpressionUUID->"722cfecf-edbc-4fe1-975f-d19e6adc27da",
+ CellID->1496468265],
+Cell[8991, 258, 617, 12, 25, "GuideText",ExpressionUUID->"4ab23d8f-8196-4382-9c33-04abdadc5649",
+ CellID->273237678],
+Cell[9611, 272, 597, 13, 25, "GuideText",ExpressionUUID->"7964c697-586d-4a89-977e-1b0aeb30a613",
+ CellID->113740153],
+Cell[10211, 287, 494, 11, 25, "GuideText",ExpressionUUID->"61541eda-1b31-423e-bf7e-0ac1938c27a5",
+ CellID->1058372001]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10742, 303, 104, 1, 26, "GuideDelimiter",ExpressionUUID->"1dac5181-7d41-4b74-9944-6ef17ae2f6af",
+ CellID->1895658979],
+Cell[10849, 306, 543, 12, 25, "GuideText",ExpressionUUID->"26ada4d8-5041-4a33-a69a-42d163a1c787",
+ CellID->94912185],
+Cell[11395, 320, 510, 11, 25, "GuideText",ExpressionUUID->"984034f7-b665-4078-85f8-4f5d47cb0eda",
+ CellID->1756227221]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11942, 336, 195, 2, 35, "GuideFunctionsSubsection",ExpressionUUID->"aea88142-44ec-4779-9bc4-28089d7b01be",
+ CellID->750208229],
+Cell[12140, 340, 511, 11, 25, "GuideText",ExpressionUUID->"399afa47-e162-449b-b236-cbf526077e4f",
+ CellID->1808168054],
+Cell[12654, 353, 580, 12, 25, "GuideText",ExpressionUUID->"0aae8275-27d5-428c-b77f-fc12fe5fa65d",
+ CellID->1355485536],
+Cell[13237, 367, 575, 13, 25, "GuideText",ExpressionUUID->"6a139ed3-77a1-42b1-bf73-fbefc6f1d5c4",
+ CellID->1138876176],
+Cell[13815, 382, 587, 13, 25, "GuideText",ExpressionUUID->"18d41f80-c6f4-4f2e-9ac7-5759202c44f0",
+ CellID->570144321],
+Cell[14405, 397, 556, 12, 25, "GuideText",ExpressionUUID->"525343e8-b137-46b8-9fec-357249e499fb",
+ CellID->343570133],
+Cell[14964, 411, 567, 12, 41, "GuideText",ExpressionUUID->"3cab40b8-dc66-4e87-9417-ea59b3d1e65a",
+ CellID->48437252],
+Cell[15534, 425, 488, 11, 25, "GuideText",ExpressionUUID->"71a6f63d-961c-4b3a-9ef8-54b843098e12",
+ CellID->1685560599],
+Cell[16025, 438, 590, 13, 41, "GuideText",ExpressionUUID->"460297f9-0b34-437d-89a5-d5b3a0cd692f",
+ CellID->1848341412],
+Cell[16618, 453, 548, 12, 25, "GuideText",ExpressionUUID->"b8590237-8865-4a0d-a1fb-41c525370ca5",
+ CellID->290248320],
+Cell[17169, 467, 498, 11, 25, "GuideText",ExpressionUUID->"edffc39c-db23-48b5-a310-ff6a6e1e842e",
+ CellID->807924042],
+Cell[17670, 480, 612, 13, 41, "GuideText",ExpressionUUID->"a6c57080-c342-4aeb-be61-1faa351aa738",
+ CellID->699411806],
+Cell[18285, 495, 502, 11, 25, "GuideText",ExpressionUUID->"17f569b2-fec1-4396-ad47-e69cf68aee00",
+ CellID->1836223411],
+Cell[18790, 508, 518, 12, 25, "GuideText",ExpressionUUID->"7d10581f-840b-44b3-8170-b9367a0fc165",
+ CellID->2080638905],
+Cell[19311, 522, 468, 11, 25, "GuideText",ExpressionUUID->"42538dfb-52c6-44f7-af9e-337ff87e0f97",
+ CellID->539388957],
+Cell[19782, 535, 465, 11, 25, "GuideText",ExpressionUUID->"4e7cc571-d22b-46eb-8d6e-a08ea432a56e",
+ CellID->1211502701],
+Cell[20250, 548, 423, 10, 25, "GuideText",ExpressionUUID->"2f7cb41b-6a3c-4311-8f6f-6317acdfa8a8",
+ CellID->636458044]
+}, Open  ]],
+Cell[20688, 561, 104, 1, 26, "GuideDelimiter",ExpressionUUID->"707f5db1-1dca-4921-b780-f43620af0af0",
+ CellID->1858333798],
+Cell[CellGroupData[{
+Cell[20817, 566, 187, 2, 35, "GuideFunctionsSubsection",ExpressionUUID->"eb64953f-be8a-48c8-b9ab-de9c049cbdd2",
+ CellID->1947182195],
+Cell[21007, 570, 555, 12, 25, "GuideText",ExpressionUUID->"fb0bd996-0c80-45e6-a218-7bdc19e0a0bc",
+ CellID->1035551958],
+Cell[21565, 584, 561, 12, 25, "GuideText",ExpressionUUID->"69a5dd8b-d376-479b-b215-6ef6a00e8844",
+ CellID->1314282818],
+Cell[22129, 598, 558, 12, 25, "GuideText",ExpressionUUID->"bcf0d47e-c4aa-4d33-9431-b1b7a8b55daa",
+ CellID->134529084],
+Cell[22690, 612, 562, 12, 25, "GuideText",ExpressionUUID->"f7caab38-772a-4dcc-96cd-55da35720ca3",
+ CellID->1905996736],
+Cell[23255, 626, 695, 14, 25, "GuideText",ExpressionUUID->"6c3f3002-6b06-4394-a850-cf4a3d1afb86",
+ CellID->1877518144],
+Cell[23953, 642, 603, 12, 25, "GuideText",ExpressionUUID->"4c400cb1-8dc1-41c3-8d34-0aeaed67238a",
+ CellID->1976401681]
+}, Open  ]],
+Cell[24571, 657, 103, 1, 26, "GuideDelimiter",ExpressionUUID->"483f64a2-d990-4ea7-a637-788dd6513ff7",
+ CellID->445000417],
+Cell[CellGroupData[{
+Cell[24699, 662, 244, 3, 35, "GuideFunctionsSubsection",ExpressionUUID->"ed649031-3419-4f4a-833a-4f517311b4a5",
+ CellID->440513265],
+Cell[24946, 667, 485, 10, 25, "GuideText",ExpressionUUID->"d905d555-93c3-4db1-a1f3-4223d60dc09a",
+ CellID->1886285954]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[25468, 682, 287, 4, 35, "GuideFunctionsSubsection",ExpressionUUID->"b8b76092-0b39-4270-b80c-4bf2d0a06856",
+ CellID->1457804625],
+Cell[25758, 688, 548, 12, 25, "GuideText",ExpressionUUID->"49aaa9e5-6d34-45cf-806b-c9f6fa70342e",
+ CellID->657609037],
+Cell[26309, 702, 522, 11, 25, "GuideText",ExpressionUUID->"a3ba67e3-1791-4e08-a4c3-4fc93351da54",
+ CellID->1285414505],
+Cell[26834, 715, 627, 13, 41, "GuideText",ExpressionUUID->"f0891185-d880-447d-b898-2248c4789fc9",
+ CellID->1941622289],
+Cell[27464, 730, 488, 11, 25, "GuideText",ExpressionUUID->"e363a14b-896a-489a-8262-5d20fc45f2d9",
+ CellID->303603988],
+Cell[27955, 743, 489, 11, 25, "GuideText",ExpressionUUID->"8b7a316d-6285-41f0-91fb-46efe571ca35",
+ CellID->843407165]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[28481, 759, 330, 4, 35, "GuideFunctionsSubsection",ExpressionUUID->"f4fcdfb8-ef8e-421b-90ca-53655be55a0d",
+ CellID->1191805547],
+Cell[28814, 765, 535, 12, 41, "GuideText",ExpressionUUID->"9ad094f4-4e2f-4eb8-b601-02dff5cb016c",
+ CellID->597503863]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[29386, 782, 331, 4, 35, "GuideFunctionsSubsection",ExpressionUUID->"f3c40734-9915-4fab-a69e-9e84bd33c597",
+ CellID->2074188339],
+Cell[29720, 788, 531, 12, 25, "GuideText",ExpressionUUID->"f12acb93-7529-47e0-b770-31188282fa32",
+ CellID->326490194],
+Cell[30254, 802, 545, 11, 41, "GuideText",ExpressionUUID->"81c6c3d5-d653-42c9-82a6-304c6a455a6f",
+ CellID->499972473],
+Cell[30802, 815, 469, 10, 25, "GuideText",ExpressionUUID->"df1f2381-720f-425b-9554-ffcd8ef14a17",
+ CellID->1303728960],
+Cell[31274, 827, 594, 13, 41, "GuideText",ExpressionUUID->"b708bf74-1ad2-4dca-8e14-602d83bddefd",
+ CellID->1438139417],
+Cell[31871, 842, 459, 11, 25, "GuideText",ExpressionUUID->"204090a5-dc73-4dde-acaa-4c4480d06e63",
+ CellID->1600841778],
+Cell[32333, 855, 499, 12, 25, "GuideText",ExpressionUUID->"62c2cdfd-7b5b-4d24-bf8a-11a4921c0243",
+ CellID->1432304733],
+Cell[32835, 869, 481, 11, 25, "GuideText",ExpressionUUID->"e139f70e-b45d-4563-b60a-31641ee44e2d",
+ CellID->1308757615],
+Cell[33319, 882, 566, 12, 25, "GuideText",ExpressionUUID->"62db7ae4-373d-40aa-9d4a-90e53397c9bc",
+ CellID->408939684],
+Cell[33888, 896, 583, 13, 41, "GuideText",ExpressionUUID->"99723a97-16e0-441f-824d-ec63580bb071",
+ CellID->585144831],
+Cell[34474, 911, 452, 11, 25, "GuideText",ExpressionUUID->"c4141d37-63b2-4faa-9030-7b115f3fec42",
+ CellID->1947614847]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[34975, 928, 117, 1, 72, "GuideTutorialsSection",ExpressionUUID->"58615520-15e2-496b-b2f5-14ebd964d32f",
+ CellID->415694126],
+Cell[35095, 931, 265, 3, 22, "GuideTutorial",ExpressionUUID->"6ce58281-64ce-4ee3-9b43-9b86ce10ac17",
+ CellID->806871991],
+Cell[35363, 936, 440, 10, 25, "GuideText",ExpressionUUID->"cc2d03e0-51e4-4d4d-b3f9-3b3a7bad6d26",
+ CellID->1111362318]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[35840, 951, 117, 1, 72, "GuideMoreAboutSection",ExpressionUUID->"521f0cf2-a5cb-434a-abca-20374a6846fc",
+ CellID->23220180],
+Cell[35960, 954, 106, 1, 22, "GuideMoreAbout",ExpressionUUID->"df1af299-1950-4070-8d09-7f09017b9340",
+ CellID->1567025153],
+Cell[36069, 957, 105, 1, 22, "GuideMoreAbout",ExpressionUUID->"7cb8cb34-de98-4675-b9bf-d1f0e9adedbe",
+ CellID->252299663]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[36211, 963, 124, 1, 72, "GuideRelatedLinksSection",ExpressionUUID->"a150337e-1b9b-4384-bdcd-d58e9b72d543",
+ CellID->415694148],
+Cell[36338, 966, 348, 6, 22, "GuideRelatedLinks",ExpressionUUID->"2841a001-8861-4246-9833-032442af41c4",
+ CellID->255555891]
+}, Open  ]]
+}
+]
+*)
+

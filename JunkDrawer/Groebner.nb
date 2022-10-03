@@ -1,0 +1,436 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     15368,        428]
+NotebookOptionsPosition[     12187,        369]
+NotebookOutlinePosition[     12583,        385]
+CellTagsIndexPosition[     12540,        382]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Piecewise Grobner basis", "Section",
+ CellChangeTimes->{{3.8675008491853952`*^9, 
+  3.867500858743655*^9}},ExpressionUUID->"3bf42548-05ca-4356-b321-\
+ef0c8b70c6c5"],
+
+Cell["\<\
+Goal: produce a piecewise Groebner basis, for example {x, x+a y^2} should be \
+simply {x} if a=0, and {x, y^2} otherwise\
+\>", "Text",
+ CellChangeTimes->{{3.8675012644700737`*^9, 
+  3.867501303734267*^9}},ExpressionUUID->"ef515d5f-a4cf-4cfd-a0c7-\
+601e66eeb6fa"],
+
+Cell["\<\
+1) produce a monomial order - we will use the built-in order - BUT when \
+extracting the variables we will need to sort generators...
+2) leading term operator LT -> the key here is that this will return a \
+piecewise object; maybe we need also a leading term refining
+3) S - operator - again a piecewise object because LT is piecewise
+4) Polynomial division remainder
+5) Buchberger algorithm
+6) Reduced Groebner basis
+\
+\>", "Text",
+ CellChangeTimes->{{3.86750037692404*^9, 3.8675005342055683`*^9}, 
+   3.867501315077544*^9, {3.867501396221263*^9, 3.867501404248098*^9}, {
+   3.867586517686995*^9, 
+   3.8675865447570744`*^9}},ExpressionUUID->"0fe64c58-2633-441b-82e1-\
+76eabc129216"],
+
+Cell["\<\
+Notes :we should make leading terms of the Groebner basis all equal 1 \
+(because now we can divide through). Also we  should be able to build a \
+reduced Groebner basis. \
+\>", "Text",
+ CellChangeTimes->{{3.867501366810524*^9, 
+  3.8675014180940742`*^9}},ExpressionUUID->"0292cd76-6c5f-4a70-905f-\
+4165c19a495b"],
+
+Cell[CellGroupData[{
+
+Cell["Monomial compare - ", "Subsection",
+ CellChangeTimes->{{3.86750096382373*^9, 
+  3.867501005977124*^9}},ExpressionUUID->"9910a856-1666-44a8-9834-\
+71d6749b226f"],
+
+Cell["\<\
+NB - we probably don\[CloseCurlyQuote]t need this because it is already built \
+in in the Monomial list...\
+\>", "Text",
+ CellChangeTimes->{{3.867586288537507*^9, 
+  3.867586306894638*^9}},ExpressionUUID->"fb061f5f-eaf2-4474-9db8-\
+6bcdbc820514"],
+
+Cell["\<\
+Note built in orders in mathematica are : MonomialOrder are Lexicographic, \
+DegreeLexicographic, DegreeReverseLexicographic, EliminationOrder, or an \
+explicit weight matrix
+
+MonomialList[poly,{x1,x2,\[Ellipsis]},order]
+
+\[OpenCurlyDoubleQuote]Lexicographic\[CloseCurlyDoubleQuote], \
+\[OpenCurlyDoubleQuote]DegreeLexicographic\[CloseCurlyDoubleQuote], \
+\[OpenCurlyDoubleQuote]DegreeReverseLexicographic\[CloseCurlyDoubleQuote], \
+\[OpenCurlyDoubleQuote]NegativeLexicographic\[CloseCurlyDoubleQuote], \
+\[OpenCurlyDoubleQuote]NegativeDegreeLexicographic\[CloseCurlyDoubleQuote], \
+\[OpenCurlyDoubleQuote]NegativeDegreeReverseLexicographic\
+\[CloseCurlyDoubleQuote], or an explicit weight matrix.
+\
+\>", "Text",
+ CellChangeTimes->{{3.867501681956861*^9, 3.867501698533256*^9}, {
+  3.867586057269273*^9, 3.86758605841291*^9}, {3.8675861102305813`*^9, 
+  3.8675861191920147`*^9}, {3.867586161918171*^9, 
+  3.867586166547896*^9}},ExpressionUUID->"b6042f65-4dac-4d3e-ab98-\
+c163118f8429"],
+
+Cell["\<\
+1) variables should have generators, or otherwise they will be inferred from \
+the monomials
+2) the default order is ... the following orders are available\
+\>", "Text",
+ CellChangeTimes->{{3.8675010072865267`*^9, 3.867501039180879*^9}, {
+  3.867586169984251*^9, 
+  3.867586170604044*^9}},ExpressionUUID->"0d0460eb-2e2e-40be-aab2-\
+cff391808de8"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"MonomialCompareOperator", "[", "variables", "]"}], "[", 
+  RowBox[{"mon1", ",", " ", "mon2"}], "]"}]], "Input",
+ CellChangeTimes->{{3.8675008109088697`*^9, 3.867500841675441*^9}, {
+  3.867500958278302*^9, 
+  3.867500959465599*^9}},ExpressionUUID->"b2bd93fc-8b5a-47b8-98f3-\
+b2c5c0a213fe"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MonomialList", "[", " ", 
+  RowBox[{
+   RowBox[{"x", "+", "y", "+", 
+    RowBox[{"x", " ", "y"}], " ", "+", 
+    RowBox[{"a", " ", 
+     RowBox[{"x", "^", "2"}], " ", "y"}], " ", "+", 
+    RowBox[{"b", " ", "x", " ", 
+     RowBox[{"y", "^", "2"}]}], "+", " ", 
+    RowBox[{"y", "^", "3"}], "+", 
+    RowBox[{
+     RowBox[{"x", "^", "2"}], " ", "y"}]}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "y"}], "}"}], ",", "\"\<DegreeLexicographic\>\""}], " ",
+   "]"}]], "Input",
+ CellChangeTimes->{{3.867586180418569*^9, 3.867586245417203*^9}, {
+  3.8675863169448338`*^9, 3.867586321973956*^9}, {3.8675863533183537`*^9, 
+  3.867586361620987*^9}},
+ CellLabel->"In[33]:=",ExpressionUUID->"0a31745f-95e4-4317-a091-abecbee78824"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"1", "+", "a"}], ")"}], " ", 
+    SuperscriptBox["x", "2"], " ", "y"}], ",", 
+   RowBox[{"b", " ", "x", " ", 
+    SuperscriptBox["y", "2"]}], ",", 
+   SuperscriptBox["y", "3"], ",", 
+   RowBox[{"x", " ", "y"}], ",", "x", ",", "y"}], "}"}]], "Output",
+ CellChangeTimes->{{3.867586210753612*^9, 3.867586246554948*^9}, {
+  3.8675863192065163`*^9, 3.867586323374669*^9}, {3.867586355620034*^9, 
+  3.867586362103094*^9}},
+ CellLabel->"Out[33]=",ExpressionUUID->"8fcd9771-8e3c-4fa1-9dbb-6b87662c142b"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Leading Term Operator", "Subsection",
+ CellChangeTimes->{{3.867501042739647*^9, 
+  3.867501049012463*^9}},ExpressionUUID->"fa9103ee-9634-4593-8864-\
+24195ac83463"],
+
+Cell["We just use the MonomialList with the appropriate order. ", "Text",
+ CellChangeTimes->{{3.8675865971500483`*^9, 
+  3.867586633665559*^9}},ExpressionUUID->"d10c574a-a3f0-497a-8691-\
+8ad0f030f66c"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"LeadingTermOperator", "[", "variables", "]"}], "[", "expression", 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.867500921381427*^9, 
+  3.867500937204247*^9}},ExpressionUUID->"155b3ca1-d119-4313-b2ec-\
+817a0e0f1496"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["S - Operator", "Subsection",
+ CellChangeTimes->{{3.867501061130137*^9, 
+  3.8675010645248623`*^9}},ExpressionUUID->"c382cb66-6751-46cb-9b9d-\
+b93b235b1e3f"],
+
+Cell["\<\
+This is easy to do but we need to fix the following issue with piecewise \
+expand...\
+\>", "Text",
+ CellChangeTimes->{{3.867501070391903*^9, 3.8675010765896063`*^9}, {
+  3.867501126558979*^9, 
+  3.86750114597688*^9}},ExpressionUUID->"430fc6d4-fe9f-4828-9a5b-\
+836686143260"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"1", "/", 
+   RowBox[{"Piecewise", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"x", ",", 
+         RowBox[{"a", "==", "0"}]}], "}"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"2", ",", 
+         RowBox[{"a", "!=", "0"}]}], "}"}]}], "}"}], ",", " ", "$Failed"}], 
+    "]"}]}], "//", "PiecewiseExpand"}]], "Input",
+ CellChangeTimes->{{3.8675010938186207`*^9, 3.867501121602624*^9}},
+ CellLabel->"In[9]:=",ExpressionUUID->"59ddedec-e42a-40b4-8712-875c7f68455b"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        FractionBox["1", "x"], 
+        RowBox[{"a", "\[Equal]", "0"}]},
+       {
+        FractionBox["1", "2"], 
+        RowBox[{"a", "\[NotEqual]", "0"}]},
+       {
+        FractionBox["1", "$Failed"], 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Output",
+ CellChangeTimes->{{3.867501115019643*^9, 3.867501122051364*^9}},
+ CellLabel->"Out[9]=",ExpressionUUID->"19eee128-00d2-4b8a-bee6-c02847ed3113"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Polynomial division remainder", "Subsection",
+ CellChangeTimes->{{3.867501206417181*^9, 
+  3.867501208108163*^9}},ExpressionUUID->"965253c7-043c-4316-973f-\
+22bad07ccd65"],
+
+Cell["\<\
+A question is whether we can use the built - in polynomial division if the \
+monomials have a non - zero leading term - yes polynomial reduce works with a \
+monomial order\
+\>", "Text",
+ CellChangeTimes->{{3.867501210998609*^9, 3.867501253733482*^9}, {
+  3.867586467551977*^9, 
+  3.86758650403286*^9}},ExpressionUUID->"dd7be06d-d39d-44dc-9571-\
+c8aad539cd95"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.867501952404954*^9, 
+  3.867501964194707*^9}},ExpressionUUID->"09aa7424-40c7-4ecf-83b9-\
+81c699037c50"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<PDESymbolics2020`\>\"", "]"}]], "Input",
+ CellLabel->"In[37]:=",ExpressionUUID->"2c7e0ad0-228e-4b12-b079-7b59d84cc56f"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.8676500236988792`*^9, 
+  3.86765002985693*^9}},ExpressionUUID->"50fd33fc-4c66-4429-84ce-\
+48ef319ef7aa"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"NumerizerOperator", "[", 
+   RowBox[{"Association", "[", 
+    RowBox[{"\"\<pars\>\"", "->", 
+     RowBox[{"{", "a", "}"}]}], "]"}], "]"}], "[", 
+  RowBox[{"a", " ", 
+   RowBox[{"x", "^", "2"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.8676500768998327`*^9, 3.867650111243721*^9}},
+ CellLabel->"In[44]:=",ExpressionUUID->"196a070f-b7e7-4796-bb7f-468302c5661a"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"a", " ", 
+    SuperscriptBox["x", "2"]}], "\[Rule]", 
+   RowBox[{"{", 
+    RowBox[{
+     SuperscriptBox["x", "2"], ",", "a"}], "}"}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellChangeTimes->{{3.867650103931292*^9, 3.867650111727817*^9}},
+ CellLabel->"Out[44]=",ExpressionUUID->"d54ee06a-6630-4e51-be35-597de076e753"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"MonomialList", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"a", " ", 
+     RowBox[{"x", "^", "2"}]}], "+", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"1", "-", 
+       RowBox[{"a", "^", "2"}]}], ")"}], " ", "x"}], "+", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"a", "^", "4"}], "-", "2"}], ")"}]}], ",", 
+   RowBox[{"{", "x", "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.867650130491562*^9, 3.867650152252252*^9}},
+ CellLabel->"In[46]:=",ExpressionUUID->"e52e01a6-47c9-44d4-8a43-bee72e6791b8"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"a", " ", 
+    SuperscriptBox["x", "2"]}], ",", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"1", "-", 
+      SuperscriptBox["a", "2"]}], ")"}], " ", "x"}], ",", 
+   RowBox[{
+    RowBox[{"-", "2"}], "+", 
+    SuperscriptBox["a", "4"]}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.86765014809509*^9, 3.8676501528046722`*^9}},
+ CellLabel->"Out[46]=",ExpressionUUID->"f70244e4-dcad-484b-810f-9aaa494ce8d5"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"LeadingTermpreoperator", "[", "variables_", "]"}], "[", "xp_", 
+   "]"}], ":=", "\[IndentingNewLine]", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", "}"}], ","}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", "]"}]}]], "Input",
+ CellChangeTimes->{{3.867650163721313*^9, 3.8676502213205957`*^9}, {
+  3.867824947842757*^9, 
+  3.867824948388159*^9}},ExpressionUUID->"fb31434e-4a3a-40b5-a596-\
+0912862cf1ce"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 703},
+WindowMargins->{{Automatic, 213}, {Automatic, 4}},
+FrontEndVersion->"13.0 for Mac OS X x86 (64-bit) (February 4, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"b4a659f0-6df3-4f44-9ec9-8f3ff5b4b371"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 170, 3, 67, "Section",ExpressionUUID->"3bf42548-05ca-4356-b321-ef0c8b70c6c5"],
+Cell[753, 27, 272, 6, 58, "Text",ExpressionUUID->"ef515d5f-a4cf-4cfd-a0c7-601e66eeb6fa"],
+Cell[1028, 35, 694, 15, 219, "Text",ExpressionUUID->"0fe64c58-2633-441b-82e1-76eabc129216"],
+Cell[1725, 52, 322, 7, 58, "Text",ExpressionUUID->"0292cd76-6c5f-4a70-905f-4165c19a495b"],
+Cell[CellGroupData[{
+Cell[2072, 63, 166, 3, 54, "Subsection",ExpressionUUID->"9910a856-1666-44a8-9834-71d6749b226f"],
+Cell[2241, 68, 256, 6, 35, "Text",ExpressionUUID->"fb061f5f-eaf2-4474-9db8-6bcdbc820514"],
+Cell[2500, 76, 995, 20, 196, "Text",ExpressionUUID->"b6042f65-4dac-4d3e-ab98-c163118f8429"],
+Cell[3498, 98, 356, 8, 58, "Text",ExpressionUUID->"0d0460eb-2e2e-40be-aab2-cff391808de8"],
+Cell[3857, 108, 323, 7, 30, "Input",ExpressionUUID->"b2bd93fc-8b5a-47b8-98f3-b2c5c0a213fe"],
+Cell[CellGroupData[{
+Cell[4205, 119, 750, 18, 30, "Input",ExpressionUUID->"0a31745f-95e4-4317-a091-abecbee78824"],
+Cell[4958, 139, 578, 14, 37, "Output",ExpressionUUID->"8fcd9771-8e3c-4fa1-9dbb-6b87662c142b"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5585, 159, 169, 3, 54, "Subsection",ExpressionUUID->"fa9103ee-9634-4593-8864-24195ac83463"],
+Cell[5757, 164, 201, 3, 35, "Text",ExpressionUUID->"d10c574a-a3f0-497a-8691-8ad0f030f66c"],
+Cell[5961, 169, 246, 6, 30, "Input",ExpressionUUID->"155b3ca1-d119-4313-b2ec-817a0e0f1496"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6244, 180, 162, 3, 54, "Subsection",ExpressionUUID->"c382cb66-6751-46cb-9b9d-b93b235b1e3f"],
+Cell[6409, 185, 284, 7, 35, "Text",ExpressionUUID->"430fc6d4-fe9f-4828-9a5b-836686143260"],
+Cell[CellGroupData[{
+Cell[6718, 196, 545, 15, 30, "Input",ExpressionUUID->"59ddedec-e42a-40b4-8712-875c7f68455b"],
+Cell[7266, 213, 1489, 44, 91, "Output",ExpressionUUID->"19eee128-00d2-4b8a-bee6-c02847ed3113"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8804, 263, 177, 3, 54, "Subsection",ExpressionUUID->"965253c7-043c-4316-973f-22bad07ccd65"],
+Cell[8984, 268, 369, 8, 58, "Text",ExpressionUUID->"dd7be06d-d39d-44dc-9571-c8aad539cd95"],
+Cell[9356, 278, 152, 3, 30, "Input",ExpressionUUID->"09aa7424-40c7-4ecf-83b9-81c699037c50"],
+Cell[9511, 283, 161, 2, 30, "Input",ExpressionUUID->"2c7e0ad0-228e-4b12-b079-7b59d84cc56f"],
+Cell[9675, 287, 153, 3, 30, "Input",ExpressionUUID->"50fd33fc-4c66-4429-84ce-48ef319ef7aa"],
+Cell[CellGroupData[{
+Cell[9853, 294, 394, 9, 30, "Input",ExpressionUUID->"196a070f-b7e7-4796-bb7f-468302c5661a"],
+Cell[10250, 305, 388, 10, 37, "Output",ExpressionUUID->"d54ee06a-6630-4e51-be35-597de076e753"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10675, 320, 526, 15, 30, "Input",ExpressionUUID->"e52e01a6-47c9-44d4-8a43-bee72e6791b8"],
+Cell[11204, 337, 452, 13, 37, "Output",ExpressionUUID->"f70244e4-dcad-484b-810f-9aaa494ce8d5"]
+}, Open  ]],
+Cell[11671, 353, 488, 12, 115, "Input",ExpressionUUID->"fb31434e-4a3a-40b5-a596-0912862cf1ce"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

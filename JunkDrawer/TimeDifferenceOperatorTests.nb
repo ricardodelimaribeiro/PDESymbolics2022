@@ -1,0 +1,521 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     20076,        513]
+NotebookOptionsPosition[     18971,        486]
+NotebookOutlinePosition[     19364,        502]
+CellTagsIndexPosition[     19321,        499]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"variables", "=", 
+   RowBox[{"Association", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"\"\<depVars\>\"", "->", 
+       RowBox[{"{", "u", "}"}]}], ",", 
+      RowBox[{"\"\<indVars\>\"", "->", 
+       RowBox[{"{", 
+        RowBox[{"n", ",", "t"}], "}"}]}], ",", 
+      RowBox[{"\"\<expression\>\"", "->", 
+       RowBox[{"u", "[", 
+        RowBox[{"n", ",", "t"}], "]"}]}], ",", 
+      RowBox[{"\"\<result\>\"", "->", 
+       RowBox[{"<|", 
+        RowBox[{"\"\<exp\>\"", "->", 
+         RowBox[{
+          RowBox[{"-", 
+           RowBox[{"u", "[", 
+            RowBox[{"n", ",", "t"}], "]"}]}], "+", 
+          RowBox[{"u", "[", 
+           RowBox[{"n", ",", 
+            RowBox[{"1", "+", "t"}]}], "]"}]}]}], "|>"}]}]}], 
+     RowBox[{"(*", 
+      RowBox[{
+       RowBox[{"u", "[", 
+        RowBox[{"n", ",", 
+         RowBox[{"t", "+", "1"}]}], "]"}], "-", 
+       RowBox[{"u", "[", 
+        RowBox[{"n", ",", "t"}], "]"}]}], "*)"}], "}"}], "]"}]}], ";"}], "\n", 
+ RowBox[{"label", "=", "\"\<Basic time difference\>\""}], "\n", 
+ RowBox[{
+  RowBox[{"TimeDifferenceOperator", "[", "variables", "]"}], "[", 
+  RowBox[{"variables", "@", "\"\<expression\>\""}], "]"}]}], "Input",
+ CellChangeTimes->{{3.846568553117086*^9, 3.846568553117875*^9}, {
+  3.846568704378064*^9, 3.846568724312324*^9}},
+ CellLabel->"In[32]:=",ExpressionUUID->"b6a551a7-5e9e-4642-ba8b-3684a51c448e"],
+
+Cell[BoxData["\<\"Basic time difference\"\>"], "Output",
+ CellChangeTimes->{3.846568726345212*^9, 3.846570231599801*^9},
+ CellLabel->"Out[33]=",ExpressionUUID->"555e68ad-c3e6-47d8-8d0a-525d52a31a07"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{"\<\"exp\"\>", "\[Rule]", "0"}], "\[RightAssociation]"}]], "Output",\
+
+ CellChangeTimes->{3.846568726345212*^9, 3.8465702316021433`*^9},
+ CellLabel->"Out[34]=",ExpressionUUID->"94a84a5e-814b-409a-bca2-3036de7412d0"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"variables", "=", 
+     RowBox[{"Association", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"\"\<depVars\>\"", "->", 
+         RowBox[{"{", "u", "}"}]}], ",", 
+        RowBox[{"\"\<indVars\>\"", "->", 
+         RowBox[{"{", 
+          RowBox[{"n", ",", "t"}], "}"}]}], ",", 
+        RowBox[{"\"\<timederivativeorder\>\"", "->", "2"}], ",", 
+        RowBox[{"\"\<expression\>\"", "->", 
+         RowBox[{"{", 
+          RowBox[{"u", "[", 
+           RowBox[{"n", ",", "t"}], "]"}], "}"}]}], ",", 
+        RowBox[{"\"\<result\>\"", "->", 
+         RowBox[{"<|", 
+          RowBox[{"\"\<exp\>\"", "->", 
+           RowBox[{
+            RowBox[{"u", "[", 
+             RowBox[{"n", ",", "t"}], "]"}], "-", 
+            RowBox[{"2", "*", 
+             RowBox[{"u", "[", 
+              RowBox[{"n", ",", 
+               RowBox[{"1", "+", "t"}]}], "]"}]}], "+", 
+            RowBox[{"u", "[", 
+             RowBox[{"n", ",", 
+              RowBox[{"2", "+", "t"}]}], "]"}]}]}], "|>"}]}]}], 
+       RowBox[{"(*", 
+        RowBox[{
+         RowBox[{"u", "[", 
+          RowBox[{"n", ",", 
+           RowBox[{"t", "+", "2"}]}], "]"}], "-", 
+         RowBox[{"2", "*", 
+          RowBox[{"u", "[", 
+           RowBox[{"n", ",", 
+            RowBox[{"t", "+", "1"}]}], "]"}]}], "+", 
+         RowBox[{"u", "[", 
+          RowBox[{"n", ",", "t"}], "]"}]}], "*)"}], "}"}], "]"}]}], ";"}], 
+   "\n", 
+   RowBox[{"label", "=", "\"\<Second order time difference\>\""}], "\n", 
+   RowBox[{
+    RowBox[{"TimeDifferenceOperator", "[", "variables", "]"}], "[", 
+    RowBox[{"variables", "@", "\"\<expression\>\""}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.846568553117086*^9, 3.846568553117875*^9}, {
+  3.846568704378064*^9, 3.846568735803288*^9}, {3.8465704861969023`*^9, 
+  3.8465704882556458`*^9}},
+ CellLabel->"In[37]:=",ExpressionUUID->"605f20fd-e957-4009-9e22-9dfa9455e022"],
+
+Cell[BoxData["\<\"Second order time difference\"\>"], "Output",
+ CellChangeTimes->{3.8465687362981043`*^9, 3.846570489645267*^9},
+ CellLabel->"Out[38]=",ExpressionUUID->"99d3a042-5c5e-4547-aa1f-5bdd39812afa"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\[LeftAssociation]", 
+   RowBox[{"\<\"exp\"\>", "\[Rule]", "0"}], "\[RightAssociation]"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.8465687362981043`*^9, 3.846570489647058*^9},
+ CellLabel->"Out[39]=",ExpressionUUID->"50e05b82-8e5d-4afd-af50-61ffdcd21572"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "TimeDifferenceOperator"}]], "Input",
+ CellChangeTimes->{{3.8465701309688587`*^9, 3.8465701312793417`*^9}},
+ CellLabel->"In[28]:=",ExpressionUUID->"a9a9733c-033e-4198-83a1-27349ef48fef"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = False, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox[
+           PaneBox[
+            TooltipBox[
+             ButtonBox[
+              PaneSelectorBox[{False->
+               
+               DynamicBox[FEPrivate`FrontEndResource[
+                "FEBitmaps", "InformationHelpIcon"]], True->
+               
+               DynamicBox[FEPrivate`FrontEndResource[
+                "FEBitmaps", "InformationHelpIconHot"]]}, Dynamic[
+                CurrentValue["MouseOver"]]],
+              Appearance->None,
+              BaseStyle->"Link",
+              ButtonData->"paclet:PDESymbolics2020/ref/TimeDifferenceOperator",
+              
+              ButtonNote->
+               "paclet:PDESymbolics2020/ref/TimeDifferenceOperator"],
+             "\"paclet:PDESymbolics2020/ref/TimeDifferenceOperator\""],
+            FrameMargins->{{0, 4}, {0, 2}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"TimeDifferenceOperator[variables][expression] \
+builds the time difference of the expression and reduces/simplifies it using \
+the righthandside\\nor the scheme\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[
+           TagBox[GridBox[{
+              {
+               StyleBox[
+                TagBox[
+                 TooltipBox[
+                  
+                  StyleBox["\<\" SubValue Definitions\"\>", 
+                   "InformationRowLabel",
+                   StripOnInput->False],
+                  "\"SubValues\"",
+                  TooltipStyle->"TextStyling"],
+                 Annotation[#, "SubValues", "Tooltip"]& ], "DialogStyle",
+                StripOnInput->False]},
+              {
+               TemplateBox[{"\"\[ThinSpace]\"", 
+                 GridBox[{{
+                    RowBox[{
+                    RowBox[{
+                    
+                    RowBox[{
+                    "TimeDifferenceOperator", "[", 
+                    "PDESymbolics2020`Private`variables_Association", "]"}], 
+                    "[", "PDESymbolics2020`Private`expression_", "]"}], ":=", 
+                    
+                    RowBox[{
+                    RowBox[{
+                    
+                    RowBox[{
+                    "PDESymbolics2020`Private`HeaderOperator", "[", 
+                    "PDESymbolics2020`Private`TimeDifference", "]"}], "[", 
+                    "PDESymbolics2020`Private`variables", "]"}], "[", 
+                    "PDESymbolics2020`Private`expression", "]"}]}]}, {" "}}, 
+                  GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                  DefaultBaseStyle -> "Column", 
+                  GridBoxItemSize -> {
+                   "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                "RowDefault"]}
+             },
+             DefaultBaseStyle->"Column",
+             GridBoxAlignment->{"Columns" -> {{Left}}},
+             
+             GridBoxItemSize->{
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+            "Column"],
+           FrameMargins->{{6, 0}, {3, 6}}], "\<\"\"\>"},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Documentation\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Documentation\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Documentation", "Tooltip"]& ], 
+                   TemplateBox[{
+                    
+                    TemplateBox[{
+                    "\"Local \[RightGuillemet]\"", 
+                    "paclet:PDESymbolics2020/ref/TimeDifferenceOperator", 
+                    "paclet:PDESymbolics2020/ref/TimeDifferenceOperator", 
+                    "Link", {
+                    RGBColor[0.9686274509803922, 0.4666666666666667, 0.]}, 
+                    BaseStyle -> {
+                    RGBColor[0.0784313725490196, 0.1568627450980392, 0.6]}}, 
+                    "HyperlinkTemplate"]},
+                    "RowDefault"]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    "Tooltip"]& ], \
+"\<\"PDESymbolics2020`TimeDifferenceOperator\"\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->{{6, 6}, {6, 3}}], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"]], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox[
+           PaneBox[
+            TooltipBox[
+             ButtonBox[
+              PaneSelectorBox[{False->
+               
+               DynamicBox[FEPrivate`FrontEndResource[
+                "FEBitmaps", "InformationHelpIcon"],
+                ImageSizeCache->{13., {4., 9.}}], True->
+               
+               DynamicBox[FEPrivate`FrontEndResource[
+                "FEBitmaps", "InformationHelpIconHot"],
+                ImageSizeCache->{13., {4., 9.}}]}, Dynamic[
+                CurrentValue["MouseOver"]]],
+              Appearance->None,
+              BaseStyle->"Link",
+              ButtonData->"paclet:PDESymbolics2020/ref/TimeDifferenceOperator",
+              
+              ButtonNote->
+               "paclet:PDESymbolics2020/ref/TimeDifferenceOperator"],
+             "\"paclet:PDESymbolics2020/ref/TimeDifferenceOperator\""],
+            FrameMargins->{{0, 4}, {0, 2}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"TimeDifferenceOperator[variables][expression] \
+builds the time difference of the expression and reduces/simplifies it using \
+the righthandside\\nor the scheme\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{10., {2., 8.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{10., {2., 8.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[
+   Association[
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "TimeDifferenceOperator[variables][expression] builds the time difference \
+of the expression and reduces/simplifies it using the righthandside\nor the \
+scheme", "Documentation" -> 
+    Association[
+     "Local" -> "paclet:PDESymbolics2020/ref/TimeDifferenceOperator"], 
+    "OwnValues" -> None, "UpValues" -> None, "DownValues" -> None, 
+    "SubValues" -> 
+    Information`InformationValueForm[
+     SubValues, PDESymbolics2020`TimeDifferenceOperator, {
+      PDESymbolics2020`TimeDifferenceOperator[
+         Pattern[PDESymbolics2020`Private`variables, 
+          Blank[Association]]][
+         Pattern[PDESymbolics2020`Private`expression, 
+          Blank[]]] :> 
+       PDESymbolics2020`Private`HeaderOperator[
+        PDESymbolics2020`Private`TimeDifference][
+        PDESymbolics2020`Private`variables][
+        PDESymbolics2020`Private`expression]}], "DefaultValues" -> None, 
+    "NValues" -> None, "FormatValues" -> None, "Options" -> None, 
+    "Attributes" -> {}, "FullName" -> 
+    "PDESymbolics2020`TimeDifferenceOperator"], False]]], "Output",
+ CellChangeTimes->{3.8465701321711617`*^9},
+ CellLabel->"Out[28]=",ExpressionUUID->"d624bc1f-8cdf-497d-bacd-b53c7ea851c7"]
+}, Open  ]]
+},
+WindowSize->{808, 905},
+WindowMargins->{{436, Automatic}, {Automatic, 27}},
+FrontEndVersion->"12.3 for Mac OS X x86 (64-bit) (July 9, 2021)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"a4e8e05c-9852-40a9-b022-290ba374c306"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 1417, 37, 94, "Input",ExpressionUUID->"b6a551a7-5e9e-4642-ba8b-3684a51c448e"],
+Cell[2000, 61, 199, 2, 34, "Output",ExpressionUUID->"555e68ad-c3e6-47d8-8d0a-525d52a31a07"],
+Cell[2202, 65, 271, 5, 34, "Output",ExpressionUUID->"94a84a5e-814b-409a-bca2-3036de7412d0"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2510, 75, 1957, 50, 136, "Input",ExpressionUUID->"605f20fd-e957-4009-9e22-9dfa9455e022"],
+Cell[4470, 127, 208, 2, 34, "Output",ExpressionUUID->"99d3a042-5c5e-4547-aa1f-5bdd39812afa"],
+Cell[4681, 131, 296, 6, 34, "Output",ExpressionUUID->"50e05b82-8e5d-4afd-af50-61ffdcd21572"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5014, 142, 214, 3, 30, "Input",ExpressionUUID->"a9a9733c-033e-4198-83a1-27349ef48fef"],
+Cell[5231, 147, 13724, 336, 142, "Output",ExpressionUUID->"d624bc1f-8cdf-497d-bacd-b53c7ea851c7"]
+}, Open  ]]
+}
+]
+*)
+

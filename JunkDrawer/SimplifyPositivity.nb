@@ -1,0 +1,3179 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    139091,       3171]
+NotebookOptionsPosition[    132671,       3080]
+NotebookOutlinePosition[    133010,       3095]
+CellTagsIndexPosition[    132967,       3092]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"Get", "[", 
+  "\"\</Users/ribeirrd/Dropbox/PDESymbolics/PdeSymbolics2020/Workspace \
+project/PDESymbolics2020/PDESymbolics2020.m\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.8023411140109797`*^9, 3.8023411302320223`*^9}},
+ CellLabel->"In[8]:=",ExpressionUUID->"9e311331-e54d-49a5-a970-b53ac6f58a56"],
+
+Cell[CellGroupData[{
+
+Cell["make it work with lists:", "Section",
+ CellChangeTimes->{{3.802420877419827*^9, 
+  3.802420887346257*^9}},ExpressionUUID->"32154226-71f2-49be-afd6-\
+3d6f0340836e"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"?", "SimplifyPositivity"}]], "Input",
+ CellChangeTimes->{{3.802341134109489*^9, 3.8023411391562*^9}, {
+   3.806912565500387*^9, 3.80691257535751*^9}, 3.8069155426770353`*^9, {
+   3.806915583613699*^9, 3.806915585970017*^9}, 3.806915966004734*^9},
+ CellLabel->"In[26]:=",ExpressionUUID->"50020f2e-9657-4e50-bb98-672e245f96b1"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = False, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"SimplifyPositivity[exp_, depVars_List, \
+indVars_List, pars_List:{}, coeffs_List:{}, Facts -> facts, Reps -> \
+reps]\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False, False, False, False, 
+                False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Definitions\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Definitions", "Tooltip"]& ], GridBox[{
+                    {
+                    RowBox[{
+                    RowBox[{"SimplifyPositivity", "[", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`exp_", ",", 
+                    "PDESymbolics2020`Private`depVars_List", ",", 
+                    "PDESymbolics2020`Private`indVars_List", ",", 
+                    "PDESymbolics2020`Private`pars_List", ",", 
+                    "PDESymbolics2020`Private`coeffs_List", ",", 
+                    RowBox[{"OptionsPattern", "[", "]"}]}], "]"}], ":=", 
+                    RowBox[{"Module", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`print", ",", 
+                    "PDESymbolics2020`Private`facts", ",", 
+                    "PDESymbolics2020`Private`reps", ",", 
+                    "PDESymbolics2020`Private`testMode", ",", 
+                    "PDESymbolics2020`Private`tempFormalCoeffs", ",", 
+                    "PDESymbolics2020`Private`formalCoeffs", ",", 
+                    "PDESymbolics2020`Private`formalIndeces", ",", 
+                    "PDESymbolics2020`Private`extraFormalCoeffs", ",", 
+                    "PDESymbolics2020`Private`passiveFormalCoeffs", ",", 
+                    "PDESymbolics2020`Private`newExp", ",", 
+                    "PDESymbolics2020`Private`branching"}], "}"}], ",", 
+                    RowBox[{
+                    RowBox[{"PDESymbolics2020`Private`print", "=", 
+                    RowBox[{"PDESymbolics2020`Private`DebugPrint", "[", 
+                    RowBox[{"True", ",", "\<\"[simpos]\"\>"}], "]"}]}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`facts", "=", 
+                    RowBox[{
+                    "OptionValue", "[", "PDESymbolics2020`Private`Facts", 
+                    "]"}]}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`reps", "=", 
+                    RowBox[{
+                    "OptionValue", "[", "PDESymbolics2020`Private`Reps", 
+                    "]"}]}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`testMode", "=", 
+                    RowBox[{
+                    "OptionValue", "[", "PDESymbolics2020`Private`TestMode", 
+                    "]"}]}], ";", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"PDESymbolics2020`Private`coeffs", "\[Equal]", 
+                    RowBox[{"{", "}"}]}], ",", 
+                    RowBox[{"Return", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"{", 
+                    RowBox[{"True", ",", 
+                    RowBox[{"{", "}"}], ",", "PDESymbolics2020`Private`exp"}],
+                     "}"}], "}"}], "]"}]}], "]"}], ";", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`tempFormalCoeffs", "=", 
+                    RowBox[{"Table", "[", 
+                    RowBox[{
+                    
+                    SubscriptBox["\[FormalLambda]", 
+                    "PDESymbolics2020`Private`k"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"PDESymbolics2020`Private`k", ",", 
+                    RowBox[{
+                    "Length", "[", "PDESymbolics2020`Private`coeffs", "]"}]}],
+                     "}"}]}], "]"}]}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`formalIndeces", "=", 
+                    RowBox[{"Union", "[", 
+                    RowBox[{"Cases", "[", 
+                    RowBox[{"PDESymbolics2020`Private`exp", ",", 
+                    RowBox[{
+                    
+                    SubscriptBox["\[FormalCapitalC]", 
+                    "PDESymbolics2020`Private`j_Integer"], "\[RuleDelayed]", 
+                    "PDESymbolics2020`Private`j"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "\[Infinity]"}], "}"}]}], "]"}], 
+                    "]"}]}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`formalCoeffs", "=", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    SubscriptBox["\[FormalCapitalC]", "#1"], "&"}], ")"}], "/@",
+                     "PDESymbolics2020`Private`formalIndeces"}]}], ";", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`passiveFormalCoeffs", "=", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    SubscriptBox["\[FormalC]", "#1"], "&"}], ")"}], "/@", 
+                    "PDESymbolics2020`Private`formalIndeces"}]}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`extraFormalCoeffs", "=", 
+                    RowBox[{"Table", "[", 
+                    RowBox[{
+                    
+                    SubscriptBox["\[FormalCapitalC]", 
+                    "PDESymbolics2020`Private`k"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"PDESymbolics2020`Private`k", ",", 
+                    RowBox[{
+                    "Length", "[", "PDESymbolics2020`Private`coeffs", "]"}]}],
+                     "}"}]}], "]"}]}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`print", "[", 
+                    RowBox[{"\<\"tempFormalCoeffs = \"\>", ",", 
+                    RowBox[{"Thread", "[", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`coeffs", "\[Rule]", 
+                    "PDESymbolics2020`Private`tempFormalCoeffs"}], "]"}]}], 
+                    "]"}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`print", "[", 
+                    RowBox[{"\<\"passiveFormalCoeffs = \"\>", ",", 
+                    RowBox[{"Thread", "[", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`formalCoeffs", "\[Rule]", 
+                    "PDESymbolics2020`Private`passiveFormalCoeffs"}], "]"}]}],
+                     "]"}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`print", "[", 
+                    RowBox[{"\<\"extraFormalCoeffs = \"\>", ",", 
+                    RowBox[{"Thread", "[", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`tempFormalCoeffs", "\[Rule]", 
+                    "PDESymbolics2020`Private`extraFormalCoeffs"}], "]"}]}], 
+                    "]"}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`newExp", "=", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    "PDESymbolics2020`Private`exp", "/.", "\[VeryThinSpace]", 
+                    
+                    RowBox[{"Thread", "[", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`coeffs", "\[Rule]", 
+                    "PDESymbolics2020`Private`tempFormalCoeffs"}], "]"}]}], "/.",
+                     "\[VeryThinSpace]", 
+                    RowBox[{"Thread", "[", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`formalCoeffs", "\[Rule]", 
+                    "PDESymbolics2020`Private`passiveFormalCoeffs"}], "]"}]}],
+                     "/.", "\[VeryThinSpace]", 
+                    RowBox[{"Thread", "[", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`tempFormalCoeffs", "\[Rule]", 
+                    "PDESymbolics2020`Private`extraFormalCoeffs"}], "]"}]}]}],
+                     ";", 
+                    RowBox[{"PDESymbolics2020`Private`print", "[", 
+                    
+                    RowBox[{"\<\"newExp = \"\>", ",", 
+                    "PDESymbolics2020`Private`newExp"}], "]"}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`branching", "=", 
+                    RowBox[{"SimplifyPositivity", "[", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`newExp", ",", 
+                    "PDESymbolics2020`Private`depVars", ",", 
+                    "PDESymbolics2020`Private`indVars", ",", 
+                    "PDESymbolics2020`Private`pars", ",", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`Facts", "\[Rule]", 
+                    "PDESymbolics2020`Private`facts"}], ",", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`Reps", "\[Rule]", 
+                    "PDESymbolics2020`Private`reps"}], ",", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`TestMode", "\[Rule]", 
+                    "PDESymbolics2020`Private`testMode"}]}], "]"}]}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`print", "[", 
+                    
+                    RowBox[{"\<\"branching = \"\>", ",", 
+                    "PDESymbolics2020`Private`branching"}], "]"}], ";", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    "PDESymbolics2020`Private`branching", "/.", 
+                    "\[VeryThinSpace]", 
+                    RowBox[{"Thread", "[", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`extraFormalCoeffs", "\[Rule]", 
+                    "PDESymbolics2020`Private`tempFormalCoeffs"}], "]"}]}], "/.",
+                     "\[VeryThinSpace]", 
+                    RowBox[{"Thread", "[", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`passiveFormalCoeffs", "\[Rule]",
+                     "PDESymbolics2020`Private`formalCoeffs"}], "]"}]}], "/.",
+                     "\[VeryThinSpace]", 
+                    RowBox[{"Thread", "[", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`tempFormalCoeffs", "\[Rule]", 
+                    "PDESymbolics2020`Private`coeffs"}], "]"}]}]}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"SimplifyPositivity", "[", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`exp_", ",", 
+                    "PDESymbolics2020`Private`depVars_List", ",", 
+                    "PDESymbolics2020`Private`indVars_List", ",", 
+                    RowBox[{"PDESymbolics2020`Private`pars_List", ":", 
+                    RowBox[{"{", "}"}]}], ",", 
+                    RowBox[{"OptionsPattern", "[", "]"}]}], "]"}], ":=", 
+                    RowBox[{"Module", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`facts", ",", 
+                    "PDESymbolics2020`Private`reps", ",", 
+                    "PDESymbolics2020`Private`testMode", ",", 
+                    "PDESymbolics2020`Private`branching", ",", 
+                    "PDESymbolics2020`Private`temp", ",", 
+                    "PDESymbolics2020`Private`groupby"}], "}"}], ",", 
+                    RowBox[{
+                    RowBox[{"PDESymbolics2020`Private`facts", "=", 
+                    RowBox[{
+                    "OptionValue", "[", "PDESymbolics2020`Private`Facts", 
+                    "]"}]}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`reps", "=", 
+                    RowBox[{
+                    "OptionValue", "[", "PDESymbolics2020`Private`Reps", 
+                    "]"}]}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`testMode", "=", 
+                    RowBox[{
+                    "OptionValue", "[", "PDESymbolics2020`Private`TestMode", 
+                    "]"}]}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`branching", "=", 
+                    RowBox[{"SimplifyTopOddTerms", "[", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`exp", ",", 
+                    "PDESymbolics2020`Private`depVars", ",", 
+                    "PDESymbolics2020`Private`indVars", ",", 
+                    "PDESymbolics2020`Private`pars", ",", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`Facts", "\[Rule]", 
+                    "PDESymbolics2020`Private`facts"}], ",", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`Reps", "\[Rule]", "True"}], ",", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`TestMode", "\[Rule]", 
+                    "PDESymbolics2020`Private`testMode"}]}], "]"}]}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`branching", "=", 
+                    RowBox[{"FixedPoint", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    "PDESymbolics2020`Private`SimplifyEvenStep", "[", 
+                    RowBox[{
+                    "#1", ",", "PDESymbolics2020`Private`depVars", ",", 
+                    "PDESymbolics2020`Private`indVars", ",", 
+                    "PDESymbolics2020`Private`pars", ",", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`Facts", "\[Rule]", 
+                    "PDESymbolics2020`Private`facts"}], ",", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`TestMode", "\[Rule]", 
+                    "PDESymbolics2020`Private`testMode"}]}], "]"}], "&"}], 
+                    ",", "PDESymbolics2020`Private`branching"}], "]"}]}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`temp", "=", 
+                    RowBox[{
+                    "Simplify", "[", "PDESymbolics2020`Private`branching", 
+                    "]"}]}], ";", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "PDESymbolics2020`Private`temp", "=!=", 
+                    "PDESymbolics2020`Private`branching"}], ",", 
+                    RowBox[{
+                    RowBox[{"PDESymbolics2020`Private`branching", "=", 
+                    RowBox[{"FixedPoint", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    "PDESymbolics2020`Private`SimplifyEvenStep", "[", 
+                    RowBox[{
+                    "#1", ",", "PDESymbolics2020`Private`depVars", ",", 
+                    "PDESymbolics2020`Private`indVars", ",", 
+                    "PDESymbolics2020`Private`pars", ",", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`Facts", "\[Rule]", 
+                    "PDESymbolics2020`Private`facts"}], ",", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`TestMode", "\[Rule]", 
+                    "PDESymbolics2020`Private`testMode"}]}], "]"}], "&"}], 
+                    ",", "PDESymbolics2020`Private`temp"}], "]"}]}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`branching", "=", 
+                    RowBox[{
+                    "Simplify", "[", "PDESymbolics2020`Private`branching", 
+                    "]"}]}], ";"}]}], "]"}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`groupby", "=", 
+                    RowBox[{"Values", "[", 
+                    RowBox[{"GroupBy", "[", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`branching", ",", "Last"}], 
+                    "]"}], "]"}]}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`branching", "=", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Simplify", "[", 
+                    RowBox[{"Or", "@@", 
+                    RowBox[{"#1", "\[LeftDoubleBracket]", 
+                    RowBox[{"All", ",", "1"}], "\[RightDoubleBracket]"}]}], 
+                    "]"}], ",", 
+                    RowBox[{"Union", "@@", 
+                    RowBox[{"#1", "\[LeftDoubleBracket]", 
+                    RowBox[{"All", ",", "2"}], "\[RightDoubleBracket]"}]}], 
+                    ",", 
+                    RowBox[{"Last", "[", 
+                    RowBox[{"First", "[", "#1", "]"}], "]"}]}], "}"}], "&"}], 
+                    ")"}], "/@", "PDESymbolics2020`Private`groupby"}]}], ";", 
+                    
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`reps", ",", 
+                    "PDESymbolics2020`Private`branching", ",", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"First", "[", "#1", "]"}], ",", 
+                    RowBox[{"Last", "[", "#1", "]"}]}], "}"}], "&"}], ")"}], "/@",
+                     "PDESymbolics2020`Private`branching"}]}], "]"}]}]}], 
+                    "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"SimplifyPositivity", "[", "___", "]"}], ":=", 
+                    RowBox[{"\<\"nothing\"\>", "/;", 
+                    RowBox[{"Message", "[", 
+                    StyleBox[
+                    RowBox[{"SimplifyPositivity", "::", "BadArgs"}], 
+                    "MessageName"], "]"}]}]}]}
+                    },
+                    DefaultBaseStyle->"Column",
+                    GridBoxAlignment->{"Columns" -> {{Left}}},
+                    
+                    GridBoxItemSize->{
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Options\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Options\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Options", "Tooltip"]& ], 
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    "PDESymbolics2020`Private`Facts", "\[Rule]", "True"}], 
+                    ",", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`Reps", "\[Rule]", "False"}], 
+                    ",", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`TestMode", "\[Rule]", 
+                    "True"}]}], "}"}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    
+                    "Tooltip"]& ], "\<\"PDESymbolics2020`SimplifyPositivity\"\
+\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->6], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"]], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"]]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"SimplifyPositivity[exp_, depVars_List, \
+indVars_List, pars_List:{}, coeffs_List:{}, Facts -> facts, Reps -> \
+reps]\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{10., {2., 8.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{10., {2., 8.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[
+   Association[
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "SimplifyPositivity[exp_, depVars_List, indVars_List, pars_List:{}, \
+coeffs_List:{}, Facts -> facts, Reps -> reps]", "Documentation" -> None, 
+    "OwnValues" -> None, "UpValues" -> None, "DownValues" -> 
+    Information`InformationValueForm[
+     DownValues, PDESymbolics2020`SimplifyPositivity, {
+      PDESymbolics2020`SimplifyPositivity[
+         Pattern[PDESymbolics2020`Private`exp, 
+          Blank[]], 
+         Pattern[PDESymbolics2020`Private`depVars, 
+          Blank[List]], 
+         Pattern[PDESymbolics2020`Private`indVars, 
+          Blank[List]], 
+         Pattern[PDESymbolics2020`Private`pars, 
+          Blank[List]], 
+         Pattern[PDESymbolics2020`Private`coeffs, 
+          Blank[List]], 
+         OptionsPattern[]] :> 
+       Module[{PDESymbolics2020`Private`print, PDESymbolics2020`Private`facts,
+           PDESymbolics2020`Private`reps, PDESymbolics2020`Private`testMode, 
+          PDESymbolics2020`Private`tempFormalCoeffs, 
+          PDESymbolics2020`Private`formalCoeffs, 
+          PDESymbolics2020`Private`formalIndeces, 
+          PDESymbolics2020`Private`extraFormalCoeffs, 
+          PDESymbolics2020`Private`passiveFormalCoeffs, 
+          PDESymbolics2020`Private`newExp, 
+          PDESymbolics2020`Private`branching}, 
+         PDESymbolics2020`Private`print = 
+          PDESymbolics2020`Private`DebugPrint[True, "[simpos]"]; 
+         PDESymbolics2020`Private`facts = 
+          OptionValue[PDESymbolics2020`Private`Facts]; 
+         PDESymbolics2020`Private`reps = 
+          OptionValue[PDESymbolics2020`Private`Reps]; 
+         PDESymbolics2020`Private`testMode = 
+          OptionValue[PDESymbolics2020`Private`TestMode]; 
+         If[PDESymbolics2020`Private`coeffs == {}, 
+           Return[{{True, {}, PDESymbolics2020`Private`exp}}]]; 
+         PDESymbolics2020`Private`tempFormalCoeffs = Table[
+            Subscript[\[FormalLambda], PDESymbolics2020`Private`k], {
+            PDESymbolics2020`Private`k, 
+             Length[PDESymbolics2020`Private`coeffs]}]; 
+         PDESymbolics2020`Private`formalIndeces = Union[
+            Cases[PDESymbolics2020`Private`exp, Subscript[\[FormalCapitalC], 
+               Pattern[PDESymbolics2020`Private`j, 
+                Blank[Integer]]] :> PDESymbolics2020`Private`j, {
+             0, Infinity}]]; 
+         PDESymbolics2020`Private`formalCoeffs = 
+          Map[Subscript[\[FormalCapitalC], #]& , 
+            PDESymbolics2020`Private`formalIndeces]; 
+         PDESymbolics2020`Private`passiveFormalCoeffs = 
+          Map[Subscript[\[FormalC], #]& , 
+            PDESymbolics2020`Private`formalIndeces]; 
+         PDESymbolics2020`Private`extraFormalCoeffs = Table[
+            Subscript[\[FormalCapitalC], PDESymbolics2020`Private`k], {
+            PDESymbolics2020`Private`k, 
+             Length[PDESymbolics2020`Private`coeffs]}]; 
+         PDESymbolics2020`Private`print["tempFormalCoeffs = ", 
+           Thread[
+           PDESymbolics2020`Private`coeffs -> 
+            PDESymbolics2020`Private`tempFormalCoeffs]]; 
+         PDESymbolics2020`Private`print["passiveFormalCoeffs = ", 
+           Thread[
+           PDESymbolics2020`Private`formalCoeffs -> 
+            PDESymbolics2020`Private`passiveFormalCoeffs]]; 
+         PDESymbolics2020`Private`print["extraFormalCoeffs = ", 
+           Thread[
+           PDESymbolics2020`Private`tempFormalCoeffs -> 
+            PDESymbolics2020`Private`extraFormalCoeffs]]; 
+         PDESymbolics2020`Private`newExp = ReplaceAll[
+            ReplaceAll[
+             ReplaceAll[PDESymbolics2020`Private`exp, 
+              Thread[
+              PDESymbolics2020`Private`coeffs -> 
+               PDESymbolics2020`Private`tempFormalCoeffs]], 
+             Thread[
+             PDESymbolics2020`Private`formalCoeffs -> 
+              PDESymbolics2020`Private`passiveFormalCoeffs]], 
+            Thread[
+            PDESymbolics2020`Private`tempFormalCoeffs -> 
+             PDESymbolics2020`Private`extraFormalCoeffs]]; 
+         PDESymbolics2020`Private`print[
+          "newExp = ", PDESymbolics2020`Private`newExp]; 
+         PDESymbolics2020`Private`branching = 
+          PDESymbolics2020`SimplifyPositivity[
+           PDESymbolics2020`Private`newExp, PDESymbolics2020`Private`depVars, 
+            PDESymbolics2020`Private`indVars, PDESymbolics2020`Private`pars, 
+            PDESymbolics2020`Private`Facts -> PDESymbolics2020`Private`facts, 
+            PDESymbolics2020`Private`Reps -> PDESymbolics2020`Private`reps, 
+            PDESymbolics2020`Private`TestMode -> 
+            PDESymbolics2020`Private`testMode]; 
+         PDESymbolics2020`Private`print[
+          "branching = ", PDESymbolics2020`Private`branching]; ReplaceAll[
+           ReplaceAll[
+            ReplaceAll[PDESymbolics2020`Private`branching, 
+             Thread[
+             PDESymbolics2020`Private`extraFormalCoeffs -> 
+              PDESymbolics2020`Private`tempFormalCoeffs]], 
+            Thread[
+            PDESymbolics2020`Private`passiveFormalCoeffs -> 
+             PDESymbolics2020`Private`formalCoeffs]], 
+           Thread[
+           PDESymbolics2020`Private`tempFormalCoeffs -> 
+            PDESymbolics2020`Private`coeffs]]], 
+       PDESymbolics2020`SimplifyPositivity[
+         Pattern[PDESymbolics2020`Private`exp, 
+          Blank[]], 
+         Pattern[PDESymbolics2020`Private`depVars, 
+          Blank[List]], 
+         Pattern[PDESymbolics2020`Private`indVars, 
+          Blank[List]], 
+         Optional[
+          Pattern[PDESymbolics2020`Private`pars, 
+           Blank[List]], {}], 
+         OptionsPattern[]] :> 
+       Module[{PDESymbolics2020`Private`facts, PDESymbolics2020`Private`reps, 
+          PDESymbolics2020`Private`testMode, 
+          PDESymbolics2020`Private`branching, PDESymbolics2020`Private`temp, 
+          PDESymbolics2020`Private`groupby}, 
+         PDESymbolics2020`Private`facts = 
+          OptionValue[PDESymbolics2020`Private`Facts]; 
+         PDESymbolics2020`Private`reps = 
+          OptionValue[PDESymbolics2020`Private`Reps]; 
+         PDESymbolics2020`Private`testMode = 
+          OptionValue[PDESymbolics2020`Private`TestMode]; 
+         PDESymbolics2020`Private`branching = 
+          PDESymbolics2020`SimplifyTopOddTerms[
+           PDESymbolics2020`Private`exp, PDESymbolics2020`Private`depVars, 
+            PDESymbolics2020`Private`indVars, PDESymbolics2020`Private`pars, 
+            PDESymbolics2020`Private`Facts -> PDESymbolics2020`Private`facts, 
+            PDESymbolics2020`Private`Reps -> True, 
+            PDESymbolics2020`Private`TestMode -> 
+            PDESymbolics2020`Private`testMode]; 
+         PDESymbolics2020`Private`branching = 
+          FixedPoint[
+           PDESymbolics2020`Private`SimplifyEvenStep[#, 
+             PDESymbolics2020`Private`depVars, 
+             PDESymbolics2020`Private`indVars, PDESymbolics2020`Private`pars, 
+             PDESymbolics2020`Private`Facts -> PDESymbolics2020`Private`facts,
+              PDESymbolics2020`Private`TestMode -> 
+             PDESymbolics2020`Private`testMode]& , 
+            PDESymbolics2020`Private`branching]; 
+         PDESymbolics2020`Private`temp = 
+          Simplify[PDESymbolics2020`Private`branching]; 
+         If[PDESymbolics2020`Private`temp =!= 
+           PDESymbolics2020`Private`branching, 
+           PDESymbolics2020`Private`branching = 
+            FixedPoint[
+             PDESymbolics2020`Private`SimplifyEvenStep[#, 
+               PDESymbolics2020`Private`depVars, 
+               PDESymbolics2020`Private`indVars, 
+               PDESymbolics2020`Private`pars, PDESymbolics2020`Private`Facts -> 
+               PDESymbolics2020`Private`facts, 
+               PDESymbolics2020`Private`TestMode -> 
+               PDESymbolics2020`Private`testMode]& , 
+              PDESymbolics2020`Private`temp]; 
+           PDESymbolics2020`Private`branching = 
+            Simplify[PDESymbolics2020`Private`branching]; Null]; 
+         PDESymbolics2020`Private`groupby = Values[
+            GroupBy[PDESymbolics2020`Private`branching, Last]]; 
+         PDESymbolics2020`Private`branching = Map[{
+             Simplify[
+              Apply[Or, 
+               Part[#, All, 1]]], 
+             Apply[Union, 
+              Part[#, All, 2]], 
+             Last[
+              First[#]]}& , PDESymbolics2020`Private`groupby]; 
+         If[PDESymbolics2020`Private`reps, PDESymbolics2020`Private`branching, 
+           Map[{
+             First[#], 
+             Last[#]}& , PDESymbolics2020`Private`branching]]], 
+       PDESymbolics2020`SimplifyPositivity[
+         BlankNullSequence[]] :> Condition["nothing", 
+         Message[
+          MessageName[PDESymbolics2020`SimplifyPositivity, "BadArgs"]]]}], 
+    "SubValues" -> None, "DefaultValues" -> None, "NValues" -> None, 
+    "FormatValues" -> None, 
+    "Options" -> {
+     PDESymbolics2020`Private`Facts -> True, PDESymbolics2020`Private`Reps -> 
+      False, PDESymbolics2020`Private`TestMode -> True}, "Attributes" -> {}, 
+    "FullName" -> "PDESymbolics2020`SimplifyPositivity"], False]]], "Output",
+ CellChangeTimes->{3.8069160725901413`*^9, 3.806916551477169*^9},
+ CellLabel->"Out[26]=",ExpressionUUID->"a234738f-0e69-44da-8bfc-1156f5005217"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SimplifyPositivity", "[", 
+  RowBox[{
+   TagBox[
+    FrameBox["exp_"],
+    "Placeholder"], ",", " ", 
+   TagBox[
+    FrameBox["depVars_List"],
+    "Placeholder"], ",", " ", 
+   TagBox[
+    FrameBox["indVars_List"],
+    "Placeholder"], ",", " ", 
+   RowBox[{
+    TagBox[
+     FrameBox["pars_List:"],
+     "Placeholder"], 
+    RowBox[{"{", "}"}]}], ",", " ", 
+   RowBox[{
+    TagBox[
+     FrameBox["coeffs_List:"],
+     "Placeholder"], 
+    RowBox[{"{", "}"}]}], ",", " ", 
+   RowBox[{
+    TagBox[
+     FrameBox["Facts"],
+     "Placeholder"], " ", "\[Rule]", " ", 
+    TagBox[
+     FrameBox["facts"],
+     "Placeholder"]}], ",", " ", 
+   RowBox[{
+    TagBox[
+     FrameBox["Reps"],
+     "Placeholder"], " ", "\[Rule]", " ", 
+    TagBox[
+     FrameBox["reps"],
+     "Placeholder"]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.802341134109489*^9, 3.8023411391562*^9}, {
+   3.806912565500387*^9, 3.80691257535751*^9}, 3.8069155426770353`*^9, {
+   3.806915583613699*^9, 3.806915585970017*^9}, {3.806915966004734*^9, 
+   3.806915992082185*^9}},
+ EmphasizeSyntaxErrors->True,
+ CellLabel->"In[27]:=",ExpressionUUID->"b4f61e11-1f60-4225-95bf-c5ba0bc589a7"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Syntax","sntxb",
+   "\"Expression cannot begin with \
+\\\"\\!\\(\\*RowBox[{TagBox[FrameBox[\\\"pars_List:\\\"], \
+\\\"Placeholder\\\"], RowBox[{\\\"{\\\", \
+\\\"}\\\"}]}]\\)\\\"\\!\\(\\*RowBox[{\\\"\\\\\\\"\\\\\\\"\\\"}]\\).\"",2,27,
+   67,24382292636952663629,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{{3.806916563541799*^9, 
+  3.806916567276967*^9}},ExpressionUUID->"1c8973ba-0d81-4344-a473-\
+225e52448ec4"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SimplifyPositivity", "[", "]"}]], "Input",
+ CellChangeTimes->{{3.8069165706939983`*^9, 3.8069165749634113`*^9}},
+ CellLabel->"In[27]:=",ExpressionUUID->"82333a4c-e0d4-47d0-a593-7f77380c3db9"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "SimplifyPositivity","BadArgs","\"Incorect input of arguments\"",2,27,68,
+   24382292636952663629,"Local","PDESymbolics2020`SimplifyPositivity"},
+  "MessageTemplate2"]], "Message", "MSG",
+ CellChangeTimes->{3.806916575551311*^9},
+ CellLabel->
+  "During evaluation of \
+In[27]:=",ExpressionUUID->"dc27b7db-c749-47cc-9eb8-3c6fca584df9"],
+
+Cell[BoxData[
+ RowBox[{"SimplifyPositivity", "[", "]"}]], "Output",
+ CellChangeTimes->{3.80691657556171*^9},
+ CellLabel->"Out[27]=",ExpressionUUID->"844a3e6e-3e12-478d-b97e-649f48f41d56"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SimplifyPositivity", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"a", " ", 
+     RowBox[{
+      RowBox[{"u", "[", "x", "]"}], "^", " ", "2"}]}], " ", "+", " ", 
+    RowBox[{"bu", "[", "x", "]"}]}], ",", " ", 
+   RowBox[{"{", "u", "}"}], ",", 
+   RowBox[{"{", "x", "}"}], ",", 
+   RowBox[{"{", "b", "}"}], ",", 
+   RowBox[{"{", "a", "}"}], ",", " ", 
+   RowBox[{"Facts", " ", "\[Rule]", " ", 
+    RowBox[{"a", "<", "0"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.806915994771327*^9, 3.806916062586409*^9}, {
+  3.8069163583245077`*^9, 3.8069163637812147`*^9}, {3.8069165079659977`*^9, 
+  3.806916519479225*^9}},
+ CellLabel->"In[23]:=",ExpressionUUID->"855b3338-9e29-4980-ab5a-3a696be0402d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"[simpos]\"\>", 
+   "\[InvisibleSpace]", "\<\"tempFormalCoeffs = \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"a", "\[Rule]", 
+     SubscriptBox["\[FormalLambda]", "1"]}], "}"}]}],
+  SequenceForm[
+  "[simpos]", 
+   "tempFormalCoeffs = ", {$CellContext`a -> Subscript[\[FormalLambda], 1]}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.806916258783965*^9, 3.806916367052567*^9, 
+  3.806916523025091*^9},
+ CellLabel->
+  "During evaluation of \
+In[23]:=",ExpressionUUID->"c655f906-b097-4589-8315-473d9f83e68d"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"[simpos]\"\>", 
+   "\[InvisibleSpace]", "\<\"passiveFormalCoeffs = \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", "}"}]}],
+  SequenceForm["[simpos]", "passiveFormalCoeffs = ", {}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.806916258783965*^9, 3.806916367052567*^9, 
+  3.8069165230303173`*^9},
+ CellLabel->
+  "During evaluation of \
+In[23]:=",ExpressionUUID->"c8ee45a5-2f59-4a2c-9ac1-e8f16ed5d75f"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"[simpos]\"\>", 
+   "\[InvisibleSpace]", "\<\"extraFormalCoeffs = \"\>", "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{
+     SubscriptBox["\[FormalLambda]", "1"], "\[Rule]", 
+     SubscriptBox["\[FormalCapitalC]", "1"]}], "}"}]}],
+  SequenceForm[
+  "[simpos]", "extraFormalCoeffs = ", {
+   Subscript[\[FormalLambda], 1] -> Subscript[\[FormalCapitalC], 1]}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.806916258783965*^9, 3.806916367052567*^9, 
+  3.806916523034596*^9},
+ CellLabel->
+  "During evaluation of \
+In[23]:=",ExpressionUUID->"106ffc52-25e0-472b-b625-8c51de63d669"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"[simpos]\"\>", "\[InvisibleSpace]", "\<\"newExp = \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{
+    RowBox[{"bu", "[", "x", "]"}], "+", 
+    RowBox[{
+     SubscriptBox["\[FormalCapitalC]", "1"], " ", 
+     SuperscriptBox[
+      RowBox[{"u", "[", "x", "]"}], "2"]}]}]}],
+  SequenceForm[
+  "[simpos]", "newExp = ", $CellContext`bu[$CellContext`x] + 
+   Subscript[\[FormalCapitalC], 1] $CellContext`u[$CellContext`x]^2],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.806916258783965*^9, 3.806916367052567*^9, 
+  3.806916523036484*^9},
+ CellLabel->
+  "During evaluation of \
+In[23]:=",ExpressionUUID->"ebe8a2bf-07e8-4450-a73e-25bce56fc3de"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"[simpos]\"\>", "\[InvisibleSpace]", "\<\"branching = \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"True", ",", 
+      RowBox[{
+       RowBox[{"bu", "[", "x", "]"}], "+", 
+       RowBox[{
+        SubscriptBox["\[FormalCapitalC]", "1"], " ", 
+        SuperscriptBox[
+         RowBox[{"u", "[", "x", "]"}], "2"]}]}]}], "}"}], "}"}]}],
+  SequenceForm[
+  "[simpos]", 
+   "branching = ", {{
+    True, $CellContext`bu[$CellContext`x] + 
+     Subscript[\[FormalCapitalC], 1] $CellContext`u[$CellContext`x]^2}}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.806916258783965*^9, 3.806916367052567*^9, 
+  3.806916523038705*^9},
+ CellLabel->
+  "During evaluation of \
+In[23]:=",ExpressionUUID->"8af1448e-497a-4002-95fb-72a529661205"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"{", 
+   RowBox[{"True", ",", 
+    RowBox[{
+     RowBox[{"bu", "[", "x", "]"}], "+", 
+     RowBox[{"a", " ", 
+      SuperscriptBox[
+       RowBox[{"u", "[", "x", "]"}], "2"]}]}]}], "}"}], "}"}]], "Output",
+ CellChangeTimes->{3.806916076910619*^9, 3.806916259094561*^9, 
+  3.806916367066176*^9, 3.806916523041089*^9},
+ CellLabel->"Out[25]=",ExpressionUUID->"64d7841a-2c8d-4e94-8b63-41eb3c19a2e5"]
+}, Open  ]],
+
+Cell["something is wrong here!", "Text",
+ CellChangeTimes->{{3.8069165386956367`*^9, 
+  3.8069165457280807`*^9}},ExpressionUUID->"23611628-b0a5-4c22-b931-\
+45741c8ebea8"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"SimplifyPositivity", "[", 
+   RowBox[{
+    RowBox[{"c0", "+", 
+     RowBox[{"c1", " ", 
+      RowBox[{"y", "^", "3"}]}], "+", 
+     RowBox[{"c2", " ", 
+      RowBox[{"y", "^", "5"}], " ", "x"}], "+", 
+     RowBox[{"c3", " ", 
+      RowBox[{"y", "^", "2"}], " ", "x"}], "+", 
+     RowBox[{"c4", " ", 
+      RowBox[{"x", "^", "2"}], " ", "y"}], "+", 
+     RowBox[{"c5", " ", 
+      RowBox[{"x", "^", "2"}], " ", 
+      RowBox[{"y", "^", "2"}]}], "+", 
+     RowBox[{"c6", " ", 
+      RowBox[{"y", "^", "3"}], " ", 
+      RowBox[{"x", "^", "3"}]}]}], ",", 
+    RowBox[{"{", "}"}], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "y"}], "}"}], ",", 
+    RowBox[{"{", "}"}], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{
+     "c0", ",", "c1", ",", "c2", ",", "c3", ",", "c4", ",", "c5", ",", "c6"}],
+      "}"}]}], "]"}], "//", "Expand"}]], "Input",
+ CellChangeTimes->{{3.802341134109489*^9, 3.8023411391562*^9}, {
+   3.806912565500387*^9, 3.80691257535751*^9}, 3.8069155426770353`*^9, {
+   3.806915583613699*^9, 3.806915585970017*^9}, {3.806915966004734*^9, 
+   3.806915971544183*^9}},ExpressionUUID->"0bdd5b46-4cb7-48b8-8942-\
+8afce3aea603"],
+
+Cell[BoxData[
+ InterpretationBox[
+  StyleBox[
+   FrameBox[
+    DynamicModuleBox[{System`InformationDump`open$$ = True, 
+     System`InformationDump`mouseOver$$ = False}, 
+     PaneSelectorBox[{True->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False,
+             BaseStyle -> None],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"SimplifyPositivity[exp_, depVars_List, \
+indVars_List, pars_List:{}, coeffs_List:{}, Facts -> facts, Reps -> \
+reps]\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          PaneBox[GridBox[{
+             {
+              
+              DynamicModuleBox[{System`InformationDump`open$$ = {
+               False, False, False, False, False, False, False, False, False, 
+                False, False, False}}, 
+               StyleBox[GridBox[{
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Definitions\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Definitions\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Definitions", "Tooltip"]& ], GridBox[{
+                    {
+                    RowBox[{
+                    RowBox[{"SimplifyPositivity", "[", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`exp_", ",", 
+                    "PDESymbolics2020`Private`depVars_List", ",", 
+                    "PDESymbolics2020`Private`indVars_List", ",", 
+                    "PDESymbolics2020`Private`pars_List", ",", 
+                    "PDESymbolics2020`Private`coeffs_List", ",", 
+                    RowBox[{"OptionsPattern", "[", "]"}]}], "]"}], ":=", 
+                    RowBox[{"Module", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`print", ",", 
+                    "PDESymbolics2020`Private`facts", ",", 
+                    "PDESymbolics2020`Private`reps", ",", 
+                    "PDESymbolics2020`Private`testMode", ",", 
+                    "PDESymbolics2020`Private`tempFormalCoeffs", ",", 
+                    "PDESymbolics2020`Private`formalCoeffs", ",", 
+                    "PDESymbolics2020`Private`formalIndeces", ",", 
+                    "PDESymbolics2020`Private`extraFormalCoeffs", ",", 
+                    "PDESymbolics2020`Private`passiveFormalCoeffs", ",", 
+                    "PDESymbolics2020`Private`newExp", ",", 
+                    "PDESymbolics2020`Private`branching"}], "}"}], ",", 
+                    RowBox[{
+                    RowBox[{"PDESymbolics2020`Private`print", "=", 
+                    RowBox[{"PDESymbolics2020`Private`DebugPrint", "[", 
+                    RowBox[{"False", ",", "\<\"[simpos]\"\>"}], "]"}]}], ";", 
+                    
+                    RowBox[{"PDESymbolics2020`Private`facts", "=", 
+                    RowBox[{
+                    "OptionValue", "[", "PDESymbolics2020`Private`Facts", 
+                    "]"}]}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`reps", "=", 
+                    RowBox[{
+                    "OptionValue", "[", "PDESymbolics2020`Private`Reps", 
+                    "]"}]}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`testMode", "=", 
+                    RowBox[{
+                    "OptionValue", "[", "PDESymbolics2020`Private`TestMode", 
+                    "]"}]}], ";", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"PDESymbolics2020`Private`coeffs", "\[Equal]", 
+                    RowBox[{"{", "}"}]}], ",", 
+                    RowBox[{"Return", "[", 
+                    RowBox[{"{", 
+                    RowBox[{"{", 
+                    RowBox[{"True", ",", 
+                    RowBox[{"{", "}"}], ",", "PDESymbolics2020`Private`exp"}],
+                     "}"}], "}"}], "]"}]}], "]"}], ";", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`tempFormalCoeffs", "=", 
+                    RowBox[{"Table", "[", 
+                    RowBox[{
+                    
+                    SubscriptBox["\[FormalLambda]", 
+                    "PDESymbolics2020`Private`k"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"PDESymbolics2020`Private`k", ",", 
+                    RowBox[{
+                    "Length", "[", "PDESymbolics2020`Private`coeffs", "]"}]}],
+                     "}"}]}], "]"}]}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`formalIndeces", "=", 
+                    RowBox[{"Union", "[", 
+                    RowBox[{"Cases", "[", 
+                    RowBox[{"PDESymbolics2020`Private`exp", ",", 
+                    RowBox[{
+                    
+                    SubscriptBox["\[FormalCapitalC]", 
+                    "PDESymbolics2020`Private`j_Integer"], "\[RuleDelayed]", 
+                    "PDESymbolics2020`Private`j"}], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "\[Infinity]"}], "}"}]}], "]"}], 
+                    "]"}]}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`formalCoeffs", "=", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    SubscriptBox["\[FormalCapitalC]", "#1"], "&"}], ")"}], "/@",
+                     "PDESymbolics2020`Private`formalIndeces"}]}], ";", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`passiveFormalCoeffs", "=", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    SubscriptBox["\[FormalC]", "#1"], "&"}], ")"}], "/@", 
+                    "PDESymbolics2020`Private`formalIndeces"}]}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`extraFormalCoeffs", "=", 
+                    RowBox[{"Table", "[", 
+                    RowBox[{
+                    
+                    SubscriptBox["\[FormalCapitalC]", 
+                    "PDESymbolics2020`Private`k"], ",", 
+                    RowBox[{"{", 
+                    RowBox[{"PDESymbolics2020`Private`k", ",", 
+                    RowBox[{
+                    "Length", "[", "PDESymbolics2020`Private`coeffs", "]"}]}],
+                     "}"}]}], "]"}]}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`print", "[", 
+                    RowBox[{"\<\"tempFormalCoeffs = \"\>", ",", 
+                    RowBox[{"Thread", "[", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`coeffs", "\[Rule]", 
+                    "PDESymbolics2020`Private`tempFormalCoeffs"}], "]"}]}], 
+                    "]"}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`print", "[", 
+                    RowBox[{"\<\"passiveFormalCoeffs = \"\>", ",", 
+                    RowBox[{"Thread", "[", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`formalCoeffs", "\[Rule]", 
+                    "PDESymbolics2020`Private`passiveFormalCoeffs"}], "]"}]}],
+                     "]"}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`print", "[", 
+                    RowBox[{"\<\"extraFormalCoeffs = \"\>", ",", 
+                    RowBox[{"Thread", "[", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`tempFormalCoeffs", "\[Rule]", 
+                    "PDESymbolics2020`Private`extraFormalCoeffs"}], "]"}]}], 
+                    "]"}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`newExp", "=", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    "PDESymbolics2020`Private`exp", "/.", "\[VeryThinSpace]", 
+                    
+                    RowBox[{"Thread", "[", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`coeffs", "\[Rule]", 
+                    "PDESymbolics2020`Private`tempFormalCoeffs"}], "]"}]}], "/.",
+                     "\[VeryThinSpace]", 
+                    RowBox[{"Thread", "[", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`formalCoeffs", "\[Rule]", 
+                    "PDESymbolics2020`Private`passiveFormalCoeffs"}], "]"}]}],
+                     "/.", "\[VeryThinSpace]", 
+                    RowBox[{"Thread", "[", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`tempFormalCoeffs", "\[Rule]", 
+                    "PDESymbolics2020`Private`extraFormalCoeffs"}], "]"}]}]}],
+                     ";", 
+                    RowBox[{"PDESymbolics2020`Private`print", "[", 
+                    
+                    RowBox[{"\<\"newExp = \"\>", ",", 
+                    "PDESymbolics2020`Private`newExp"}], "]"}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`branching", "=", 
+                    RowBox[{"SimplifyPositivity", "[", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`newExp", ",", 
+                    "PDESymbolics2020`Private`depVars", ",", 
+                    "PDESymbolics2020`Private`indVars", ",", 
+                    "PDESymbolics2020`Private`pars", ",", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`Facts", "\[Rule]", 
+                    "PDESymbolics2020`Private`facts"}], ",", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`Reps", "\[Rule]", 
+                    "PDESymbolics2020`Private`reps"}], ",", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`TestMode", "\[Rule]", 
+                    "PDESymbolics2020`Private`testMode"}]}], "]"}]}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`print", "[", 
+                    
+                    RowBox[{"\<\"branching = \"\>", ",", 
+                    "PDESymbolics2020`Private`branching"}], "]"}], ";", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    "PDESymbolics2020`Private`branching", "/.", 
+                    "\[VeryThinSpace]", 
+                    RowBox[{"Thread", "[", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`extraFormalCoeffs", "\[Rule]", 
+                    "PDESymbolics2020`Private`tempFormalCoeffs"}], "]"}]}], "/.",
+                     "\[VeryThinSpace]", 
+                    RowBox[{"Thread", "[", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`passiveFormalCoeffs", "\[Rule]",
+                     "PDESymbolics2020`Private`formalCoeffs"}], "]"}]}], "/.",
+                     "\[VeryThinSpace]", 
+                    RowBox[{"Thread", "[", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`tempFormalCoeffs", "\[Rule]", 
+                    "PDESymbolics2020`Private`coeffs"}], "]"}]}]}]}], "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"SimplifyPositivity", "[", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`exp_", ",", 
+                    "PDESymbolics2020`Private`depVars_List", ",", 
+                    "PDESymbolics2020`Private`indVars_List", ",", 
+                    RowBox[{"PDESymbolics2020`Private`pars_List", ":", 
+                    RowBox[{"{", "}"}]}], ",", 
+                    RowBox[{"OptionsPattern", "[", "]"}]}], "]"}], ":=", 
+                    RowBox[{"Module", "[", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`facts", ",", 
+                    "PDESymbolics2020`Private`reps", ",", 
+                    "PDESymbolics2020`Private`testMode", ",", 
+                    "PDESymbolics2020`Private`branching", ",", 
+                    "PDESymbolics2020`Private`temp", ",", 
+                    "PDESymbolics2020`Private`groupby"}], "}"}], ",", 
+                    RowBox[{
+                    RowBox[{"PDESymbolics2020`Private`facts", "=", 
+                    RowBox[{
+                    "OptionValue", "[", "PDESymbolics2020`Private`Facts", 
+                    "]"}]}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`reps", "=", 
+                    RowBox[{
+                    "OptionValue", "[", "PDESymbolics2020`Private`Reps", 
+                    "]"}]}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`testMode", "=", 
+                    RowBox[{
+                    "OptionValue", "[", "PDESymbolics2020`Private`TestMode", 
+                    "]"}]}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`branching", "=", 
+                    RowBox[{"SimplifyTopOddTerms", "[", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`exp", ",", 
+                    "PDESymbolics2020`Private`depVars", ",", 
+                    "PDESymbolics2020`Private`indVars", ",", 
+                    "PDESymbolics2020`Private`pars", ",", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`Facts", "\[Rule]", 
+                    "PDESymbolics2020`Private`facts"}], ",", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`Reps", "\[Rule]", "True"}], ",", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`TestMode", "\[Rule]", 
+                    "PDESymbolics2020`Private`testMode"}]}], "]"}]}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`branching", "=", 
+                    RowBox[{"FixedPoint", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    "PDESymbolics2020`Private`SimplifyEvenStep", "[", 
+                    RowBox[{
+                    "#1", ",", "PDESymbolics2020`Private`depVars", ",", 
+                    "PDESymbolics2020`Private`indVars", ",", 
+                    "PDESymbolics2020`Private`pars", ",", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`Facts", "\[Rule]", 
+                    "PDESymbolics2020`Private`facts"}], ",", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`TestMode", "\[Rule]", 
+                    "PDESymbolics2020`Private`testMode"}]}], "]"}], "&"}], 
+                    ",", "PDESymbolics2020`Private`branching"}], "]"}]}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`temp", "=", 
+                    RowBox[{
+                    "Simplify", "[", "PDESymbolics2020`Private`branching", 
+                    "]"}]}], ";", 
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{
+                    "PDESymbolics2020`Private`temp", "=!=", 
+                    "PDESymbolics2020`Private`branching"}], ",", 
+                    RowBox[{
+                    RowBox[{"PDESymbolics2020`Private`branching", "=", 
+                    RowBox[{"FixedPoint", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    "PDESymbolics2020`Private`SimplifyEvenStep", "[", 
+                    RowBox[{
+                    "#1", ",", "PDESymbolics2020`Private`depVars", ",", 
+                    "PDESymbolics2020`Private`indVars", ",", 
+                    "PDESymbolics2020`Private`pars", ",", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`Facts", "\[Rule]", 
+                    "PDESymbolics2020`Private`facts"}], ",", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`TestMode", "\[Rule]", 
+                    "PDESymbolics2020`Private`testMode"}]}], "]"}], "&"}], 
+                    ",", "PDESymbolics2020`Private`temp"}], "]"}]}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`branching", "=", 
+                    RowBox[{
+                    "Simplify", "[", "PDESymbolics2020`Private`branching", 
+                    "]"}]}], ";"}]}], "]"}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`groupby", "=", 
+                    RowBox[{"Values", "[", 
+                    RowBox[{"GroupBy", "[", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`branching", ",", "Last"}], 
+                    "]"}], "]"}]}], ";", 
+                    RowBox[{"PDESymbolics2020`Private`branching", "=", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"Simplify", "[", 
+                    RowBox[{"Or", "@@", 
+                    RowBox[{"#1", "\[LeftDoubleBracket]", 
+                    RowBox[{"All", ",", "1"}], "\[RightDoubleBracket]"}]}], 
+                    "]"}], ",", 
+                    RowBox[{"Union", "@@", 
+                    RowBox[{"#1", "\[LeftDoubleBracket]", 
+                    RowBox[{"All", ",", "2"}], "\[RightDoubleBracket]"}]}], 
+                    ",", 
+                    RowBox[{"Last", "[", 
+                    RowBox[{"First", "[", "#1", "]"}], "]"}]}], "}"}], "&"}], 
+                    ")"}], "/@", "PDESymbolics2020`Private`groupby"}]}], ";", 
+                    
+                    RowBox[{"If", "[", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`reps", ",", 
+                    "PDESymbolics2020`Private`branching", ",", 
+                    RowBox[{
+                    RowBox[{"(", 
+                    RowBox[{
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"First", "[", "#1", "]"}], ",", 
+                    RowBox[{"Last", "[", "#1", "]"}]}], "}"}], "&"}], ")"}], "/@",
+                     "PDESymbolics2020`Private`branching"}]}], "]"}]}]}], 
+                    "]"}]}]},
+                    {
+                    RowBox[{
+                    RowBox[{"SimplifyPositivity", "[", "___", "]"}], ":=", 
+                    RowBox[{"\<\"nothing\"\>", "/;", 
+                    RowBox[{"Message", "[", 
+                    StyleBox[
+                    RowBox[{"SimplifyPositivity", "::", "BadArgs"}], 
+                    "MessageName"], "]"}]}]}]}
+                    },
+                    DefaultBaseStyle->"Column",
+                    GridBoxAlignment->{"Columns" -> {{Left}}},
+                    
+                    GridBoxItemSize->{
+                    "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Options\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"Options\"",
+                    TooltipStyle->"TextStyling"],
+                    Annotation[#, "Options", "Tooltip"]& ], 
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{
+                    "PDESymbolics2020`Private`Facts", "\[Rule]", "True"}], 
+                    ",", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`Reps", "\[Rule]", "False"}], 
+                    ",", 
+                    RowBox[{
+                    "PDESymbolics2020`Private`TestMode", "\[Rule]", 
+                    "True"}]}], "}"}]},
+                  {
+                   TagBox[
+                    TooltipBox[
+                    StyleBox["\<\" Full Name\"\>", "InformationRowLabel",
+                    StripOnInput->False],
+                    "\"FullName\"",
+                    TooltipStyle->"TextStyling"],
+                    
+                    Annotation[#, "FullName", 
+                    
+                    "Tooltip"]& ], "\<\"PDESymbolics2020`SimplifyPositivity\"\
+\>"}
+                 },
+                 AutoDelete->False,
+                 GridBoxAlignment->{"Columns" -> {Right, Left}},
+                 GridBoxDividers->None,
+                 GridBoxItemSize->{"Columns" -> {Automatic, Automatic}},
+                 GridBoxSpacings->{"Columns" -> {
+                    Offset[0.27999999999999997`], {
+                    Offset[0.5599999999999999]}, 
+                    Offset[0.27999999999999997`]}, "Rows" -> {
+                    Offset[0.2], {
+                    Offset[0.8]}, 
+                    Offset[0.2]}}], "DialogStyle",
+                StripOnInput->False],
+               DynamicModuleValues:>{}]}
+            },
+            DefaultBaseStyle->"Column",
+            GridBoxAlignment->{"Columns" -> {{Left}}},
+            GridBoxDividers->{"Columns" -> {{False}}, "Rows" -> {{False}}},
+            
+            GridBoxItemSize->{
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+            GridBoxSpacings->{"Columns" -> {
+                Offset[0.27999999999999997`], {
+                 Offset[0.5599999999999999]}, 
+                Offset[0.27999999999999997`]}, "Rows" -> {
+                Offset[0.2], {
+                 Offset[3.6]}, 
+                Offset[0.2]}}],
+           FrameMargins->6], ""},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpener"],
+               ImageSizeCache->{10., {2., 8.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "UpPointerOpenerHot"],
+               ImageSizeCache->{10., {2., 8.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, False],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"], False->
+      TagBox[GridBox[{
+         {
+          ItemBox[
+           PaneBox[
+            StyleBox["\<\" Symbol\"\>", "InformationTitleText",
+             StripOnInput->False],
+            FrameMargins->{{4, 0}, {-1, 1}}],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           PaneBox[
+            
+            StyleBox["\<\"SimplifyPositivity[exp_, depVars_List, \
+indVars_List, pars_List:{}, coeffs_List:{}, Facts -> facts, Reps -> \
+reps]\"\>", "InformationUsageText",
+             StripOnInput->False,
+             LineSpacing->{1.5, 1.5, 3.}],
+            FrameMargins->{{10, 10}, {8, 10}}],
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False], 
+          ItemBox["\<\"\"\>",
+           BaseStyle->"InformationUsageSubtitleBackground",
+           StripOnInput->False]},
+         {
+          ItemBox[
+           TagBox[
+            ButtonBox[
+             PaneSelectorBox[{False->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpener"],
+               ImageSizeCache->{10., {2., 8.}}], True->
+              
+              DynamicBox[FEPrivate`FrontEndResource[
+               "FEBitmaps", "DownPointerOpenerHot"],
+               ImageSizeCache->{10., {2., 8.}}]}, Dynamic[
+              System`InformationDump`mouseOver$$]],
+             Alignment->Left,
+             Appearance->{"Default" -> None},
+             
+             ButtonFunction:>FEPrivate`Set[
+              System`InformationDump`open$$, True],
+             Evaluator->Automatic,
+             FrameMargins->{{9, 0}, {0, 0}},
+             ImageMargins->0,
+             ImageSize->Full,
+             Method->"Preemptive"],
+            
+            EventHandlerTag[{
+             "MouseEntered" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, True], 
+              "MouseExited" :> 
+              FEPrivate`Set[System`InformationDump`mouseOver$$, False], 
+              Method -> "Preemptive", PassEventsDown -> Automatic, 
+              PassEventsUp -> True}]],
+           BaseStyle->"InformationTitleBackground",
+           StripOnInput->False], "\[SpanFromLeft]"}
+        },
+        AutoDelete->False,
+        FrameStyle->Directive[
+          GrayLevel[0.8], 
+          Thickness[Tiny]],
+        GridBoxAlignment->{"Columns" -> {Left, Right}, "Rows" -> {{Center}}},
+        GridBoxDividers->{
+         "Columns" -> {{None}}, "Rows" -> {False, {True}, False}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}, Dynamic[System`InformationDump`open$$],
+      BaselinePosition->Baseline,
+      FrameMargins->0,
+      ImageSize->Automatic],
+     DynamicModuleValues:>{}],
+    BaseStyle->"InformationGridFrame",
+    StripOnInput->False], "InformationGridPlain",
+   StripOnInput->False],
+  InformationData[
+   Association[
+   "ObjectType" -> "Symbol", "Usage" -> 
+    "SimplifyPositivity[exp_, depVars_List, indVars_List, pars_List:{}, \
+coeffs_List:{}, Facts -> facts, Reps -> reps]", "Documentation" -> None, 
+    "OwnValues" -> None, "UpValues" -> None, "DownValues" -> 
+    Information`InformationValueForm[
+     DownValues, PDESymbolics2020`SimplifyPositivity, {
+      PDESymbolics2020`SimplifyPositivity[
+         Pattern[PDESymbolics2020`Private`exp, 
+          Blank[]], 
+         Pattern[PDESymbolics2020`Private`depVars, 
+          Blank[List]], 
+         Pattern[PDESymbolics2020`Private`indVars, 
+          Blank[List]], 
+         Pattern[PDESymbolics2020`Private`pars, 
+          Blank[List]], 
+         Pattern[PDESymbolics2020`Private`coeffs, 
+          Blank[List]], 
+         OptionsPattern[]] :> 
+       Module[{PDESymbolics2020`Private`print, PDESymbolics2020`Private`facts,
+           PDESymbolics2020`Private`reps, PDESymbolics2020`Private`testMode, 
+          PDESymbolics2020`Private`tempFormalCoeffs, 
+          PDESymbolics2020`Private`formalCoeffs, 
+          PDESymbolics2020`Private`formalIndeces, 
+          PDESymbolics2020`Private`extraFormalCoeffs, 
+          PDESymbolics2020`Private`passiveFormalCoeffs, 
+          PDESymbolics2020`Private`newExp, 
+          PDESymbolics2020`Private`branching}, 
+         PDESymbolics2020`Private`print = 
+          PDESymbolics2020`Private`DebugPrint[False, "[simpos]"]; 
+         PDESymbolics2020`Private`facts = 
+          OptionValue[PDESymbolics2020`Private`Facts]; 
+         PDESymbolics2020`Private`reps = 
+          OptionValue[PDESymbolics2020`Private`Reps]; 
+         PDESymbolics2020`Private`testMode = 
+          OptionValue[PDESymbolics2020`Private`TestMode]; 
+         If[PDESymbolics2020`Private`coeffs == {}, 
+           Return[{{True, {}, PDESymbolics2020`Private`exp}}]]; 
+         PDESymbolics2020`Private`tempFormalCoeffs = Table[
+            Subscript[\[FormalLambda], PDESymbolics2020`Private`k], {
+            PDESymbolics2020`Private`k, 
+             Length[PDESymbolics2020`Private`coeffs]}]; 
+         PDESymbolics2020`Private`formalIndeces = Union[
+            Cases[PDESymbolics2020`Private`exp, Subscript[\[FormalCapitalC], 
+               Pattern[PDESymbolics2020`Private`j, 
+                Blank[Integer]]] :> PDESymbolics2020`Private`j, {
+             0, Infinity}]]; 
+         PDESymbolics2020`Private`formalCoeffs = 
+          Map[Subscript[\[FormalCapitalC], #]& , 
+            PDESymbolics2020`Private`formalIndeces]; 
+         PDESymbolics2020`Private`passiveFormalCoeffs = 
+          Map[Subscript[\[FormalC], #]& , 
+            PDESymbolics2020`Private`formalIndeces]; 
+         PDESymbolics2020`Private`extraFormalCoeffs = Table[
+            Subscript[\[FormalCapitalC], PDESymbolics2020`Private`k], {
+            PDESymbolics2020`Private`k, 
+             Length[PDESymbolics2020`Private`coeffs]}]; 
+         PDESymbolics2020`Private`print["tempFormalCoeffs = ", 
+           Thread[
+           PDESymbolics2020`Private`coeffs -> 
+            PDESymbolics2020`Private`tempFormalCoeffs]]; 
+         PDESymbolics2020`Private`print["passiveFormalCoeffs = ", 
+           Thread[
+           PDESymbolics2020`Private`formalCoeffs -> 
+            PDESymbolics2020`Private`passiveFormalCoeffs]]; 
+         PDESymbolics2020`Private`print["extraFormalCoeffs = ", 
+           Thread[
+           PDESymbolics2020`Private`tempFormalCoeffs -> 
+            PDESymbolics2020`Private`extraFormalCoeffs]]; 
+         PDESymbolics2020`Private`newExp = ReplaceAll[
+            ReplaceAll[
+             ReplaceAll[PDESymbolics2020`Private`exp, 
+              Thread[
+              PDESymbolics2020`Private`coeffs -> 
+               PDESymbolics2020`Private`tempFormalCoeffs]], 
+             Thread[
+             PDESymbolics2020`Private`formalCoeffs -> 
+              PDESymbolics2020`Private`passiveFormalCoeffs]], 
+            Thread[
+            PDESymbolics2020`Private`tempFormalCoeffs -> 
+             PDESymbolics2020`Private`extraFormalCoeffs]]; 
+         PDESymbolics2020`Private`print[
+          "newExp = ", PDESymbolics2020`Private`newExp]; 
+         PDESymbolics2020`Private`branching = 
+          PDESymbolics2020`SimplifyPositivity[
+           PDESymbolics2020`Private`newExp, PDESymbolics2020`Private`depVars, 
+            PDESymbolics2020`Private`indVars, PDESymbolics2020`Private`pars, 
+            PDESymbolics2020`Private`Facts -> PDESymbolics2020`Private`facts, 
+            PDESymbolics2020`Private`Reps -> PDESymbolics2020`Private`reps, 
+            PDESymbolics2020`Private`TestMode -> 
+            PDESymbolics2020`Private`testMode]; 
+         PDESymbolics2020`Private`print[
+          "branching = ", PDESymbolics2020`Private`branching]; ReplaceAll[
+           ReplaceAll[
+            ReplaceAll[PDESymbolics2020`Private`branching, 
+             Thread[
+             PDESymbolics2020`Private`extraFormalCoeffs -> 
+              PDESymbolics2020`Private`tempFormalCoeffs]], 
+            Thread[
+            PDESymbolics2020`Private`passiveFormalCoeffs -> 
+             PDESymbolics2020`Private`formalCoeffs]], 
+           Thread[
+           PDESymbolics2020`Private`tempFormalCoeffs -> 
+            PDESymbolics2020`Private`coeffs]]], 
+       PDESymbolics2020`SimplifyPositivity[
+         Pattern[PDESymbolics2020`Private`exp, 
+          Blank[]], 
+         Pattern[PDESymbolics2020`Private`depVars, 
+          Blank[List]], 
+         Pattern[PDESymbolics2020`Private`indVars, 
+          Blank[List]], 
+         Optional[
+          Pattern[PDESymbolics2020`Private`pars, 
+           Blank[List]], {}], 
+         OptionsPattern[]] :> 
+       Module[{PDESymbolics2020`Private`facts, PDESymbolics2020`Private`reps, 
+          PDESymbolics2020`Private`testMode, 
+          PDESymbolics2020`Private`branching, PDESymbolics2020`Private`temp, 
+          PDESymbolics2020`Private`groupby}, 
+         PDESymbolics2020`Private`facts = 
+          OptionValue[PDESymbolics2020`Private`Facts]; 
+         PDESymbolics2020`Private`reps = 
+          OptionValue[PDESymbolics2020`Private`Reps]; 
+         PDESymbolics2020`Private`testMode = 
+          OptionValue[PDESymbolics2020`Private`TestMode]; 
+         PDESymbolics2020`Private`branching = 
+          PDESymbolics2020`SimplifyTopOddTerms[
+           PDESymbolics2020`Private`exp, PDESymbolics2020`Private`depVars, 
+            PDESymbolics2020`Private`indVars, PDESymbolics2020`Private`pars, 
+            PDESymbolics2020`Private`Facts -> PDESymbolics2020`Private`facts, 
+            PDESymbolics2020`Private`Reps -> True, 
+            PDESymbolics2020`Private`TestMode -> 
+            PDESymbolics2020`Private`testMode]; 
+         PDESymbolics2020`Private`branching = 
+          FixedPoint[
+           PDESymbolics2020`Private`SimplifyEvenStep[#, 
+             PDESymbolics2020`Private`depVars, 
+             PDESymbolics2020`Private`indVars, PDESymbolics2020`Private`pars, 
+             PDESymbolics2020`Private`Facts -> PDESymbolics2020`Private`facts,
+              PDESymbolics2020`Private`TestMode -> 
+             PDESymbolics2020`Private`testMode]& , 
+            PDESymbolics2020`Private`branching]; 
+         PDESymbolics2020`Private`temp = 
+          Simplify[PDESymbolics2020`Private`branching]; 
+         If[PDESymbolics2020`Private`temp =!= 
+           PDESymbolics2020`Private`branching, 
+           PDESymbolics2020`Private`branching = 
+            FixedPoint[
+             PDESymbolics2020`Private`SimplifyEvenStep[#, 
+               PDESymbolics2020`Private`depVars, 
+               PDESymbolics2020`Private`indVars, 
+               PDESymbolics2020`Private`pars, PDESymbolics2020`Private`Facts -> 
+               PDESymbolics2020`Private`facts, 
+               PDESymbolics2020`Private`TestMode -> 
+               PDESymbolics2020`Private`testMode]& , 
+              PDESymbolics2020`Private`temp]; 
+           PDESymbolics2020`Private`branching = 
+            Simplify[PDESymbolics2020`Private`branching]; Null]; 
+         PDESymbolics2020`Private`groupby = Values[
+            GroupBy[PDESymbolics2020`Private`branching, Last]]; 
+         PDESymbolics2020`Private`branching = Map[{
+             Simplify[
+              Apply[Or, 
+               Part[#, All, 1]]], 
+             Apply[Union, 
+              Part[#, All, 2]], 
+             Last[
+              First[#]]}& , PDESymbolics2020`Private`groupby]; 
+         If[PDESymbolics2020`Private`reps, PDESymbolics2020`Private`branching, 
+           Map[{
+             First[#], 
+             Last[#]}& , PDESymbolics2020`Private`branching]]], 
+       PDESymbolics2020`SimplifyPositivity[
+         BlankNullSequence[]] :> Condition["nothing", 
+         Message[
+          MessageName[PDESymbolics2020`SimplifyPositivity, "BadArgs"]]]}], 
+    "SubValues" -> None, "DefaultValues" -> None, "NValues" -> None, 
+    "FormatValues" -> None, 
+    "Options" -> {
+     PDESymbolics2020`Private`Facts -> True, PDESymbolics2020`Private`Reps -> 
+      False, PDESymbolics2020`Private`TestMode -> True}, "Attributes" -> {}, 
+    "FullName" -> "PDESymbolics2020`SimplifyPositivity"], False]]], "Output",
+ CellChangeTimes->{3.806915586804742*^9},
+ CellLabel->"Out[12]=",ExpressionUUID->"4a5f2d02-096c-491b-83a7-8822686caec8"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "OptionValue","nodef",
+   "\"Unknown option \\!\\(\\*RowBox[{\\\"\\\\\\\"Facts\\\\\\\"\\\"}]\\) for \
+\\!\\(\\*RowBox[{\\\"SimplifyTopOddTerms\\\"}]\\).\"",2,13,39,
+   24382292636952663629,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.806915554811448*^9, 3.806915586836175*^9},
+ CellLabel->
+  "During evaluation of \
+In[12]:=",ExpressionUUID->"e159dbc7-826b-494f-8120-9212381793e7"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "OptionValue","nodef",
+   "\"Unknown option \\!\\(\\*RowBox[{\\\"\\\\\\\"Reps\\\\\\\"\\\"}]\\) for \
+\\!\\(\\*RowBox[{\\\"SimplifyTopOddTerms\\\"}]\\).\"",2,13,40,
+   24382292636952663629,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.806915554811448*^9, 3.806915586848954*^9},
+ CellLabel->
+  "During evaluation of \
+In[12]:=",ExpressionUUID->"fdf44e01-3365-4c2c-acc9-5e587dbfd1a2"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "OptionValue","nodef",
+   "\"Unknown option \\!\\(\\*RowBox[{\\\"\\\\\\\"TestMode\\\\\\\"\\\"}]\\) \
+for \\!\\(\\*RowBox[{\\\"SimplifyTopOddTerms\\\"}]\\).\"",2,13,41,
+   24382292636952663629,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.806915554811448*^9, 3.806915586862649*^9},
+ CellLabel->
+  "During evaluation of \
+In[12]:=",ExpressionUUID->"01f23cd8-ac39-4536-a3db-d5bb1ae8a6b8"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "General","stop",
+   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"OptionValue\\\", \\\"::\
+\\\", \\\"nodef\\\"}], \\\"MessageName\\\"]\\) will be suppressed during this \
+calculation.\"",2,13,42,24382292636952663629,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.806915554811448*^9, 3.80691558687278*^9},
+ CellLabel->
+  "During evaluation of \
+In[12]:=",ExpressionUUID->"39381cc3-7159-4495-b9bd-da03ba3ad5c9"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "First","nofirst",
+   "\"\\!\\(\\*RowBox[{\\\"{\\\", \\\"}\\\"}]\\) has zero length and no first \
+element.\"",2,13,43,24382292636952663629,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.806915554811448*^9, 3.8069155868846188`*^9},
+ CellLabel->
+  "During evaluation of \
+In[12]:=",ExpressionUUID->"3416d703-afb4-46b4-9458-b000f269f329"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "First","nofirst",
+   "\"\\!\\(\\*RowBox[{\\\"{\\\", \\\"}\\\"}]\\) has zero length and no first \
+element.\"",2,13,44,24382292636952663629,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.806915554811448*^9, 3.806915586894724*^9},
+ CellLabel->
+  "During evaluation of \
+In[12]:=",ExpressionUUID->"e0d30cd9-c163-4aa3-93db-30117b018a8d"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "First","nofirst",
+   "\"\\!\\(\\*RowBox[{\\\"{\\\", \\\"}\\\"}]\\) has zero length and no first \
+element.\"",2,13,45,24382292636952663629,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.806915554811448*^9, 3.806915586904994*^9},
+ CellLabel->
+  "During evaluation of \
+In[12]:=",ExpressionUUID->"fabf745d-1887-4ccf-a80c-9f7ffc170b9b"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "General","stop",
+   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"First\\\", \\\"::\\\", \
+\\\"nofirst\\\"}], \\\"MessageName\\\"]\\) will be suppressed during this \
+calculation.\"",2,13,46,24382292636952663629,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.806915554811448*^9, 3.806915586916328*^9},
+ CellLabel->
+  "During evaluation of \
+In[12]:=",ExpressionUUID->"f85ebeab-65c0-4b39-9637-3eb0b0a872b7"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Last","nolast",
+   "\"\\!\\(\\*RowBox[{\\\"{\\\", \\\"}\\\"}]\\) has zero length and no last \
+element.\"",2,13,47,24382292636952663629,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.806915554811448*^9, 3.806915586926527*^9},
+ CellLabel->
+  "During evaluation of \
+In[12]:=",ExpressionUUID->"06bdbce8-dcca-43f7-9a3c-55cca9c34a25"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Last","nolast",
+   "\"\\!\\(\\*RowBox[{\\\"{\\\", \\\"}\\\"}]\\) has zero length and no last \
+element.\"",2,13,48,24382292636952663629,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.806915554811448*^9, 3.806915586936513*^9},
+ CellLabel->
+  "During evaluation of \
+In[12]:=",ExpressionUUID->"cb990110-23c2-4463-84e8-e4ecb0c02ad6"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Union","heads",
+   "\"Heads \\!\\(\\*RowBox[{\\\"If\\\"}]\\) and \
+\\!\\(\\*RowBox[{\\\"List\\\"}]\\) at positions \
+\\!\\(\\*RowBox[{\\\"2\\\"}]\\) and \\!\\(\\*RowBox[{\\\"1\\\"}]\\) are \
+expected to be the same.\"",2,13,49,24382292636952663629,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.806915554811448*^9, 3.806915586950275*^9},
+ CellLabel->
+  "During evaluation of \
+In[12]:=",ExpressionUUID->"942251a4-c076-4361-82de-179290dd59d2"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Union","heads",
+   "\"Heads \\!\\(\\*RowBox[{\\\"If\\\"}]\\) and \
+\\!\\(\\*RowBox[{\\\"List\\\"}]\\) at positions \
+\\!\\(\\*RowBox[{\\\"2\\\"}]\\) and \\!\\(\\*RowBox[{\\\"1\\\"}]\\) are \
+expected to be the same.\"",2,13,50,24382292636952663629,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.806915554811448*^9, 3.806915586960702*^9},
+ CellLabel->
+  "During evaluation of \
+In[12]:=",ExpressionUUID->"984583fa-81a8-48d5-adc0-1828a0c3cc0a"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Union","heads",
+   "\"Heads \\!\\(\\*RowBox[{\\\"If\\\"}]\\) and \
+\\!\\(\\*RowBox[{\\\"List\\\"}]\\) at positions \
+\\!\\(\\*RowBox[{\\\"2\\\"}]\\) and \\!\\(\\*RowBox[{\\\"1\\\"}]\\) are \
+expected to be the same.\"",2,13,51,24382292636952663629,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.806915554811448*^9, 3.806915586970908*^9},
+ CellLabel->
+  "During evaluation of \
+In[12]:=",ExpressionUUID->"b8c2b826-29ba-4eac-b6ec-98fa2966b7c3"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "General","stop",
+   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"Union\\\", \\\"::\\\", \
+\\\"heads\\\"}], \\\"MessageName\\\"]\\) will be suppressed during this \
+calculation.\"",2,13,52,24382292636952663629,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.806915554811448*^9, 3.806915586983515*^9},
+ CellLabel->
+  "During evaluation of \
+In[12]:=",ExpressionUUID->"95d5024e-49d7-4648-b135-213d88ef81b7"]
+}, Open  ]],
+
+Cell[BoxData[{
+ RowBox[{"xp", " ", "=", " ", 
+  RowBox[{
+   RowBox[{"12", " ", 
+    SuperscriptBox["b", "2"], " ", 
+    SuperscriptBox[
+     RowBox[{"r", "[", "x", "]"}], 
+     RowBox[{
+      RowBox[{"-", "3"}], "+", 
+      RowBox[{"2", " ", "b"}]}]], " ", 
+    SuperscriptBox[
+     RowBox[{
+      SuperscriptBox["r", "\[Prime]",
+       MultilineFunction->None], "[", "x", "]"}], "3"], " ", 
+    RowBox[{
+     SuperscriptBox["u", "\[Prime]",
+      MultilineFunction->None], "[", "x", "]"}], " ", 
+    RowBox[{
+     SuperscriptBox["u", "\[Prime]\[Prime]",
+      MultilineFunction->None], "[", "x", "]"}]}], "-", 
+   RowBox[{"12", " ", 
+    SuperscriptBox["b", "3"], " ", 
+    SuperscriptBox[
+     RowBox[{"r", "[", "x", "]"}], 
+     RowBox[{
+      RowBox[{"-", "3"}], "+", 
+      RowBox[{"2", " ", "b"}]}]], " ", 
+    SuperscriptBox[
+     RowBox[{
+      SuperscriptBox["r", "\[Prime]",
+       MultilineFunction->None], "[", "x", "]"}], "3"], " ", 
+    RowBox[{
+     SuperscriptBox["u", "\[Prime]",
+      MultilineFunction->None], "[", "x", "]"}], " ", 
+    RowBox[{
+     SuperscriptBox["u", "\[Prime]\[Prime]",
+      MultilineFunction->None], "[", "x", "]"}]}], "-", 
+   RowBox[{"12", " ", 
+    SuperscriptBox["b", "2"], " ", 
+    SuperscriptBox[
+     RowBox[{"r", "[", "x", "]"}], 
+     RowBox[{
+      RowBox[{"-", "2"}], "+", 
+      RowBox[{"2", " ", "b"}]}]], " ", 
+    RowBox[{
+     SuperscriptBox["r", "\[Prime]",
+      MultilineFunction->None], "[", "x", "]"}], " ", 
+    RowBox[{
+     SuperscriptBox["u", "\[Prime]",
+      MultilineFunction->None], "[", "x", "]"}], " ", 
+    RowBox[{
+     SuperscriptBox["r", "\[Prime]\[Prime]",
+      MultilineFunction->None], "[", "x", "]"}], " ", 
+    RowBox[{
+     SuperscriptBox["u", "\[Prime]\[Prime]",
+      MultilineFunction->None], "[", "x", "]"}]}], "-", 
+   RowBox[{"4", " ", 
+    SuperscriptBox["b", "2"], " ", 
+    SuperscriptBox[
+     RowBox[{"r", "[", "x", "]"}], 
+     RowBox[{
+      RowBox[{"-", "1"}], "+", 
+      RowBox[{"2", " ", "b"}]}]], " ", 
+    RowBox[{
+     SuperscriptBox["r", "\[Prime]\[Prime]",
+      MultilineFunction->None], "[", "x", "]"}], " ", 
+    SuperscriptBox[
+     RowBox[{
+      SuperscriptBox["u", "\[Prime]\[Prime]",
+       MultilineFunction->None], "[", "x", "]"}], "2"]}], "-", 
+   RowBox[{"2", " ", 
+    SuperscriptBox["b", "3"], " ", 
+    SuperscriptBox[
+     RowBox[{"r", "[", "x", "]"}], 
+     RowBox[{
+      RowBox[{"-", "1"}], "+", 
+      RowBox[{"2", " ", "b"}]}]], " ", 
+    RowBox[{
+     SuperscriptBox["r", "\[Prime]\[Prime]",
+      MultilineFunction->None], "[", "x", "]"}], " ", 
+    SuperscriptBox[
+     RowBox[{
+      SuperscriptBox["u", "\[Prime]\[Prime]",
+       MultilineFunction->None], "[", "x", "]"}], "2"]}], "-", 
+   RowBox[{"6", " ", 
+    SuperscriptBox["b", "2"], " ", 
+    SuperscriptBox[
+     RowBox[{"r", "[", "x", "]"}], 
+     RowBox[{
+      RowBox[{"-", "2"}], "+", 
+      RowBox[{"2", " ", "b"}]}]], " ", 
+    SuperscriptBox[
+     RowBox[{
+      SuperscriptBox["r", "\[Prime]",
+       MultilineFunction->None], "[", "x", "]"}], "2"], " ", 
+    RowBox[{
+     SuperscriptBox["u", "\[Prime]",
+      MultilineFunction->None], "[", "x", "]"}], " ", 
+    RowBox[{
+     SuperscriptBox["u", 
+      TagBox[
+       RowBox[{"(", "3", ")"}],
+       Derivative],
+      MultilineFunction->None], "[", "x", "]"}]}], "-", 
+   RowBox[{"2", " ", 
+    SuperscriptBox["b", "2"], " ", 
+    SuperscriptBox[
+     RowBox[{"r", "[", "x", "]"}], 
+     RowBox[{"2", " ", "b"}]], " ", 
+    RowBox[{
+     SuperscriptBox["u", "\[Prime]\[Prime]",
+      MultilineFunction->None], "[", "x", "]"}], " ", 
+    RowBox[{
+     SuperscriptBox["u", 
+      TagBox[
+       RowBox[{"(", "4", ")"}],
+       Derivative],
+      MultilineFunction->None], "[", "x", "]"}]}]}]}], "\n", 
+ RowBox[{"xpd", "=", 
+  RowBox[{"Disintegrate", "[", 
+   RowBox[{"xp", ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"r", ",", " ", "u"}], "}"}], ",", " ", 
+    RowBox[{"{", "x", "}"}], ",", " ", 
+    RowBox[{"{", "b", "}"}]}], "]"}]}]}], "Code",
+ CellChangeTimes->{{3.778429250937005*^9, 3.778429331604714*^9}, {
+  3.802342227970628*^9, 3.8023422288317747`*^9}},
+ CellLabel->"In[10]:=",ExpressionUUID->"3b1f3fb3-d22f-45c1-8080-d3038d5d0daa"],
+
+Cell[BoxData[{
+ RowBox[{"SimplifyPositivity", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"a", " ", 
+     RowBox[{
+      RowBox[{"u", "[", "x", "]"}], "^", "2"}]}], " ", "+", " ", 
+    RowBox[{
+     SubscriptBox["\[FormalCapitalC]", "2"], " ", 
+     RowBox[{"x", "^", "3"}]}]}], ",", " ", 
+   RowBox[{"{", "u", "}"}], ",", " ", 
+   RowBox[{"{", "x", "}"}], ",", " ", 
+   RowBox[{"{", "a", "}"}]}], "]"}], "\n", 
+ RowBox[{"SimplifyPositivity", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"a", " ", 
+     RowBox[{
+      RowBox[{"u", "[", "x", "]"}], "^", "2"}]}], " ", "+", " ", 
+    RowBox[{
+     SubscriptBox["\[FormalCapitalC]", "2"], " ", 
+     RowBox[{"x", "^", "3"}]}]}], ",", " ", 
+   RowBox[{"{", "u", "}"}], ",", " ", 
+   RowBox[{"{", "x", "}"}], ",", " ", 
+   RowBox[{"{", "a", "}"}], ",", " ", 
+   RowBox[{"Reps", "\[Rule]", "True"}]}], "]"}]}], "Code",
+ CellChangeTimes->{{3.778427778819429*^9, 
+  3.778427787209406*^9}},ExpressionUUID->"eb4db421-7b15-4023-93cf-\
+3aab0324346b"],
+
+Cell[BoxData[
+ RowBox[{"Positivity", "[", 
+  RowBox[{
+   TagBox[
+    FrameBox["expr_"],
+    "Placeholder"], ",", " ", 
+   TagBox[
+    FrameBox["depVars_List"],
+    "Placeholder"], ",", " ", 
+   TagBox[
+    FrameBox["indVars_List"],
+    "Placeholder"], ",", " ", 
+   RowBox[{
+    TagBox[
+     FrameBox["pars_List:"],
+     "Placeholder"], 
+    RowBox[{"{", "}"}]}], ",", " ", 
+   RowBox[{
+    TagBox[
+     FrameBox["Facts"],
+     "Placeholder"], "\[Rule]", 
+    TagBox[
+     FrameBox["facts"],
+     "Placeholder"]}], ",", " ", 
+   RowBox[{"TimeConstraint", "\[Rule]", 
+    TagBox[
+     FrameBox["5"],
+     "Placeholder"]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.806915292159499*^9, 
+  3.8069153133734827`*^9}},ExpressionUUID->"ce12fb64-ffd6-4c32-ba76-\
+afa5f02baf12"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Positivity", "[", 
+  RowBox[{
+   RowBox[{"a", " ", 
+    RowBox[{"u", "[", "x", "]"}], " ", 
+    RowBox[{
+     RowBox[{"u", "''"}], "[", "x", "]"}]}], ",", " ", 
+   RowBox[{"{", "u", "}"}], ",", " ", 
+   RowBox[{"{", "x", "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"a", ",", "b"}], "}"}], ",", " ", 
+   RowBox[{"Facts", "\[Rule]", 
+    RowBox[{"Implies", "[", 
+     RowBox[{
+      RowBox[{"a", ">", "0"}], ",", " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"u", "[", "x", "]"}], ">", "0"}], "&&", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"u", "''"}], "[", "x", "]"}], ">", "0"}]}]}], "]"}]}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.80691524007078*^9, 3.806915243867342*^9}},
+ CellLabel->"In[11]:=",ExpressionUUID->"99e080a7-c1e6-4670-80f3-67ab4aa740fd"],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"PDESymbolics2020`Private`VarD", "::", "BadArgs"}], "MessageName"],
+   " ", ":", "  ", "\<\"Incorrect input of arguments\"\>"}]], "Message", "MSG",
+ ShowCellLabel->True,
+ CellChangeTimes->{3.806915384774252*^9},
+ CellLabel->
+  "(kernel 2)",ExpressionUUID->"87796873-6f58-48a5-a82b-8f66d1a0e528"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "PDESymbolics2020`Private`VarD","BadArgs",
+   "\"Incorrect input of arguments\"",2,11,25,24382292636952663629,"Local",
+   "PDESymbolics2020`Private`VarD"},
+  "MessageTemplate2"]], "Message", "MSG",
+ ShowCellLabel->True,
+ CellChangeTimes->{3.806915281530645*^9, 3.806915384821352*^9},
+ CellLabel->
+  "During evaluation of \
+In[11]:=",ExpressionUUID->"66d4fc54-d01b-48c5-9197-77e8ba062267"],
+
+Cell[BoxData["\<\"More than one set of constraints encountered. First one is \
+used for further computetaion.\"\>"], "Print",
+ CellChangeTimes->{3.806915250487455*^9, 3.8069152816145077`*^9, 
+  3.806915384842078*^9},
+ CellLabel->
+  "During evaluation of \
+In[11]:=",ExpressionUUID->"700056c7-0f47-4f6c-994a-e9bbbc8ae69a"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "ReplaceAll","reps",
+   "\"\\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{RowBox[{\\\"PDESymbolics2020`Private`UCM\\\", \\\"[\\\", \
+RowBox[{RowBox[{\\\"PDESymbolics2020`Private`VarD\\\", \\\"[\\\", \
+RowBox[{RowBox[{RowBox[{RowBox[{\\\"-\\\", \\\"a\\\"}], \\\" \\\", RowBox[{\\\
+\"Subscript\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\" \\\", RowBox[{\\\"Power\\\", \
+\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
+\"}], \\\"]\\\"}]}], \\\"+\\\", RowBox[{\\\"\[FormalCapitalC]\\\", \\\" \\\", \
+\\\"a\\\", \\\" \\\", RowBox[{\\\"u\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\" \
+\\\", RowBox[{SuperscriptBox[RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}], TagBox[RowBox[{\\\"(\\\", RowBox[{\\\"\[LeftSkeleton]\
+\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\")\\\"}], Derivative], \
+Rule[MultilineFunction, None]], \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\"-\\\", \
+RowBox[{\\\"a\\\", \\\" \\\", RowBox[{\\\"Subscript\\\", \\\"[\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\
+\\\"}], \\\" \\\", RowBox[{\\\"u\\\", \\\"[\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\
+\\\"}], \\\" \\\", RowBox[{SuperscriptBox[RowBox[{\\\"\[LeftSkeleton]\\\", \\\
+\"1\\\", \\\"\[RightSkeleton]\\\"}], TagBox[RowBox[{\\\"(\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\")\\\"}], \
+Derivative], Rule[MultilineFunction, None]], \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}], \
+\\\",\\\", RowBox[{\\\"{\\\", \\\"u\\\", \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", \\\"x\\\", \\\"}\\\"}]}], \\\"]\\\"}], \\\",\\\", RowBox[{\
+\\\"{\\\", RowBox[{\\\"\[FormalCapitalC]\\\", \\\",\\\", SubscriptBox[\\\"\
+\[FormalCapitalC]\\\", \\\"1\\\"], \\\",\\\", SubscriptBox[\\\"\
+\[FormalCapitalC]\\\", \\\"2\\\"]}], \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", RowBox[{\\\"a\\\", \\\",\\\", \\\"b\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"PDESymbolics2020`Private`Factors\\\", \\\"\[Rule]\\\", \
+\\\"False\\\"}]}], \\\"]\\\"}], \\\".\\\", RowBox[{\\\"{\\\", RowBox[{\\\"1\\\
+\", \\\",\\\", SubscriptBox[\\\"\[FormalCapitalC]\\\", \\\"1\\\"], \\\",\\\", \
+SubscriptBox[\\\"\[FormalCapitalC]\\\", \\\"2\\\"]}], \\\"}\\\"}]}], \\\"\
+\[Equal]\\\", \\\"0\\\"}], \\\"}\\\"}]\\) is neither a list of replacement \
+rules nor a valid dispatch table, and so cannot be used for replacing.\"",2,
+   11,26,24382292636952663629,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ ShowCellLabel->True,
+ CellChangeTimes->{3.806915281530645*^9, 3.806915384845903*^9},
+ CellLabel->
+  "During evaluation of \
+In[11]:=",ExpressionUUID->"aa8a0221-2231-431b-a0a9-5a2be0f4be05"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "PDESymbolics2020`Private`VarD","BadArgs",
+   "\"Incorrect input of arguments\"",2,11,27,24382292636952663629,"Local",
+   "PDESymbolics2020`Private`VarD"},
+  "MessageTemplate2"]], "Message", "MSG",
+ ShowCellLabel->True,
+ CellChangeTimes->{3.806915281530645*^9, 3.806915384856984*^9},
+ CellLabel->
+  "During evaluation of \
+In[11]:=",ExpressionUUID->"c3781339-0c0a-4363-9600-d629ce1c84b1"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "PDESymbolics2020`Private`VarD","BadArgs",
+   "\"Incorrect input of arguments\"",2,11,28,24382292636952663629,"Local",
+   "PDESymbolics2020`Private`VarD"},
+  "MessageTemplate2"]], "Message", "MSG",
+ ShowCellLabel->True,
+ CellChangeTimes->{3.806915281530645*^9, 3.8069153848668747`*^9},
+ CellLabel->
+  "During evaluation of \
+In[11]:=",ExpressionUUID->"7fba8f44-f06e-4759-9763-6ecab4407611"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "General","stop",
+   "\"Further output of \
+\\!\\(\\*StyleBox[RowBox[{\\\"PDESymbolics2020`Private`VarD\\\", \\\"::\\\", \
+\\\"BadArgs\\\"}], \\\"MessageName\\\"]\\) will be suppressed during this \
+calculation.\"",2,11,29,24382292636952663629,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ ShowCellLabel->True,
+ CellChangeTimes->{3.806915281530645*^9, 3.806915384876816*^9},
+ CellLabel->
+  "During evaluation of \
+In[11]:=",ExpressionUUID->"c6e9c092-3777-4a57-ba0f-3fb60cee1d10"],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"PDESymbolics2020`Private`VarD", "::", "BadArgs"}], "MessageName"],
+   " ", ":", "  ", "\<\"Incorrect input of arguments\"\>"}]], "Message", "MSG",
+ ShowCellLabel->True,
+ CellChangeTimes->{3.8069153849406757`*^9},
+ CellLabel->
+  "(kernel 2)",ExpressionUUID->"e2e3967e-67ed-4433-89db-5d7be89d523f"],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"ReplaceAll", "::", "reps"}], "MessageName"], " ", ":", 
+  "  ", "\<\"\\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{RowBox[{\\\"PDESymbolics2020`Private`UCM\\\", \\\"[\\\", \
+RowBox[{RowBox[{\\\"PDESymbolics2020`Private`VarD\\\", \\\"[\\\", \
+RowBox[{RowBox[{RowBox[{RowBox[{\\\"-\\\", \\\"a\\\"}], \\\" \\\", RowBox[{\\\
+\"Subscript\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\" \\\", RowBox[{\\\"Power\\\", \
+\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
+\"}], \\\"]\\\"}]}], \\\"+\\\", RowBox[{\\\"\[FormalCapitalC]\\\", \\\" \\\", \
+\\\"a\\\", \\\" \\\", RowBox[{\\\"u\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\" \
+\\\", RowBox[{SuperscriptBox[RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}], TagBox[RowBox[{\\\"(\\\", RowBox[{\\\"\[LeftSkeleton]\
+\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\")\\\"}], Derivative], \
+Rule[MultilineFunction, None]], \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\"-\\\", \
+RowBox[{\\\"a\\\", \\\" \\\", RowBox[{\\\"Subscript\\\", \\\"[\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\
+\\\"}], \\\" \\\", RowBox[{\\\"u\\\", \\\"[\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\
+\\\"}], \\\" \\\", RowBox[{SuperscriptBox[RowBox[{\\\"\[LeftSkeleton]\\\", \\\
+\"1\\\", \\\"\[RightSkeleton]\\\"}], TagBox[RowBox[{\\\"(\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\")\\\"}], \
+Derivative], Rule[MultilineFunction, None]], \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}], \
+\\\",\\\", RowBox[{\\\"{\\\", \\\"u\\\", \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", \\\"x\\\", \\\"}\\\"}]}], \\\"]\\\"}], \\\",\\\", RowBox[{\
+\\\"{\\\", RowBox[{\\\"\[FormalCapitalC]\\\", \\\",\\\", SubscriptBox[\\\"\
+\[FormalCapitalC]\\\", \\\"1\\\"], \\\",\\\", SubscriptBox[\\\"\
+\[FormalCapitalC]\\\", \\\"2\\\"]}], \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", RowBox[{\\\"a\\\", \\\",\\\", \\\"b\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"PDESymbolics2020`Private`Factors\\\", \\\"\[Rule]\\\", \
+\\\"False\\\"}]}], \\\"]\\\"}], \\\".\\\", RowBox[{\\\"{\\\", RowBox[{\\\"1\\\
+\", \\\",\\\", SubscriptBox[\\\"\[FormalCapitalC]\\\", \\\"1\\\"], \\\",\\\", \
+SubscriptBox[\\\"\[FormalCapitalC]\\\", \\\"2\\\"]}], \\\"}\\\"}]}], \\\"\
+\[Equal]\\\", \\\"0\\\"}], \\\"}\\\"}]\\) is neither a list of replacement \
+rules nor a valid dispatch table, and so cannot be used for \
+replacing.\"\>"}]], "Message", "MSG",
+ ShowCellLabel->True,
+ CellChangeTimes->{3.8069153850415916`*^9},
+ CellLabel->
+  "(kernel 2)",ExpressionUUID->"13c7188c-c200-4402-a806-4348320ec895"],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"PDESymbolics2020`Private`VarD", "::", "BadArgs"}], "MessageName"],
+   " ", ":", "  ", "\<\"Incorrect input of arguments\"\>"}]], "Message", "MSG",
+ ShowCellLabel->True,
+ CellChangeTimes->{3.806915385087183*^9},
+ CellLabel->
+  "(kernel 2)",ExpressionUUID->"9b8d4df8-91e3-4af7-a91b-5f5f77c84d1b"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "ReplaceAll","reps",
+   "\"\\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{RowBox[{\\\"PDESymbolics2020`Private`UCM\\\", \\\"[\\\", \
+RowBox[{RowBox[{\\\"PDESymbolics2020`Private`VarD\\\", \\\"[\\\", \
+RowBox[{RowBox[{RowBox[{RowBox[{\\\"-\\\", \\\"a\\\"}], \\\" \\\", RowBox[{\\\
+\"Subscript\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\" \\\", RowBox[{\\\"Power\\\", \
+\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
+\"}], \\\"]\\\"}]}], \\\"+\\\", RowBox[{\\\"\[FormalCapitalC]\\\", \\\" \\\", \
+\\\"a\\\", \\\" \\\", RowBox[{\\\"u\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\" \
+\\\", RowBox[{SuperscriptBox[RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}], TagBox[RowBox[{\\\"(\\\", RowBox[{\\\"\[LeftSkeleton]\
+\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\")\\\"}], Derivative], \
+Rule[MultilineFunction, None]], \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\"-\\\", \
+RowBox[{\\\"a\\\", \\\" \\\", RowBox[{\\\"Subscript\\\", \\\"[\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\
+\\\"}], \\\" \\\", RowBox[{\\\"u\\\", \\\"[\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\
+\\\"}], \\\" \\\", RowBox[{SuperscriptBox[RowBox[{\\\"\[LeftSkeleton]\\\", \\\
+\"1\\\", \\\"\[RightSkeleton]\\\"}], TagBox[RowBox[{\\\"(\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\")\\\"}], \
+Derivative], Rule[MultilineFunction, None]], \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}], \
+\\\",\\\", RowBox[{\\\"{\\\", \\\"u\\\", \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", \\\"x\\\", \\\"}\\\"}]}], \\\"]\\\"}], \\\",\\\", RowBox[{\
+\\\"{\\\", RowBox[{\\\"\[FormalCapitalC]\\\", \\\",\\\", SubscriptBox[\\\"\
+\[FormalCapitalC]\\\", \\\"1\\\"], \\\",\\\", SubscriptBox[\\\"\
+\[FormalCapitalC]\\\", \\\"2\\\"]}], \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", RowBox[{\\\"a\\\", \\\",\\\", \\\"b\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"PDESymbolics2020`Private`Factors\\\", \\\"\[Rule]\\\", \
+\\\"False\\\"}]}], \\\"]\\\"}], \\\".\\\", RowBox[{\\\"{\\\", RowBox[{\\\"1\\\
+\", \\\",\\\", SubscriptBox[\\\"\[FormalCapitalC]\\\", \\\"1\\\"], \\\",\\\", \
+SubscriptBox[\\\"\[FormalCapitalC]\\\", \\\"2\\\"]}], \\\"}\\\"}]}], \\\"\
+\[Equal]\\\", \\\"0\\\"}], \\\"}\\\"}]\\) is neither a list of replacement \
+rules nor a valid dispatch table, and so cannot be used for replacing.\"",2,
+   11,30,24382292636952663629,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ ShowCellLabel->True,
+ CellChangeTimes->{3.806915281530645*^9, 3.806915385195225*^9},
+ CellLabel->
+  "During evaluation of \
+In[11]:=",ExpressionUUID->"20b3ad0c-01a9-4718-b992-ed5fe20ef679"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "ReplaceAll","reps",
+   "\"\\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{RowBox[{\\\"PDESymbolics2020`Private`UCM\\\", \\\"[\\\", \
+RowBox[{RowBox[{\\\"PDESymbolics2020`Private`VarD\\\", \\\"[\\\", \
+RowBox[{RowBox[{RowBox[{RowBox[{\\\"-\\\", FractionBox[\\\"27\\\", \
+\\\"25\\\"]}], \\\" \\\", RowBox[{\\\"Subscript\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\" \
+\\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\"+\\\", \
+RowBox[{FractionBox[\\\"27\\\", \\\"25\\\"], \\\" \\\", \\\"\[FormalCapitalC]\
+\\\", \\\" \\\", RowBox[{\\\"u\\\", \\\"[\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\
+\\\"}], \\\" \\\", RowBox[{SuperscriptBox[RowBox[{\\\"\[LeftSkeleton]\\\", \\\
+\"1\\\", \\\"\[RightSkeleton]\\\"}], TagBox[RowBox[{\\\"(\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\")\\\"}], \
+Derivative], Rule[MultilineFunction, None]], \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\
+\"-\\\", RowBox[{FractionBox[\\\"27\\\", \\\"25\\\"], \\\" \\\", \
+RowBox[{\\\"Subscript\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\" \\\", \
+RowBox[{\\\"u\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\" \\\", \
+RowBox[{SuperscriptBox[RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}], TagBox[RowBox[{\\\"(\\\", RowBox[{\\\"\[LeftSkeleton]\
+\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\")\\\"}], Derivative], \
+Rule[MultilineFunction, None]], \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}], \\\",\\\", RowBox[{\\\
+\"{\\\", \\\"u\\\", \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \\\"x\\\", \
+\\\"}\\\"}]}], \\\"]\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\
+\[FormalCapitalC]\\\", \\\",\\\", SubscriptBox[\\\"\[FormalCapitalC]\\\", \
+\\\"1\\\"], \\\",\\\", SubscriptBox[\\\"\[FormalCapitalC]\\\", \\\"2\\\"]}], \
+\\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{FractionBox[\\\"27\\\", \\\
+\"25\\\"], \\\",\\\", RowBox[{\\\"-\\\", FractionBox[\\\"217\\\", \
+\\\"50\\\"]}]}], \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"PDESymbolics2020`Private`Factors\\\", \\\"\[Rule]\\\", \
+\\\"False\\\"}]}], \\\"]\\\"}], \\\".\\\", RowBox[{\\\"{\\\", RowBox[{\\\"1\\\
+\", \\\",\\\", SubscriptBox[\\\"\[FormalCapitalC]\\\", \\\"1\\\"], \\\",\\\", \
+SubscriptBox[\\\"\[FormalCapitalC]\\\", \\\"2\\\"]}], \\\"}\\\"}]}], \\\"\
+\[Equal]\\\", \\\"0\\\"}], \\\"}\\\"}]\\) is neither a list of replacement \
+rules nor a valid dispatch table, and so cannot be used for replacing.\"",2,
+   11,31,24382292636952663629,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ ShowCellLabel->True,
+ CellChangeTimes->{3.806915281530645*^9, 3.8069153852162523`*^9},
+ CellLabel->
+  "During evaluation of \
+In[11]:=",ExpressionUUID->"972e7ca7-6725-4338-a0dd-1290808b779e"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "General","stop",
+   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"ReplaceAll\\\", \
+\\\"::\\\", \\\"reps\\\"}], \\\"MessageName\\\"]\\) will be suppressed during \
+this calculation.\"",2,11,32,24382292636952663629,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ ShowCellLabel->True,
+ CellChangeTimes->{3.806915281530645*^9, 3.806915385226984*^9},
+ CellLabel->
+  "During evaluation of \
+In[11]:=",ExpressionUUID->"336c675c-468f-4e1d-ac8b-16ce2b7a70eb"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "OptionValue","nodef",
+   "\"Unknown option \\!\\(\\*RowBox[{\\\"\\\\\\\"Facts\\\\\\\"\\\"}]\\) for \
+\\!\\(\\*RowBox[{\\\"SimplifyTopOddTerms\\\"}]\\).\"",2,11,33,
+   24382292636952663629,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ ShowCellLabel->True,
+ CellChangeTimes->{3.806915281530645*^9, 3.806915385236493*^9},
+ CellLabel->
+  "During evaluation of \
+In[11]:=",ExpressionUUID->"432e1c88-819f-44d9-8427-76999d837709"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "OptionValue","nodef",
+   "\"Unknown option \\!\\(\\*RowBox[{\\\"\\\\\\\"Reps\\\\\\\"\\\"}]\\) for \
+\\!\\(\\*RowBox[{\\\"SimplifyTopOddTerms\\\"}]\\).\"",2,11,34,
+   24382292636952663629,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ ShowCellLabel->True,
+ CellChangeTimes->{3.806915281530645*^9, 3.806915385246066*^9},
+ CellLabel->
+  "During evaluation of \
+In[11]:=",ExpressionUUID->"55a8f8ea-56d5-46a6-81c9-44f0d9f157fe"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "OptionValue","nodef",
+   "\"Unknown option \\!\\(\\*RowBox[{\\\"\\\\\\\"TestMode\\\\\\\"\\\"}]\\) \
+for \\!\\(\\*RowBox[{\\\"SimplifyTopOddTerms\\\"}]\\).\"",2,11,35,
+   24382292636952663629,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ ShowCellLabel->True,
+ CellChangeTimes->{3.806915281530645*^9, 3.806915385254693*^9},
+ CellLabel->
+  "During evaluation of \
+In[11]:=",ExpressionUUID->"2c2bb510-d811-45af-a51c-a7618c34caf5"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "General","stop",
+   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"OptionValue\\\", \\\"::\
+\\\", \\\"nodef\\\"}], \\\"MessageName\\\"]\\) will be suppressed during this \
+calculation.\"",2,11,36,24382292636952663629,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ ShowCellLabel->True,
+ CellChangeTimes->{3.806915281530645*^9, 3.8069153852647667`*^9},
+ CellLabel->
+  "During evaluation of \
+In[11]:=",ExpressionUUID->"04e94773-dcaa-405b-ba1f-59d46bbcb65e"],
+
+Cell[BoxData[
+ RowBox[{"{", "}"}]], "Output",
+ CellChangeTimes->{3.806915251015942*^9, 3.8069152822989283`*^9, 
+  3.806915385276496*^9},
+ CellLabel->"Out[11]=",ExpressionUUID->"aef2d096-a6fe-4208-b71c-91b2ee071da2"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"%", "//", "Expand"}], "//", 
+   RowBox[{
+    RowBox[{"List", "@@", "#"}], "&"}]}], "//", "Length"}]], "Code",
+ CellChangeTimes->{{3.778429306740199*^9, 3.778429307243381*^9}},
+ CellLabel->
+  "In[273]:=",ExpressionUUID->"36c1f659-d808-4742-9f62-175e30a6076c"],
+
+Cell[BoxData[
+ RowBox[{"SimplifyPositivity", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"xpd", "/", 
+     RowBox[{"(", 
+      SuperscriptBox[
+       RowBox[{"r", "[", "x", "]"}], 
+       RowBox[{
+        RowBox[{"-", "5"}], "+", 
+        RowBox[{"2", " ", "b"}]}]], ")"}]}], "//", "Expand"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"r", ",", " ", "u"}], "}"}], ",", " ", 
+   RowBox[{"{", "x", "}"}], ",", " ", 
+   RowBox[{"{", "b", "}"}], ",", " ", 
+   RowBox[{"Facts", "\[Rule]", 
+    RowBox[{
+     RowBox[{"r", "[", "x", "]"}], ">", "0"}]}]}], "]"}]], "Code",
+ CellChangeTimes->{{3.7784293233233833`*^9, 3.778429337273582*^9}, {
+  3.778429368532546*^9, 3.778429369885336*^9}, {3.778429434810136*^9, 
+  3.778429451720433*^9}, {3.778429686022511*^9, 3.7784297206171427`*^9}},
+ CellLabel->
+  "In[275]:=",ExpressionUUID->"6dac7552-0da0-475c-b391-1cb628d869af"],
+
+Cell[BoxData["TimeDerOperator"], "Input",
+ CellChangeTimes->{{3.802926592269864*^9, 
+  3.802926598604755*^9}},ExpressionUUID->"f721094c-16ca-4725-a4fb-\
+3ab5ed045752"],
+
+Cell[CellGroupData[{
+
+Cell["soon to be Old code", "Subsection",
+ CellChangeTimes->{{3.802593340555881*^9, 
+  3.802593349068736*^9}},ExpressionUUID->"af2e01c1-9504-4b6f-83e2-\
+ad8a48bc26dc"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+  "(*", "************************************************************************************************)"}\
+], 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"##", "##", "##", " ", "big"}], "-", 
+    RowBox[{"Function", ":", 
+     RowBox[{
+     "Simplifing", " ", "Positivity", " ", "##", "##", "##", "##"}]}]}], 
+   "*)"}], 
+  RowBox[{
+  "(*", "************************************************************************************************)"}\
+], 
+  RowBox[{"(*", 
+   RowBox[{"Usage", ":", 
+    RowBox[{"SimplifyPositivity", "[", 
+     RowBox[{
+     "expr", ",", "depVars", ",", "indVars", ",", "pars", ",", "coeffs"}], 
+     "]"}]}], "*)"}], 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"Purpose", ":", 
+     RowBox[{"Simplifies", " ", "the", " ", "expression", " ", "expr"}]}], 
+    ",", 
+    RowBox[{
+     RowBox[{
+     "which", " ", "is", " ", "assumed", " ", "to", " ", "be", " ", "non"}], 
+     "-", 
+     RowBox[{"negative", " ", "for", " ", "any"}]}]}], "*)"}], 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "dependent", " ", "and", " ", "independent", " ", "variables", " ", 
+     "appearing", " ", "in", " ", "the", " ", 
+     RowBox[{"expression", ".", "In"}], " ", "general"}], ",", "the"}], 
+   "*)"}], 
+  RowBox[{"(*", 
+   RowBox[{
+   "process", " ", "of", " ", "simplification", " ", "can", " ", "be", " ", 
+    "viewed", " ", "as", " ", "two", " ", "main", " ", "steps", " ", 
+    RowBox[{"(", 
+     RowBox[{"which", " ", "are", " ", "done"}]}]}], "*)"}], 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+     "recursively", " ", "until", " ", "some", " ", "fixed", " ", "point"}], 
+     ")"}], ":"}], "*)"}], 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"1.", " ", "First"}], ",", 
+    RowBox[{
+    "it", " ", "finds", " ", "coefficients", " ", "of", " ", "highest", " ", 
+     "and", " ", "lowest", " ", "order", " ", "of", " ", "variables", " ", 
+     RowBox[{"(", "dependent"}]}]}], "*)"}], 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"and", " ", "independent"}], ")"}], " ", "when", " ", "the", " ",
+     "order", " ", "is", " ", "an", " ", "odd", " ", 
+    RowBox[{"number", ".", "Then"}], " ", "it", " ", "tries", " ", "to", " ", 
+    "select", " ", "formal"}], "*)"}], 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"C", "'"}], "s", " ", 
+    RowBox[{"(", 
+     RowBox[{"or", " ", "coeffs", " ", "if", " ", "is", " ", "given"}], ")"}],
+     " ", "in", " ", "a", " ", "way", " ", "that", " ", "those", " ", 
+    "coeffcicients", " ", "are", " ", 
+    RowBox[{"zeros", "."}]}], "*)"}], 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"2.", " ", "Second"}], ",", 
+    RowBox[{
+    "it", " ", "finds", " ", "coefficients", " ", "of", " ", "higest", " ", 
+     "and", " ", "lowest", " ", "order", " ", "of", " ", "variables", " ", 
+     "when", " ", "the"}]}], "*)"}], 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"order", " ", "is", " ", "a", " ", "non"}], "-", 
+     RowBox[{"zero", " ", "even", " ", "number"}]}], ",", 
+    RowBox[{
+     RowBox[{
+     "and", " ", "makes", " ", "those", " ", "coefficients", " ", "non"}], 
+     "-", 
+     RowBox[{"negative", " ", "using"}]}]}], "*)"}], 
+  RowBox[{"(*", 
+   RowBox[{"the", " ", "step", " ", "described", " ", "in", " ", 
+    RowBox[{"previously", "."}]}], "*)"}], 
+  RowBox[{"(*", 
+   RowBox[{"Input", ":", 
+    RowBox[{"An", " ", "expression"}]}], "*)"}], 
+  RowBox[{"(*", 
+   RowBox[{"list", " ", "of", " ", "dependent", " ", "variables"}], "*)"}], 
+  RowBox[{"(*", 
+   RowBox[{"list", " ", "of", " ", "independent", " ", "variables"}], "*)"}], 
+  
+  RowBox[{"(*", 
+   RowBox[{"list", " ", "of", " ", "parameters", " ", "if", " ", "any"}], 
+   "*)"}], 
+  RowBox[{"(*", 
+   RowBox[{
+   "list", " ", "of", " ", "free", " ", "coeffs", " ", "that", " ", "we", " ",
+     "want", " ", "to", " ", "eliminate"}], "*)"}], 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"Output", ":", 
+     RowBox[{"list", " ", "of", " ", "couples", " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"or", " ", "triples", " ", "if", " ", "Reps"}], "\[Rule]", 
+        "True"}], ")"}], " ", "called", " ", "branches"}]}], ",", 
+    RowBox[{"where", " ", "each", " ", 
+     RowBox[{"couple", "/", "triple"}]}]}], "*)"}], 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"comprises", " ", "constraint", " ", "on", " ", "parameters"}], 
+    ",", 
+    RowBox[{"(", 
+     RowBox[{"list", " ", "of", " ", "replacements"}], ")"}], ",", 
+    RowBox[{"simplified", " ", "expression"}]}], "*)"}], 
+  RowBox[{
+  "(*", "************************************************************************************************)"}\
+], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"Options", "[", "SimplifyPositivity", "]"}], "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Facts", "\[Rule]", "True"}], ",", 
+       RowBox[{"Reps", "\[Rule]", "False"}], ",", 
+       RowBox[{"TestMode", "\[Rule]", "True"}]}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{
+     "This", " ", "part", " ", "of", " ", "code", " ", "works", " ", "when", 
+      " ", "there", " ", "is", " ", "a", " ", "coeffs", " ", "argument"}], 
+     ",", 
+     RowBox[{
+     "which", " ", "is", " ", "a", " ", "list", " ", "of", " ", 
+      "coefficients", " ", "that"}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"we", " ", "want", " ", "to", " ", "eliminate", 
+      RowBox[{"(", 
+       RowBox[{"get", " ", "rid", " ", "of"}], ")"}], " ", "during", " ", 
+      "the", " ", "process", " ", "of", " ", "simplification"}], ",", 
+     RowBox[{"instead", " ", "of", " ", "doint", " ", "it"}]}], "*)"}], "\n", 
+   
+   RowBox[{"(*", 
+    RowBox[{"with", " ", "formal", " ", 
+     RowBox[{"C", "'"}], 
+     RowBox[{"s", ".", "Therefore"}], " ", "if", " ", "we", " ", "omit", " ", 
+     "the", " ", "coeffs", " ", "argument", " ", "then", " ", "formal", " ", 
+     RowBox[{"C", "'"}], "s", " ", "will", " ", "be", " ", "eliminated"}], 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"by", " ", 
+      RowBox[{"default", ".", "If"}], " ", "you", " ", "leave", " ", "the", 
+      " ", "coeffs", " ", "argument", " ", "empty"}], ",", 
+     RowBox[{
+     "then", " ", "no", " ", "simplificatin", " ", "will", " ", "be", " ", 
+      RowBox[{"made", "."}]}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Caution", ":", 
+     RowBox[{
+     "using", " ", "this", " ", "function", " ", "there", " ", "should", " ", 
+      "not", " ", "be", " ", "any", " ", "\[FormalLambda]", " ", "symbol", 
+      " ", "in", " ", "the", " ", 
+      RowBox[{"arguments", "."}]}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"SimplifyPositivity", "[", 
+     RowBox[{
+     "exp_", ",", "depVars_List", ",", "indVars_List", ",", "pars_List", ",", 
+      "coeffs_List", ",", 
+      RowBox[{"OptionsPattern", "[", "]"}]}], "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "facts", ",", "reps", ",", "testMode", ",", "tempFormalCoeffs", ",", 
+        "formalCoeffs", ",", "formalIndeces", ",", "extraFormalCoeffs", ",", 
+        "passiveFormalCoeffs", ",", "newExp", ",", "branching"}], "}"}], ",", 
+      
+      RowBox[{
+       RowBox[{"print", "=", 
+        RowBox[{"DebugPrint", "[", 
+         RowBox[{"False", ",", "\"\<[simpos]\>\""}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"facts", "=", 
+        RowBox[{"OptionValue", "[", "Facts", "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"reps", "=", 
+        RowBox[{"OptionValue", "[", "Reps", "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"testMode", "=", 
+        RowBox[{"OptionValue", "[", "TestMode", "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"coeffs", "\[Equal]", 
+          RowBox[{"{", "}"}]}], ",", 
+         RowBox[{"Return", "@", 
+          RowBox[{"{", 
+           RowBox[{"{", 
+            RowBox[{"True", ",", 
+             RowBox[{"{", "}"}], ",", "exp"}], "}"}], "}"}]}]}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{
+        "Since", " ", "by", " ", "default", " ", "SimplifyPositivity", " ", 
+         "does", " ", "its", " ", "simplificatinos", " ", "only", " ", 
+         "based", " ", "on", " ", "formal", " ", 
+         RowBox[{"C", "'"}], "s"}], "*)"}], 
+       RowBox[{"(*", 
+        RowBox[{
+        "we", " ", "need", " ", "to", " ", "replace", " ", "existed", " ", 
+         "fromal", " ", 
+         RowBox[{"C", "'"}], "s", " ", "with", " ", "other", " ", "symbols", 
+         " ", "and", " ", "replace", " ", "given", " ", "new", " ", 
+         "coeffs"}], "*)"}], 
+       RowBox[{"(*", 
+        RowBox[{
+         RowBox[{"to", " ", "formal", " ", 
+          RowBox[{"C", "'"}], 
+          RowBox[{"s", ".", "In"}], " ", "the", " ", "code", " ", "below"}], 
+         ",", 
+         RowBox[{
+         "to", " ", "make", " ", "the", " ", "existed", " ", "formal", " ", 
+          RowBox[{"C", "'"}], "s", " ", "passive", " ", "we", " ", 
+          "replace"}]}], "*)"}], 
+       RowBox[{"(*", 
+        RowBox[{"them", " ", "by", " ", "formal", " ", "small", " ", 
+         RowBox[{"c", "'"}], 
+         RowBox[{"s", "."}]}], "*)"}], 
+       RowBox[{"(*", 
+        RowBox[{"However", ",", 
+         RowBox[{
+         "there", " ", "might", " ", "be", " ", "cases", " ", "where", " ", 
+          "argument", " ", "coeffs", " ", "contains", " ", "formal", " ", 
+          RowBox[{"C", "'"}], "s", " ", "in", " ", "it", " ", "and"}]}], 
+        "*)"}], 
+       RowBox[{"(*", 
+        RowBox[{
+         RowBox[{
+         "during", " ", "the", " ", "just", " ", "mentioned", " ", 
+          "replacements", " ", "those", " ", 
+          RowBox[{"C", "'"}], "s", " ", "will", " ", 
+          RowBox[{"disappear", ".", "For"}], " ", "that", " ", "reason"}], 
+         ",", "we"}], "*)"}], 
+       RowBox[{"(*", 
+        RowBox[{
+         RowBox[{
+         "first", " ", "protect", " ", "the", " ", "symbols", " ", "in", " ", 
+          "coeffs"}], ",", 
+         RowBox[{
+         "replacing", " ", "them", " ", "by", " ", "some", " ", "unused", " ",
+           "variables"}], ",", 
+         RowBox[{"in", " ", "this"}]}], "*)"}], 
+       RowBox[{"(*", 
+        RowBox[{
+         RowBox[{"case", " ", "by", " ", 
+          RowBox[{"lambda", "'"}], "s"}], ",", 
+         RowBox[{
+         "then", " ", "do", " ", "the", " ", "mentined", " ", 
+          "replacements"}], ",", 
+         RowBox[{
+         "then", " ", "put", " ", "the", " ", "coeffs", " ", "back", " ", 
+          "in", " ", "expr"}]}], "*)"}], 
+       RowBox[{"tempFormalCoeffs", "=", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"Subscript", "[", 
+           RowBox[{"\[FormalLambda]", ",", "k"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"k", ",", 
+            RowBox[{"Length", "@", "coeffs"}]}], "}"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"formalIndeces", "=", 
+        RowBox[{"Union", "@", 
+         RowBox[{"Cases", "[", 
+          RowBox[{"exp", ",", 
+           RowBox[{
+            RowBox[{"Subscript", "[", 
+             RowBox[{"\[FormalCapitalC]", ",", "j_Integer"}], "]"}], 
+            "\[RuleDelayed]", "j"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"0", ",", "Infinity"}], "}"}]}], "]"}]}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"formalCoeffs", "=", 
+        RowBox[{"Map", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Subscript", "[", 
+            RowBox[{"\[FormalCapitalC]", ",", "#"}], "]"}], "&"}], ",", 
+          "formalIndeces"}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"passiveFormalCoeffs", "=", 
+        RowBox[{"Map", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Subscript", "[", 
+            RowBox[{"\[FormalC]", ",", "#"}], "]"}], "&"}], ",", 
+          "formalIndeces"}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"extraFormalCoeffs", "=", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"Subscript", "[", 
+           RowBox[{"\[FormalCapitalC]", ",", "k"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"k", ",", 
+            RowBox[{"Length", "@", "coeffs"}]}], "}"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"newExp", "=", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"exp", "/.", 
+           RowBox[{"Thread", "[", 
+            RowBox[{"coeffs", "\[Rule]", "tempFormalCoeffs"}], "]"}]}], "/.", 
+          
+          RowBox[{"Thread", "[", 
+           RowBox[{"formalCoeffs", "\[Rule]", "passiveFormalCoeffs"}], 
+           "]"}]}], "/.", 
+         RowBox[{"Thread", "[", 
+          RowBox[{"tempFormalCoeffs", "\[Rule]", "extraFormalCoeffs"}], 
+          "]"}]}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"branching", "=", 
+        RowBox[{"SimplifyPositivity", "[", 
+         RowBox[{"newExp", ",", "depVars", ",", "indVars", ",", "pars", ",", 
+          RowBox[{"Facts", "\[Rule]", "facts"}], ",", 
+          RowBox[{"Reps", "\[Rule]", "reps"}], ",", 
+          RowBox[{"TestMode", "\[Rule]", "testMode"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"branching", "/.", 
+          RowBox[{"Thread", "[", 
+           RowBox[{"extraFormalCoeffs", "\[Rule]", "tempFormalCoeffs"}], 
+           "]"}]}], "/.", 
+         RowBox[{"Thread", "[", 
+          RowBox[{"passiveFormalCoeffs", "\[Rule]", "formalCoeffs"}], "]"}]}],
+         "/.", 
+        RowBox[{"Thread", "[", 
+         RowBox[{"tempFormalCoeffs", "\[Rule]", "coeffs"}], "]"}]}]}]}], 
+     "]"}]}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "This", " ", "part", " ", "of", " ", "code", " ", "works", " ", "when", 
+     " ", "there", " ", "is", " ", "no", " ", "coeffs", " ", 
+     RowBox[{"argument", ".", "The"}], " ", "last", " ", "pars", " ", 
+     "argument", " ", "is", " ", "optional"}], "*)"}], "\[IndentingNewLine]", 
+   
+   RowBox[{"(*", 
+    RowBox[{
+    "First", " ", "it", " ", "simplifies", " ", "\"\<odd coefficients\>\"", 
+     " ", "recursively", " ", "calling", " ", "SimplifyStep", " ", "fucntion",
+      " ", "untill", " ", "some"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"fixed", " ", "point"}], ",", 
+     RowBox[{
+     "then", " ", "does", " ", "the", " ", "same", " ", "to", " ", 
+      "\"\<even coefficients\>\"", " ", "with", " ", "SimplifyEvenStep", " ", 
+      
+      RowBox[{"function", "."}]}]}], "*)"}], "\n", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"SimplifyPositivity", "[", 
+     RowBox[{"exp_", ",", "depVars_List", ",", "indVars_List", ",", 
+      RowBox[{"pars_List:", 
+       RowBox[{"{", "}"}]}], ",", 
+      RowBox[{"OptionsPattern", "[", "]"}]}], "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "facts", ",", "reps", ",", "testMode", ",", "branching", ",", "temp", 
+        ",", "groupby"}], "}"}], ",", 
+      RowBox[{
+       RowBox[{"facts", "=", 
+        RowBox[{"OptionValue", "[", "Facts", "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"reps", "=", 
+        RowBox[{"OptionValue", "[", "Reps", "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"testMode", "=", 
+        RowBox[{"OptionValue", "[", "TestMode", "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"branching", "=", 
+        RowBox[{"SimplifyTopOddTerms", "[", 
+         RowBox[{"exp", ",", "depVars", ",", "indVars", ",", "pars", ",", 
+          RowBox[{"Facts", "\[Rule]", "facts"}], ",", 
+          RowBox[{"Reps", "\[Rule]", "True"}], ",", 
+          RowBox[{"TestMode", "\[Rule]", "testMode"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"branching", "=", 
+        RowBox[{"FixedPoint", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"SimplifyEvenStep", "[", 
+            RowBox[{"#", ",", "depVars", ",", "indVars", ",", "pars", ",", 
+             RowBox[{"Facts", "\[Rule]", "facts"}], ",", 
+             RowBox[{"TestMode", "\[Rule]", "testMode"}]}], "]"}], "&"}], ",",
+           "branching"}], "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"temp", "=", 
+        RowBox[{"Simplify", "@", "branching"}]}], ";", "\[IndentingNewLine]", 
+       
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"temp", "=!=", "branching"}], ",", 
+         RowBox[{
+          RowBox[{"branching", "=", 
+           RowBox[{"FixedPoint", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"SimplifyEvenStep", "[", 
+               RowBox[{
+               "#", ",", "depVars", ",", "indVars", ",", "pars", ",", 
+                RowBox[{"Facts", "\[Rule]", "facts"}], ",", 
+                RowBox[{"TestMode", "\[Rule]", "testMode"}]}], "]"}], "&"}], 
+             ",", "temp"}], "]"}]}], ";", "\[IndentingNewLine]", 
+          RowBox[{"branching", "=", 
+           RowBox[{"Simplify", "@", "branching"}]}], ";"}]}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{
+        "following", " ", "two", " ", "lines", " ", "are", " ", "intended", 
+         " ", "to", " ", "combine", " ", "branches", " ", "with", " ", "the", 
+         " ", "same", " ", "expression"}], "*)"}], 
+       RowBox[{"(*", 
+        RowBox[{"(", 
+         RowBox[{
+         "but", " ", "may", " ", "be", " ", "different", " ", "constraints", 
+          " ", "and", " ", "different", " ", "replacements"}], ")"}], "*)"}], 
+       
+       RowBox[{"groupby", "=", 
+        RowBox[{"Values", "@", 
+         RowBox[{"GroupBy", "[", 
+          RowBox[{"branching", ",", "Last"}], "]"}]}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"branching", "=", 
+        RowBox[{"Map", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Simplify", "[", 
+              RowBox[{"Or", "@@", 
+               RowBox[{"#", "[", 
+                RowBox[{"[", 
+                 RowBox[{"All", ",", "1"}], "]"}], "]"}]}], "]"}], ",", 
+             RowBox[{"Union", "@@", 
+              RowBox[{"#", "[", 
+               RowBox[{"[", 
+                RowBox[{"All", ",", "2"}], "]"}], "]"}]}], ",", 
+             RowBox[{"Last", "@", 
+              RowBox[{"First", "@", "#"}]}]}], "}"}], "&"}], ",", "groupby"}],
+          "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{"reps", ",", "branching", ",", 
+         RowBox[{"Map", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"First", "@", "#"}], ",", 
+              RowBox[{"Last", "@", "#"}]}], "}"}], "&"}], ",", "branching"}], 
+          "]"}]}], "]"}]}]}], "]"}]}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"SimplifyPositivity", "::", "BadArgs"}], "=", 
+     "\"\<Incorect input of arguments\>\""}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"SimplifyPositivity", "[", "___", "]"}], ":=", 
+     RowBox[{"\"\<nothing\>\"", "/;", 
+      RowBox[{"Message", "[", 
+       RowBox[{"SimplifyPositivity", "::", "BadArgs"}], "]"}]}]}], 
+    ";"}]}]}]], "Input",
+ CellChangeTimes->{{3.802593351483756*^9, 3.802593361038801*^9}, {
+   3.802593527617437*^9, 3.802593548891821*^9}, 
+   3.803022588545865*^9},ExpressionUUID->"bc6ee736-56b0-4459-9070-\
+d75bc6ee8dd6"]
+}, Open  ]],
+
+Cell["Breakdown of the function/operator", "Subsection",
+ CellChangeTimes->{{3.802593573105873*^9, 
+  3.802593582026101*^9}},ExpressionUUID->"7c04ee22-61c8-4465-bb22-\
+0e61cae07de9"]
+}, Open  ]]
+},
+WindowSize->{808, 816},
+WindowMargins->{{Automatic, 221}, {Automatic, 102}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 323, 5, 88, "Input",ExpressionUUID->"9e311331-e54d-49a5-a970-b53ac6f58a56"],
+Cell[CellGroupData[{
+Cell[906, 29, 169, 3, 67, "Section",ExpressionUUID->"32154226-71f2-49be-afd6-3d6f0340836e"],
+Cell[CellGroupData[{
+Cell[1100, 36, 349, 5, 30, "Input",ExpressionUUID->"50020f2e-9657-4e50-bb98-672e245f96b1"],
+Cell[1452, 43, 35462, 749, 95, "Output",ExpressionUUID->"a234738f-0e69-44da-8bfc-1156f5005217"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[36951, 797, 1169, 41, 58, "Input",ExpressionUUID->"b4f61e11-1f60-4225-95bf-c5ba0bc589a7"],
+Cell[38123, 840, 519, 13, 28, "Message",ExpressionUUID->"1c8973ba-0d81-4344-a473-225e52448ec4"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[38679, 858, 215, 3, 30, "Input",ExpressionUUID->"82333a4c-e0d4-47d0-a593-7f77380c3db9"],
+Cell[38897, 863, 365, 8, 24, "Message",ExpressionUUID->"dc27b7db-c749-47cc-9eb8-3c6fca584df9"],
+Cell[39265, 873, 187, 3, 68, "Output",ExpressionUUID->"844a3e6e-3e12-478d-b97e-649f48f41d56"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[39489, 881, 711, 17, 30, "Input",ExpressionUUID->"855b3338-9e29-4980-ab5a-3a696be0402d"],
+Cell[CellGroupData[{
+Cell[40225, 902, 574, 15, 26, "Print",ExpressionUUID->"c655f906-b097-4589-8315-473d9f83e68d"],
+Cell[40802, 919, 453, 11, 24, "Print",ExpressionUUID->"c8ee45a5-2f59-4a2c-9ac1-e8f16ed5d75f"],
+Cell[41258, 932, 634, 16, 26, "Print",ExpressionUUID->"106ffc52-25e0-472b-b625-8c51de63d669"],
+Cell[41895, 950, 689, 18, 26, "Print",ExpressionUUID->"ebe8a2bf-07e8-4450-a73e-25bce56fc3de"],
+Cell[42587, 970, 812, 23, 27, "Print",ExpressionUUID->"8af1448e-497a-4002-95fb-72a529661205"]
+}, Open  ]],
+Cell[43414, 996, 434, 11, 37, "Output",ExpressionUUID->"64d7841a-2c8d-4e94-8b63-41eb3c19a2e5"]
+}, Open  ]],
+Cell[43863, 1010, 170, 3, 35, "Text",ExpressionUUID->"23611628-b0a5-4c22-b931-45741c8ebea8"],
+Cell[CellGroupData[{
+Cell[44058, 1017, 1173, 31, 65, "Input",ExpressionUUID->"0bdd5b46-4cb7-48b8-8942-8afce3aea603"],
+Cell[45234, 1050, 35556, 752, 1224, "Output",ExpressionUUID->"4a5f2d02-096c-491b-83a7-8822686caec8"],
+Cell[80793, 1804, 439, 10, 24, "Message",ExpressionUUID->"e159dbc7-826b-494f-8120-9212381793e7"],
+Cell[81235, 1816, 438, 10, 24, "Message",ExpressionUUID->"fdf44e01-3365-4c2c-acc9-5e587dbfd1a2"],
+Cell[81676, 1828, 442, 10, 24, "Message",ExpressionUUID->"01f23cd8-ac39-4536-a3db-d5bb1ae8a6b8"],
+Cell[82121, 1840, 471, 10, 24, "Message",ExpressionUUID->"39381cc3-7159-4495-b9bd-da03ba3ad5c9"],
+Cell[82595, 1852, 392, 9, 24, "Message",ExpressionUUID->"3416d703-afb4-46b4-9458-b000f269f329"],
+Cell[82990, 1863, 390, 9, 24, "Message",ExpressionUUID->"e0d30cd9-c163-4aa3-93db-30117b018a8d"],
+Cell[83383, 1874, 390, 9, 24, "Message",ExpressionUUID->"fabf745d-1887-4ccf-a80c-9f7ffc170b9b"],
+Cell[83776, 1885, 468, 10, 24, "Message",ExpressionUUID->"f85ebeab-65c0-4b39-9637-3eb0b0a872b7"],
+Cell[84247, 1897, 387, 9, 24, "Message",ExpressionUUID->"06bdbce8-dcca-43f7-9a3c-55cca9c34a25"],
+Cell[84637, 1908, 387, 9, 24, "Message",ExpressionUUID->"cb990110-23c2-4463-84e8-e4ecb0c02ad6"],
+Cell[85027, 1919, 499, 11, 24, "Message",ExpressionUUID->"942251a4-c076-4361-82de-179290dd59d2"],
+Cell[85529, 1932, 499, 11, 24, "Message",ExpressionUUID->"984583fa-81a8-48d5-adc0-1828a0c3cc0a"],
+Cell[86031, 1945, 499, 11, 24, "Message",ExpressionUUID->"b8c2b826-29ba-4eac-b6ec-98fa2966b7c3"],
+Cell[86533, 1958, 466, 10, 24, "Message",ExpressionUUID->"95d5024e-49d7-4648-b135-213d88ef81b7"]
+}, Open  ]],
+Cell[87014, 1971, 4190, 127, 75, "Code",ExpressionUUID->"3b1f3fb3-d22f-45c1-8080-d3038d5d0daa"],
+Cell[91207, 2100, 982, 28, 77, "Code",ExpressionUUID->"eb4db421-7b15-4023-93cf-3aab0324346b"],
+Cell[92192, 2130, 768, 30, 47, "Input",ExpressionUUID->"ce12fb64-ffd6-4c32-ba76-afa5f02baf12"],
+Cell[CellGroupData[{
+Cell[92985, 2164, 802, 23, 44, "Input",ExpressionUUID->"99e080a7-c1e6-4670-80f3-67ab4aa740fd"],
+Cell[93790, 2189, 342, 8, 24, "Message",ExpressionUUID->"87796873-6f58-48a5-a82b-8f66d1a0e528"],
+Cell[94135, 2199, 419, 10, 35, "Message",ExpressionUUID->"66d4fc54-d01b-48c5-9197-77e8ba062267"],
+Cell[94557, 2211, 321, 6, 24, "Print",ExpressionUUID->"700056c7-0f47-4f6c-994a-e9bbbc8ae69a"],
+Cell[94881, 2219, 2967, 45, 127, "Message",ExpressionUUID->"aa8a0221-2231-431b-a0a9-5a2be0f4be05"],
+Cell[97851, 2266, 419, 10, 35, "Message",ExpressionUUID->"c3781339-0c0a-4363-9600-d629ce1c84b1"],
+Cell[98273, 2278, 421, 10, 35, "Message",ExpressionUUID->"7fba8f44-f06e-4759-9763-6ecab4407611"],
+Cell[98697, 2290, 516, 12, 35, "Message",ExpressionUUID->"c6e9c092-3777-4a57-ba0f-3fb60cee1d10"],
+Cell[99216, 2304, 344, 8, 24, "Message",ExpressionUUID->"e2e3967e-67ed-4433-89db-5d7be89d523f"],
+Cell[99563, 2314, 2927, 44, 115, "Message",ExpressionUUID->"13c7188c-c200-4402-a806-4348320ec895"],
+Cell[102493, 2360, 342, 8, 24, "Message",ExpressionUUID->"9b8d4df8-91e3-4af7-a91b-5f5f77c84d1b"],
+Cell[102838, 2370, 2967, 45, 127, "Message",ExpressionUUID->"20b3ad0c-01a9-4718-b992-ed5fe20ef679"],
+Cell[105808, 2417, 3127, 48, 156, "Message",ExpressionUUID->"972e7ca7-6725-4338-a0dd-1290808b779e"],
+Cell[108938, 2467, 492, 11, 35, "Message",ExpressionUUID->"336c675c-468f-4e1d-ac8b-16ce2b7a70eb"],
+Cell[109433, 2480, 461, 11, 35, "Message",ExpressionUUID->"432e1c88-819f-44d9-8427-76999d837709"],
+Cell[109897, 2493, 460, 11, 35, "Message",ExpressionUUID->"55a8f8ea-56d5-46a6-81c9-44f0d9f157fe"],
+Cell[110360, 2506, 464, 11, 35, "Message",ExpressionUUID->"2c2bb510-d811-45af-a51c-a7618c34caf5"],
+Cell[110827, 2519, 496, 11, 35, "Message",ExpressionUUID->"04e94773-dcaa-405b-ba1f-59d46bbcb65e"],
+Cell[111326, 2532, 215, 4, 68, "Output",ExpressionUUID->"aef2d096-a6fe-4208-b71c-91b2ee071da2"]
+}, Open  ]],
+Cell[111556, 2539, 305, 8, 52, "Code",ExpressionUUID->"36c1f659-d808-4742-9f62-175e30a6076c"],
+Cell[111864, 2549, 857, 22, 60, "Code",ExpressionUUID->"6dac7552-0da0-475c-b391-1cb628d869af"],
+Cell[112724, 2573, 167, 3, 30, "Input",ExpressionUUID->"f721094c-16ca-4725-a4fb-3ab5ed045752"],
+Cell[CellGroupData[{
+Cell[112916, 2580, 167, 3, 54, "Subsection",ExpressionUUID->"af2e01c1-9504-4b6f-83e2-ad8a48bc26dc"],
+Cell[113086, 2585, 19372, 486, 2440, "Input",ExpressionUUID->"bc6ee736-56b0-4459-9070-d75bc6ee8dd6"]
+}, Open  ]],
+Cell[132473, 3074, 182, 3, 54, "Subsection",ExpressionUUID->"7c04ee22-61c8-4465-bb22-0e61cae07de9"]
+}, Open  ]]
+}
+]
+*)
+

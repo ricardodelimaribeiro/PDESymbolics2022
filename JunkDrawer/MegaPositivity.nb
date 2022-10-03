@@ -1,0 +1,169 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      6001,        161]
+NotebookOptionsPosition[      5302,        142]
+NotebookOutlinePosition[      5640,        157]
+CellTagsIndexPosition[      5597,        154]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["Partial Quantifier Eliminator", "Section",
+ CellChangeTimes->{{3.826448599359531*^9, 
+  3.82644861059583*^9}},ExpressionUUID->"c7f327c5-ed4d-4a70-8e19-\
+20f8c8744eff"],
+
+Cell[CellGroupData[{
+
+Cell["Necessary conditions", "Section",
+ CellChangeTimes->{{3.826448004664572*^9, 
+  3.8264480146935377`*^9}},ExpressionUUID->"d57b9216-9776-4c31-a1b7-\
+5ec6e397a484"],
+
+Cell["\<\
+Q1 - factor terms
+Q2 - use simplify positivity
+T1 - Try : Is the remaining expression polynomial -> if so try quantifier \
+elimination
+T2 - Try partial quantifier eliminator over polynomial variables with boolean \
+convert in DNF
+T3 - Try : If the expression simplifies to a sum, at least one of the terms \
+must be non - negative - use recursion 
+\
+\>", "Text",
+ CellChangeTimes->{{3.826448072842743*^9, 
+  3.82644807592237*^9}},ExpressionUUID->"1978898c-6b71-4ca2-af62-\
+ec31e4430ecd"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+   "SimplifyPositivityNCOperator", "[", "variables_Association", "]"}], "[", 
+   "oproblem_", "]"}], ":=", "\[IndentingNewLine]", 
+  RowBox[{"With", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"problem", "=", 
+      RowBox[{"If", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Head", "[", "oproblem", "]"}], "===", "Association"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"PiecewiseExpandAssociation", "[", "oproblem", "]"}], ",", 
+        "\[IndentingNewLine]", "oproblem"}], "]"}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Which", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"problem", "===", "$Failed"}], ",", "\[IndentingNewLine]", 
+      "$Failed", ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"Head", "[", "problem", "]"}], "===", "Piecewise"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"PiecewiseOperatorMap", "[", 
+       RowBox[{
+       "SimplifyPositivityNCOperator", ",", "variables", ",", "problem"}], 
+       "]"}], ",", 
+      RowBox[{
+       RowBox[{"Head", "[", "problem", "]"}], "=!=", "Association"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"SimplifyPositivityNCOperator", "[", "variables", "]"}], "[", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"Association", "[", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"\"\<expression\>\"", "\[Rule]", "problem"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"\"\<eliminator\>\"", "\[Rule]", 
+           RowBox[{"Lookup", "[", 
+            RowBox[{"variables", ",", "\"\<eliminator\>\"", ",", "True"}], 
+            "]"}]}]}], "]"}], ",", "\[IndentingNewLine]", "   ", 
+        RowBox[{"\"\<factor\>\"", "\[Rule]", "True"}]}], 
+       "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", "True", ",", 
+      " ", "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{"can", " ", "we", " ", 
+        RowBox[{"factor", " ", "?"}]}], "*)"}], "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{"is", " ", "the", " ", "expression", " ", "a", " ", 
+        RowBox[{"polynomial", "?"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "in", " ", "this", " ", "case", " ", "first", " ", "use", " ", 
+        "simplify", " ", "positivity"}], " ", "*)"}], "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "try", " ", "partial", " ", "quantifier", " ", "elimination", " ", 
+        "with", " ", "DNF"}], " ", "*)"}], "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "try", " ", "quantifier", " ", "eliminator", " ", "with", " ", "time", 
+        " ", "limit"}], " ", "*)"}], "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+        RowBox[{
+        "if", " ", "not", " ", "does", " ", "it", " ", "decompose", " ", 
+         "into", " ", "sums", " ", "and", " ", "at", " ", "least", " ", "one",
+          " ", "of", " ", "them", " ", "should", " ", "be", " ", "positive"}],
+         " ", "-", " ", 
+        RowBox[{"use", " ", "recursion"}]}], " ", "*)"}], 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"Print", "[", "\"\<Not ready\>\"", "]"}]}], 
+     "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}]}]], "Input",\
+
+ CellChangeTimes->{{3.826448135901232*^9, 3.8264484509041986`*^9}, {
+  3.826448497167054*^9, 
+  3.826448596328717*^9}},ExpressionUUID->"9549eac2-d550-4236-b597-\
+a83d64aa99fd"]
+}, Open  ]],
+
+Cell["\<\
+Sufficient conditions
+\
+\>", "Section",
+ CellChangeTimes->{{3.826448662775928*^9, 
+  3.8264486689368963`*^9}},ExpressionUUID->"33eeec81-10e9-4ed9-a97f-\
+ee9784e5493e"]
+},
+WindowSize->{808, 707},
+WindowMargins->{{316, Automatic}, {Automatic, 50}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 173, 3, 67, "Section",ExpressionUUID->"c7f327c5-ed4d-4a70-8e19-20f8c8744eff"],
+Cell[CellGroupData[{
+Cell[756, 27, 167, 3, 67, "Section",ExpressionUUID->"d57b9216-9776-4c31-a1b7-5ec6e397a484"],
+Cell[926, 32, 497, 13, 150, "Text",ExpressionUUID->"1978898c-6b71-4ca2-af62-ec31e4430ecd"],
+Cell[1426, 47, 3680, 84, 724, "Input",ExpressionUUID->"9549eac2-d550-4236-b597-a83d64aa99fd"]
+}, Open  ]],
+Cell[5121, 134, 177, 6, 105, "Section",ExpressionUUID->"33eeec81-10e9-4ed9-a97f-ee9784e5493e"]
+}
+]
+*)
+

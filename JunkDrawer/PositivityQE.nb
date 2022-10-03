@@ -1,0 +1,651 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     24040,        643]
+NotebookOptionsPosition[     21647,        593]
+NotebookOutlinePosition[     21986,        608]
+CellTagsIndexPosition[     21943,        605]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"Get", "[", 
+  "\"\</Users/ribeirrd/Dropbox/PDESymbolics/PdeSymbolics2020/Workspace \
+project/PDESymbolics2020/PDESymbolics2020.m\>\"", "]"}]], "Input",
+ CellChangeTimes->{{3.8023406350608597`*^9, 3.802340657133074*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"90cd46cc-a34a-4596-b8f0-b9776b981bb7"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Options", "[", "PositivityQEX", "]"}], "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Domain", "\[Rule]", "Reals"}], ",", 
+     RowBox[{"Facts", "\[Rule]", "True"}], ",", 
+     RowBox[{"TimeConstraint", "\[Rule]", "5"}], ",", 
+     RowBox[{"Type", "\[Rule]", "ForAll"}]}], "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"PositivityQEX", "[", 
+   RowBox[{"exp_", ",", "depVars_List", ",", "indVars_List", ",", 
+    RowBox[{"pars_List:", 
+     RowBox[{"{", "}"}]}], ",", 
+    RowBox[{"OptionsPattern", "[", "]"}]}], "]"}], ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "print", ",", "dom", ",", "facts", ",", "timeConstraint", ",", "type", 
+      ",", "expr", ",", "vars", ",", "factVars", ",", "allVars", ",", 
+      "parametricFacts", ",", "nonparametricFacts", ",", "extraFunctions", 
+      ",", "extraFacts", ",", "oldFunctions", ",", "formalCoeffs"}], "}"}], 
+    ",", 
+    RowBox[{
+     RowBox[{"print", "=", 
+      RowBox[{"DebugPrint", "[", 
+       RowBox[{"False", ",", "\"\<[pos-qe]\>\""}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"dom", "=", 
+      RowBox[{"OptionValue", "[", "Domain", "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"facts", "=", 
+      RowBox[{"OptionValue", "[", "Facts", "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"timeConstraint", "=", 
+      RowBox[{"OptionValue", "[", "TimeConstraint", "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"type", "=", 
+      RowBox[{"OptionValue", "[", "Type", "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"expr", "=", 
+      RowBox[{"Together", "@", "exp"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"print", "[", 
+      RowBox[{"\"\<expr = \>\"", ",", "expr"}], "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "I", " ", "have", " ", "added", " ", "the", " ", "independent", " ", 
+       "variables", " ", "that", " ", "appear", " ", "in", " ", "the", " ", 
+       "expression"}], "*)"}], 
+     RowBox[{"vars", "=", 
+      RowBox[{"Union", "[", 
+       RowBox[{
+        RowBox[{"getVars", "[", 
+         RowBox[{"expr", ",", "depVars"}], "]"}], ",", 
+        RowBox[{"Intersection", "[", 
+         RowBox[{
+          RowBox[{"getSymbols", "[", 
+           RowBox[{"{", 
+            RowBox[{"exp", ",", "facts"}], "}"}], "]"}], ",", "indVars"}], 
+         "]"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"factVars", "=", 
+      RowBox[{"getVars", "[", 
+       RowBox[{"facts", ",", "depVars"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"allVars", "=", 
+      RowBox[{"Union", "[", 
+       RowBox[{"vars", ",", "factVars"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+       RowBox[{
+       "If", " ", "the", " ", "given", " ", "expression", " ", "does", " ", 
+        "not", " ", "contain", " ", "any", " ", "variables"}], ",", 
+       RowBox[{
+        RowBox[{
+        "then", " ", "it", " ", "is", " ", "a", " ", "coefficient", " ", 
+         "and", " ", "hence", " ", "the", " ", "output", " ", "should", " ", 
+         "be", " ", "expr"}], "\[GreaterEqual]", "0"}]}], "*)"}], 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"vars", "===", 
+        RowBox[{"{", "}"}]}], ",", 
+       RowBox[{"Return", "[", 
+        RowBox[{"expr", "\[GreaterEqual]", "0"}], "]"}]}], "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"print", "[", 
+      RowBox[{"\"\<vars = \>\"", ",", "vars"}], "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"parametricFacts", ",", "nonparametricFacts"}], "}"}], "=", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"GroupBy", "[", 
+         RowBox[{
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"FreeQQ", "[", 
+             RowBox[{"facts", ",", "And"}], "]"}], ",", 
+            RowBox[{"List", "@", "facts"}], ",", 
+            RowBox[{"List", "@@", "facts"}]}], "]"}], ",", 
+          RowBox[{
+           RowBox[{"And", "@@", 
+            RowBox[{"FreeQQ", "[", 
+             RowBox[{"#", ",", 
+              RowBox[{"Union", "[", 
+               RowBox[{"depVars", ",", "indVars"}], "]"}]}], "]"}]}], "&"}]}],
+          "]"}], "/@", 
+        RowBox[{"{", 
+         RowBox[{"True", ",", "False"}], "}"}]}], "/.", 
+       RowBox[{
+        RowBox[{"Missing", "[", "___", "]"}], "\[Rule]", 
+        RowBox[{"{", "}"}]}]}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"print", "[", 
+      RowBox[{
+      "\"\<parametricFacts = \>\"", ",", "parametricFacts", ",", 
+       "\"\<, nonparametricFacts = \>\"", ",", "nonparametricFacts"}], "]"}], 
+     ";", "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"type", "===", "Exists"}], ",", 
+       RowBox[{
+        RowBox[{"formalCoeffs", "=", 
+         RowBox[{"Union", "@", 
+          RowBox[{"Cases", "[", 
+           RowBox[{"expr", ",", 
+            RowBox[{"Subscript", "[", 
+             RowBox[{"\[FormalCapitalC]", ",", "_Integer"}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"0", ",", "Infinity"}], "}"}]}], "]"}]}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"print", "[", 
+         RowBox[{
+         "formalCoeffs", ",", "\"\< - \>\"", ",", "type", ",", "\"\< - \>\"", 
+          ",", 
+          RowBox[{"PolynomialQ", "[", 
+           RowBox[{"expr", ",", "vars"}], "]"}]}], "]"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"formalCoeffs", "===", 
+           RowBox[{"{", "}"}]}], ",", 
+          RowBox[{"Return", "[", "None", "]"}]}], "]"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"PolynomialQ", "[", 
+           RowBox[{"expr", ",", "vars"}], "]"}], ",", 
+          RowBox[{
+           RowBox[{
+           "print", "[", "\"\<Given expression seems to be a polynomial.\>\"",
+             "]"}], ";", "\[IndentingNewLine]", 
+           RowBox[{"TimeConstrained", "[", 
+            RowBox[{
+             RowBox[{"FullSimplify", "@", 
+              RowBox[{"Reduce", "[", 
+               RowBox[{
+                RowBox[{"Exists", "[", 
+                 RowBox[{
+                  RowBox[{"Evaluate", "@", "formalCoeffs"}], ",", 
+                  RowBox[{"ForAll", "[", 
+                   RowBox[{
+                    RowBox[{"Evaluate", "@", "allVars"}], ",", 
+                    RowBox[{"And", "@@", "nonparametricFacts"}], ",", 
+                    RowBox[{
+                    RowBox[{"And", "@@", "parametricFacts"}], "&&", 
+                    RowBox[{"expr", "\[GreaterEqual]", "0"}]}]}], "]"}]}], 
+                 "]"}], ",", "dom"}], "]"}]}], ",", "timeConstraint", ",", 
+             "$Failed"}], "]"}]}], ",", 
+          RowBox[{"(*", 
+           RowBox[{
+           "If", " ", "expr", " ", "is", " ", "not", " ", "a", " ", 
+            "polynomial"}], "*)"}], 
+          RowBox[{
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+             "expr", ",", "extraFunctions", ",", "extraFacts", ",", 
+              "oldFunctions"}], "}"}], "=", 
+            RowBox[{"AssociatedPolynomial", "[", 
+             RowBox[{"expr", ",", "depVars", ",", "indVars", ",", "pars", ",", 
+              RowBox[{"Facts", "\[Rule]", "facts"}]}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"print", "[", 
+            RowBox[{"\"\<expr = \>\"", ",", "expr"}], "]"}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"print", "[", 
+            RowBox[{
+            "\"\<extraFunctions, extraFacts = \>\"", ",", "extraFunctions", 
+             ",", "\"\< | \>\"", ",", "extraFacts"}], "]"}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"TimeConstrained", "[", 
+            RowBox[{
+             RowBox[{"FullSimplify", "@", 
+              RowBox[{"Reduce", "[", 
+               RowBox[{
+                RowBox[{"Exists", "[", 
+                 RowBox[{"formalCoeffs", ",", 
+                  RowBox[{"ForAll", "[", 
+                   RowBox[{
+                    RowBox[{"Evaluate", "@", 
+                    RowBox[{"Union", "[", 
+                    RowBox[{"allVars", ",", "extraFunctions"}], "]"}]}], ",", 
+                    
+                    RowBox[{
+                    RowBox[{"And", "@@", "nonparametricFacts"}], "&&", 
+                    "extraFacts"}], ",", 
+                    RowBox[{
+                    RowBox[{"And", "@@", "parametricFacts"}], "&&", 
+                    RowBox[{"expr", "\[GreaterEqual]", "0"}]}]}], "]"}]}], 
+                 "]"}], ",", "dom"}], "]"}]}], ",", "timeConstraint", ",", 
+             "$Failed"}], "]"}]}]}], "]"}]}], ",", 
+       RowBox[{"(*", 
+        RowBox[{
+         RowBox[{"If", " ", "type"}], "===", "ForAll"}], "*)"}], 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"PolynomialQ", "[", 
+          RowBox[{"expr", ",", "vars"}], "]"}], ",", 
+         RowBox[{
+          RowBox[{
+          "print", "[", "\"\<Given expression seems to be a polynomial.\>\"", 
+           "]"}], ";", "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{
+            RowBox[{
+             RowBox[{
+             "1.", " ", "parametric", " ", "facts", " ", "should", " ", "be", 
+              " ", "placed", " ", "with", " ", "conditions", " ", "where", 
+              " ", "the", " ", "expr"}], "\[GreaterEqual]", "0"}], ",", 
+            RowBox[{
+            "while", " ", "nonparametric", " ", "ones", " ", "should", " ", 
+             "be", " ", "as", " ", "conditions", " ", "on", " ", "vars"}]}], 
+           "*)"}], 
+          RowBox[{"(*", 
+           RowBox[{
+            RowBox[{"2.", " ", "FullSumplify", " ", "is", " ", "needed"}], 
+            ",", 
+            RowBox[{
+            "since", " ", "sometimes", " ", "Resolve", " ", "gives", " ", 
+             "complicated", " ", "constraints", " ", "which", " ", "can", " ",
+              "actually", " ", "be", " ", "simplified"}], ",", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"e", ".", "g", ".", "x"}], 
+              RowBox[{"(", 
+               RowBox[{"a", "+", "bx", "+", 
+                RowBox[{"cx", "^", "2"}]}], ")"}]}], "\[GreaterEqual]", 
+             "0"}]}], "*)"}], 
+          RowBox[{"TimeConstrained", "[", 
+           RowBox[{
+            RowBox[{"FullSimplify", "@", 
+             RowBox[{"Resolve", "[", 
+              RowBox[{
+               RowBox[{"ForAll", "[", 
+                RowBox[{
+                 RowBox[{"Evaluate", "@", "allVars"}], ",", 
+                 RowBox[{"And", "@@", "nonparametricFacts"}], ",", 
+                 RowBox[{
+                  RowBox[{"And", "@@", "parametricFacts"}], "&&", 
+                  RowBox[{"expr", "\[GreaterEqual]", "0"}]}]}], "]"}], ",", 
+               "dom"}], "]"}]}], ",", "timeConstraint", ",", "$Failed"}], 
+           "]"}]}], ",", 
+         RowBox[{"(*", 
+          RowBox[{
+          "If", " ", "expr", " ", "is", " ", "not", " ", "a", " ", 
+           "polynomial"}], "*)"}], 
+         RowBox[{
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+            "expr", ",", "extraFunctions", ",", "extraFacts", ",", 
+             "oldFunctions"}], "}"}], "=", 
+           RowBox[{"AssociatedPolynomial", "[", 
+            RowBox[{
+            "expr", ",", "depVars", ",", "indVars", ",", "pars", ",", 
+             RowBox[{"Facts", "\[Rule]", "facts"}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"print", "[", 
+           RowBox[{"\"\<expr = \>\"", ",", "expr"}], "]"}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"print", "[", 
+           RowBox[{
+           "\"\<extraFunctions, extraFacts = \>\"", ",", "extraFunctions", 
+            ",", "\"\< | \>\"", ",", "extraFacts"}], "]"}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"TimeConstrained", "[", 
+           RowBox[{
+            RowBox[{"FullSimplify", "@", 
+             RowBox[{"Resolve", "[", 
+              RowBox[{
+               RowBox[{"ForAll", "[", 
+                RowBox[{
+                 RowBox[{"Evaluate", "@", 
+                  RowBox[{"Union", "[", 
+                   RowBox[{"allVars", ",", "extraFunctions"}], "]"}]}], ",", 
+                 RowBox[{
+                  RowBox[{"And", "@@", "nonparametricFacts"}], "&&", 
+                  "extraFacts"}], ",", 
+                 RowBox[{
+                  RowBox[{"And", "@@", "parametricFacts"}], "&&", 
+                  RowBox[{"expr", "\[GreaterEqual]", "0"}]}]}], "]"}], ",", 
+               "dom"}], "]"}]}], ",", "timeConstraint", ",", "$Failed"}], 
+           "]"}]}]}], "]"}]}], "]"}]}]}], "]"}]}], "\n"}], "Input",
+ CellChangeTimes->{{3.802340663823709*^9, 
+  3.80234067413302*^9}},ExpressionUUID->"6914c6bb-fb27-44dd-b1f5-\
+ce43335cef80"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"PositivityQE", "[", 
+   RowBox[{
+    RowBox[{"c0", "+", 
+     RowBox[{"c4", " ", 
+      SuperscriptBox["x", "2"], " ", "y"}], "+", 
+     RowBox[{"c3", " ", "x", " ", 
+      SuperscriptBox["y", "2"]}], "+", 
+     RowBox[{"c5", " ", 
+      SuperscriptBox["x", "2"], " ", 
+      SuperscriptBox["y", "2"]}]}], ",", 
+    RowBox[{"{", "}"}], ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"x", ",", "y"}], "}"}]}], "]"}], " "}]], "Input",
+ CellLabel->"In[2]:=",ExpressionUUID->"05e6c228-3b7c-4ebc-999d-57bc3d07fb8e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"c3", "\[Equal]", "0"}], "&&", 
+  RowBox[{"c4", "\[Equal]", "0"}], "&&", 
+  RowBox[{"c5", "\[GreaterEqual]", "0"}], "&&", 
+  RowBox[{"c0", "\[GreaterEqual]", "0"}]}]], "Output",
+ CellChangeTimes->{3.8023407700037117`*^9},
+ CellLabel->"Out[2]=",ExpressionUUID->"7d1781df-0d24-41b3-ae4c-b99666f0e0ab"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PositivityQE", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"p", " ", 
+     RowBox[{
+      RowBox[{"u", "[", "x", "]"}], "^", "2"}]}], " ", "+", " ", 
+    RowBox[{"q", " ", 
+     RowBox[{
+      RowBox[{"u", "'"}], "[", "x", "]"}]}]}], ",", " ", 
+   RowBox[{"{", "u", "}"}], ",", " ", 
+   RowBox[{"{", "x", "}"}]}], "]"}]], "Input",
+ CellLabel->"In[3]:=",ExpressionUUID->"9a0fcc59-95c0-453d-a1c5-cf8e1dae7ee8"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"p", "\[GreaterEqual]", "0"}], "&&", 
+  RowBox[{"q", "\[Equal]", "0"}]}]], "Output",
+ CellChangeTimes->{3.802340777574161*^9},
+ CellLabel->"Out[3]=",ExpressionUUID->"e3d1f304-9664-436a-a052-1369a9dc5ce0"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PositivityQE", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"p", " ", 
+     RowBox[{
+      RowBox[{"u", "[", "x", "]"}], "^", "2"}]}], " ", "+", " ", 
+    RowBox[{"q", " ", 
+     RowBox[{
+      RowBox[{"u", "'"}], "[", "x", "]"}]}]}], ",", " ", 
+   RowBox[{"{", "u", "}"}], ",", " ", 
+   RowBox[{"{", "x", "}"}], ",", " ", 
+   RowBox[{"Facts", "\[Rule]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"u", "'"}], "[", "x", "]"}], ">", "0"}]}]}], "]"}]], "Input",
+ CellLabel->"In[4]:=",ExpressionUUID->"d45f6d37-c1db-48d5-97fd-f2a3b40c0cdd"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"p", "\[GreaterEqual]", "0"}], "&&", 
+  RowBox[{"q", "\[GreaterEqual]", "0"}]}]], "Output",
+ CellChangeTimes->{3.802340784257102*^9},
+ CellLabel->"Out[4]=",ExpressionUUID->"3455f51c-b110-4833-8e35-cf386b64cfa8"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PositivityQE", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"p", " ", 
+     RowBox[{
+      RowBox[{"u", "[", 
+       RowBox[{"n", ",", " ", "m"}], "]"}], "^", "2"}]}], " ", "+", " ", 
+    RowBox[{"q", " ", 
+     RowBox[{
+      RowBox[{"u", "[", 
+       RowBox[{"n", ",", " ", 
+        RowBox[{"m", " ", "+", " ", "1"}]}], "]"}], "^", "2"}]}], " ", "-", 
+    " ", 
+    RowBox[{"a", " ", "b", " ", 
+     RowBox[{"u", "[", 
+      RowBox[{"n", ",", " ", "m"}], "]"}], " ", 
+     RowBox[{"u", "[", 
+      RowBox[{
+       RowBox[{"n", " ", "+", " ", "1"}], ",", " ", 
+       RowBox[{"m", " ", "-", " ", "1"}]}], "]"}]}]}], ",", " ", 
+   RowBox[{"{", "u", "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"n", ",", " ", "m"}], "}"}]}], "]"}]], "Input",
+ CellLabel->"In[5]:=",ExpressionUUID->"2d67bee5-4094-427e-8949-a355f4875638"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"a", "\[Equal]", "0"}], "||", 
+    RowBox[{"b", "\[Equal]", "0"}]}], ")"}], "&&", 
+  RowBox[{"p", "\[GreaterEqual]", "0"}], "&&", 
+  RowBox[{"q", "\[GreaterEqual]", "0"}]}]], "Output",
+ CellChangeTimes->{3.802340791511067*^9},
+ CellLabel->"Out[5]=",ExpressionUUID->"00aadb16-0691-417d-b8d5-f875322d868e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PositivityQE", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"a", " ", 
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{"u", "[", "x", "]"}]]}], " ", "+", " ", 
+    RowBox[{"b", " ", 
+     RowBox[{"u", "[", "x", "]"}]}]}], " ", ",", " ", 
+   RowBox[{"{", "u", "}"}], ",", " ", 
+   RowBox[{"{", "x", "}"}]}], "]"}]], "Input",
+ CellLabel->"In[6]:=",ExpressionUUID->"fae4dbc2-ed33-4c49-a56a-0dd7a08819c4"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"a", "\[GreaterEqual]", "0"}], "&&", 
+  RowBox[{"b", "\[Equal]", "0"}]}]], "Output",
+ CellChangeTimes->{3.8023408037283373`*^9},
+ CellLabel->"Out[6]=",ExpressionUUID->"397dad66-ef5d-449d-8116-e342c8789685"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PositivityQE", "[", 
+  RowBox[{
+   RowBox[{"a", " ", "+", " ", 
+    FractionBox["b", 
+     SuperscriptBox[
+      RowBox[{"u", "[", "x", "]"}], "2"]]}], ",", 
+   RowBox[{"{", "u", "}"}], ",", " ", 
+   RowBox[{"{", "x", "}"}]}], "]"}]], "Input",
+ CellLabel->"In[7]:=",ExpressionUUID->"2c17bb3d-c0ac-458f-bce2-ba541a11a70e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"a", "\[GreaterEqual]", "0"}], "&&", 
+  RowBox[{"b", "\[GreaterEqual]", "0"}]}]], "Output",
+ CellChangeTimes->{3.8023408099293633`*^9},
+ CellLabel->"Out[7]=",ExpressionUUID->"fe297e4e-b14c-4f15-942a-abe6e1b9eb2e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PositivityQE", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"a", " ", 
+     SuperscriptBox["\[ExponentialE]", 
+      RowBox[{"u", "[", "x", "]"}]]}], " ", "+", " ", 
+    RowBox[{"b", " ", 
+     RowBox[{"u", "[", "x", "]"}]}]}], " ", ",", " ", 
+   RowBox[{"{", "u", "}"}], ",", " ", 
+   RowBox[{"{", "x", "}"}], ",", " ", 
+   RowBox[{"Facts", "\[Rule]", 
+    RowBox[{
+     RowBox[{"u", "[", "x", "]"}], ">", "0"}]}]}], "]"}]], "Input",
+ CellLabel->"In[8]:=",ExpressionUUID->"3e5618a0-db1e-4935-a074-afef3f7de227"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"b", "\[GreaterEqual]", "0"}], "&&", 
+  RowBox[{"a", "\[GreaterEqual]", "0"}]}]], "Output",
+ CellChangeTimes->{3.8023408206332903`*^9},
+ CellLabel->"Out[8]=",ExpressionUUID->"3bc9701a-82ef-457e-a3ab-0e16a81e2b2b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PositivityQE", "[", 
+  RowBox[{
+   RowBox[{"a", " ", "+", " ", 
+    RowBox[{"b", " ", 
+     RowBox[{"u", "[", "x", "]"}]}], " ", "+", " ", 
+    RowBox[{"c", " ", 
+     SuperscriptBox[
+      RowBox[{"u", "[", "x", "]"}], "2"]}]}], ",", " ", 
+   RowBox[{"{", "u", "}"}], ",", " ", 
+   RowBox[{"{", "x", "}"}], ",", " ", 
+   RowBox[{"Facts", "\[Rule]", 
+    RowBox[{
+     RowBox[{"u", "[", "x", "]"}], ">", "0"}]}]}], "]"}]], "Input",
+ CellLabel->"In[9]:=",ExpressionUUID->"b764f0b2-5d8a-4d19-bde8-ddd285189302"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"a", "\[GreaterEqual]", "0"}], "&&", 
+    RowBox[{"b", "\[GreaterEqual]", "0"}], "&&", 
+    RowBox[{"c", "\[GreaterEqual]", "0"}]}], ")"}], "||", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"a", ">", "0"}], "&&", 
+    RowBox[{"c", ">", "0"}], "&&", 
+    RowBox[{
+     RowBox[{"4", " ", "a", " ", "c"}], "\[GreaterEqual]", 
+     SuperscriptBox["b", "2"]}]}], ")"}]}]], "Output",
+ CellChangeTimes->{3.802340836021028*^9},
+ CellLabel->"Out[9]=",ExpressionUUID->"7e452f57-c67e-4477-9c60-e29d7b66c5b8"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PositivityQE", "[", 
+  RowBox[{
+   RowBox[{"a", " ", 
+    RowBox[{"u", "[", "x", "]"}], " ", 
+    RowBox[{
+     RowBox[{"u", "''"}], "[", "x", "]"}]}], ",", " ", 
+   RowBox[{"{", "u", "}"}], ",", " ", 
+   RowBox[{"{", "x", "}"}], ",", " ", 
+   RowBox[{"{", "a", "}"}], ",", " ", 
+   RowBox[{"Facts", " ", "->", " ", 
+    RowBox[{"Implies", "[", 
+     RowBox[{
+      RowBox[{"a", " ", ">", " ", "0"}], ",", " ", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"u", "[", "x", "]"}], " ", ">", " ", "0"}], " ", "&&", " ", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"u", "''"}], "[", "x", "]"}], " ", ">", " ", "0"}]}]}], 
+     "]"}]}]}], "]"}]], "Input",
+ CellLabel->"In[10]:=",ExpressionUUID->"950d5a72-6f9e-456e-b10a-1c84e575066e"],
+
+Cell[BoxData[
+ RowBox[{"a", ">", "0"}]], "Output",
+ CellChangeTimes->{3.8023408436533747`*^9},
+ CellLabel->"Out[10]=",ExpressionUUID->"02a7c646-6f26-4b8b-bb11-cff276ce35ea"]
+}, Open  ]]
+},
+WindowSize->{808, 911},
+WindowMargins->{{373, Automatic}, {187, Automatic}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 321, 5, 67, "Input",ExpressionUUID->"90cd46cc-a34a-4596-b8f0-b9776b981bb7"],
+Cell[882, 27, 12787, 306, 1840, "Input",ExpressionUUID->"6914c6bb-fb27-44dd-b1f5-ce43335cef80"],
+Cell[CellGroupData[{
+Cell[13694, 337, 540, 15, 33, "Input",ExpressionUUID->"05e6c228-3b7c-4ebc-999d-57bc3d07fb8e"],
+Cell[14237, 354, 333, 7, 68, "Output",ExpressionUUID->"7d1781df-0d24-41b3-ae4c-b99666f0e0ab"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14607, 366, 429, 12, 30, "Input",ExpressionUUID->"9a0fcc59-95c0-453d-a1c5-cf8e1dae7ee8"],
+Cell[15039, 380, 238, 5, 34, "Output",ExpressionUUID->"e3d1f304-9664-436a-a052-1369a9dc5ce0"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15314, 390, 556, 16, 30, "Input",ExpressionUUID->"d45f6d37-c1db-48d5-97fd-f2a3b40c0cdd"],
+Cell[15873, 408, 245, 5, 34, "Output",ExpressionUUID->"3455f51c-b110-4833-8e35-cf386b64cfa8"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16155, 418, 841, 24, 52, "Input",ExpressionUUID->"2d67bee5-4094-427e-8949-a355f4875638"],
+Cell[16999, 444, 368, 9, 34, "Output",ExpressionUUID->"00aadb16-0691-417d-b8d5-f875322d868e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17404, 458, 427, 11, 33, "Input",ExpressionUUID->"fae4dbc2-ed33-4c49-a56a-0dd7a08819c4"],
+Cell[17834, 471, 240, 5, 34, "Output",ExpressionUUID->"397dad66-ef5d-449d-8116-e342c8789685"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18111, 481, 345, 9, 52, "Input",ExpressionUUID->"2c17bb3d-c0ac-458f-bce2-ba541a11a70e"],
+Cell[18459, 492, 247, 5, 34, "Output",ExpressionUUID->"fe297e4e-b14c-4f15-942a-abe6e1b9eb2e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18743, 502, 532, 14, 33, "Input",ExpressionUUID->"3e5618a0-db1e-4935-a074-afef3f7de227"],
+Cell[19278, 518, 247, 5, 34, "Output",ExpressionUUID->"3bc9701a-82ef-457e-a3ab-0e16a81e2b2b"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[19562, 528, 533, 14, 33, "Input",ExpressionUUID->"b764f0b2-5d8a-4d19-bde8-ddd285189302"],
+Cell[20098, 544, 558, 15, 37, "Output",ExpressionUUID->"7e452f57-c67e-4477-9c60-e29d7b66c5b8"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20693, 564, 762, 21, 65, "Input",ExpressionUUID->"950d5a72-6f9e-456e-b10a-1c84e575066e"],
+Cell[21458, 587, 173, 3, 34, "Output",ExpressionUUID->"02a7c646-6f26-4b8b-bb11-cff276ce35ea"]
+}, Open  ]]
+}
+]
+*)
+

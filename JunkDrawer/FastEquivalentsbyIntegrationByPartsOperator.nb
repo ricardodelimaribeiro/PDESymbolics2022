@@ -1,0 +1,171 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      5541,        161]
+NotebookOptionsPosition[      5249,        148]
+NotebookOutlinePosition[      5587,        163]
+CellTagsIndexPosition[      5544,        160]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"$mrr", ":=", 
+   RowBox[{
+    RowBox[{"Times", "[", 
+     RowBox[{"rest_.", ",", 
+      RowBox[{"Power", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"Derivative", "[", "d__", "]"}], "[", "u_", "]"}], "[", 
+         "x__", "]"}], ",", "p_."}], "]"}]}], "]"}], "\[RuleDelayed]", 
+    RowBox[{"Sequence", "@@", 
+     RowBox[{"Union", "@", 
+      RowBox[{"Flatten", "@", 
+       RowBox[{"Table", "[", 
+        RowBox[{
+         RowBox[{"Expand", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             RowBox[{"Derivative", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"Sequence", "@@", 
+                 RowBox[{"ReplacePart", "[", 
+                  RowBox[{"#", ",", 
+                   RowBox[{"m", "\[Rule]", 
+                    RowBox[{
+                    RowBox[{"Part", "[", 
+                    RowBox[{"#", ",", "m"}], "]"}], "-", "k"}]}]}], "]"}]}], 
+                "&"}], "@", 
+               RowBox[{"{", "d", "}"}]}], "]"}], "[", "u", "]"}], "[", "x", 
+            "]"}], "*", 
+           RowBox[{"D", "[", 
+            RowBox[{
+             RowBox[{"Times", "[", 
+              RowBox[{"rest", ",", 
+               RowBox[{"Power", "[", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"Derivative", "[", "d", "]"}], "[", "u", "]"}], 
+                  "[", "x", "]"}], ",", 
+                 RowBox[{"p", "-", "1"}]}], "]"}]}], "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"{", "x", "}"}], "[", 
+                RowBox[{"[", "m", "]"}], "]"}], ",", "k"}], "}"}]}], "]"}]}], 
+          "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"m", ",", 
+           RowBox[{"Length", "@", 
+            RowBox[{"{", "d", "}"}]}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"k", ",", "0", ",", 
+           RowBox[{
+            RowBox[{"{", "d", "}"}], "[", 
+            RowBox[{"[", "m", "]"}], "]"}]}], "}"}]}], "]"}]}]}]}]}]}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"EquivalentsByIBP", "[", 
+    RowBox[{"monomial_", ",", 
+     RowBox[{"pars_:", 
+      RowBox[{"{", "}"}]}]}], "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", "temp", "}"}], ",", 
+     RowBox[{
+      RowBox[{"temp", "=", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"Head", "@", "#"}], "===", "Plus"}], ",", 
+           RowBox[{"List", "@@", "#"}], ",", "#"}], "]"}], "&"}], "/@", 
+        RowBox[{"ReplaceList", "[", 
+         RowBox[{"monomial", ",", "$mrr"}], "]"}]}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Union", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"First", "@", 
+          RowBox[{"Numerizer", "[", 
+           RowBox[{"#", ",", "pars"}], "]"}]}], "&"}], "/@", 
+        RowBox[{"Append", "[", 
+         RowBox[{
+          RowBox[{"Flatten", "@", "temp"}], ",", "monomial"}], "]"}]}], 
+       "]"}]}]}], "]"}]}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+    "FastEquivalentsByIntegrationByPartsOperator", "[", 
+     "variables_Association", "]"}], "[", "problem_", "]"}], ":=", 
+   "\[IndentingNewLine]", 
+   RowBox[{"Which", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"problem", "===", "$Failed"}], ",", "\[IndentingNewLine]", 
+     "$Failed", ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"Head", "[", "problem", "]"}], "===", "Piecewise"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"PiecewiseOperatorMap", "[", 
+      RowBox[{
+      "SFastEquivalentsByIntegrationByPartsOperator", ",", "variables", ",", 
+       "problem"}], "]"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"Head", "[", "problem", "]"}], "===", "List"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+      "FastEquivalentsByIntegrationByPartsOperator", "[", "variables", "]"}], 
+      "/@", "problem"}], ",", "\[IndentingNewLine]", "True", ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"EquivalentsByIBP", "[", 
+      RowBox[{"problem", ",", 
+       RowBox[{"Lookup", "[", 
+        RowBox[{"variables", ",", "\"\<pars\>\"", ",", 
+         RowBox[{"{", "}"}]}], "]"}]}], "]"}]}], "\[IndentingNewLine]", 
+    "]"}]}], "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.816925291281185*^9, 3.816925319923503*^9}, {
+  3.816925390485579*^9, 3.8169255236441317`*^9}},
+ CellLabel->"In[38]:=",ExpressionUUID->"cc484d10-7683-4ba1-9d4a-682dcfe04fd0"]
+},
+WindowSize->{808, 714},
+WindowMargins->{{316, Automatic}, {Automatic, 50}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 4687, 126, 577, "Input",ExpressionUUID->"cc484d10-7683-4ba1-9d4a-682dcfe04fd0"]
+}
+]
+*)
+
+(* End of internal cache information *)
+

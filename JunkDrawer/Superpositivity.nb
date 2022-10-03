@@ -1,0 +1,102 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3504,         92]
+NotebookOptionsPosition[      3156,         78]
+NotebookOutlinePosition[      3548,         94]
+CellTagsIndexPosition[      3505,         91]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+1) Sufficient conditions for positivity : this could be framed as a fixed point
+                    
+                    a) Algorithm 1 : factor positive terms, simplify and try \
+to check positivity of each of the terms 
+                    b) Algorithm 2 : extract positive terms, use young \
+inequality to control the remaining terms 
+                 c) Algorithm 3 : write expression as sum of square
+              d) Algorithm 4 : Mher' s change of variables trick 
+           e) Algorithm 5 : sufficient conditions via partial quantifier \
+elimination and Boolean convert in disjunctive normal form ?? ?
+            
+            Base algorithm :
+             
+             Q1 - are there non polynomial, non - power variables -> if yes \
+change variables (trig functions, for example, keep exponentials and powers)
+              Q2 - can we factor - if so extract positive factors, address \
+negative ones, etc
+              Q3 - change variables again for exponentials 
+              T1 - Try : Is the remaining expression polynomial -> if so try \
+quantifier elimination
+              T2 - Try partial quantifier eliminator over polynomial \
+variables with boolean convert in CNF
+              T3 - Try fact decomposing in sums and use recursion
+              T4 - Try rewrite powers and exponentials as new variables and \
+use recursion  
+              T5 - Split expression into sum positive terms and the rest try \
+to control using young - type inequality
+              
+     2) Necessary conditions
+      
+      (here we cannot do changes of variables because that messes up \
+\"necessary part\"
+           
+           Q1 - factor terms
+           Q2 - use simplify positivity
+           T1 - Try : Is the remaining expression polynomial -> if so try \
+quantifier elimination
+           T2 - Try partial quantifier eliminator over polynomial variables \
+with boolean convert in DNF
+           T3 - Try : If the expression simplifies to a sum, at least one of \
+the terms must be non - negative - use recursion 
+          
+          3) Heuristic conditions
+      
+      Q1) factor terms
+    Q2) use simplify positivity
+  T1) chooses the coefficients so that the resulting expression satisfies \
+\"sum-of-squares\" necessary conditions . (https : // www . sciencedirect . \
+com/science/article/pii/S0022404997838273)
+ (eg necessary conditions for sum - of squares - which is a necessary \
+condition for  a sufficient condition)
+\
+\>", "CodeText",
+ CellChangeTimes->{{3.842685107057712*^9, 
+  3.842685133245388*^9}},ExpressionUUID->"efa57b5c-8954-4637-9275-\
+5a9c269bd769"]
+},
+WindowSize->{808, 695},
+WindowMargins->{{Automatic, 216}, {Automatic, 3}},
+FrontEndVersion->"12.3 for Mac OS X x86 (64-bit) (May 11, 2021)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"c56d0959-da18-4548-9d14-edaa8459ca89"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 2594, 56, 857, "CodeText",ExpressionUUID->"efa57b5c-8954-4637-9275-5a9c269bd769"]
+}
+]
+*)
+
+(* End of internal cache information *)
+
