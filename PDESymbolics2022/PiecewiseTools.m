@@ -44,12 +44,12 @@ PiecewiseAssociationClean::usage = "PiecewiseAssociationClean[Association] takes
 an association or piecewise associations and if any of the Values is $Failed,
 returns $Failed";
 
-Kleisli::usage = "Kleisli operator to handle piecewise and $Failed expressions";
+Kleisli::usage = "Kleisli[Operator] lets Operator handle Piecewise and $Failed expressions";
 
-KleisliListable::usage = "Kleisli Listable operator to handle piecewise and 
-$Failed expressions for functions that are listable";
+KleisliListable::usage = "KleisliListable[Operator] lets Operator handle Piecewise and 
+$Failed expressions for listable functions";
 
-KleisliTest::usage = "Kleisli operator to handle the specific structure of tests"
+KleisliTest::usage = "KleisliTest operator to handle the specific structure of tests"
 
 Begin["`Private`"] (* Begin Private Context *) 
 
