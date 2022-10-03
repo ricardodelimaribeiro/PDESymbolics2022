@@ -7,7 +7,6 @@ BeginPackage["PDESymbolics2022`", {"VariationalMethods`"}]
 
 Get["PDESymbolics2022`PiecewiseTools`"];
 Get["PDESymbolics2022`Utilities`"];
-(*Get["PDESymbolics2022`Polynomials`"];*)
 Get["PDESymbolics2022`LinearAlgebra`"];
 Get["PDESymbolics2022`Monomials`"];
 Get["PDESymbolics2022`VariationalCalculus`"];
@@ -17,15 +16,6 @@ Get["PDESymbolics2022`TimeDependentPDEs`"];
 Get["PDESymbolics2022`Positivity`"];
 Get["PDESymbolics2022`PolynomialAlgebra`"];
 Get["PDESymbolics2022`Test`"];
-
-
-
-Begin["`Private`"]
-(* Implementation of the package *)
-
-
-
-End[]
 
 EndPackage[]
 
