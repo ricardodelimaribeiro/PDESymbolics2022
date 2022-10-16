@@ -24,6 +24,9 @@ PiecewiseEqualOperator::usage =
 PiecewiseBeautify::usage = 
 "PiecewiseBeautify[piecewiseExpression] Rewrites the conditions in piecewiseExpression in a disjoint way";
 
+PiecewiseBeautifyOperator::usage =
+"PiecewiseBeautifyOperator[<||>][piecewiseExpression] is the same as PiecewiseBeautify[piecewiseExpression]"
+
 ConditionalPiecewiseMap::usage = 
 "ConditionalPiecewiseMap[function, piecewiseExpression] Takes a function that depends on two variables, the second being the condition, and maps through a conditional expression";
 
@@ -153,6 +156,8 @@ PiecewiseBeautify[P_] :=
         True,
         P
     ]
+
+PiecewiseBeautifyOperator[<||>] := PiecewiseBeautify
 
 PiecewiseEliminateEqualitiesOperator[variables_Association][xp_] :=
  If[Lookup[variables, "eliminateequalities", True],
