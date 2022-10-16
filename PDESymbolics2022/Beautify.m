@@ -17,7 +17,7 @@ IntegrateByPartsStep::usage = "IntegrateByPartsStep[x][expresssion] does an inte
 
 (* ##########         Function: IntegrateByParts          ########### *)
 (**********************************************************************)
-(* IntegrateByParts[x,y,...][expr]                                    *)
+(* IntegrateByParts[x,y,...][expr]    c                                *)
 (* Purpose: Takes an expressson expr with independent variables x,y,..*)
 (*          and tries to balance the number of derivatives            *)
 (*          in summands by integration by parts                       *)
