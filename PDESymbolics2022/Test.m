@@ -6,9 +6,9 @@ $TestFunctions =
   Complement[Names["TestsPDESymbolics`Test*"], {"Test"}]
 *)
 $TestFunctions = {MatrixKernelOperator, FindIntegratingFactorOperator, EqualToZeroOperator,
-	PiecewiseEliminateEqualitiesOperator,PiecewiseFullSimplifyOperator,PiecewiseSimplifyOperator,
-	RegroupParametersOperator, FindConservedQuantityOperator, VarDOperator, DisintegrateOperator, 
-	IntegrateByPartsOperator, BeautifyOperator, BasisModNullLagrangiansOperator, BasisOperator};
+	"PiecewiseEliminateEqualitiesOperator",PiecewiseFullSimplifyOperator,"PiecewiseSimplifyOperator",
+	"RegroupParametersOperator", FindConservedQuantityOperator, VarDOperator, DisintegrateOperator, 
+	IntegrateByPartsOperator, BeautifyOperator, BasisModNullLagrangiansOperator, "BasisOperator"};
 
 TestOperator::usage = "Traces evaluation and applies systematic tests to the intermediate computations."
 
@@ -333,7 +333,7 @@ SetAttributes[TestOperator, {HoldFirst}];
 TestOperator[expression_, testFunctions_List: $TestFunctions] :=     
  Module[ {print, trace, pattern, tracePairs, traceTriples, 
    failedTests},
-      	print = Null;
+      	print = Print;
       	
       	print["testFunctions = ", testFunctions];
       	
