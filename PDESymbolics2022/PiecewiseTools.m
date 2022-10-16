@@ -73,7 +73,7 @@ PiecewiseListClean[list_] :=
     If[Or @@ (Function[z,z === $Failed] /@ #), $Failed, #]] &, list];
 
 PiecewiseReplace[xp_, rules_] :=
- PiecewiseMap[If[#[[1]]===$Failed||#[[2]]===$Failed,$Failed, #[[1]] /. #[[2]]] &, PiecewiseExpand[{xp, rules}]];
+ PiecewiseBeautify@PiecewiseMap[If[#[[1]]===$Failed||#[[2]]===$Failed,$Failed, #[[1]] /. #[[2]]] &, PiecewiseExpand[{xp, rules//PiecewiseBeautify}]];
 
 (*Inputs the the default value in the Piecewise list: Piecewise[{{val1,cond1},{val2,cond2}},val] -> {{val1,cond1},{val2,cond2},{val, "no conditions"}}
 If no value is given, the default value is 0.*)
@@ -139,7 +139,7 @@ Which[
 					$Failed
 				], #[[2]]}&/@({pp[[All,1]], qq}//Transpose), $Failed
 			]
-        ] // PiecewiseExpand
+        ] // PiecewiseExpand//PiecewiseBeautify
 ]
 
 
@@ -229,7 +229,7 @@ PiecewiseExpandAssociation[z_]=z;
 
 PiecewiseEqualOperator[variables_Association][xp1_, xp2_] :=
  Module[{xp},
-  xp = PiecewiseBeautify[PiecewiseExpand[{xp1, xp2}]];
+  xp = PiecewiseBeautify[PiecewiseExpand[PiecewiseExpandAssociation/@{xp1, xp2}]];
   If[Head[xp] =!= Piecewise,
    Simplify[Equal @@ xp] === True,
    Module[{facts, domain, xprbl},
