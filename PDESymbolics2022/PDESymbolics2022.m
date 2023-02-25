@@ -4,7 +4,7 @@
 
 BeginPackage["PDESymbolics2022`", {"VariationalMethods`"}]
 (* Exported symbols added here with SymbolName::usage *) 
-
+Get["PDESymbolics2022`Messages`"];
 Get["PDESymbolics2022`PiecewiseTools`"];
 Get["PDESymbolics2022`Utilities`"];
 Get["PDESymbolics2022`LinearAlgebra`"];
