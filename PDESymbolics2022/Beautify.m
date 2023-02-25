@@ -25,7 +25,7 @@ IntegrateByPartsStep::usage = "IntegrateByPartsStep[x][expresssion] does an inte
 (*          An expression                                             *)
 (* Output:  A transformed expression                                  *)
 (**********************************************************************)
-(*TODO use Kreisli*)
+(*TODO use Kreisli and KeyAbsent = "Key `1` is missing. Trying to go on with `2`";*)
 IntegrateByPartsOperator[variables_Association][expression_] :=
 Which[
 	expression === $Failed, 
@@ -35,7 +35,7 @@ Which[
 	Head[expression] === Piecewise, 
 		PiecewiseOperatorMap[IntegrateByPartsOperator,variables, expression],
 	True, 
-		(IntegrateByParts@@Lookup[variables, "intVars", Lookup[variables, "indVars", {}]])[expression]
+		(IntegrateByParts@@Lookup[variables, "intVars", Lookup[variables, "indVars", keyAbsentMessage[IntegrateByPartsOperator]["\"intVars\" or \"indVars\""] [{}]]])[expression]
 ]
 
 IntegrateByPartsStep[exp_, indVar_Symbol, OptionsPattern[]] :=
@@ -152,7 +152,7 @@ RemoveDersOperator[variables_Association][expression_] :=
 		Head[expression] === Piecewise, 
 			PiecewiseOperatorMap[RemoveDersOperator,variables, expression], 
 		True, 
-			RemoveDers[expression, Lookup[variables, "rdVars", {}], Lookup[variables, "indVars", {}]]
+			RemoveDers[expression, Lookup[variables, "rdVars", {}], Lookup[variables, "indVars", keyAbsentMessage[RemoveDersOperator]["\"rdVars\" or \"indVars\""][{}]]]
 	]
 
 
@@ -166,7 +166,7 @@ Which[
 		PiecewiseOperatorMap[BeautifyOperator,variables, expression],
 	True, 
     Module[ {},
-    	If[Lookup[variables, "VarDOperator", VarDOperator]===VarDOperator, 
+    	If[Lookup[variables, "VarDOperator", keyAbsentMessage[IntegrateByPartsOperator]["\"VarDOperator\""] [VarDOperator]]===VarDOperator, 
 	   IntegralEquivalenceClassOperator[KeyDrop["basis"] @ variables][IntegrateByPartsOperator[variables][expression]],
 	   IntegralEquivalenceClassOperator[KeyDrop["basis"] @ variables][expression]
     	]
