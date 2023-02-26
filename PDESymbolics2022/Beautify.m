@@ -25,7 +25,7 @@ IntegrateByPartsStep::usage = "IntegrateByPartsStep[x][expresssion] does an inte
 (*          An expression                                             *)
 (* Output:  A transformed expression                                  *)
 (**********************************************************************)
-(*TODO use Kreisli*)
+(*TODO use Kleisli*)
 IntegrateByPartsOperator[variables_Association][expression_] :=
 Which[
 	expression === $Failed, 
