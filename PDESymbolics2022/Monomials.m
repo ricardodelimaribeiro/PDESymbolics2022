@@ -1,6 +1,7 @@
 (* Wolfram Language package *)
 (*BeginPackage["PDESymbolics2020`Monomials`"]*)
-MonomialsOperator::usage = "generates monomials in dependent, independent variables, or generators";
+MonomialsOperator::usage = 
+"MonomialsOperator[variables][problem] generates monomials in dependent, independent variables, or generators";
 
 
 Begin["`Private`"] (* Begin Private Context *) 
