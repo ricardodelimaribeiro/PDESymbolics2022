@@ -1,0 +1,7 @@
+variables = 
+  Association["depVars" -> {u}, "indVars" -> {x}, "pars" -> {a, b}];
+xp = Association["expression" -> 
+    u[x] (C1 + C2 u'[x] + C3 u'[x]^2) +
+     u[x]^2 (C4 u'[x] + C5 b u'[x]^2) + a u''[x]^4
+   , "coefficients" -> {C1, C2, C3, C4, C5}];
+sp = SimplifyPositivityQEOperator[variables][xp]

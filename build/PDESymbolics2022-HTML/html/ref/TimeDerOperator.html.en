@@ -1,0 +1,688 @@
+
+		<!DOCTYPE html>
+		<html lang="en">
+
+		<head>
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset="utf-8">
+	
+
+<title>TimeDerOperator&mdash;Wolfram Language Documentation</title>
+<meta name="buildnumber" content="0000000">
+<meta name="historydata" content="{0.0, , , }" />
+<meta name="keywords" content="TimeDerOperator" />
+
+<meta name="description" content="TimeDerOperator[&lt;|&quot;depVars&quot; -&gt; {u}, &quot;indVars&quot; -&gt; {x}, &quot;timederivativeorder&quot; -&gt; n, &quot;eqRhs&quot; -&gt; { N[u] } |&gt;][f] gives the n-th order time derivative of \[Integral]f \[DifferentialD]x where u_t = N[u]. TimeDerOperator[&lt;|&quot;depVars&quot; -&gt; {u}, &quot;indVars&quot; -&gt; {x}, &quot;timederivativeorder&quot; -&gt; n, &quot;eqRhs&quot; -&gt; {N[u]}, &quot;Beautify&quot; -&gt; True|&gt;][f] beautifies the result from the above." />
+<link rel="stylesheet" href="../../common/framework/css/framework.en.css"><link rel="stylesheet" href="../../common/framework/css/gui.en.css"><link rel="stylesheet" href="../../common/js/clipboard/2.0/clipboard.css"><link rel="stylesheet" href="../../fonts/source-code-pro/1.0/all.css"><link rel="stylesheet" href="../../fonts/source-sans-pro/1.0/global.css"><link rel="stylesheet" href="../../language-assets/css/entities.css"><link rel="stylesheet" href="../../language-assets/css/footer.css"><link rel="stylesheet" href="../../language-assets/css/global.css"><link rel="stylesheet" href="../../language-assets/css/guide.css"><link rel="stylesheet" href="../../language-assets/css/header-language.css"><link rel="stylesheet" href="../../language-assets/css/iconography.css"><link rel="stylesheet" href="../../language-assets/css/icons.css"><link rel="stylesheet" href="../../language-assets/css/in-out.css"><link rel="stylesheet" href="../../language-assets/css/language-specific.css"><link rel="stylesheet" href="../../language-assets/css/language.css"><link rel="stylesheet" href="../../language-assets/css/man-page.css"><link rel="stylesheet" href="../../language-assets/css/related-links.css"><link rel="stylesheet" href="../../language-assets/css/root-guide-language.css"><link rel="stylesheet" href="../../language-assets/css/special-styles.css"><link rel="stylesheet" href="../../language-assets/css/tables.css"><link rel="stylesheet" href="../../language-assets/css/technotes.css"><link rel="stylesheet" href="../../language-assets/css/tooltips.css"><link rel="stylesheet" href="../../language-assets/css/workflows.css">
+<script>var baselang = 'TimeDerOperator.en';</script>
+</head>
+
+<body id="ref" class="package">
+  <main class="main">
+  <nav class="topContentWrap"><span class="badge">PDE SYMBOLICS2022 SYMBOL</span><ul class="dropdown">
+   <li>
+    <a href="#" class="menu related-guides">Related Guides</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="../guide/PDESymbolics.html"><span class="dropdownPad">PDESymbolics</span></a>
+     </li>
+    </ul>
+   </li>
+  </ul></nav><div class="ContextNameCell">PDESymbolics2022`</div><div class="main-heading"><span class="main-title-top">PDESymbolics2022`</span><h1 class="main-title">TimeDerOperator</h1><div class="iconography" data-src="s= d= m= c= u= l= n= e="></div></div><div class="functionIntroWrap">
+  <div class="functionIntro">
+   <p class="code">
+    <span class="IF">TimeDerOperator<span class="openbracket">[</span><span class="specialcharacters">&lt;<span class="verticalbar">|</span></span>&quot;depVars&quot; <span class="special-character Rule">&#62754;</span> <span class="openbrace">{</span>u<span class="closebrace">}</span><span class="comma">,</span> &quot;indVars&quot;<span class="special-character Rule">&#62754;</span><span class="openbrace">{</span>x<span class="closebrace">}</span><span class="comma">,</span> &quot;timederivativeorder&quot;<span class="special-character Rule">&#62754;</span>n<span class="comma">,</span> &quot;eqRhs&quot;<span class="special-character Rule">&#62754;</span> <span class="openbrace">{</span> N<span class="openbracket">[</span>u<span class="closebracket">]</span> <span class="closebrace">}</span> <span class="specialcharacters"><span class="verticalbar">|</span>&gt;</span><span class="closebracket">]</span><span class="openbracket">[</span>f<span class="closebracket">]</span></span>
+   </p>
+   <p class="code-description">gives the n-th order time derivative of <span class="special-character Integral">&#8747;</span>f<span class="special-character DifferentialD">&#63308;</span>x where u_t = N[u].</p>
+  </div>
+  <div class="functionIntro">
+   <p class="code">
+    <span class="IF">TimeDerOperator<span class="openbracket">[</span><span class="specialcharacters">&lt;<span class="verticalbar">|</span></span>&quot;depVars&quot;<span class="special-character Rule">&#62754;</span><span class="openbrace">{</span>u<span class="closebrace">}</span><span class="comma">,</span>&quot;indVars&quot;<span class="special-character Rule">&#62754;</span><span class="openbrace">{</span>x<span class="closebrace">}</span><span class="comma">,</span>&quot;timederivativeorder&quot;<span class="special-character Rule">&#62754;</span>n<span class="comma">,</span>&quot;eqRhs&quot;<span class="special-character Rule">&#62754;</span><span class="openbrace">{</span>N<span class="openbracket">[</span>u<span class="closebracket">]</span><span class="closebrace">}</span><span class="comma">,</span>&quot;Beautify&quot;<span class="special-character Rule">&#62754;</span>True<span class="specialcharacters"><span class="verticalbar">|</span>&gt;</span><span class="closebracket">]</span><span class="openbracket">[</span>f<span class="closebracket">]</span></span>
+   </p>
+   <p class="code-description">beautifies the result from the above.</p>
+  </div>
+ </div><section id="DetailsAndOptions"><div class="inner">
+   <h1 class="toggle">Details and Options</h1>
+   <div class="hideable">
+    <ul class="functionList">
+     <li><a name="1067943069"></a>To use TimeDerOperator, you need to load the PDESymbolics Package using Needs[&quot;PDESymbolics2022`&quot;].</li>
+    </ul>
+   </div>
+  </div></section><section id="Examples"><h1 class="toggle open">Examples</h1><span class="open-all on">open all</span><span class="close-all">close all</span><div class="hideable">
+   <div>
+    <h2 class="toggle open">Basic Examples<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span class="total-examples">(2)</span></h2>
+    <div class="hideable">
+     <div id="336745302"
+         class="clipboard-input"
+         data-in="In[1]:="
+         data-in-num="1"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/TimeDerOperator.en/I_1.png"
+         data-in-width="187"
+         data-in-height="19"
+         data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-furwmg"
+         data-code="Files/TimeDerOperator.en/i_1.txt"
+         ></div>
+     <p><a name="1058880869"></a>A simple example is </p>
+     <div id="1088144238"
+         class="clipboard-input"
+         data-in="In[2]:="
+         data-in-num="2"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/TimeDerOperator.en/I_2.png"
+         data-big="587 39"
+         data-small="331 59"
+         data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-r94zq4"
+         data-code="Files/TimeDerOperator.en/i_2.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[2]="
+         data-out-num="2"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/TimeDerOperator.en/O_1.png"
+         data-out-width="50"
+         data-out-height="16"
+         ></div>
+     <div class="ExLine"><a name="429707750"></a><!-- --></div>
+     <div id="1794082956"
+         class="clipboard-input"
+         data-in="In[1]:="
+         data-in-num="1"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/TimeDerOperator.en/I_3.png"
+         data-in-width="187"
+         data-in-height="19"
+         data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-3yfpjy"
+         data-code="Files/TimeDerOperator.en/i_3.txt"
+         ></div>
+     <p><a name="334353965"></a>Here is the time derivative of <span class="special-character Integral">&#8747;</span>u^2+v^2<span class="special-character DifferentialD">&#63308;</span>x, where u and v solve the 1-dimensional heat equation:</p>
+     <div id="375886885"
+         class="clipboard-input"
+         data-in="In[2]:="
+         data-in-num="2"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/TimeDerOperator.en/I_4.png"
+         data-in-width="375"
+         data-in-height="59"
+         data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-gh2ugn"
+         data-code="Files/TimeDerOperator.en/i_4.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[2]="
+         data-out-num="2"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/TimeDerOperator.en/O_2.png"
+         data-out-width="112"
+         data-out-height="16"
+         ></div>
+     <p><a name="77404826"></a>Note that by default the time derivative order is 1:</p>
+     <div id="1891248734"
+         class="clipboard-input"
+         data-in="In[3]:="
+         data-in-num="3"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/TimeDerOperator.en/I_5.png"
+         data-big="475 39"
+         data-small="307 59"
+         data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-5kaa5c"
+         data-code="Files/TimeDerOperator.en/i_5.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[3]="
+         data-out-num="3"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/TimeDerOperator.en/O_3.png"
+         data-out-width="112"
+         data-out-height="16"
+         ></div>
+     <p><a name="1352420055"></a>Here, we take the time derivative of <span class="special-character Integral">&#8747;</span>uv<span class="special-character DifferentialD">&#63308;</span>x, where u and v solve the 1-dimensional heat equation and use the option to Beautify to produce a simpler expression:</p>
+     <div id="861784238"
+         class="clipboard-input"
+         data-in="In[4]:="
+         data-in-num="4"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/TimeDerOperator.en/I_6.png"
+         data-big="493 59"
+         data-small="423 59"
+         data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-ojda9c"
+         data-code="Files/TimeDerOperator.en/i_6.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[4]="
+         data-out-num="4"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/TimeDerOperator.en/O_4.png"
+         data-out-width="59"
+         data-out-height="16"
+         ></div>
+    </div>
+   </div>
+   <div>
+    <h2 class="toggle">Generalizations &amp; Extensions<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span class="total-examples">(1)</span></h2>
+    <div class="hideable">
+     <div id="571248083"
+         class="clipboard-input"
+         data-in="In[1]:="
+         data-in-num="1"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/TimeDerOperator.en/I_7.png"
+         data-in-width="187"
+         data-in-height="19"
+         data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-jqd34l"
+         data-code="Files/TimeDerOperator.en/i_7.txt"
+         ></div>
+     <p><a name="1417240546"></a>The TimeDerOperator can be used with lists of expressions:</p>
+     <div id="1497874053"
+         class="clipboard-input"
+         data-in="In[2]:="
+         data-in-num="2"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/TimeDerOperator.en/I_8.png"
+         data-in-width="375"
+         data-in-height="59"
+         data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-y12xav"
+         data-code="Files/TimeDerOperator.en/i_8.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[2]="
+         data-out-num="2"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/TimeDerOperator.en/O_5.png"
+         data-out-width="221"
+         data-out-height="16"
+         ></div>
+     <div id="1240045623"
+         class="clipboard-input"
+         data-in="In[3]:="
+         data-in-num="3"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/TimeDerOperator.en/I_9.png"
+         data-big="535 19"
+         data-small="359 39"
+         data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-uskrl1"
+         data-code="Files/TimeDerOperator.en/i_9.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[3]="
+         data-out-num="3"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/TimeDerOperator.en/O_6.png"
+         data-out-width="157"
+         data-out-height="17"
+         ></div>
+    </div>
+   </div>
+   <div>
+    <h2 class="toggle">Options<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span class="total-examples">(3)</span></h2>
+    <div class="hideable">
+     <div>
+      <h3 class="toggle">Beautify<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span class="total-examples">(3)</span></h3>
+      <div class="hideable">
+       <div id="670651154"
+           class="clipboard-input"
+           data-in="In[1]:="
+           data-in-num="1"
+           data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+           data-src="Files/TimeDerOperator.en/I_10.png"
+           data-in-width="187"
+           data-in-height="19"
+           data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-ldkn00"
+           data-code="Files/TimeDerOperator.en/i_10.txt"
+           ></div>
+       <p><a name="601794436"></a>Usually it is interesting to get a result with a definite sign which is easy to determine by inspection. We accomplish that with Beautify:</p>
+       <div id="1403424051"
+           class="clipboard-input"
+           data-in="In[2]:="
+           data-in-num="2"
+           data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+           data-src-swap="Files/TimeDerOperator.en/I_11.png"
+           data-big="450 59"
+           data-small="306 78"
+           data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-xhui7p"
+           data-code="Files/TimeDerOperator.en/i_11.txt"
+           ></div>
+       <div class="clipboard-output"
+           data-out="Out[2]="
+           data-out-num="2"
+           data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+           data-src="Files/TimeDerOperator.en/O_7.png"
+           data-out-width="7"
+           data-out-height="16"
+           ></div>
+       <div class="ExLine"><a name="1858592129"></a><!-- --></div>
+       <div id="982336786"
+           class="clipboard-input"
+           data-in="In[1]:="
+           data-in-num="1"
+           data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+           data-src="Files/TimeDerOperator.en/I_12.png"
+           data-in-width="187"
+           data-in-height="19"
+           data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-qi4568"
+           data-code="Files/TimeDerOperator.en/i_12.txt"
+           ></div>
+       <p><a name="1480826137"></a>One way to simplify the expressions is to use Beautify (integration by parts). Lets set the variables and the time derivative</p>
+       <div id="1832964361"
+           class="clipboard-input"
+           data-in="In[2]:="
+           data-in-num="2"
+           data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+           data-src-swap="Files/TimeDerOperator.en/I_13.png"
+           data-big="593 39"
+           data-small="335 59"
+           data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-4lk2mz"
+           data-code="Files/TimeDerOperator.en/i_13.txt"
+           ></div>
+       <div class="clipboard-output"
+           data-out="Out[2]="
+           data-out-num="2"
+           data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+           data-src="Files/TimeDerOperator.en/O_8.png"
+           data-out-width="52"
+           data-out-height="16"
+           ></div>
+       <p><a name="485799804"></a>With the Beautify option turned on:</p>
+       <div id="1782815106"
+           class="clipboard-input"
+           data-in="In[3]:="
+           data-in-num="3"
+           data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+           data-src="Files/TimeDerOperator.en/I_14.png"
+           data-in-width="270"
+           data-in-height="19"
+           data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-3rp674"
+           data-code="Files/TimeDerOperator.en/i_14.txt"
+           ></div>
+       <p><a name="505125808"></a>We get an expression whose sign is explicit.</p>
+       <div id="125046940"
+           class="clipboard-input"
+           data-in="In[4]:="
+           data-in-num="4"
+           data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+           data-src="Files/TimeDerOperator.en/I_15.png"
+           data-in-width="225"
+           data-in-height="19"
+           data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-ccqg4e"
+           data-code="Files/TimeDerOperator.en/i_15.txt"
+           ></div>
+       <div class="clipboard-output"
+           data-out="Out[4]="
+           data-out-num="4"
+           data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+           data-src="Files/TimeDerOperator.en/O_9.png"
+           data-out-width="42"
+           data-out-height="16"
+           ></div>
+       <div class="ExLine"><a name="1467757546"></a><!-- --></div>
+       <div id="1259573499"
+           class="clipboard-input"
+           data-in="In[1]:="
+           data-in-num="1"
+           data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+           data-src="Files/TimeDerOperator.en/I_16.png"
+           data-in-width="187"
+           data-in-height="19"
+           data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-u37be1"
+           data-code="Files/TimeDerOperator.en/i_16.txt"
+           ></div>
+       <p><a name="1905489214"></a>Here is the time derivative of <span class="special-character Integral">&#8747;</span>u^2+v^2<span class="special-character DifferentialD">&#63308;</span>x, where u and v solve the 1-dimensional heat equation:</p>
+       <div id="1308003412"
+           class="clipboard-input"
+           data-in="In[2]:="
+           data-in-num="2"
+           data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+           data-src-swap="Files/TimeDerOperator.en/I_17.png"
+           data-big="557 39"
+           data-small="307 59"
+           data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-vw1b6e"
+           data-code="Files/TimeDerOperator.en/i_17.txt"
+           ></div>
+       <div class="clipboard-output"
+           data-out="Out[2]="
+           data-out-num="2"
+           data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+           data-src="Files/TimeDerOperator.en/O_10.png"
+           data-out-width="112"
+           data-out-height="16"
+           ></div>
+       <p><a name="1038588845"></a>Here we take the time derivative of <span class="special-character Integral">&#8747;</span>uv<span class="special-character DifferentialD">&#63308;</span>x, where u and v solve the 1-dimensional heat equation:</p>
+       <div id="815635099"
+           class="clipboard-input"
+           data-in="In[3]:="
+           data-in-num="3"
+           data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+           data-src="Files/TimeDerOperator.en/I_18.png"
+           data-in-width="242"
+           data-in-height="19"
+           data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-nrv6ct"
+           data-code="Files/TimeDerOperator.en/i_18.txt"
+           ></div>
+       <div class="clipboard-output"
+           data-out="Out[3]="
+           data-out-num="3"
+           data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+           data-src="Files/TimeDerOperator.en/O_11.png"
+           data-out-width="96"
+           data-out-height="16"
+           ></div>
+       <p><a name="872175619"></a>With the Beautify option turned on:</p>
+       <div id="2079737758"
+           class="clipboard-input"
+           data-in="In[4]:="
+           data-in-num="4"
+           data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+           data-src="Files/TimeDerOperator.en/I_19.png"
+           data-in-width="270"
+           data-in-height="19"
+           data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-8oh97k"
+           data-code="Files/TimeDerOperator.en/i_19.txt"
+           ></div>
+       <p><a name="1827522784"></a>We get an expression whose sign is easy to determine by inspection:</p>
+       <div id="1871400007"
+           class="clipboard-input"
+           data-in="In[5]:="
+           data-in-num="5"
+           data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+           data-src="Files/TimeDerOperator.en/I_20.png"
+           data-in-width="277"
+           data-in-height="19"
+           data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-48gvrt"
+           data-code="Files/TimeDerOperator.en/i_20.txt"
+           ></div>
+       <div class="clipboard-output"
+           data-out="Out[5]="
+           data-out-num="5"
+           data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+           data-src="Files/TimeDerOperator.en/O_12.png"
+           data-out-width="85"
+           data-out-height="16"
+           ></div>
+       <p><a name="2033063498"></a>This is a simpler expression, but without a definite sign:</p>
+       <div id="1106651106"
+           class="clipboard-input"
+           data-in="In[6]:="
+           data-in-num="6"
+           data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+           data-src="Files/TimeDerOperator.en/I_21.png"
+           data-in-width="242"
+           data-in-height="19"
+           data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-sk5nqs"
+           data-code="Files/TimeDerOperator.en/i_21.txt"
+           ></div>
+       <div class="clipboard-output"
+           data-out="Out[6]="
+           data-out-num="6"
+           data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+           data-src="Files/TimeDerOperator.en/O_13.png"
+           data-out-width="59"
+           data-out-height="16"
+           ></div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div>
+    <h2 class="toggle">Applications<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span class="total-examples">(1)</span></h2>
+    <div class="hideable">
+     <div>
+      <h3 class="toggle">Displacement convexity for mean-field games<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span class="total-examples">(1)</span></h3>
+      <div class="hideable">
+       <div id="1672689515"
+           class="clipboard-input"
+           data-in="In[1]:="
+           data-in-num="1"
+           data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+           data-src="Files/TimeDerOperator.en/I_22.png"
+           data-in-width="187"
+           data-in-height="19"
+           data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-1x5trx"
+           data-code="Files/TimeDerOperator.en/i_22.txt"
+           ></div>
+       <div id="303711581"
+           class="clipboard-input"
+           data-in="In[2]:="
+           data-in-num="2"
+           data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+           data-src-swap="Files/TimeDerOperator.en/I_23.png"
+           data-big="583 191"
+           data-small="417 172"
+           data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-fa3vm3"
+           data-code="Files/TimeDerOperator.en/i_23.txt"
+           ></div>
+       <div class="clipboard-output"
+           data-out="Out[2]="
+           data-out-num="2"
+           data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+           data-src="Files/TimeDerOperator.en/O_14.png"
+           data-out-width="7"
+           data-out-height="16"
+           ></div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div>
+    <h2 class="toggle">Possible Issues <span class="total-examples">(1)</span> - no known isssues,all below seems to work</h2>
+    <div class="hideable">
+     <div id="596084742"
+         class="clipboard-input"
+         data-in="In[1]:="
+         data-in-num="1"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/TimeDerOperator.en/I_24.png"
+         data-in-width="187"
+         data-in-height="39"
+         data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-j46f7s"
+         data-code="Files/TimeDerOperator.en/i_24.txt"
+         ></div>
+     <div id="1265915842"
+         class="clipboard-input"
+         data-in="In[2]:="
+         data-in-num="2"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/TimeDerOperator.en/I_25.png"
+         data-big="528 59"
+         data-small="376 78"
+         data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-u7y868"
+         data-code="Files/TimeDerOperator.en/i_25.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[2]="
+         data-out-num="2"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/TimeDerOperator.en/O_15.png"
+         data-out-width="157"
+         data-out-height="17"
+         ></div>
+     <div id="1386510015"
+         class="clipboard-input"
+         data-in="In[3]:="
+         data-in-num="3"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/TimeDerOperator.en/I_26.png"
+         data-big="528 59"
+         data-small="376 78"
+         data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-w7rz9d"
+         data-code="Files/TimeDerOperator.en/i_26.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[3]="
+         data-out-num="3"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/TimeDerOperator.en/O_16.png"
+         data-out-width="85"
+         data-out-height="16"
+         ></div>
+     <div id="811961378"
+         class="clipboard-input"
+         data-in="In[4]:="
+         data-in-num="4"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/TimeDerOperator.en/I_27.png"
+         data-big="575 59"
+         data-small="376 78"
+         data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-nppfo0"
+         data-code="Files/TimeDerOperator.en/i_27.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[4]="
+         data-out-num="4"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/TimeDerOperator.en/O_17.png"
+         data-out-width="51"
+         data-out-height="16"
+         ></div>
+     <div id="870477129"
+         class="clipboard-input"
+         data-in="In[5]:="
+         data-in-num="5"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/TimeDerOperator.en/I_28.png"
+         data-in-width="375"
+         data-in-height="59"
+         data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-oojmqj"
+         data-code="Files/TimeDerOperator.en/i_28.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[5]="
+         data-out-num="5"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/TimeDerOperator.en/O_18.png"
+         data-out-width="148"
+         data-out-height="17"
+         ></div>
+     <div id="599342971"
+         class="clipboard-input"
+         data-in="In[6]:="
+         data-in-num="6"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/TimeDerOperator.en/I_29.png"
+         data-in-width="313"
+         data-in-height="39"
+         data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-j63995"
+         data-code="Files/TimeDerOperator.en/i_29.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[6]="
+         data-out-num="6"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/TimeDerOperator.en/O_19.png"
+         data-out-width="66"
+         data-out-height="16"
+         ></div>
+     <div id="126282329"
+         class="clipboard-input"
+         data-in="In[7]:="
+         data-in-num="7"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/TimeDerOperator.en/I_30.png"
+         data-big="578 59"
+         data-small="379 78"
+         data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-cdgycr"
+         data-code="Files/TimeDerOperator.en/i_30.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[7]="
+         data-out-num="7"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/TimeDerOperator.en/O_20.png"
+         data-out-width="221"
+         data-out-height="16"
+         ></div>
+     <div id="1194009239"
+         class="clipboard-input"
+         data-in="In[8]:="
+         data-in-num="8"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/TimeDerOperator.en/I_31.png"
+         data-big="575 59"
+         data-small="405 78"
+         data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-t051pl"
+         data-code="Files/TimeDerOperator.en/i_31.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[8]="
+         data-out-num="8"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/TimeDerOperator.en/O_21.png"
+         data-out-width="176"
+         data-out-height="16"
+         ></div>
+    </div>
+   </div>
+   <div>
+    <h2 class="toggle">Neat Examples<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span class="total-examples">(1)</span></h2>
+    <div class="hideable">
+     <div>
+      <h3 class="toggle">Lyapunov functions<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span class="total-examples">(1)</span></h3>
+      <div class="hideable">
+       <div id="985663971"
+           class="clipboard-input"
+           data-in="In[1]:="
+           data-in-num="1"
+           data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+           data-src="Files/TimeDerOperator.en/I_32.png"
+           data-in-width="187"
+           data-in-height="19"
+           data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-qk4hg1"
+           data-code="Files/TimeDerOperator.en/i_32.txt"
+           ></div>
+       <p><a name="1027626622"></a>This operator works for ode's! It can be used to check, for example, that x^2 is a Lyapunov function for x'[] =-x[].</p>
+       <div id="1317255548"
+           class="clipboard-input"
+           data-in="In[2]:="
+           data-in-num="2"
+           data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+           data-src-swap="Files/TimeDerOperator.en/I_33.png"
+           data-big="453 39"
+           data-small="453 39"
+           data-link="https://wolfram.com/xid/0np0w7h0hwu8mmptsbd9dwptn9q-v2jm56"
+           data-code="Files/TimeDerOperator.en/i_33.txt"
+           ></div>
+       <div class="clipboard-output"
+           data-out="Out[2]="
+           data-out-num="2"
+           data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+           data-src="Files/TimeDerOperator.en/O_22.png"
+           data-out-width="32"
+           data-out-height="16"
+           ></div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="clear"><!-- --></div>
+  </div></section><section id="RelatedGuides" class="related-links"><div class="inner">
+   <h1>Related Guides</h1>
+   <ul class="functionList">
+    <span class="special-character FilledVerySmallSquare">&#9642;</span>
+    <li>
+     <a href="../guide/PDESymbolics.html">PDESymbolics</a>
+    </li>
+   </ul>
+  </div></section><section id="RelatedLinks" class="related-links"><div class="inner">
+   <h1>Related Links</h1>
+   <ul class="functionList">
+    <li>
+     <span class="IF"><img src="Files/TimeDerOperator.en/1.png" height="24" width="17" alt="" /><span class="special-character FilledVerySmallSquare">&#9642;</span><a href="../ref/IntegrateByPartsOperator.html"><img src="Files/TimeDerOperator.en/4.png" height="16" width="3" alt="" />IntegrateByPartsOperator</a></span>
+    </li>
+    <li>
+     <span class="IF"><img src="Files/TimeDerOperator.en/7.png" height="24" width="17" alt="" /><span class="special-character FilledVerySmallSquare">&#9642;</span><a href="../ref/BeautifyOperator.html"><img src="Files/TimeDerOperator.en/10.png" height="16" width="3" alt="" />BeautifyOperator</a></span>
+    </li>
+    <li>ConservedQOperator</li>
+   </ul>
+  </div></section><section id="Citations" class="citations"><div class="inner">
+   <div class="citation">
+    <span class="citation-tooltip"><button type="button" class="citation-tooltip-button"><span class="citation-text">Cite this as:</span></button><span class="citation-default clipboard-inlineblock clipboard-hover">Wolfram Research (0), TimeDerOperator, Wolfram Language function, https://reference.wolfram.com/language/PDESymbolics2022/ref/TimeDerOperator.html.</span><span class="citation-tooltip-content"><button class="x-close-svg"><img src="/language-assets/img/CitationCloseButton.svg" height="10px" width="10px" /></button><h4>Text</h4><p class="clipboard-inlineblock clipboard-hover">Wolfram Research (0), TimeDerOperator, Wolfram Language function, https://reference.wolfram.com/language/PDESymbolics2022/ref/TimeDerOperator.html.</p><h4>CMS</h4><p class="clipboard-inlineblock clipboard-hover">Wolfram Language. 0. &quot;TimeDerOperator.&quot; Wolfram Language &amp; System Documentation Center. Wolfram Research. https://reference.wolfram.com/language/PDESymbolics2022/ref/TimeDerOperator.html.</p><h4>APA</h4><p class="clipboard-inlineblock clipboard-hover">Wolfram Language. (0). TimeDerOperator. Wolfram Language &amp; System Documentation Center. Retrieved from https://reference.wolfram.com/language/PDESymbolics2022/ref/TimeDerOperator.html</p><h4>BibTeX</h4><p class="clipboard-inlineblock clipboard-hover citation-timestamp">@misc{reference.wolfram_2023_timederoperator, author=&quot;Wolfram Research&quot;, title=&quot;{TimeDerOperator}&quot;, year=&quot;0&quot;, howpublished=&quot;\url{https://reference.wolfram.com/language/PDESymbolics2022/ref/TimeDerOperator.html}&quot;, note=[<!--#include virtual="/language-assets/inc/timestamp.html.en"-->]}</p><h4>BibLaTeX</h4><p class="clipboard-inlineblock clipboard-hover citation-timestamp">@online{reference.wolfram_2023_timederoperator, organization={Wolfram Research}, title={TimeDerOperator}, year={0}, url={https://reference.wolfram.com/language/PDESymbolics2022/ref/TimeDerOperator.html}, note=[<!--#include virtual="/language-assets/inc/timestamp.html.en"-->]}</p></span><span class="citation-overlay"></span></span>
+   </div>
+  </div></section>
+  
+
+  
+		</main>
+		<div id="_footer-offset"></div>
+		<div id="_footer"></div>
+		<script src="../../common/js/jquery/2.2.4/jquery.min.js"></script><script src="../../common/js/jquery/plugins/hoverintent/1.8.0/hoverintent.min.j2"></script><script src="../../common/js/clipboard/2.0/clipboard.js"></script><script src="../../common/js/clipboard/2.0/code-clipboard.js"></script><script src="../../common/framework/js/body.en.js"></script><script src="../../common/framework/js/head.en.js"></script><script src="../../language-assets/js/dropdowns.js"></script><script src="../../language-assets/js/global.js"></script><script src="../../language-assets/js/language-specific.js.en"></script><script src="../../language-assets/js/language.js"></script><script src="../../language-assets/js/temporary.js"></script><script src="../../language-assets/js/toggles.js"></script><script src="../../language-assets/js/tooltips.js"></script><script src="../../language-assets/js/workflows.js"></script>
+</body>
+</html>

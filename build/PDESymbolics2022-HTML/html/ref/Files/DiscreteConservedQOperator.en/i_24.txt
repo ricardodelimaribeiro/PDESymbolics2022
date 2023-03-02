@@ -1,0 +1,88 @@
+HeaderOperator[Op_][variables_Association][expression_] := 
+  Which[expression === $Failed, $Failed, 
+   Head[expression] === Piecewise, 
+   PiecewiseOperatorMap[HeaderOperator[Op], variables, expression] // 
+    PiecewiseExpandAssociation, Head[expression] =!= Association, 
+   Module[{exp}, exp = Association["exp" -> expression];
+    HeaderOperator[Op][variables][exp]], True,(*Head[expression]===
+   Association*)
+   Module[{var = variables, schexp}, var = Append[var, expression];
+    schexp = 
+     KeyTake[var, {"exp", "rhs", "scheme"}] // 
+      PiecewiseExpandAssociation;
+    var = 
+     KeyDrop[var, {"exp", "rhs", "scheme"}] // 
+      PiecewiseExpandAssociation;
+    schexp = 
+     PiecewiseAssociationOperator[ParametricRefineOperator][var, 
+      "exp", schexp];
+    Which[PiecewiseMap[KeyExistsQ[#, "rhs"] &, schexp], 
+     schexp = 
+      PiecewiseAssociationOperator[ParametricRefineOperator][var, 
+       "rhs", schexp], 
+     PiecewiseMap[KeyExistsQ[#, "scheme"] &, schexp], 
+     schexp = 
+      PiecewiseAssociationOperator[ParametricRefineOperator][var, 
+       "scheme", schexp]];
+    Header[Op][var][schexp]]];
+Header[Op_][variables_Association][schemeexpression_] := 
+  Which[schemeexpression === $Failed, $Failed, 
+   Head[schemeexpression] === Piecewise, 
+   PiecewiseOperatorMap[Header[Op], variables, schemeexpression] // 
+    PiecewiseExpandAssociation, True, 
+   Module[{var = variables, schexp = schemeexpression}, 
+    If[Lookup[var, "listop", True] && Head[schexp["exp"]] === List, 
+     Op[var][Append[schexp, "exp" -> #]] & /@ schexp["exp"] // 
+        PiecewiseExpand // PiecewiseListClean // PiecewiseBeautify, 
+     Op[var][schexp]]]];
+PiecewiseAssociationOperator[Op_][variables_, key_, 
+   schemeexpression_] := 
+  Which[schemeexpression === $Failed, $Failed, 
+   Head[schemeexpression] === Piecewise, 
+   PiecewiseMap[PiecewiseAssociationOperator[Op][variables, key, #] &,
+      schemeexpression] // PiecewiseExpandAssociation, 
+   Head[schemeexpression] === List, 
+   PiecewiseAssociationOperator[Op][variables, key, #] & /@ 
+     schemeexpression // PiecewiseListClean, True, 
+   Module[{schexp = schemeexpression}, 
+    schexp = 
+     Association @@ 
+      KeyValueMap[
+       Function[{ky, value}, 
+        If[ky === key, ky -> Op[variables][value], ky -> value]], 
+       schexp];
+    schexp // PiecewiseExpandAssociation]];
+ImplicitVariationalTimeDifferenceOperator[variables_Association][
+   schemeexpression_] := 
+  HeaderOperator[ImplicitVariationalTimeDifference][variables][
+   schemeexpression];
+ImplicitVariationalTimeDifference[variables_Association][
+   schemeexpression_Association] := 
+  Module[{schexp = schemeexpression, var = variables, generators}, 
+   If[! KeyExistsQ[var, "VarDOperator"] || 
+     var["VarDOperator"] === DVarDOperator, 
+    var = Append[var, "VarDOperator" -> PartialDVarDOperator]];
+   If[! KeyExistsQ[var, "timeVars"], 
+    var = Append[var, "timeVars" -> {Lookup[var, "indVars"] // Last}]];
+   schexp = TimeDifferenceOperator[var][schexp];
+   schexp = 
+    PiecewiseAssociationOperator[ParametricRefineOperator][var, "exp",
+      schexp];
+   schexp = 
+    PiecewiseAssociationOperator[var["VarDOperator"]][var, "exp", 
+     schexp];
+   generators = 
+    PiecewiseExtractGeneratorsOperator[var][
+     PiecewiseMap[Lookup["exp"], schexp]];
+   schexp = 
+    PiecewiseAssociationOperator[ParametricRefineOperator][
+     Append[var, "generators" -> generators], "exp", schexp];
+   schexp = 
+    ReduceModSchemeOperator[Append[var, "reduce Beautify" -> False]][
+     schexp];
+   generators = 
+    PiecewiseExtractGeneratorsOperator[var][
+     PiecewiseMap[Lookup["exp"], schexp]];
+   schexp = 
+    PiecewiseAssociationOperator[ParametricRefineOperator][
+     Append[var, "generators" -> generators], "exp", schexp]];

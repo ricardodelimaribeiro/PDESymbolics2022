@@ -1,0 +1,1697 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     63661,       1687]
+NotebookOptionsPosition[     52771,       1456]
+NotebookOutlinePosition[     58903,       1604]
+CellTagsIndexPosition[     58817,       1599]
+WindowTitle->ReduceModSchemeOperator
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[GridBox[{
+   {GridBox[{
+      {
+       ItemBox[Cell[BoxData[
+         RowBox[{
+          TemplateBox[{12},
+           "Spacer1"], Cell["PDE SYMBOLICS2022 SYMBOL", "PacletNameCell",
+           TextAlignment->Center,ExpressionUUID->
+           "4b606a56-a2a5-4779-9d87-d93f6cec0857"], 
+          TemplateBox[{8},
+           "Spacer1"]}]],
+         TextAlignment->Center,ExpressionUUID->
+         "2d5baf62-6a4e-4381-a7d2-a7b6a75dc8dc"],
+        Background->RGBColor[0.490196, 0.576471, 0.690196],
+        ItemSize->Full], ""}
+     },
+     GridBoxAlignment->{"Rows" -> {{Center}}},
+     GridBoxItemSize->{"Columns" -> {Full, 
+         Scaled[0.02]}, "Rows" -> {{2.5}}}], Cell[TextData[{
+     Cell[BoxData[
+      TagBox[
+       ActionMenuBox[
+        FrameBox[Cell[TextData[{
+          "See Also",
+          " ",
+          Cell[BoxData[
+           GraphicsBox[
+            {GrayLevel[0.66667], Thickness[0.13], 
+             LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+            AspectRatio->1,
+            ImageSize->20,
+            PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+           "38001eb3-c84a-4c50-b876-c1d9d58c9d6d"]
+         }],ExpressionUUID->"465d3e01-0a61-455a-9138-3c80b845df80"],
+         StripOnInput->False], {"\<\"GroebnerBasis\"\>":>
+        Documentation`HelpLookup[
+        "paclet:ref/GroebnerBasis"], "\<\"PolynomialReduce\"\>":>
+        Documentation`HelpLookup["paclet:ref/PolynomialReduce"], Delimiter, 
+        StyleBox["\<\"Functions\"\>", "SeeAlsoSection",
+         StripOnInput->False,
+         FontSize->14,
+         FontSlant->"Italic"]:>NotebookFind[
+         EvaluationNotebook[], "SeeAlsoSection", All, CellStyle], 
+        StyleBox["\<\"RangeSchemeTranslationsOperator\"\>", "SeeAlsoRelated",
+         StripOnInput->False]:>Documentation`HelpLookup[
+        "paclet:PDESymbolics2022/ref/RangeSchemeTranslationsOperator"]},
+        Appearance->None,
+        MenuAppearance->Automatic,
+        MenuStyle->"SeeAlso"],
+       MouseAppearanceTag["LinkHand"]]],
+      LineSpacing->{1.4, 0},ExpressionUUID->
+      "c49258af-659b-4f6b-9317-fd503420721b"],
+     "\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+     Cell[BoxData[
+      TagBox[
+       ActionMenuBox[
+        FrameBox[Cell[TextData[{
+          "Related Guides",
+          " ",
+          Cell[BoxData[
+           GraphicsBox[
+            {GrayLevel[0.66667], Thickness[0.13], 
+             LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+            AspectRatio->1,
+            ImageSize->20,
+            PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+           "123998a5-1c83-4f16-86f7-36152c9440f1"]
+         }],ExpressionUUID->"a51b576c-df34-4d61-9bcd-76d22ac75a96"],
+         StripOnInput->False], {"\<\"PDESymbolics\"\>":>
+        Documentation`HelpLookup[
+        "paclet:PDESymbolics2022/guide/PDESymbolics"]},
+        Appearance->None,
+        MenuAppearance->Automatic,
+        MenuStyle->"MoreAbout"],
+       MouseAppearanceTag["LinkHand"]]],
+      LineSpacing->{1.4, 0},ExpressionUUID->
+      "9fd4f333-feb4-479c-a702-ac2cec3c6988"],
+     "\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+     Cell[BoxData[
+      TagBox[
+       ActionMenuBox[
+        FrameBox[Cell[TextData[{
+          "URL",
+          " ",
+          Cell[BoxData[
+           GraphicsBox[
+            {GrayLevel[0.66667], Thickness[0.13], 
+             LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+            AspectRatio->1,
+            ImageSize->20,
+            PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+           "206ba643-7bb8-4412-977d-bc76395335cf"]
+         }],ExpressionUUID->"44a55922-e58d-4510-80a9-f0f2ffdf2d74"],
+         StripOnInput->
+          False], {"\<\"PDESymbolics2022/ref/ReduceModSchemeOperator\"\>":>
+        None, "\<\"Copy Wolfram Documentation Center URL\"\>":>
+        Module[{DocumentationSearch`Private`nb$}, 
+         DocumentationSearch`Private`nb$ = NotebookPut[
+            Notebook[{
+              Cell["PDESymbolics2022/ref/ReduceModSchemeOperator"]}, Visible -> 
+             False]]; SelectionMove[
+          DocumentationSearch`Private`nb$, All, Notebook]; 
+         FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+         NotebookClose[DocumentationSearch`Private`nb$]; Null], 
+        Delimiter, "\<\"Copy web URL\"\>":>
+        Module[{DocumentationSearch`Private`nb$}, 
+         DocumentationSearch`Private`nb$ = NotebookPut[
+            Notebook[{
+              Cell[
+               BoxData[
+                MakeBoxes[
+                 Hyperlink[
+                 "http://reference.wolfram.com/language/PDESymbolics2022/ref/\
+ReduceModSchemeOperator.html"], StandardForm]], "Input", TextClipboardType -> 
+               "PlainText"]}, Visible -> False]]; 
+         SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+         FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+         NotebookClose[DocumentationSearch`Private`nb$]; 
+         Null], "\<\"Go to web URL\"\>":>FrontEndExecute[{
+          NotebookLocate[{
+            URL[
+             StringJoin[
+              If[
+               TrueQ[DocumentationBuild`Make`Private`wsmlinkQ$133263], 
+               "http://reference.wolfram.com/system-modeler/", 
+               "http://reference.wolfram.com/language/"], 
+              "PDESymbolics2022/ref/ReduceModSchemeOperator", ".html"]], 
+            None}]}]},
+        Appearance->None,
+        MenuAppearance->Automatic,
+        MenuStyle->"URLMenu"],
+       MouseAppearanceTag["LinkHand"]]],
+      LineSpacing->{1.4, 0},ExpressionUUID->
+      "deeec0f3-541f-4d1b-9b1b-4015ec2253d7"]
+    }], "AnchorBar",
+     CacheGraphics->False,ExpressionUUID->
+     "30d0bb82-fb5e-4ed3-850b-b07e852b11c5"]}
+  }]], "AnchorBarGrid",
+ CellID->1,ExpressionUUID->"10754223-004c-49fc-b106-0288747d4e5e"],
+
+Cell["PDESymbolics2022`", "ContextNameCell",ExpressionUUID->"4b11e5d9-218d-44a6-82c1-0dd263cdff27"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[GridBox[{
+   {Cell[TextData[{
+     Cell[
+     "ReduceModSchemeOperator", "ObjectName",ExpressionUUID->
+      "d2fb2a30-cc7c-40ee-9eaf-7beeaabaff56"],
+     Cell[BoxData[
+      TemplateBox[{8},
+       "Spacer1"]],ExpressionUUID->"ebea7062-5ac7-4d3c-9875-e5b3bf12a040"],
+     Cell[BoxData[
+     ""], "ObjectNameTranslation",ExpressionUUID->
+      "38ff1a08-0b1a-462b-8b07-bc5e117e7861"]
+    }],ExpressionUUID->"c76814c4-b445-4a3f-9fd1-2704c1ceaff4"], 
+    "\[SpanFromLeft]"}
+  }]], "ObjectNameGrid",ExpressionUUID->"b73dd337-6502-417b-9dbc-\
+edb567710eda"],
+
+Cell[BoxData[GridBox[{
+   {"", Cell[TextData[{
+     Cell[BoxData[
+      RowBox[{
+       RowBox[{"ReduceModSchemeOperator", "[", "variables", "]"}], "[", 
+       "expression", "]"}]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "e6a9d178-8e69-4d2a-8383-7d4ef7ad0fc3"],
+     " takes an expression and reduces it using the scheme given in the \
+variables. Returns an association with the reduced expression and the used \
+scheme or GroebnerBasis."
+    }],ExpressionUUID->"851dffc0-6300-45d5-8960-8f5264d39f1b"]}
+  }]], "Usage",
+ CellID->982511436,ExpressionUUID->"ceddfd17-c4cb-4359-b1de-df90b111d702"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[Cell[BoxData[
+ ButtonBox[Cell[TextData[{
+   Cell[BoxData[
+    DynamicBox[ToBoxes[
+      If[
+       MatchQ[
+        CurrentValue[
+         EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, 
+         Closed], 
+        Alternatives[Open, True]], 
+       Style[
+        Graphics[{
+          Thickness[0.18], 
+          RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+          Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+         PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+        0.68 Inherited], 
+       Rotate[
+        Style[
+         Graphics[{
+           Thickness[0.18], 
+           RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+           Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+          PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+         0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+     ImageSizeCache->{14., {0.45000000000000107`, 13.549999999999999`}}]],
+    ExpressionUUID->"1abf32fd-7c38-4be9-b205-93e6e049096a"],
+   Cell[BoxData[
+    TemplateBox[{1},
+     "Spacer1"]],ExpressionUUID->"485e2276-c8d5-497b-a0ae-694becc4c1fe"],
+   "Details and Options"
+  }], "NotesFrameText",ExpressionUUID->"552d3fad-cc66-469b-a5f6-a7e91d62dbd8"],
+  Appearance->{Automatic, None, "Normal", Automatic},
+  BaseStyle->None,
+  ButtonFunction:>(FrontEndExecute[{
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], All, ButtonCell], 
+     FrontEndToken["OpenCloseGroup"], 
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], After, CellContents]}]& ),
+  Evaluator->None,
+  Method->
+   "Preemptive"]],ExpressionUUID->"5fb9135a-f4c1-4315-9a0b-b6f3f89a64da"]], \
+"NotesSection",
+ WholeCellGroupOpener->True,
+ CellGroupingRules->{"SectionGrouping", 50},
+ CacheGraphics->False,
+ CellID->717163179,ExpressionUUID->"91224e2b-0611-4ccf-9738-16674de9fc75"],
+
+Cell["\<\
+To use ReduceModSchemeOperator, you first need to load the PDESymbolics \
+Package using Needs[\"PDESymbolics2022`\"].\
+\>", "Notes",
+ CellID->1067943069,ExpressionUUID->"1d354878-4bbe-452f-822e-fca6d3438d33"]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, Closed]]]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {
+       TaggingRules, "Openers", "PrimaryExamplesSection"}, Open], 
+      Alternatives[True, Open]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{14., {5., 9.}}]],ExpressionUUID->
+  "7157c80c-2c97-4ab5-91bf-310c51cd5ada"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"b81cf920-c741-41be-9783-323404df0c47"],
+ "Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(3)", "ExampleCount",ExpressionUUID->
+  "01efef06-1d35-43a3-bd82-c67f5c153e2e"]
+}], "PrimaryExamplesSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellTags->"PrimaryExamplesSection",
+ CellID->1683322489,ExpressionUUID->"42ccd997-66fc-49ed-b066-34ab2a8edae2"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "0"},
+        Closed], 
+      Alternatives[Open, True]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{14., {5., 9.}}]],ExpressionUUID->
+  "156a07c7-79ed-4eb1-bc78-3030dc7aa374"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"89d88f15-07d3-4f5d-8776-ed8f8fae5181"],
+ "Basic Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(1)", "ExampleCount",ExpressionUUID->
+  "bf671946-9588-4e51-803c-64a383e4814b"]
+}], "ExampleSection", "ExampleSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellID->651507045,ExpressionUUID->"b188ce12-6a60-4962-bde3-882d90fc468a"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<PDESymbolics2022`\>\"", "]"}]], "Code",
+ CellLabel->"In[21]:=",
+ CellID->407649076,ExpressionUUID->"12a987c1-7c1e-4971-8e18-4528a71383d1"],
+
+Cell["\<\
+The scheme should be understood as the righthandside of the equation 0 = \
+scheme or the system of equations {0,...,0} = scheme in case the scheme is \
+multidimensional. The scheme should always be specified as a list even if it \
+is only one-dimensional.\
+\>", "ExampleText",
+ CellID->1797839518,ExpressionUUID->"49063f23-9e0d-4d51-a7da-6094f0aadf3c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"variables", "=", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<indVars\>\"", "->", 
+      RowBox[{"{", "n", "}"}]}], ",", 
+     RowBox[{"\"\<depVars\>\"", "->", 
+      RowBox[{"{", "u", "}"}]}], ",", 
+     RowBox[{"\"\<scheme\>\"", "->", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"u", "[", 
+         RowBox[{"n", "+", "1"}], "]"}], "-", 
+        RowBox[{"u", "[", "n", "]"}]}], "}"}]}]}], "|>"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"expression", "=", 
+   RowBox[{
+    RowBox[{"u", "[", 
+     RowBox[{"n", "+", "1"}], "]"}], "-", 
+    RowBox[{"u", "[", "n", "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ReduceModSchemeOperator", "[", "variables", "]"}], "[", 
+  "expression", "]"}]}], "Code",
+ CellLabel->"In[28]:=",
+ CellID->1064830178,ExpressionUUID->"cdaaf2df-eb42-4bdf-bee3-df8d556e1c54"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"\<\"exp\"\>", "\[Rule]", "0"}], ",", 
+   RowBox[{"\<\"scheme\"\>", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"-", 
+       RowBox[{"u", "[", "n", "]"}]}], "+", 
+      RowBox[{"u", "[", 
+       RowBox[{"1", "+", "n"}], "]"}]}], "}"}]}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellLabel->"Out[30]=",
+ CellID->1589397983,ExpressionUUID->"9eed8224-5d4b-437a-a102-5b3fb5a84830"]
+}, Open  ]],
+
+Cell["ReduceModSchemeOperator handles parameters.", "ExampleText",
+ CellID->1303874166,ExpressionUUID->"f05c660a-5f7e-46d4-a819-e09fc9caee97"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"variables", "=", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<indVars\>\"", "->", 
+      RowBox[{"{", "n", "}"}]}], ",", 
+     RowBox[{"\"\<depVars\>\"", "->", 
+      RowBox[{"{", "u", "}"}]}], ",", 
+     RowBox[{"\"\<pars\>\"", "\[Rule]", 
+      RowBox[{"{", "a", "}"}]}], ",", 
+     RowBox[{"\"\<scheme\>\"", "->", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"u", "[", 
+         RowBox[{"n", "+", "1"}], "]"}], "-", 
+        RowBox[{"u", "[", "n", "]"}]}], "}"}]}], ",", "\n", 
+     RowBox[{"\"\<VarDOperator\>\"", "\[Rule]", "DVarDOperator"}]}], "|>"}]}],
+   ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"expression", "=", 
+   RowBox[{
+    RowBox[{"a", "*", 
+     RowBox[{"u", "[", 
+      RowBox[{"n", "+", "1"}], "]"}]}], "-", " ", 
+    RowBox[{"u", "[", "n", "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ReduceModSchemeOperator", "[", "variables", "]"}], "[", 
+  "expression", "]"}]}], "Code",
+ CellLabel->"In[34]:=",
+ CellID->1681133952,ExpressionUUID->"81a48f6d-79e2-474e-aeed-56f8f9951702"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{"\[LeftAssociation]", 
+         RowBox[{
+          RowBox[{"\<\"exp\"\>", "\[Rule]", 
+           RowBox[{"-", 
+            RowBox[{"u", "[", "n", "]"}]}]}], ",", 
+          RowBox[{"\<\"scheme\"\>", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", 
+              RowBox[{"u", "[", "n", "]"}]}], "+", 
+             RowBox[{"u", "[", 
+              RowBox[{"1", "+", "n"}], "]"}]}], "}"}]}]}], 
+         "\[RightAssociation]"}], 
+        RowBox[{"a", "\[Equal]", "0"}]},
+       {
+        RowBox[{"\[LeftAssociation]", 
+         RowBox[{
+          RowBox[{"\<\"exp\"\>", "\[Rule]", "0"}], ",", 
+          RowBox[{"\<\"scheme\"\>", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", 
+              RowBox[{"u", "[", "n", "]"}]}], "+", 
+             RowBox[{"u", "[", 
+              RowBox[{"1", "+", "n"}], "]"}]}], "}"}]}]}], 
+         "\[RightAssociation]"}], 
+        RowBox[{"a", "\[Equal]", "1"}]},
+       {
+        RowBox[{"\[LeftAssociation]", 
+         RowBox[{
+          RowBox[{"\<\"exp\"\>", "\[Rule]", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"-", "1"}], "+", "a"}], ")"}], " ", 
+            RowBox[{"u", "[", "n", "]"}]}]}], ",", 
+          RowBox[{"\<\"scheme\"\>", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"-", 
+              RowBox[{"u", "[", "n", "]"}]}], "+", 
+             RowBox[{"u", "[", 
+              RowBox[{"1", "+", "n"}], "]"}]}], "}"}]}]}], 
+         "\[RightAssociation]"}], 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"-", "1"}], "+", "a"}], ")"}], " ", "a"}], "\[NotEqual]", 
+         "0"}]},
+       {"$Failed", 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Output",
+ CellLabel->"Out[36]=",
+ CellID->234479393,ExpressionUUID->"7e777f74-beda-41fe-bc49-a06b86f1b4c8"]
+}, Open  ]],
+
+Cell["Although then the results can get pretty messy:", "ExampleText",
+ CellID->2010985292,ExpressionUUID->"86598bc0-4daf-4e69-88fb-4c988befa5b9"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"variables", "=", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<indVars\>\"", "->", 
+      RowBox[{"{", 
+       RowBox[{"n", ",", "m"}], "}"}]}], ",", 
+     RowBox[{"\"\<depVars\>\"", "->", 
+      RowBox[{"{", 
+       RowBox[{"u", ",", "v"}], "}"}]}], ",", 
+     RowBox[{"\"\<pars\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"a", ",", "b"}], "}"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"\"\<scheme\>\"", "->", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"u", "[", 
+          RowBox[{
+           RowBox[{"n", "+", "1"}], ",", "m"}], "]"}], "-", 
+         RowBox[{"u", "[", 
+          RowBox[{"n", ",", "m"}], "]"}]}], ",", 
+        RowBox[{
+         RowBox[{"v", "[", 
+          RowBox[{
+           RowBox[{"n", "+", "1"}], ",", "m"}], "]"}], "-", 
+         RowBox[{"u", "[", 
+          RowBox[{"n", ",", "m"}], "]"}]}], ",", 
+        RowBox[{
+         RowBox[{"v", "[", 
+          RowBox[{"n", ",", 
+           RowBox[{"m", "+", "1"}]}], "]"}], "-", 
+         RowBox[{"v", "[", 
+          RowBox[{"n", ",", "m"}], "]"}]}]}], "}"}]}], ",", "\n", 
+     RowBox[{"\"\<VarDOperator\>\"", "\[Rule]", "DVarDOperator"}]}], "|>"}]}],
+   ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"expression", "=", 
+   RowBox[{
+    RowBox[{"b", "*", 
+     RowBox[{"u", "[", 
+      RowBox[{
+       RowBox[{"n", "+", "1"}], ",", "m"}], "]"}]}], "-", 
+    RowBox[{"u", "[", 
+     RowBox[{
+      RowBox[{"n", "-", "1"}], ",", 
+      RowBox[{"m", "+", "2"}]}], "]"}], "+", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"a", "+", 
+       RowBox[{"u", "[", 
+        RowBox[{"n", ",", 
+         RowBox[{"m", "+", "1"}]}], "]"}], "-", 
+       RowBox[{"v", "[", 
+        RowBox[{"n", ",", "m"}], "]"}]}], ")"}], "^", "2"}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ReduceModSchemeOperator", "[", "variables", "]"}], "[", 
+  "expression", "]"}]}], "Code",
+ CellLabel->"In[40]:=",
+ CellID->1490753187,ExpressionUUID->"c46a0ed9-df5c-44d8-877f-b362c8c2a949"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{"\[LeftAssociation]", 
+         RowBox[{
+          RowBox[{"\<\"exp\"\>", "\[Rule]", 
+           RowBox[{
+            RowBox[{"-", 
+             RowBox[{"u", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"-", "1"}], "+", "n"}], ",", 
+               RowBox[{"2", "+", "m"}]}], "]"}]}], "+", 
+            SuperscriptBox[
+             RowBox[{"u", "[", 
+              RowBox[{"n", ",", 
+               RowBox[{"1", "+", "m"}]}], "]"}], "2"], "-", 
+            RowBox[{"2", " ", 
+             RowBox[{"u", "[", 
+              RowBox[{"n", ",", 
+               RowBox[{"1", "+", "m"}]}], "]"}], " ", 
+             RowBox[{"v", "[", 
+              RowBox[{"n", ",", "m"}], "]"}]}], "+", 
+            SuperscriptBox[
+             RowBox[{"v", "[", 
+              RowBox[{"n", ",", "m"}], "]"}], "2"]}]}], ",", 
+          RowBox[{"\<\"scheme\"\>", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"u", "[", 
+                RowBox[{"n", ",", "m"}], "]"}]}], "+", 
+              RowBox[{"u", "[", 
+               RowBox[{
+                RowBox[{"1", "+", "n"}], ",", "m"}], "]"}]}], ",", 
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"u", "[", 
+                RowBox[{"n", ",", "m"}], "]"}]}], "+", 
+              RowBox[{"v", "[", 
+               RowBox[{
+                RowBox[{"1", "+", "n"}], ",", "m"}], "]"}]}], ",", 
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"v", "[", 
+                RowBox[{"n", ",", "m"}], "]"}]}], "+", 
+              RowBox[{"v", "[", 
+               RowBox[{"n", ",", 
+                RowBox[{"1", "+", "m"}]}], "]"}]}]}], "}"}]}]}], 
+         "\[RightAssociation]"}], 
+        RowBox[{
+         RowBox[{"a", "\[Equal]", "0"}], "&&", 
+         RowBox[{"b", "\[Equal]", "0"}]}]},
+       {
+        RowBox[{"\[LeftAssociation]", 
+         RowBox[{
+          RowBox[{"\<\"exp\"\>", "\[Rule]", 
+           RowBox[{
+            SuperscriptBox[
+             RowBox[{"u", "[", 
+              RowBox[{"n", ",", 
+               RowBox[{"1", "+", "m"}]}], "]"}], "2"], "-", 
+            RowBox[{"2", " ", 
+             RowBox[{"u", "[", 
+              RowBox[{"n", ",", 
+               RowBox[{"1", "+", "m"}]}], "]"}], " ", 
+             RowBox[{"v", "[", 
+              RowBox[{"n", ",", "m"}], "]"}]}], "+", 
+            SuperscriptBox[
+             RowBox[{"v", "[", 
+              RowBox[{"n", ",", "m"}], "]"}], "2"]}]}], ",", 
+          RowBox[{"\<\"scheme\"\>", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"u", "[", 
+                RowBox[{"n", ",", "m"}], "]"}]}], "+", 
+              RowBox[{"u", "[", 
+               RowBox[{
+                RowBox[{"1", "+", "n"}], ",", "m"}], "]"}]}], ",", 
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"u", "[", 
+                RowBox[{"n", ",", "m"}], "]"}]}], "+", 
+              RowBox[{"v", "[", 
+               RowBox[{
+                RowBox[{"1", "+", "n"}], ",", "m"}], "]"}]}], ",", 
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"v", "[", 
+                RowBox[{"n", ",", "m"}], "]"}]}], "+", 
+              RowBox[{"v", "[", 
+               RowBox[{"n", ",", 
+                RowBox[{"1", "+", "m"}]}], "]"}]}]}], "}"}]}]}], 
+         "\[RightAssociation]"}], 
+        RowBox[{
+         RowBox[{"a", "\[Equal]", "0"}], "&&", 
+         RowBox[{"b", "\[Equal]", "1"}]}]},
+       {
+        RowBox[{"\[LeftAssociation]", 
+         RowBox[{
+          RowBox[{"\<\"exp\"\>", "\[Rule]", 
+           RowBox[{
+            SuperscriptBox[
+             RowBox[{"u", "[", 
+              RowBox[{"n", ",", 
+               RowBox[{"1", "+", "m"}]}], "]"}], "2"], "-", 
+            RowBox[{"2", " ", 
+             RowBox[{"u", "[", 
+              RowBox[{"n", ",", 
+               RowBox[{"1", "+", "m"}]}], "]"}], " ", 
+             RowBox[{"v", "[", 
+              RowBox[{"n", ",", 
+               RowBox[{"1", "+", "m"}]}], "]"}]}], "+", 
+            SuperscriptBox[
+             RowBox[{"v", "[", 
+              RowBox[{"n", ",", 
+               RowBox[{"1", "+", "m"}]}], "]"}], "2"], "+", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"-", "1"}], "+", "b"}], ")"}], " ", 
+             RowBox[{"v", "[", 
+              RowBox[{
+               RowBox[{"1", "+", "n"}], ",", "m"}], "]"}]}]}]}], ",", 
+          RowBox[{"\<\"scheme\"\>", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"u", "[", 
+                RowBox[{"n", ",", "m"}], "]"}]}], "+", 
+              RowBox[{"u", "[", 
+               RowBox[{
+                RowBox[{"1", "+", "n"}], ",", "m"}], "]"}]}], ",", 
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"u", "[", 
+                RowBox[{"n", ",", "m"}], "]"}]}], "+", 
+              RowBox[{"v", "[", 
+               RowBox[{
+                RowBox[{"1", "+", "n"}], ",", "m"}], "]"}]}], ",", 
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"v", "[", 
+                RowBox[{"n", ",", "m"}], "]"}]}], "+", 
+              RowBox[{"v", "[", 
+               RowBox[{"n", ",", 
+                RowBox[{"1", "+", "m"}]}], "]"}]}]}], "}"}]}]}], 
+         "\[RightAssociation]"}], 
+        RowBox[{
+         RowBox[{"a", "\[Equal]", "0"}], "&&", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"-", "1"}], "+", "b"}], ")"}], " ", "b"}], "\[NotEqual]",
+           "0"}]}]},
+       {
+        RowBox[{"\[LeftAssociation]", 
+         RowBox[{
+          RowBox[{"\<\"exp\"\>", "\[Rule]", 
+           RowBox[{
+            FractionBox["1", "4"], "+", 
+            SuperscriptBox[
+             RowBox[{"u", "[", 
+              RowBox[{"n", ",", 
+               RowBox[{"1", "+", "m"}]}], "]"}], "2"], "-", 
+            RowBox[{"v", "[", 
+             RowBox[{"n", ",", "m"}], "]"}], "-", 
+            RowBox[{"2", " ", 
+             RowBox[{"u", "[", 
+              RowBox[{"n", ",", 
+               RowBox[{"1", "+", "m"}]}], "]"}], " ", 
+             RowBox[{"v", "[", 
+              RowBox[{"n", ",", "m"}], "]"}]}], "+", 
+            SuperscriptBox[
+             RowBox[{"v", "[", 
+              RowBox[{"n", ",", "m"}], "]"}], "2"]}]}], ",", 
+          RowBox[{"\<\"scheme\"\>", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"u", "[", 
+                RowBox[{"n", ",", "m"}], "]"}]}], "+", 
+              RowBox[{"u", "[", 
+               RowBox[{
+                RowBox[{"1", "+", "n"}], ",", "m"}], "]"}]}], ",", 
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"u", "[", 
+                RowBox[{"n", ",", "m"}], "]"}]}], "+", 
+              RowBox[{"v", "[", 
+               RowBox[{
+                RowBox[{"1", "+", "n"}], ",", "m"}], "]"}]}], ",", 
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"v", "[", 
+                RowBox[{"n", ",", "m"}], "]"}]}], "+", 
+              RowBox[{"v", "[", 
+               RowBox[{"n", ",", 
+                RowBox[{"1", "+", "m"}]}], "]"}]}]}], "}"}]}]}], 
+         "\[RightAssociation]"}], 
+        RowBox[{
+         RowBox[{"a", "\[Equal]", 
+          FractionBox["1", "2"]}], "&&", 
+         RowBox[{"b", "\[Equal]", "0"}]}]},
+       {
+        RowBox[{"\[LeftAssociation]", 
+         RowBox[{
+          RowBox[{"\<\"exp\"\>", "\[Rule]", 
+           RowBox[{
+            SuperscriptBox["a", "2"], "+", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"-", "1"}], "+", 
+               RowBox[{"2", " ", "a"}]}], ")"}], " ", 
+             RowBox[{"u", "[", 
+              RowBox[{"n", ",", 
+               RowBox[{"1", "+", "m"}]}], "]"}]}], "+", 
+            SuperscriptBox[
+             RowBox[{"u", "[", 
+              RowBox[{"n", ",", 
+               RowBox[{"1", "+", "m"}]}], "]"}], "2"], "-", 
+            RowBox[{"2", " ", "a", " ", 
+             RowBox[{"v", "[", 
+              RowBox[{"n", ",", "m"}], "]"}]}], "-", 
+            RowBox[{"2", " ", 
+             RowBox[{"u", "[", 
+              RowBox[{"n", ",", 
+               RowBox[{"1", "+", "m"}]}], "]"}], " ", 
+             RowBox[{"v", "[", 
+              RowBox[{"n", ",", "m"}], "]"}]}], "+", 
+            SuperscriptBox[
+             RowBox[{"v", "[", 
+              RowBox[{"n", ",", "m"}], "]"}], "2"]}]}], ",", 
+          RowBox[{"\<\"scheme\"\>", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"u", "[", 
+                RowBox[{"n", ",", "m"}], "]"}]}], "+", 
+              RowBox[{"u", "[", 
+               RowBox[{
+                RowBox[{"1", "+", "n"}], ",", "m"}], "]"}]}], ",", 
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"u", "[", 
+                RowBox[{"n", ",", "m"}], "]"}]}], "+", 
+              RowBox[{"v", "[", 
+               RowBox[{
+                RowBox[{"1", "+", "n"}], ",", "m"}], "]"}]}], ",", 
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"v", "[", 
+                RowBox[{"n", ",", "m"}], "]"}]}], "+", 
+              RowBox[{"v", "[", 
+               RowBox[{"n", ",", 
+                RowBox[{"1", "+", "m"}]}], "]"}]}]}], "}"}]}]}], 
+         "\[RightAssociation]"}], 
+        RowBox[{
+         RowBox[{
+          RowBox[{"a", " ", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"-", "1"}], "+", 
+             RowBox[{"2", " ", "a"}]}], ")"}]}], "\[NotEqual]", "0"}], "&&", 
+         RowBox[{"b", "\[Equal]", "0"}]}]},
+       {
+        RowBox[{"\[LeftAssociation]", 
+         RowBox[{
+          RowBox[{"\<\"exp\"\>", "\[Rule]", 
+           RowBox[{
+            SuperscriptBox["a", "2"], "+", 
+            SuperscriptBox[
+             RowBox[{"u", "[", 
+              RowBox[{"n", ",", 
+               RowBox[{"1", "+", "m"}]}], "]"}], "2"], "-", 
+            RowBox[{"2", " ", "a", " ", 
+             RowBox[{"v", "[", 
+              RowBox[{"n", ",", "m"}], "]"}]}], "-", 
+            RowBox[{"2", " ", 
+             RowBox[{"u", "[", 
+              RowBox[{"n", ",", 
+               RowBox[{"1", "+", "m"}]}], "]"}], " ", 
+             RowBox[{"v", "[", 
+              RowBox[{"n", ",", "m"}], "]"}]}], "+", 
+            SuperscriptBox[
+             RowBox[{"v", "[", 
+              RowBox[{"n", ",", "m"}], "]"}], "2"]}]}], ",", 
+          RowBox[{"\<\"scheme\"\>", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"u", "[", 
+                RowBox[{"n", ",", "m"}], "]"}]}], "+", 
+              RowBox[{"u", "[", 
+               RowBox[{
+                RowBox[{"1", "+", "n"}], ",", "m"}], "]"}]}], ",", 
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"u", "[", 
+                RowBox[{"n", ",", "m"}], "]"}]}], "+", 
+              RowBox[{"v", "[", 
+               RowBox[{
+                RowBox[{"1", "+", "n"}], ",", "m"}], "]"}]}], ",", 
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"v", "[", 
+                RowBox[{"n", ",", "m"}], "]"}]}], "+", 
+              RowBox[{"v", "[", 
+               RowBox[{"n", ",", 
+                RowBox[{"1", "+", "m"}]}], "]"}]}]}], "}"}]}]}], 
+         "\[RightAssociation]"}], 
+        RowBox[{
+         RowBox[{"a", "\[Equal]", 
+          FractionBox[
+           RowBox[{"1", "-", "b"}], "2"]}], "&&", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", "b"}], "+", 
+           SuperscriptBox["b", "2"]}], "\[NotEqual]", "0"}]}]},
+       {
+        RowBox[{"\[LeftAssociation]", 
+         RowBox[{
+          RowBox[{"\<\"exp\"\>", "\[Rule]", 
+           RowBox[{
+            SuperscriptBox["a", "2"], "+", 
+            SuperscriptBox[
+             RowBox[{"u", "[", 
+              RowBox[{"n", ",", 
+               RowBox[{"1", "+", "m"}]}], "]"}], "2"], "-", 
+            RowBox[{"2", " ", 
+             RowBox[{"u", "[", 
+              RowBox[{"n", ",", 
+               RowBox[{"1", "+", "m"}]}], "]"}], " ", 
+             RowBox[{"v", "[", 
+              RowBox[{"n", ",", 
+               RowBox[{"1", "+", "m"}]}], "]"}]}], "+", 
+            SuperscriptBox[
+             RowBox[{"v", "[", 
+              RowBox[{"n", ",", 
+               RowBox[{"1", "+", "m"}]}], "]"}], "2"]}]}], ",", 
+          RowBox[{"\<\"scheme\"\>", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"u", "[", 
+                RowBox[{"n", ",", "m"}], "]"}]}], "+", 
+              RowBox[{"u", "[", 
+               RowBox[{
+                RowBox[{"1", "+", "n"}], ",", "m"}], "]"}]}], ",", 
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"u", "[", 
+                RowBox[{"n", ",", "m"}], "]"}]}], "+", 
+              RowBox[{"v", "[", 
+               RowBox[{
+                RowBox[{"1", "+", "n"}], ",", "m"}], "]"}]}], ",", 
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"v", "[", 
+                RowBox[{"n", ",", "m"}], "]"}]}], "+", 
+              RowBox[{"v", "[", 
+               RowBox[{"n", ",", 
+                RowBox[{"1", "+", "m"}]}], "]"}]}]}], "}"}]}]}], 
+         "\[RightAssociation]"}], 
+        RowBox[{
+         RowBox[{"b", "\[Equal]", "1"}], "&&", 
+         RowBox[{"a", "\[NotEqual]", "0"}]}]},
+       {
+        RowBox[{"\[LeftAssociation]", 
+         RowBox[{
+          RowBox[{"\<\"exp\"\>", "\[Rule]", 
+           RowBox[{
+            SuperscriptBox["a", "2"], "+", 
+            SuperscriptBox[
+             RowBox[{"u", "[", 
+              RowBox[{"n", ",", 
+               RowBox[{"1", "+", "m"}]}], "]"}], "2"], "+", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"-", "1"}], "+", "b"}], ")"}], " ", 
+             RowBox[{"v", "[", 
+              RowBox[{"n", ",", 
+               RowBox[{"1", "+", "m"}]}], "]"}]}], "-", 
+            RowBox[{"2", " ", 
+             RowBox[{"u", "[", 
+              RowBox[{"n", ",", 
+               RowBox[{"1", "+", "m"}]}], "]"}], " ", 
+             RowBox[{"v", "[", 
+              RowBox[{"n", ",", 
+               RowBox[{"1", "+", "m"}]}], "]"}]}], "+", 
+            SuperscriptBox[
+             RowBox[{"v", "[", 
+              RowBox[{"n", ",", 
+               RowBox[{"1", "+", "m"}]}], "]"}], "2"]}]}], ",", 
+          RowBox[{"\<\"scheme\"\>", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"u", "[", 
+                RowBox[{"n", ",", "m"}], "]"}]}], "+", 
+              RowBox[{"u", "[", 
+               RowBox[{
+                RowBox[{"1", "+", "n"}], ",", "m"}], "]"}]}], ",", 
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"u", "[", 
+                RowBox[{"n", ",", "m"}], "]"}]}], "+", 
+              RowBox[{"v", "[", 
+               RowBox[{
+                RowBox[{"1", "+", "n"}], ",", "m"}], "]"}]}], ",", 
+             RowBox[{
+              RowBox[{"-", 
+               RowBox[{"v", "[", 
+                RowBox[{"n", ",", "m"}], "]"}]}], "+", 
+              RowBox[{"v", "[", 
+               RowBox[{"n", ",", 
+                RowBox[{"1", "+", "m"}]}], "]"}]}]}], "}"}]}]}], 
+         "\[RightAssociation]"}], 
+        RowBox[{
+         RowBox[{"a", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"-", "1"}], "+", "b"}], ")"}], " ", "b", " ", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"-", "1"}], "+", 
+            RowBox[{"2", " ", "a"}], "+", "b"}], ")"}]}], "\[NotEqual]", 
+         "0"}]},
+       {"$Failed", 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Output",
+ CellLabel->"Out[42]=",
+ CellID->1932816602,ExpressionUUID->"06963a24-ab5b-4637-bb26-3031514bf92d"]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellLabel->"In[1]:=",
+ CellID->1407936298,ExpressionUUID->"9d461aff-8aa8-4dab-976b-f4630e999994"],
+
+Cell["\<\
+If no scheme is specified, by default the operator uses \"scheme\"->{0}:\
+\>", "ExampleText",
+ CellID->442638214,ExpressionUUID->"693472db-d7c2-4a76-ace5-21b298e5e4c9"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"variables", "=", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<indVars\>\"", "->", 
+      RowBox[{"{", 
+       RowBox[{"n", ",", "t"}], "}"}]}], ",", 
+     RowBox[{"\"\<depVars\>\"", "->", 
+      RowBox[{"{", "u", "}"}]}]}], "|>"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"expression", "=", 
+   RowBox[{
+    RowBox[{"u", "[", 
+     RowBox[{
+      RowBox[{"n", "+", "1"}], ",", "t"}], "]"}], "-", 
+    RowBox[{"u", "[", 
+     RowBox[{"n", ",", "t"}], "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ReduceModSchemeOperator", "[", "variables", "]"}], "[", 
+  "expression", "]"}]}], "Code",
+ CellLabel->"In[43]:=",
+ CellID->1058971804,ExpressionUUID->"05ed0150-6d51-4776-b689-c6637778a28d"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"\<\"exp\"\>", "\[Rule]", "0"}], ",", 
+   RowBox[{"\<\"scheme\"\>", "\[Rule]", 
+    RowBox[{"{", "0", "}"}]}]}], "\[RightAssociation]"}]], "Output",
+ CellLabel->"Out[45]=",
+ CellID->775878516,ExpressionUUID->"7a1e0055-5ff1-405b-8f9b-5e59a2869d4b"]
+}, Open  ]],
+
+Cell["\<\
+The operator tries to do the reduction as follows: First, it computes a \
+Groebner Basis of the scheme by using the build-in GroebnerBasis function \
+with variables explicitly ordered in time, where time is the last variable. \
+Then it tries to reduce the expression using the PolynomialReduce function. \
+As a second try, it takes the original expression and the original scheme and \
+tries to successively eliminate the instances of the dependent variables in \
+the expression using the scheme. The order of elimination can be specified by \
+passing the name of an operator taking the expression and returning a list of \
+lists with the instances of the dependent variables in a specific order: To \
+do so, you need to specify the key \"EliminationListOperator\" with the name \
+of the operator in variables. By default the algorithm will use the explicit \
+ordering, i.e. eliminate variables with later time before variables with \
+earlier time. After those eliminations, the ReduceModSchemeOperator picks the \
+resulting expression out of the list of the standard reduction and all the \
+elimination-reductions that has the least instances of dependent variables \
+with different times and returns it.\
+\>", "ExampleText",
+ CellID->554509009,ExpressionUUID->"5f50b985-bfdd-4d0f-8757-5023df7cf173"]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "0"}, 
+  Closed]]]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "1"},
+        Closed], 
+      Alternatives[Open, True]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{14., {0.45000000000000107`, 13.549999999999999`}}]],
+  ExpressionUUID->"461b3bf7-f2b2-497a-9ad0-0b7eebad7693"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"6e6061e7-d9e2-4b29-9743-d1c382747817"],
+ "Options",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(1)", "ExampleCount",ExpressionUUID->
+  "381dfb01-2943-443b-87c9-0e99bca8db32"]
+}], "ExampleSection", "ExampleSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellID->2061341341,ExpressionUUID->"cb2cfa28-4fc1-4188-b1f6-c6b35b30eb3d"],
+
+Cell["\<\
+By adding \"intersect\"->True to the variables, one can specify that the \
+operator should try to reduce the expression by translating the scheme such \
+that the stencil of the scheme intersects with the range of the stencil of \
+the expression. If not specified it will only stay inside the range of the \
+stencil of the expression (more information can be found in the documentation \
+for RangeSchemeTranslationsOperator). This can help in some cases to reduce \
+the scheme to an easier expression.\
+\>", "ExampleText",
+ CellID->893682026,ExpressionUUID->"81d88096-a30f-44b9-b9de-7d63df551fe6"],
+
+Cell["\<\
+If one specifies \"reduce Beautify\"->False in the variables, the code will \
+NOT simplify the expression after use of the standard GroebnerBasis and after \
+every step of eliminating one variable using IntegralEquivalenceClassOperator \
+(the default is True).\
+\>", "ExampleText",
+ CellID->282562369,ExpressionUUID->"024abb02-b65e-4887-8f87-93a253d5ba4c"],
+
+Cell["\<\
+When one uses the default EliminationListOperator, by default the algorithm \
+will use the explicit elimination order. One can also specify, using the key \
+\"elimOrder\", the order of the elimination to be \"implicit\" or \
+\"permutations\". Using \"permutations\" is of course the best possibility as \
+it will try all possible order combinations of variables, but it also will \
+result in a computationally costly operation with long runtime.\
+\>", "ExampleText",
+ CellID->1639828901,ExpressionUUID->"8772b500-705d-4c54-a1d9-d41c99a03f39"]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "1"}, 
+  Closed]]]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "2"},
+        Closed], 
+      Alternatives[Open, True]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{14., {0.45000000000000107`, 13.549999999999999`}}]],
+  ExpressionUUID->"99a12b1b-22dc-4d4a-9dcb-9502f1bf467a"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"4dfb8376-e1c8-4d99-b59e-cd2243e33311"],
+ "Possible Issues",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(1)", "ExampleCount",ExpressionUUID->
+  "35772181-2ce9-4031-acee-bd02d658bfbf"]
+}], "ExampleSection", "ExampleSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellID->1305812373,ExpressionUUID->"85a4cfa8-da16-47e0-b9ff-b2009b345a0c"],
+
+Cell["ReduceModSchemeOperator can have a long runtime:", "ExampleText",
+ CellID->1971546439,ExpressionUUID->"aa21a21b-06b1-4e88-ad3c-9bf9a8e29c31"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"variables", "=", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<indVars\>\"", "->", 
+      RowBox[{"{", 
+       RowBox[{"n", ",", "m"}], "}"}]}], ",", 
+     RowBox[{"\"\<depVars\>\"", "->", 
+      RowBox[{"{", 
+       RowBox[{"u", ",", "v"}], "}"}]}], ",", 
+     RowBox[{"\"\<pars\>\"", "\[Rule]", 
+      RowBox[{"{", "a", "}"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"\"\<scheme\>\"", "->", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"u", "[", 
+          RowBox[{
+           RowBox[{"n", "+", "1"}], ",", "m"}], "]"}], "-", 
+         RowBox[{"u", "[", 
+          RowBox[{"n", ",", "m"}], "]"}]}], ",", 
+        RowBox[{
+         RowBox[{"v", "[", 
+          RowBox[{
+           RowBox[{"n", "+", "1"}], ",", "m"}], "]"}], "-", 
+         RowBox[{"u", "[", 
+          RowBox[{"n", ",", "m"}], "]"}]}], ",", 
+        RowBox[{
+         RowBox[{"v", "[", 
+          RowBox[{"n", ",", 
+           RowBox[{"m", "+", "1"}]}], "]"}], "-", 
+         RowBox[{"v", "[", 
+          RowBox[{"n", ",", "m"}], "]"}]}]}], "}"}]}]}], "|>"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"expression", "=", 
+   RowBox[{
+    RowBox[{"u", "[", 
+     RowBox[{
+      RowBox[{"n", "+", "1"}], ",", "m"}], "]"}], "-", 
+    RowBox[{"2", " ", 
+     RowBox[{"u", "[", 
+      RowBox[{
+       RowBox[{"n", "-", "1"}], ",", 
+       RowBox[{"m", "+", "2"}]}], "]"}]}], "-", 
+    RowBox[{"v", "[", 
+     RowBox[{
+      RowBox[{"n", "-", "1"}], ",", 
+      RowBox[{"m", "-", "2"}]}], "]"}], "+", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"a", "+", 
+        RowBox[{"u", "[", 
+         RowBox[{"n", ",", 
+          RowBox[{"m", "+", "4"}]}], "]"}], "-", 
+        RowBox[{"v", "[", 
+         RowBox[{
+          RowBox[{"n", "-", "1"}], ",", 
+          RowBox[{"m", "-", "2"}]}], "]"}]}], ")"}], "^", "2"}], " ", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "+", 
+        RowBox[{"u", "[", 
+         RowBox[{
+          RowBox[{"n", "+", "3"}], ",", 
+          RowBox[{"m", "-", "4"}]}], "]"}], "-", 
+        RowBox[{"v", "[", 
+         RowBox[{
+          RowBox[{"n", "-", "1"}], ",", 
+          RowBox[{"m", "+", "2"}]}], "]"}]}], ")"}], "^", "2"}]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ReduceModSchemeOperator", "[", "variables", "]"}], "[", 
+  "expression", "]"}]}], "Input",
+ CellLabel->"In[1]:=",
+ CellID->731339864,ExpressionUUID->"a8adac3b-ba25-49e0-8a34-b8caae6a0bd3"]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "2"}, 
+  Closed]]]]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, 
+  Closed]]]],
+
+Cell[BoxData[GridBox[{
+   {
+    DynamicBox[FEPrivate`ImportImage[
+      FrontEnd`FileName[{"Documentation", "FooterIcons"}, 
+       "RelatedFunction.png"]],
+     ImageSizeCache->{50., {27., 33.}}], GridBox[{
+      {
+       StyleBox[
+        RowBox[{"See", " ", "Also"}], "SeeAlsoSection"]},
+      {Cell[TextData[{
+        Cell[BoxData[
+         TemplateBox[{
+           Cell[
+            TextData["RangeSchemeTranslationsOperator"]], 
+           "paclet:PDESymbolics2022/ref/RangeSchemeTranslationsOperator", 
+           "PDESymbolics2022 Package Symbol"},
+          "PackageLink",
+          BaseStyle->"InlineFormula"]], "InlineFormula",
+         FontFamily->"Source Sans Pro",ExpressionUUID->
+         "4d0a010f-ab34-471f-8ae7-0bf5c849ad44"],
+        "\[NonBreakingSpace]",
+        StyleBox[
+        "\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+         "InlineSeparator"],
+        " ",
+        Cell[BoxData[
+         TemplateBox[{
+           Cell[
+            TextData["GroebnerBasis"]], "paclet:ref/GroebnerBasis"},
+          "RefLink",
+          BaseStyle->{"InlineFormula"}]], "InlineFormula",
+         FontFamily->"Source Sans Pro",ExpressionUUID->
+         "1d791971-275d-4448-9d94-1871e8abea0d"],
+        "\[NonBreakingSpace]",
+        StyleBox[
+        "\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+         "InlineSeparator"],
+        " ",
+        Cell[BoxData[
+         TemplateBox[{
+           Cell[
+            TextData["PolynomialReduce"]], "paclet:ref/PolynomialReduce"},
+          "RefLink",
+          BaseStyle->{"InlineFormula"}]], "InlineFormula",
+         FontFamily->"Source Sans Pro",ExpressionUUID->
+         "a4c57ecc-ad1a-4ce4-bd88-ed51317c25ce"]
+       }], "SeeAlso",ExpressionUUID->"aaaec9cc-5658-4ceb-8790-6b70e3434bff"]}
+     }]}
+  }]], "SeeAlsoSection",ExpressionUUID->"ecce2135-be2f-449e-bf30-\
+3b2178cae3b2"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[GridBox[{
+   {
+    DynamicBox[FEPrivate`ImportImage[
+      FrontEnd`FileName[{"Documentation", "FooterIcons"}, "RelatedGuide.png"]],
+     ImageSizeCache->{50., {27., 33.}}], GridBox[{
+      {
+       StyleBox[
+        RowBox[{"Related", " ", "Guides"}], "MoreAboutSection"]},
+      {
+       RowBox[{"\[FilledVerySmallSquare]", Cell[BoxData[
+         TemplateBox[{
+           Cell[
+            TextData["PDESymbolics"]], 
+           "paclet:PDESymbolics2022/guide/PDESymbolics"},
+          "RefLinkPlain",
+          BaseStyle->{"MoreAbout"}]], "MoreAbout",ExpressionUUID->
+         "d6b62b47-360d-49c9-925d-a53498899507"]}]}
+     }]}
+  }]], "MoreAboutSection",ExpressionUUID->"24e5bfce-f9c2-4f6f-824f-\
+99cdb2ae0dd0"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[If[CurrentValue[
+      EvaluationNotebook[], {TaggingRules, "ShowCitation"}] === False, 
+    TagBox[
+     ButtonBox[
+      FrameBox[
+       RowBox[{
+         DynamicBox[
+          FEPrivate`FrontEndResource[
+          "DocumentationExpressions", "CitationArrow"]], 
+         StyleBox[
+          DynamicBox[
+           FEPrivate`FrontEndResource["DocumentationStrings", "CiteThisAs"]], 
+          "CitationButtonText"]}]], BaseStyle -> "CiteThisAsButton"], 
+     MouseAppearanceTag["LinkHand"]], 
+    StyleBox[
+     TemplateBox[{86, 22}, "Spacer2"]]],
+   ImageSizeCache->{91., {7., 17.}}]], "CitationCell",ExpressionUUID->
+  "999d9034-9dbc-4568-b730-90936fd4d311"],
+ Cell[BoxData[
+  TemplateBox[{8},
+   "Spacer1"]],ExpressionUUID->"85dcbd34-dbe1-4de4-8098-c907ba3e4cd8"],
+ Cell[BoxData[
+  DynamicBox[If[CurrentValue[
+      EvaluationNotebook[], {TaggingRules, "ShowCitation"}] === False, 
+    StyleBox[
+     TemplateBox[{
+       Part[
+        CurrentValue[
+         EvaluationNotebook[], {TaggingRules, "CitationPopupData"}], 1]}, 
+      "ClickToCopy", BaseStyle -> "CitationText"], "CitationText"], 
+    StyleBox[
+     TemplateBox[{86, 22}, "Spacer2"]]],
+   ImageSizeCache->{565., {24., 15.}}]],ExpressionUUID->
+  "6f62fba9-aa55-49b1-9b30-cbe8d9e8b65c"]
+}], "CitationContainerCell",ExpressionUUID->"4ede7c02-8350-418d-b14b-\
+7d82ddc3777c"]
+}, Open  ]],
+
+Cell[" ", "FooterCell",ExpressionUUID->"7cc20c80-ac7d-4cfd-89f8-16b9ed58f339"]
+},
+Saveable->False,
+ScreenStyleEnvironment->"Working",
+WindowSize->{900, 830},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowTitle->"ReduceModSchemeOperator",
+TaggingRules->{
+ "ModificationHighlight" -> False, "ColorType" -> "", "LinkTrails" -> "", 
+  "HasOptions" -> True, "ExampleCounter" -> 1, 
+  "Openers" -> {
+   "PrimaryExamplesSection" -> Open, 
+    "ExampleSection" -> {"0" -> Open, "1" -> Closed, "2" -> Closed}, 
+    "NotesSection" -> Closed}, "NewStyles" -> True, 
+  "CitationPopupData" -> {
+   "Wolfram Research (0), ReduceModSchemeOperator, Wolfram Language function, \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/\
+ReduceModSchemeOperator.html.", 
+    GridBox[{{
+       ItemBox["", ItemSize -> "Fit"], 
+       ItemBox[
+        TagBox[
+         ButtonBox[
+          DynamicBox[
+           FEPrivate`FrontEndResource[
+           "DocumentationExpressions", "CitationCloseButton"]], BaseStyle -> 
+          "CitationPopupCloseButton", Appearance -> None], 
+         MouseAppearanceTag["LinkHand"]], Alignment -> Right]}, {
+       Cell[
+        TextData[{
+          StyleBox["Text", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "Wolfram Research (0), ReduceModSchemeOperator, Wolfram \
+Language function, \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/\
+ReduceModSchemeOperator.html.", TextForm]}, "ClickToCopy", BaseStyle -> 
+               "CitationText"], ShowStringCharacters -> True], 
+             "CitationText"]]]}]], "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["CMS", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "Wolfram Language. 0. \"ReduceModSchemeOperator.\" Wolfram \
+Language & System Documentation Center. Wolfram Research. \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/\
+ReduceModSchemeOperator.html.", TextForm]}, "ClickToCopy", BaseStyle -> 
+               "CitationText"], ShowStringCharacters -> True], 
+             "CitationText"]]]}]], "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["APA", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "Wolfram Language. (0). ReduceModSchemeOperator. Wolfram \
+Language & System Documentation Center. Retrieved from \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/\
+ReduceModSchemeOperator.html", TextForm]}, "ClickToCopy", BaseStyle -> 
+               "CitationText"], ShowStringCharacters -> True], 
+             "CitationText"]]]}]], "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["BibTeX", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "@misc{reference.wolfram_2023_reducemodschemeoperator, \
+author=\"Wolfram Research\", title=\"{ReduceModSchemeOperator}\", year=\"0\", \
+howpublished=\"\\url{https://reference.wolfram.com/language/PDESymbolics2022/\
+ref/ReduceModSchemeOperator.html}\", note=\"[version 12.1]\"}", TextForm]}, 
+               "ClickToCopy", BaseStyle -> "CitationText"], 
+              ShowStringCharacters -> True], "CitationText"]]]}]], 
+       "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["BibLaTeX", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "@online{reference.wolfram_2023_reducemodschemeoperator, \
+organization={Wolfram Research}, title={ReduceModSchemeOperator}, year={0}, \
+url={https://reference.wolfram.com/language/PDESymbolics2022/ref/\
+ReduceModSchemeOperator.html}, note=\"[version 12.1]\"}", TextForm]}, 
+               "ClickToCopy", BaseStyle -> "CitationText"], 
+              ShowStringCharacters -> True], "CitationText"]]]}]], 
+       "\[SpanFromLeft]"}}]}, "ShowCitation" -> False, "RootCaptions" -> "", 
+  "Metadata" -> {
+   "built" -> "{2023, 1, 11, 10, 34, 45.190933}", 
+    "history" -> {"0.0", "", "", ""}, "context" -> "PDESymbolics2022`", 
+    "keywords" -> {}, "specialkeywords" -> {}, 
+    "tutorialcollectionlinks" -> {}, "index" -> True, "label" -> 
+    "PDE Symbolics2022 Symbol", "language" -> "en", "paclet" -> 
+    "PDESymbolics2022", "status" -> "None", "summary" -> 
+    "ReduceModSchemeOperator[variables][expression] takes an expression and \
+reduces it using the scheme given in the variables. Returns an association \
+with the reduced expression and the used scheme or GroebnerBasis.", 
+    "synonyms" -> {}, "tabletags" -> {}, "title" -> "ReduceModSchemeOperator",
+     "titlemodifier" -> "", "windowtitle" -> "ReduceModSchemeOperator", 
+    "type" -> "Symbol", "uri" -> 
+    "PDESymbolics2022/ref/ReduceModSchemeOperator"}},
+CellContext->"Global`",
+FrontEndVersion->"12.3 for Mac OS X x86 (64-bit) (July 9, 2021)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[
+    StyleDefinitions -> FrontEnd`FileName[{"Wolfram"}, "Reference.nb"]]], 
+   Cell[
+    StyleData["Input"], CellContext -> "Global`"], 
+   Cell[
+    StyleData["Output"], CellContext -> "Global`"]}, Visible -> False, 
+  FrontEndVersion -> "12.3 for Mac OS X x86 (64-bit) (July 9, 2021)", 
+  StyleDefinitions -> "Default.nb"],
+ExpressionUUID->"8b5682f6-7c89-4d3c-8237-8fbbe7ff8fed"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "PrimaryExamplesSection"->{
+  Cell[10056, 260, 1390, 37, 36, "PrimaryExamplesSection",ExpressionUUID->"42ccd997-66fc-49ed-b066-34ab2a8edae2",
+   CellTags->"PrimaryExamplesSection",
+   CellID->1683322489]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"PrimaryExamplesSection", 58616, 1592}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[595, 21, 5851, 140, 57, "AnchorBarGrid",ExpressionUUID->"10754223-004c-49fc-b106-0288747d4e5e",
+ CellID->1],
+Cell[6449, 163, 99, 0, 23, "ContextNameCell",ExpressionUUID->"4b11e5d9-218d-44a6-82c1-0dd263cdff27"],
+Cell[CellGroupData[{
+Cell[6573, 167, 566, 14, 60, "ObjectNameGrid",ExpressionUUID->"b73dd337-6502-417b-9dbc-edb567710eda"],
+Cell[7142, 183, 631, 13, 112, "Usage",ExpressionUUID->"ceddfd17-c4cb-4359-b1de-df90b111d702",
+ CellID->982511436]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7810, 201, 1898, 47, 37, "NotesSection",ExpressionUUID->"91224e2b-0611-4ccf-9738-16674de9fc75",
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->717163179],
+Cell[9711, 250, 218, 4, 36, "Notes",ExpressionUUID->"1d354878-4bbe-452f-822e-fca6d3438d33",
+ CellID->1067943069]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, Closed]]]],
+Cell[CellGroupData[{
+Cell[10056, 260, 1390, 37, 36, "PrimaryExamplesSection",ExpressionUUID->"42ccd997-66fc-49ed-b066-34ab2a8edae2",
+ CellTags->"PrimaryExamplesSection",
+ CellID->1683322489],
+Cell[CellGroupData[{
+Cell[11471, 301, 1367, 36, 31, "ExampleSection",ExpressionUUID->"b188ce12-6a60-4962-bde3-882d90fc468a",
+ CellID->651507045],
+Cell[12841, 339, 180, 3, 52, "Code",ExpressionUUID->"12a987c1-7c1e-4971-8e18-4528a71383d1",
+ CellID->407649076],
+Cell[13024, 344, 362, 6, 57, "ExampleText",ExpressionUUID->"49063f23-9e0d-4d51-a7da-6094f0aadf3c",
+ CellID->1797839518],
+Cell[CellGroupData[{
+Cell[13411, 354, 881, 26, 87, "Code",ExpressionUUID->"cdaaf2df-eb42-4bdf-bee3-df8d556e1c54",
+ CellID->1064830178],
+Cell[14295, 382, 460, 13, 39, "Output",ExpressionUUID->"9eed8224-5d4b-437a-a102-5b3fb5a84830",
+ CellID->1589397983]
+}, Open  ]],
+Cell[14770, 398, 142, 1, 38, "ExampleText",ExpressionUUID->"f05c660a-5f7e-46d4-a819-e09fc9caee97",
+ CellID->1303874166],
+Cell[CellGroupData[{
+Cell[14937, 403, 1072, 30, 104, "Code",ExpressionUUID->"81a48f6d-79e2-474e-aeed-56f8f9951702",
+ CellID->1681133952],
+Cell[16012, 435, 3008, 88, 97, "Output",ExpressionUUID->"7e777f74-beda-41fe-bc49-a06b86f1b4c8",
+ CellID->234479393]
+}, Open  ]],
+Cell[19035, 526, 146, 1, 38, "ExampleText",ExpressionUUID->"86598bc0-4daf-4e69-88fb-4c988befa5b9",
+ CellID->2010985292],
+Cell[CellGroupData[{
+Cell[19206, 531, 2028, 61, 121, "Code",ExpressionUUID->"c46a0ed9-df5c-44d8-877f-b362c8c2a949",
+ CellID->1490753187],
+Cell[21237, 594, 17219, 475, 381, "Output",ExpressionUUID->"06963a24-ab5b-4637-bb26-3031514bf92d",
+ CellID->1932816602]
+}, Open  ]],
+Cell[38471, 1072, 125, 2, 70, "Input",ExpressionUUID->"9d461aff-8aa8-4dab-976b-f4630e999994",
+ CellID->1407936298],
+Cell[38599, 1076, 178, 3, 70, "ExampleText",ExpressionUUID->"693472db-d7c2-4a76-ace5-21b298e5e4c9",
+ CellID->442638214],
+Cell[CellGroupData[{
+Cell[38802, 1083, 756, 22, 70, "Code",ExpressionUUID->"05ed0150-6d51-4776-b689-c6637778a28d",
+ CellID->1058971804],
+Cell[39561, 1107, 315, 7, 39, "Output",ExpressionUUID->"7a1e0055-5ff1-405b-8f9b-5e59a2869d4b",
+ CellID->775878516]
+}, Open  ]],
+Cell[39891, 1117, 1311, 18, 70, "ExampleText",ExpressionUUID->"5f50b985-bfdd-4d0f-8757-5023df7cf173",
+ CellID->554509009]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "0"}, Closed]]]],
+Cell[CellGroupData[{
+Cell[41339, 1142, 1396, 36, 70, "ExampleSection",ExpressionUUID->"cb2cfa28-4fc1-4188-b1f6-c6b35b30eb3d",
+ CellID->2061341341],
+Cell[42738, 1180, 606, 9, 70, "ExampleText",ExpressionUUID->"81d88096-a30f-44b9-b9de-7d63df551fe6",
+ CellID->893682026],
+Cell[43347, 1191, 366, 6, 70, "ExampleText",ExpressionUUID->"024abb02-b65e-4887-8f87-93a253d5ba4c",
+ CellID->282562369],
+Cell[43716, 1199, 552, 8, 70, "ExampleText",ExpressionUUID->"8772b500-705d-4c54-a1d9-d41c99a03f39",
+ CellID->1639828901]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "1"}, Closed]]]],
+Cell[CellGroupData[{
+Cell[44405, 1214, 1404, 36, 70, "ExampleSection",ExpressionUUID->"85a4cfa8-da16-47e0-b9ff-b2009b345a0c",
+ CellID->1305812373],
+Cell[45812, 1252, 147, 1, 70, "ExampleText",ExpressionUUID->"aa21a21b-06b1-4e88-ad3c-9bf9a8e29c31",
+ CellID->1971546439],
+Cell[45962, 1255, 2479, 77, 70, "Input",ExpressionUUID->"a8adac3b-ba25-49e0-8a34-b8caae6a0bd3",
+ CellID->731339864]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "2"}, Closed]]]]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, Closed]]]],
+Cell[48671, 1340, 1864, 49, 70, "SeeAlsoSection",ExpressionUUID->"ecce2135-be2f-449e-bf30-3b2178cae3b2"],
+Cell[CellGroupData[{
+Cell[50560, 1393, 728, 19, 70, "MoreAboutSection",ExpressionUUID->"24e5bfce-f9c2-4f6f-824f-99cdb2ae0dd0"],
+Cell[51291, 1414, 1383, 37, 70, "CitationContainerCell",ExpressionUUID->"4ede7c02-8350-418d-b14b-7d82ddc3777c"]
+}, Open  ]],
+Cell[52689, 1454, 78, 0, 70, "FooterCell",ExpressionUUID->"7cc20c80-ac7d-4cfd-89f8-16b9ed58f339"]
+}
+]
+*)
+
+(* End of internal cache information *)
+

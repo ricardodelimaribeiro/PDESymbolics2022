@@ -1,0 +1,178 @@
+
+		<!DOCTYPE html>
+		<html lang="en">
+
+		<head>
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset="utf-8">
+	
+
+<title>ReduceModSchemeOperator&mdash;Wolfram Language Documentation</title>
+<meta name="buildnumber" content="0000000">
+<meta name="historydata" content="{0.0, , , }" />
+<meta name="keywords" content="ReduceModSchemeOperator" />
+
+<meta name="description" content="ReduceModSchemeOperator[variables][expression] takes an expression and reduces it using the scheme given in the variables. Returns an association with the reduced expression and the used scheme or GroebnerBasis." />
+<link rel="stylesheet" href="../../common/framework/css/framework.en.css"><link rel="stylesheet" href="../../common/framework/css/gui.en.css"><link rel="stylesheet" href="../../common/js/clipboard/2.0/clipboard.css"><link rel="stylesheet" href="../../fonts/source-code-pro/1.0/all.css"><link rel="stylesheet" href="../../fonts/source-sans-pro/1.0/global.css"><link rel="stylesheet" href="../../language-assets/css/entities.css"><link rel="stylesheet" href="../../language-assets/css/footer.css"><link rel="stylesheet" href="../../language-assets/css/global.css"><link rel="stylesheet" href="../../language-assets/css/guide.css"><link rel="stylesheet" href="../../language-assets/css/header-language.css"><link rel="stylesheet" href="../../language-assets/css/iconography.css"><link rel="stylesheet" href="../../language-assets/css/icons.css"><link rel="stylesheet" href="../../language-assets/css/in-out.css"><link rel="stylesheet" href="../../language-assets/css/language-specific.css"><link rel="stylesheet" href="../../language-assets/css/language.css"><link rel="stylesheet" href="../../language-assets/css/man-page.css"><link rel="stylesheet" href="../../language-assets/css/related-links.css"><link rel="stylesheet" href="../../language-assets/css/root-guide-language.css"><link rel="stylesheet" href="../../language-assets/css/special-styles.css"><link rel="stylesheet" href="../../language-assets/css/tables.css"><link rel="stylesheet" href="../../language-assets/css/technotes.css"><link rel="stylesheet" href="../../language-assets/css/tooltips.css"><link rel="stylesheet" href="../../language-assets/css/workflows.css">
+<script>var baselang = 'ReduceModSchemeOperator.en';</script>
+</head>
+
+<body id="ref" class="package">
+  <main class="main">
+  <nav class="topContentWrap"><span class="badge">PDE SYMBOLICS2022 SYMBOL</span><ul class="dropdown">
+   <li>
+    <a href="#" class="menu see-also">See Also</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="http://reference.wolfram.com/language/ref/GroebnerBasis.html"><span class="dropdownPad">GroebnerBasis</span></a>
+     </li>
+     <li>
+      <a href="http://reference.wolfram.com/language/ref/PolynomialReduce.html"><span class="dropdownPad">PolynomialReduce</span></a>
+     </li>
+     <li>
+      <hr />
+     </li>
+     <li class="other sub-ref-heading">Functions</li>
+     <li>
+      <a class="sub-ref" href="../ref/RangeSchemeTranslationsOperator.html"><span class="dropdownPad">RangeSchemeTranslationsOperator</span></a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="#" class="menu related-guides">Related Guides</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="../guide/PDESymbolics.html"><span class="dropdownPad">PDESymbolics</span></a>
+     </li>
+    </ul>
+   </li>
+  </ul></nav><div class="ContextNameCell">PDESymbolics2022`</div><div class="main-heading"><span class="main-title-top">PDESymbolics2022`</span><h1 class="main-title">ReduceModSchemeOperator</h1><div class="iconography" data-src="s= d= m= c= u= l= n= e="></div></div><div class="functionIntroWrap">
+  <div class="functionIntro"><span class="IF"><span class="specialcharacters">ReduceModSchemeOperator<span class="openbracket">[</span>variables<span class="closebracket">]</span><span class="openbracket">[</span>expression<span class="closebracket">]</span></span></span> takes an expression and reduces it using the scheme given in the variables. Returns an association with the reduced expression and the used scheme or GroebnerBasis.</div>
+ </div><section id="DetailsAndOptions"><div class="inner">
+   <h1 class="toggle">Details and Options</h1>
+   <div class="hideable">
+    <ul class="functionList">
+     <li><a name="1067943069"></a>To use ReduceModSchemeOperator, you first need to load the PDESymbolics Package using Needs[&quot;PDESymbolics2022`&quot;].</li>
+    </ul>
+   </div>
+  </div></section><section id="Examples"><h1 class="toggle open">Examples</h1><span class="open-all on">open all</span><span class="close-all">close all</span><div class="hideable">
+   <div>
+    <h2 class="toggle open">Basic Examples<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span class="total-examples">(1)</span></h2>
+    <div class="hideable">
+     <div class="Code">
+      <pre>Needs[&quot;PDESymbolics2022`&quot;]</pre>
+     </div>
+     <p><a name="1797839518"></a>The scheme should be understood as the righthandside of the equation 0 = scheme or the system of equations {0,...,0} = scheme in case the scheme is multidimensional. The scheme should always be specified as a list even if it is only one-dimensional.</p>
+     <div class="Code">
+      <pre>variables=&lt;|&quot;indVars&quot;-&gt;{n},&quot;depVars&quot;-&gt;{u},&quot;scheme&quot;-&gt;{u[n+1]-u[n]}|&gt;;<br />expression=u[n+1]-u[n];<br />ReduceModSchemeOperator[variables][expression]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[30]="
+         data-out-num="30"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/ReduceModSchemeOperator.en/O_1.png"
+         data-out-width="203"
+         data-out-height="16"
+         ></div>
+     <p><a name="1303874166"></a>ReduceModSchemeOperator handles parameters.</p>
+     <div class="Code">
+      <pre>variables=&lt;|&quot;indVars&quot;-&gt;{n},&quot;depVars&quot;-&gt;{u},&quot;pars&quot;<span class="special-character Rule">&#62754;</span>{a},&quot;scheme&quot;-&gt;{u[n+1]-u[n]},<br />&quot;VarDOperator&quot;<span class="special-character Rule">&#62754;</span>DVarDOperator|&gt;;<br />expression=a*u[n+1]- u[n];<br />ReduceModSchemeOperator[variables][expression]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[36]="
+         data-out-num="36"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/ReduceModSchemeOperator.en/O_2.png"
+         data-out-width="337"
+         data-out-height="64"
+         ></div>
+     <p><a name="2010985292"></a>Although then the results can get pretty messy:</p>
+     <div class="Code">
+      <pre>variables=&lt;|&quot;indVars&quot;-&gt;{n,m},&quot;depVars&quot;-&gt;{u,v},&quot;pars&quot;<span class="special-character Rule">&#62754;</span>{a,b},<br />&quot;scheme&quot;-&gt;{u[n+1,m]-u[n,m],v[n+1,m]-u[n,m],v[n,m+1]-v[n,m]},<br />&quot;VarDOperator&quot;<span class="special-character Rule">&#62754;</span>DVarDOperator|&gt;;<br />expression=b*u[n+1,m]-u[n-1,m+2]+(a+u[n,m+1]-v[n,m])^2;<br />ReduceModSchemeOperator[variables][expression]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[42]="
+         data-out-num="42"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/ReduceModSchemeOperator.en/O_3.png"
+         data-out-width="546"
+         data-out-height="416"
+         ></div>
+     <div id="1407936298"
+         class="clipboard-input"
+         data-in="In[1]:="
+         data-in-num="1"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/ReduceModSchemeOperator.en/I_1.png"
+         data-in-width="3"
+         data-in-height="19"
+         data-link="https://wolfram.com/xid/0bxxtdihk9tv6mun8r982m8onmcqwj64u-xki8vw"
+         data-code="Files/ReduceModSchemeOperator.en/i_1.txt"
+         ></div>
+     <p><a name="442638214"></a>If no scheme is specified, by default the operator uses &quot;scheme&quot;-&gt;{0}:</p>
+     <div class="Code">
+      <pre>variables=&lt;|&quot;indVars&quot;-&gt;{n,t},&quot;depVars&quot;-&gt;{u}|&gt;;<br />expression=u[n+1,t]-u[n,t];<br />ReduceModSchemeOperator[variables][expression]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[45]="
+         data-out-num="45"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/ReduceModSchemeOperator.en/O_4.png"
+         data-out-width="137"
+         data-out-height="16"
+         ></div>
+     <p><a name="554509009"></a>The operator tries to do the reduction as follows: First, it computes a Groebner Basis of the scheme by using the build-in GroebnerBasis function with variables explicitly ordered in time, where time is the last variable. Then it tries to reduce the expression using the PolynomialReduce function. As a second try, it takes the original expression and the original scheme and tries to successively eliminate the instances of the dependent variables in the expression using the scheme. The order of elimination can be specified by passing the name of an operator taking the expression and returning a list of lists with the instances of the dependent variables in a specific order: To do so, you need to specify the key &quot;EliminationListOperator&quot; with the name of the operator in variables. By default the algorithm will use the explicit ordering, i.e. eliminate variables with later time before variables with earlier time. After those eliminations, the ReduceModSchemeOperator picks the resulting expression out of the list of the standard reduction and all the elimination-reductions that has the least instances of dependent variables with different times and returns it.</p>
+    </div>
+   </div>
+   <div>
+    <h2 class="toggle">Options<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span class="total-examples">(1)</span></h2>
+    <div class="hideable">
+     <p><a name="893682026"></a>By adding &quot;intersect&quot;-&gt;True to the variables, one can specify that the operator should try to reduce the expression by translating the scheme such that the stencil of the scheme intersects with the range of the stencil of the expression. If not specified it will only stay inside the range of the stencil of the expression (more information can be found in the documentation for RangeSchemeTranslationsOperator). This can help in some cases to reduce the scheme to an easier expression.</p>
+     <p><a name="282562369"></a>If one specifies &quot;reduce Beautify&quot;-&gt;False in the variables, the code will NOT simplify the expression after use of the standard GroebnerBasis and after every step of eliminating one variable using IntegralEquivalenceClassOperator (the default is True).</p>
+     <p><a name="1639828901"></a>When one uses the default EliminationListOperator, by default the algorithm will use the explicit elimination order. One can also specify, using the key &quot;elimOrder&quot;, the order of the elimination to be &quot;implicit&quot; or &quot;permutations&quot;. Using &quot;permutations&quot; is of course the best possibility as it will try all possible order combinations of variables, but it also will result in a computationally costly operation with long runtime.</p>
+    </div>
+   </div>
+   <div>
+    <h2 class="toggle">Possible Issues<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span class="total-examples">(1)</span></h2>
+    <div class="hideable">
+     <p><a name="1971546439"></a>ReduceModSchemeOperator can have a long runtime:</p>
+     <div id="731339864"
+         class="clipboard-input"
+         data-in="In[1]:="
+         data-in-num="1"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/ReduceModSchemeOperator.en/I_2.png"
+         data-big="523 98"
+         data-small="418 137"
+         data-link="https://wolfram.com/xid/0bxxtdihk9tv6mun8r982m8onmcqwj64u-mdpfqi"
+         data-code="Files/ReduceModSchemeOperator.en/i_2.txt"
+         ></div>
+    </div>
+   </div>
+   <div class="clear"><!-- --></div>
+  </div></section><section id="SeeAlso" class="related-links"><div class="inner">
+   <h1>See Also</h1>
+   <p class="inlineFunctionList"><span class="IF"><a class="package-symbol" href="../ref/RangeSchemeTranslationsOperator.html">RangeSchemeTranslationsOperator</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"></span> <span class="IF"><a href="http://reference.wolfram.com/language/ref/GroebnerBasis.html">GroebnerBasis</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"></span> <span class="IF"><a href="http://reference.wolfram.com/language/ref/PolynomialReduce.html">PolynomialReduce</a></span></p>
+  </div></section><section id="RelatedGuides" class="related-links"><div class="inner">
+   <h1>Related Guides</h1>
+   <ul class="functionList">
+    <span class="special-character FilledVerySmallSquare">&#9642;</span>
+    <li>
+     <a href="../guide/PDESymbolics.html">PDESymbolics</a>
+    </li>
+   </ul>
+  </div></section><section id="Citations" class="citations"><div class="inner">
+   <div class="citation">
+    <span class="citation-tooltip"><button type="button" class="citation-tooltip-button"><span class="citation-text">Cite this as:</span></button><span class="citation-default clipboard-inlineblock clipboard-hover">Wolfram Research (0), ReduceModSchemeOperator, Wolfram Language function, https://reference.wolfram.com/language/PDESymbolics2022/ref/ReduceModSchemeOperator.html.</span><span class="citation-tooltip-content"><button class="x-close-svg"><img src="/language-assets/img/CitationCloseButton.svg" height="10px" width="10px" /></button><h4>Text</h4><p class="clipboard-inlineblock clipboard-hover">Wolfram Research (0), ReduceModSchemeOperator, Wolfram Language function, https://reference.wolfram.com/language/PDESymbolics2022/ref/ReduceModSchemeOperator.html.</p><h4>CMS</h4><p class="clipboard-inlineblock clipboard-hover">Wolfram Language. 0. &quot;ReduceModSchemeOperator.&quot; Wolfram Language &amp; System Documentation Center. Wolfram Research. https://reference.wolfram.com/language/PDESymbolics2022/ref/ReduceModSchemeOperator.html.</p><h4>APA</h4><p class="clipboard-inlineblock clipboard-hover">Wolfram Language. (0). ReduceModSchemeOperator. Wolfram Language &amp; System Documentation Center. Retrieved from https://reference.wolfram.com/language/PDESymbolics2022/ref/ReduceModSchemeOperator.html</p><h4>BibTeX</h4><p class="clipboard-inlineblock clipboard-hover citation-timestamp">@misc{reference.wolfram_2023_reducemodschemeoperator, author=&quot;Wolfram Research&quot;, title=&quot;{ReduceModSchemeOperator}&quot;, year=&quot;0&quot;, howpublished=&quot;\url{https://reference.wolfram.com/language/PDESymbolics2022/ref/ReduceModSchemeOperator.html}&quot;, note=[<!--#include virtual="/language-assets/inc/timestamp.html.en"-->]}</p><h4>BibLaTeX</h4><p class="clipboard-inlineblock clipboard-hover citation-timestamp">@online{reference.wolfram_2023_reducemodschemeoperator, organization={Wolfram Research}, title={ReduceModSchemeOperator}, year={0}, url={https://reference.wolfram.com/language/PDESymbolics2022/ref/ReduceModSchemeOperator.html}, note=[<!--#include virtual="/language-assets/inc/timestamp.html.en"-->]}</p></span><span class="citation-overlay"></span></span>
+   </div>
+  </div></section>
+  
+
+  
+		</main>
+		<div id="_footer-offset"></div>
+		<div id="_footer"></div>
+		<script src="../../common/js/jquery/2.2.4/jquery.min.js"></script><script src="../../common/js/jquery/plugins/hoverintent/1.8.0/hoverintent.min.j2"></script><script src="../../common/js/clipboard/2.0/clipboard.js"></script><script src="../../common/js/clipboard/2.0/code-clipboard.js"></script><script src="../../common/framework/js/body.en.js"></script><script src="../../common/framework/js/head.en.js"></script><script src="../../language-assets/js/dropdowns.js"></script><script src="../../language-assets/js/global.js"></script><script src="../../language-assets/js/language-specific.js.en"></script><script src="../../language-assets/js/language.js"></script><script src="../../language-assets/js/temporary.js"></script><script src="../../language-assets/js/toggles.js"></script><script src="../../language-assets/js/tooltips.js"></script><script src="../../language-assets/js/workflows.js"></script>
+</body>
+</html>

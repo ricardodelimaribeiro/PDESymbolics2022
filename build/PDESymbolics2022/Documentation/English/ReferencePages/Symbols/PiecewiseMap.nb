@@ -1,0 +1,1383 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     49096,       1373]
+NotebookOptionsPosition[     37478,       1117]
+NotebookOutlinePosition[     43271,       1263]
+CellTagsIndexPosition[     43185,       1258]
+WindowTitle->PiecewiseMap
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[GridBox[{
+   {GridBox[{
+      {
+       ItemBox[Cell[BoxData[
+         RowBox[{
+          TemplateBox[{12},
+           "Spacer1"], Cell["PDE SYMBOLICS2022 SYMBOL", "PacletNameCell",
+           TextAlignment->Center,ExpressionUUID->
+           "3e0cf300-a2bc-42eb-8131-4226d24dfa3c"], 
+          TemplateBox[{8},
+           "Spacer1"]}]],
+         TextAlignment->Center,ExpressionUUID->
+         "f6cbcd81-f851-45de-829e-29a0aa7da085"],
+        Background->RGBColor[0.490196, 0.576471, 0.690196],
+        ItemSize->Full], ""}
+     },
+     GridBoxAlignment->{"Rows" -> {{Center}}},
+     GridBoxItemSize->{"Columns" -> {Full, 
+         Scaled[0.02]}, "Rows" -> {{2.5}}}], Cell[TextData[{
+     Cell[BoxData[
+      TagBox[
+       ActionMenuBox[
+        FrameBox[Cell[TextData[{
+          "See Also",
+          " ",
+          Cell[BoxData[
+           GraphicsBox[
+            {GrayLevel[0.66667], Thickness[0.13], 
+             LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+            AspectRatio->1,
+            ImageSize->20,
+            PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+           "3e3c0e56-c26c-4922-b8da-485f420cf05b"]
+         }],ExpressionUUID->"77362784-599c-4572-b481-a78bb7668ff3"],
+         StripOnInput->False], {"\<\"Piecewise\"\>":>Documentation`HelpLookup[
+        "paclet:ref/Piecewise"], "\<\"PiecewiseExpand\"\>":>
+        Documentation`HelpLookup["paclet:ref/PiecewiseExpand"]},
+        Appearance->None,
+        MenuAppearance->Automatic,
+        MenuStyle->"SeeAlso"],
+       MouseAppearanceTag["LinkHand"]]],
+      LineSpacing->{1.4, 0},ExpressionUUID->
+      "eb49f186-b306-4962-b86c-e1c461f11633"],
+     "\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+     Cell[BoxData[
+      TagBox[
+       ActionMenuBox[
+        FrameBox[Cell[TextData[{
+          "URL",
+          " ",
+          Cell[BoxData[
+           GraphicsBox[
+            {GrayLevel[0.66667], Thickness[0.13], 
+             LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+            AspectRatio->1,
+            ImageSize->20,
+            PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+           "7121c696-b236-4acc-8108-ad12740da011"]
+         }],ExpressionUUID->"01046d62-cd79-4f7a-92ca-dd5b2cbe3527"],
+         StripOnInput->False], {"\<\"PDESymbolics2022/ref/PiecewiseMap\"\>":>
+        None, "\<\"Copy Wolfram Documentation Center URL\"\>":>
+        Module[{DocumentationSearch`Private`nb$}, 
+         DocumentationSearch`Private`nb$ = NotebookPut[
+            Notebook[{
+              Cell["PDESymbolics2022/ref/PiecewiseMap"]}, Visible -> False]]; 
+         SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+         FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+         NotebookClose[DocumentationSearch`Private`nb$]; Null], 
+        Delimiter, "\<\"Copy web URL\"\>":>
+        Module[{DocumentationSearch`Private`nb$}, 
+         DocumentationSearch`Private`nb$ = NotebookPut[
+            Notebook[{
+              Cell[
+               BoxData[
+                MakeBoxes[
+                 Hyperlink[
+                 "http://reference.wolfram.com/language/PDESymbolics2022/ref/\
+PiecewiseMap.html"], StandardForm]], "Input", TextClipboardType -> 
+               "PlainText"]}, Visible -> False]]; 
+         SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+         FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+         NotebookClose[DocumentationSearch`Private`nb$]; 
+         Null], "\<\"Go to web URL\"\>":>FrontEndExecute[{
+          NotebookLocate[{
+            URL[
+             StringJoin[
+              If[
+               TrueQ[DocumentationBuild`Make`Private`wsmlinkQ$129789], 
+               "http://reference.wolfram.com/system-modeler/", 
+               "http://reference.wolfram.com/language/"], 
+              "PDESymbolics2022/ref/PiecewiseMap", ".html"]], None}]}]},
+        Appearance->None,
+        MenuAppearance->Automatic,
+        MenuStyle->"URLMenu"],
+       MouseAppearanceTag["LinkHand"]]],
+      LineSpacing->{1.4, 0},ExpressionUUID->
+      "bdf35cfb-96e6-494a-97c0-ccca509b877b"]
+    }], "AnchorBar",
+     CacheGraphics->False,ExpressionUUID->
+     "4d0c3a02-5229-42fc-8f37-7a409d0973ef"]}
+  }]], "AnchorBarGrid",
+ GridBoxOptions->{GridBoxItemSize->{"Columns" -> {
+     Scaled[0.65], {
+      Scaled[0.34]}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+   "RowsIndexed" -> {}}},
+ CellID->1,ExpressionUUID->"ce649dcb-310d-483a-b7c2-1051014171ac"],
+
+Cell["PDESymbolics2022`", "ContextNameCell",ExpressionUUID->"10b148dc-44e4-4daf-b170-ab9f6e98bee7"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[GridBox[{
+   {Cell[TextData[{
+     Cell[
+     "PiecewiseMap", "ObjectName",ExpressionUUID->
+      "bbddf6ce-1763-4974-a2dc-a3d61366cf61"],
+     Cell[BoxData[
+      TemplateBox[{8},
+       "Spacer1"]],ExpressionUUID->"3d399a19-5157-409f-9911-2a8ad782a125"],
+     Cell[BoxData[
+     ""], "ObjectNameTranslation",ExpressionUUID->
+      "c5818644-1df3-4ce1-9910-6fd1e4a864cc"]
+    }],ExpressionUUID->"dc730e74-794a-4768-8288-6f4ce64ba5a8"], 
+    "\[SpanFromLeft]"}
+  }]], "ObjectNameGrid",ExpressionUUID->"e232e0f5-d623-4c78-831f-\
+df7887620592"],
+
+Cell[BoxData[GridBox[{
+   {"", Cell[TextData[{
+     Cell[BoxData[
+      RowBox[{"PiecewiseMap", "[", 
+       RowBox[{"F", ",", " ", "piecewise"}], "]"}]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "6a492a25-799f-4299-9a70-c0dd8d3cf3d2"],
+     " \[LineSeparator]distributes F through the values of piecewise and \
+handles $Failed expressions. "
+    }],ExpressionUUID->"37de72cc-fded-460e-85d2-1a8ff16c9ecf"]}
+  }]], "Usage",
+ CellID->982511436,ExpressionUUID->"fb90e2aa-c0dd-4279-9473-08ac6e2f23d5"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[Cell[BoxData[
+ ButtonBox[Cell[TextData[{
+   Cell[BoxData[
+    DynamicBox[ToBoxes[
+      If[
+       MatchQ[
+        CurrentValue[
+         EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, 
+         Closed], 
+        Alternatives[Open, True]], 
+       Style[
+        Graphics[{
+          Thickness[0.18], 
+          RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+          Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+         PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+        0.68 Inherited], 
+       Rotate[
+        Style[
+         Graphics[{
+           Thickness[0.18], 
+           RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+           Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+          PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+         0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+     ImageSizeCache->{14., {0.45000000000000107`, 13.549999999999999`}}]],
+    ExpressionUUID->"b4f238c5-7f2c-40b3-b67c-9c13310fd9b4"],
+   Cell[BoxData[
+    TemplateBox[{1},
+     "Spacer1"]],ExpressionUUID->"ddc36c43-fca0-4198-b6de-d82d91374b47"],
+   "Details and Options"
+  }], "NotesFrameText",ExpressionUUID->"7389e57a-dba6-4f99-841d-fa12c5e3178d"],
+  Appearance->{Automatic, None, "Normal", Automatic},
+  BaseStyle->None,
+  ButtonFunction:>(FrontEndExecute[{
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], All, ButtonCell], 
+     FrontEndToken["OpenCloseGroup"], 
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], After, CellContents]}]& ),
+  Evaluator->None,
+  Method->
+   "Preemptive"]],ExpressionUUID->"92dcd83a-a777-4b74-8caf-868a1733792e"]], \
+"NotesSection",
+ WholeCellGroupOpener->True,
+ CellGroupingRules->{"SectionGrouping", 50},
+ CacheGraphics->False,
+ CellID->1239815727,ExpressionUUID->"f37eef87-53bd-430c-bbe6-458d98c00f0f"],
+
+Cell["\<\
+To use PiecewiseMap, you first need to load the PDESymbolics Package using \
+Needs[\"PDESymbolics2022`\"].\
+\>", "Notes",
+ CellID->1067943069,ExpressionUUID->"847eba72-4a9b-4f6b-96b9-001262330b29"]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, Closed]]]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {
+       TaggingRules, "Openers", "PrimaryExamplesSection"}, Open], 
+      Alternatives[True, Open]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{14., {5., 9.}}]],ExpressionUUID->
+  "9c7a7e38-3096-4d5a-9500-0c32d2f63814"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"11cce1bf-4c2c-4a2c-a3f8-ba247920e468"],
+ "Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(3)", "ExampleCount",ExpressionUUID->
+  "499d81c3-2114-4612-be93-043a4ede0625"]
+}], "PrimaryExamplesSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellTags->"PrimaryExamplesSection",
+ CellID->549096848,ExpressionUUID->"92053796-d136-4507-b8e1-d83e9eb623c7"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "0"},
+        Closed], 
+      Alternatives[Open, True]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{14., {5., 9.}}]],ExpressionUUID->
+  "8ff551d0-1353-4e65-8575-3997b9b2e6df"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"a9966417-dc9a-4b66-b4b9-216c804a17e7"],
+ "Basic Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(1)", "ExampleCount",ExpressionUUID->
+  "833d6fd8-ea3f-4ccf-b50d-109040824e90"]
+}], "ExampleSection", "ExampleSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellID->933493177,ExpressionUUID->"0132fcba-aceb-4ade-bb21-d34ce02a3cda"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<PDESymbolics2022`\>\"", "]"}]], "Input",
+ CellLabel->"In[1]:=",
+ CellID->1257838788,ExpressionUUID->"df1c710e-a702-492b-998c-dc4b6890c1fd"],
+
+Cell["\<\
+Piecewise map is used to map a function through piecewise expressions. Here \
+it is a simple example.\
+\>", "ExampleText",
+ CellID->1838042079,ExpressionUUID->"3ac9bbc5-9c58-4c0e-8bec-3f0ce8f94433"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", "f", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"expression", " ", "=", " ", 
+   RowBox[{"Piecewise", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"0", ",", 
+         RowBox[{"x", "<", "0"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", 
+         RowBox[{"x", ">", "0"}]}], "}"}]}], "}"}], ",", "$Failed"}], "]"}]}],
+   ";"}], "\[IndentingNewLine]", 
+ RowBox[{"PiecewiseMap", "[", 
+  RowBox[{"f", ",", "expression"}], "]"}]}], "Input",
+ CellLabel->"In[2]:=",
+ CellID->30496408,ExpressionUUID->"1c586c6b-c66b-4595-85d8-2f6950016465"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {"$Failed", 
+        RowBox[{"x", "\[Equal]", "0"}]},
+       {
+        RowBox[{"f", "[", "0", "]"}], 
+        RowBox[{"x", "<", "0"}]},
+       {
+        RowBox[{"f", "[", "1", "]"}], 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Output",
+ CellLabel->"Out[2]=",
+ CellID->1607498198,ExpressionUUID->"b81ad769-410e-4e4c-9e8e-bf3aea5bba91"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", "f", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"expression", " ", "=", " ", 
+   RowBox[{"Piecewise", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"0", ",", 
+        RowBox[{"x", "<", "0"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", 
+        RowBox[{"x", ">", "0"}]}], "}"}]}], "}"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"PiecewiseMap", "[", 
+  RowBox[{"f", ",", "expression"}], "]"}]}], "Input",
+ CellLabel->"In[3]:=",
+ CellID->15972594,ExpressionUUID->"bdd9c1e8-e142-4254-ad58-662cf1f72bc3"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{"f", "[", "0", "]"}], 
+        RowBox[{"x", "\[LessEqual]", "0"}]},
+       {
+        RowBox[{"f", "[", "1", "]"}], 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Output",
+ CellLabel->"Out[3]=",
+ CellID->1845838952,ExpressionUUID->"8248d330-cb11-4daf-aef5-4b4ba6e052dd"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Clear", "[", "f", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"expression", " ", "=", " ", 
+   RowBox[{"Piecewise", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"0", ",", 
+        RowBox[{"x", "<", "0"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", 
+        RowBox[{"x", ">", "0"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"$Failed", ",", " ", 
+        RowBox[{"x", "\[Equal]", "0"}]}], "}"}]}], "}"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"PiecewiseMap", "[", 
+  RowBox[{"f", ",", "expression"}], "]"}]}], "Input",
+ CellLabel->"In[4]:=",
+ CellID->876663419,ExpressionUUID->"8e779246-63a3-4abb-8f6c-9c1a71bb98b6"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {"$Failed", 
+        RowBox[{"x", "\[Equal]", "0"}]},
+       {
+        RowBox[{"f", "[", "0", "]"}], 
+        RowBox[{"x", "<", "0"}]},
+       {
+        RowBox[{"f", "[", "1", "]"}], 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Output",
+ CellLabel->"Out[4]=",
+ CellID->233594842,ExpressionUUID->"16387d38-e365-47f5-9b96-64f5faea1c5e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PiecewiseExpand", "@", "expression"}]], "Input",
+ CellLabel->"In[5]:=",
+ CellID->992885726,ExpressionUUID->"c0c9860e-31e8-4fad-be7a-7334388dc4ad"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {"1", 
+        RowBox[{"x", ">", "0"}]},
+       {"$Failed", 
+        RowBox[{"x", "\[Equal]", "0"}]},
+       {"0", 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Output",
+ CellLabel->"Out[5]=",
+ CellID->14608298,ExpressionUUID->"b604c05a-3454-4026-a0bc-70d134b6b6e8"]
+}, Open  ]]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "0"}, 
+  Closed]]]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "2"},
+        Closed], 
+      Alternatives[Open, True]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{14., {0.45000000000000107`, 13.549999999999999`}}]],
+  ExpressionUUID->"96f6c87d-749e-4847-93fc-f0656d8ea966"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"5011b02e-807f-4242-9ef3-7ebb1274d60f"],
+ "Possible Issues",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(1)", "ExampleCount",ExpressionUUID->
+  "aa7a5ca2-f901-4339-96c2-edd418aca7d9"]
+}], "ExampleSection", "ExampleSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellID->1305812373,ExpressionUUID->"f1220a93-5c65-471b-a8f6-8db2a26fea38"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<PDESymbolics2022`\>\"", "]"}]], "Input",
+ CellLabel->"In[1]:=",
+ CellID->571111879,ExpressionUUID->"46054849-9395-4f7b-af6f-21e6f695e436"],
+
+Cell["The default value for Piecewise is 0:", "ExampleText",
+ CellID->1572931910,ExpressionUUID->"d1a0c9e6-4b7e-4fa5-a91a-22e92eea26b0"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"heaviside", "=", 
+  RowBox[{"Piecewise", "[", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", 
+      RowBox[{"x", "\[GreaterEqual]", "0"}]}], "}"}], "}"}], "]"}]}]], "Input",\
+
+ CellLabel->"In[2]:=",
+ CellID->482038747,ExpressionUUID->"31953769-4dbe-4d54-ba05-7dddef0db796"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {"1", 
+        RowBox[{"x", "\[GreaterEqual]", "0"}]},
+       {"0", 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Output",
+ CellLabel->"Out[2]=",
+ CellID->99004304,ExpressionUUID->"889ddf99-bdaf-49cb-bbbf-262deee9e8fb"]
+}, Open  ]],
+
+Cell["So, if we a map a function F to heaviside, we get", "ExampleText",
+ CellID->1380208235,ExpressionUUID->"2d5d3cf6-64e5-46ab-8da0-742a89200f16"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PiecewiseMap", "[", 
+  RowBox[{"F", ",", "heaviside"}], "]"}]], "Input",
+ CellLabel->"In[3]:=",
+ CellID->1905904388,ExpressionUUID->"0b410a33-320e-4174-ae42-3555bf044a48"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{"F", "[", "0", "]"}], 
+        RowBox[{"x", "<", "0"}]},
+       {
+        RowBox[{"F", "[", "1", "]"}], 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Output",
+ CellLabel->"Out[3]=",
+ CellID->1346348355,ExpressionUUID->"705be872-5127-4f15-bf01-ce6eba5695d6"]
+}, Open  ]],
+
+Cell["changing the default value for heaviside to $Failed we get:", \
+"ExampleText",
+ CellID->976583655,ExpressionUUID->"fa4d33c8-d78e-4850-8a24-94958976568a"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"heaviside", " ", "=", " ", 
+  RowBox[{"Piecewise", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", 
+       RowBox[{"x", "\[GreaterEqual]", "0"}]}], "}"}], "}"}], ",", 
+    "$Failed"}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"PiecewiseMap", "[", 
+  RowBox[{"F", ",", "heaviside"}], "]"}]}], "Input",
+ CellLabel->"In[4]:=",
+ CellID->1246286866,ExpressionUUID->"0b5a7b60-35d9-4637-b2da-f9221e40c9d2"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {"1", 
+        RowBox[{"x", "\[GreaterEqual]", "0"}]},
+       {"$Failed", 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Output",
+ CellLabel->"Out[4]=",
+ CellID->588967279,ExpressionUUID->"459d9ed6-4148-4180-87b1-688e12326497"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {"$Failed", 
+        RowBox[{"x", "<", "0"}]},
+       {
+        RowBox[{"F", "[", "1", "]"}], 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Output",
+ CellLabel->"Out[4]=",
+ CellID->1020929130,ExpressionUUID->"bdb71b16-18f2-4fa9-9f01-a50149764ec3"]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellLabel->"In[5]:=",
+ CellID->1707569141,ExpressionUUID->"3d58cf39-aa71-47c0-9732-dd5cbffb780e"]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "2"}, 
+  Closed]]]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "3"},
+        Closed], 
+      Alternatives[Open, True]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{14., {0.45000000000000107`, 13.549999999999999`}}]],
+  ExpressionUUID->"b49471b0-3dba-4cd2-b1f5-82b3c804e974"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"6119bd0e-e1d5-4eda-b7af-38de3dc436c8"],
+ "Neat Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(1)", "ExampleCount",ExpressionUUID->
+  "db67c17b-1a9d-4071-9e08-5d061c2dcc66"]
+}], "ExampleSection", "ExampleSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellID->589267740,ExpressionUUID->"481c3a69-9199-40cd-9df3-5119e5292645"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<PDESymbolics2022`\>\"", "]"}]], "Input",
+ CellLabel->"In[1]:=",
+ CellID->1024075536,ExpressionUUID->"cded59c4-51cd-49a1-b638-ef07f085c2d8"],
+
+Cell["\<\
+Look how a piecewise function distributes through a piecewise argument:\
+\>", "ExampleText",
+ CellID->1703586494,ExpressionUUID->"ec483bcd-224e-46bf-9aab-854f3bd0abe0"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"F", "[", "x_", "]"}], ":=", 
+  RowBox[{"Piecewise", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"x", "^", "2"}], ",", 
+        RowBox[{"x", "<", "0"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"x", "^", "3"}], ",", 
+        RowBox[{"x", ">", "0"}]}], "}"}]}], "}"}], ",", " ", "$Failed"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"PiecewiseMap", "[", 
+  RowBox[{"F", ",", " ", 
+   RowBox[{"F", "[", "x", "]"}]}], "]"}]}], "Input",
+ CellLabel->"In[2]:=",
+ CellID->1962471623,ExpressionUUID->"42dfa39e-3ec1-4fbc-b486-e36c2820fc04"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        SuperscriptBox["x", "6"], 
+        RowBox[{"x", "<", "0"}]},
+       {
+        SuperscriptBox["x", "9"], 
+        RowBox[{"x", ">", "0"}]},
+       {"$Failed", 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Output",
+ CellLabel->"Out[2]=",
+ CellID->1088787204,ExpressionUUID->"fa1ee772-07be-41ed-905f-83623c29306e"]
+}, Open  ]],
+
+Cell["\<\
+The built-in Mathematica function does not handle $Failed correctly. \
+\>", "ExampleText",
+ CellID->433686313,ExpressionUUID->"1e97a2f7-9a97-4e6f-8833-ab25530d1e5e"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PiecewiseExpand", "[", 
+  RowBox[{"F", "[", 
+   RowBox[{"F", "[", "x", "]"}], "]"}], "]"}]], "Input",
+ CellLabel->"In[3]:=",
+ CellID->295334622,ExpressionUUID->"64649f11-c5f7-4ea5-b00f-202a2424bf31"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        SuperscriptBox["x", "6"], 
+        RowBox[{"x", "<", "0"}]},
+       {
+        SuperscriptBox["$Failed", "2"], 
+        RowBox[{
+         RowBox[{"x", "\[Equal]", "0"}], "&&", 
+         RowBox[{"$Failed", "<", "0"}]}]},
+       {
+        SuperscriptBox["x", "9"], 
+        RowBox[{"x", ">", "0"}]},
+       {
+        SuperscriptBox["$Failed", "3"], 
+        RowBox[{
+         RowBox[{"$Failed", ">", "0"}], "||", 
+         RowBox[{"x", ">", "0"}], "||", 
+         RowBox[{"x", "<", "0"}]}]},
+       {"$Failed", 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Output",
+ CellLabel->"Out[3]=",
+ CellID->172334210,ExpressionUUID->"c3866797-1344-4f22-a69a-dfc48133fc61"]
+}, Open  ]]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "3"}, 
+  Closed]]]]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, 
+  Closed]]]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[GridBox[{
+   {
+    DynamicBox[FEPrivate`ImportImage[
+      FrontEnd`FileName[{"Documentation", "FooterIcons"}, 
+       "RelatedFunction.png"]],
+     ImageSizeCache->{50., {27., 33.}}], GridBox[{
+      {
+       StyleBox[
+        RowBox[{"See", " ", "Also"}], "SeeAlsoSection"]},
+      {Cell[TextData[{
+        Cell[BoxData[
+         TemplateBox[{
+           Cell[
+            TextData["Piecewise"]], "paclet:ref/Piecewise"},
+          "RefLink",
+          BaseStyle->{"InlineFormula"}]], "InlineFormula",
+         FontFamily->"Source Sans Pro",ExpressionUUID->
+         "c4294ab1-7562-458b-80e8-6a2958e49f1d"],
+        "\[NonBreakingSpace]",
+        StyleBox[
+        "\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+         "InlineSeparator"],
+        " ",
+        Cell[BoxData[
+         TemplateBox[{
+           Cell[
+            TextData["PiecewiseExpand"]], "paclet:ref/PiecewiseExpand"},
+          "RefLink",
+          BaseStyle->{"InlineFormula"}]], "InlineFormula",
+         FontFamily->"Source Sans Pro",ExpressionUUID->
+         "de726fdb-2a59-4ab1-91ea-d95ff1c6a5c0"]
+       }], "SeeAlso",ExpressionUUID->"280f1840-b4f0-4fb1-b53a-24e7d9ee1f55"]}
+     }]}
+  }]], "SeeAlsoSection",ExpressionUUID->"58d33f56-1fd6-4bc0-b16d-\
+284e27de5cbb"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[If[CurrentValue[
+      EvaluationNotebook[], {TaggingRules, "ShowCitation"}] === False, 
+    TagBox[
+     ButtonBox[
+      FrameBox[
+       RowBox[{
+         DynamicBox[
+          FEPrivate`FrontEndResource[
+          "DocumentationExpressions", "CitationArrow"]], 
+         StyleBox[
+          DynamicBox[
+           FEPrivate`FrontEndResource["DocumentationStrings", "CiteThisAs"]], 
+          "CitationButtonText"]}]], BaseStyle -> "CiteThisAsButton"], 
+     MouseAppearanceTag["LinkHand"]], 
+    StyleBox[
+     TemplateBox[{86, 22}, "Spacer2"]]],
+   ImageSizeCache->{91., {7., 17.}}]], "CitationCell",ExpressionUUID->
+  "4b169a51-50f2-4775-930d-15acdf36568f"],
+ Cell[BoxData[
+  TemplateBox[{8},
+   "Spacer1"]],ExpressionUUID->"b51c765d-9a6c-4597-8d05-40eb78dbb43d"],
+ Cell[BoxData[
+  DynamicBox[If[CurrentValue[
+      EvaluationNotebook[], {TaggingRules, "ShowCitation"}] === False, 
+    StyleBox[
+     TemplateBox[{
+       Part[
+        CurrentValue[
+         EvaluationNotebook[], {TaggingRules, "CitationPopupData"}], 1]}, 
+      "ClickToCopy", BaseStyle -> "CitationText"], "CitationText"], 
+    StyleBox[
+     TemplateBox[{86, 22}, "Spacer2"]]],
+   ImageSizeCache->{859., {6., 15.}}]],ExpressionUUID->
+  "e670412e-09d7-48d1-89e6-be10a41f5479"]
+}], "CitationContainerCell",ExpressionUUID->"231a4b8c-e2ed-4493-bed4-\
+4188881be368"]
+}, Open  ]],
+
+Cell[" ", "FooterCell",ExpressionUUID->"259400cc-9cea-4f3e-98fb-c9c23361ad28"]
+},
+Saveable->False,
+ScreenStyleEnvironment->"Working",
+WindowSize->{900, 830},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowTitle->"PiecewiseMap",
+TaggingRules->{
+ "ModificationHighlight" -> False, "ColorType" -> "", "LinkTrails" -> "", 
+  "HasOptions" -> True, "ExampleCounter" -> 1, 
+  "Openers" -> {
+   "PrimaryExamplesSection" -> Open, 
+    "ExampleSection" -> {"0" -> Open, "2" -> Closed, "3" -> Closed}, 
+    "NotesSection" -> Closed}, "NewStyles" -> True, 
+  "CitationPopupData" -> {
+   "Wolfram Research (0), PiecewiseMap, Wolfram Language function, \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/PiecewiseMap.html.\
+", 
+    GridBox[{{
+       ItemBox["", ItemSize -> "Fit"], 
+       ItemBox[
+        TagBox[
+         ButtonBox[
+          DynamicBox[
+           FEPrivate`FrontEndResource[
+           "DocumentationExpressions", "CitationCloseButton"]], BaseStyle -> 
+          "CitationPopupCloseButton", Appearance -> None], 
+         MouseAppearanceTag["LinkHand"]], Alignment -> Right]}, {
+       Cell[
+        TextData[{
+          StyleBox["Text", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "Wolfram Research (0), PiecewiseMap, Wolfram Language \
+function, \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/PiecewiseMap.html.\
+", TextForm]}, "ClickToCopy", BaseStyle -> "CitationText"], 
+              ShowStringCharacters -> True], "CitationText"]]]}]], 
+       "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["CMS", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "Wolfram Language. 0. \"PiecewiseMap.\" Wolfram Language & \
+System Documentation Center. Wolfram Research. \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/PiecewiseMap.html.\
+", TextForm]}, "ClickToCopy", BaseStyle -> "CitationText"], 
+              ShowStringCharacters -> True], "CitationText"]]]}]], 
+       "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["APA", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "Wolfram Language. (0). PiecewiseMap. Wolfram Language & \
+System Documentation Center. Retrieved from \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/PiecewiseMap.\
+html", TextForm]}, "ClickToCopy", BaseStyle -> "CitationText"], 
+              ShowStringCharacters -> True], "CitationText"]]]}]], 
+       "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["BibTeX", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "@misc{reference.wolfram_2023_piecewisemap, author=\"Wolfram \
+Research\", title=\"{PiecewiseMap}\", year=\"0\", \
+howpublished=\"\\url{https://reference.wolfram.com/language/PDESymbolics2022/\
+ref/PiecewiseMap.html}\", note=\"[version 12.1]\"}", TextForm]}, 
+               "ClickToCopy", BaseStyle -> "CitationText"], 
+              ShowStringCharacters -> True], "CitationText"]]]}]], 
+       "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["BibLaTeX", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "@online{reference.wolfram_2023_piecewisemap, \
+organization={Wolfram Research}, title={PiecewiseMap}, year={0}, \
+url={https://reference.wolfram.com/language/PDESymbolics2022/ref/PiecewiseMap.\
+html}, note=\"[version 12.1]\"}", TextForm]}, "ClickToCopy", BaseStyle -> 
+               "CitationText"], ShowStringCharacters -> True], 
+             "CitationText"]]]}]], "\[SpanFromLeft]"}}]}, "ShowCitation" -> 
+  False, "RootCaptions" -> "", 
+  "Metadata" -> {
+   "built" -> "{2023, 1, 11, 10, 34, 39.782697}", 
+    "history" -> {"0.0", "", "", ""}, "context" -> "PDESymbolics2022`", 
+    "keywords" -> {}, "specialkeywords" -> {}, 
+    "tutorialcollectionlinks" -> {}, "index" -> True, "label" -> 
+    "PDE Symbolics2022 Symbol", "language" -> "en", "paclet" -> 
+    "PDESymbolics2022", "status" -> "None", "summary" -> 
+    "PiecewiseMap[F, piecewise] distributes F through the values of piecewise \
+and handles $Failed expressions. ", "synonyms" -> {}, "tabletags" -> {}, 
+    "title" -> "PiecewiseMap", "titlemodifier" -> "", "windowtitle" -> 
+    "PiecewiseMap", "type" -> "Symbol", "uri" -> 
+    "PDESymbolics2022/ref/PiecewiseMap"}},
+CellContext->"Global`",
+FrontEndVersion->"12.3 for Mac OS X x86 (64-bit) (July 9, 2021)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[
+    StyleDefinitions -> FrontEnd`FileName[{"Wolfram"}, "Reference.nb"]]], 
+   Cell[
+    StyleData["Input"], CellContext -> "Global`"], 
+   Cell[
+    StyleData["Output"], CellContext -> "Global`"]}, Visible -> False, 
+  FrontEndVersion -> "12.3 for Mac OS X x86 (64-bit) (July 9, 2021)", 
+  StyleDefinitions -> "Default.nb"],
+ExpressionUUID->"ea66b7e1-96de-422d-9503-21cbeab8cd48"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "PrimaryExamplesSection"->{
+  Cell[8559, 224, 1389, 37, 36, "PrimaryExamplesSection",ExpressionUUID->"92053796-d136-4507-b8e1-d83e9eb623c7",
+   CellTags->"PrimaryExamplesSection",
+   CellID->549096848]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"PrimaryExamplesSection", 42986, 1251}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[584, 21, 4485, 106, 57, "AnchorBarGrid",ExpressionUUID->"ce649dcb-310d-483a-b7c2-1051014171ac",
+ CellID->1],
+Cell[5072, 129, 99, 0, 23, "ContextNameCell",ExpressionUUID->"10b148dc-44e4-4daf-b170-ab9f6e98bee7"],
+Cell[CellGroupData[{
+Cell[5196, 133, 555, 14, 60, "ObjectNameGrid",ExpressionUUID->"e232e0f5-d623-4c78-831f-df7887620592"],
+Cell[5754, 149, 532, 11, 112, "Usage",ExpressionUUID->"fb90e2aa-c0dd-4279-9473-08ac6e2f23d5",
+ CellID->982511436]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6323, 165, 1899, 47, 37, "NotesSection",ExpressionUUID->"f37eef87-53bd-430c-bbe6-458d98c00f0f",
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->1239815727],
+Cell[8225, 214, 207, 4, 36, "Notes",ExpressionUUID->"847eba72-4a9b-4f6b-96b9-001262330b29",
+ CellID->1067943069]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, Closed]]]],
+Cell[CellGroupData[{
+Cell[8559, 224, 1389, 37, 36, "PrimaryExamplesSection",ExpressionUUID->"92053796-d136-4507-b8e1-d83e9eb623c7",
+ CellTags->"PrimaryExamplesSection",
+ CellID->549096848],
+Cell[CellGroupData[{
+Cell[9973, 265, 1367, 36, 31, "ExampleSection",ExpressionUUID->"0132fcba-aceb-4ade-bb21-d34ce02a3cda",
+ CellID->933493177],
+Cell[11343, 303, 181, 3, 29, "Input",ExpressionUUID->"df1c710e-a702-492b-998c-dc4b6890c1fd",
+ CellID->1257838788],
+Cell[11527, 308, 208, 4, 38, "ExampleText",ExpressionUUID->"3ac9bbc5-9c58-4c0e-8bec-3f0ce8f94433",
+ CellID->1838042079],
+Cell[CellGroupData[{
+Cell[11760, 316, 640, 18, 66, "Input",ExpressionUUID->"1c586c6b-c66b-4595-85d8-2f6950016465",
+ CellID->30496408],
+Cell[12403, 336, 1421, 43, 71, "Output",ExpressionUUID->"b81ad769-410e-4e4c-9e8e-bf3aea5bba91",
+ CellID->1607498198]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13861, 384, 601, 17, 66, "Input",ExpressionUUID->"bdd9c1e8-e142-4254-ad58-662cf1f72bc3",
+ CellID->15972594],
+Cell[14465, 403, 1371, 41, 53, "Output",ExpressionUUID->"8248d330-cb11-4daf-aef5-4b4ba6e052dd",
+ CellID->1845838952]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15873, 449, 714, 20, 66, "Input",ExpressionUUID->"8e779246-63a3-4abb-8f6c-9c1a71bb98b6",
+ CellID->876663419],
+Cell[16590, 471, 1420, 43, 71, "Output",ExpressionUUID->"16387d38-e365-47f5-9b96-64f5faea1c5e",
+ CellID->233594842]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18047, 519, 170, 3, 29, "Input",ExpressionUUID->"c0c9860e-31e8-4fad-be7a-7334388dc4ad",
+ CellID->992885726],
+Cell[18220, 524, 1351, 41, 71, "Output",ExpressionUUID->"b604c05a-3454-4026-a0bc-70d134b6b6e8",
+ CellID->14608298]
+}, Open  ]]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "0"}, Closed]]]],
+Cell[CellGroupData[{
+Cell[19720, 573, 1404, 36, 70, "ExampleSection",ExpressionUUID->"f1220a93-5c65-471b-a8f6-8db2a26fea38",
+ CellID->1305812373],
+Cell[21127, 611, 180, 3, 70, "Input",ExpressionUUID->"46054849-9395-4f7b-af6f-21e6f695e436",
+ CellID->571111879],
+Cell[21310, 616, 136, 1, 70, "ExampleText",ExpressionUUID->"d1a0c9e6-4b7e-4fa5-a91a-22e92eea26b0",
+ CellID->1572931910],
+Cell[CellGroupData[{
+Cell[21471, 621, 309, 9, 70, "Input",ExpressionUUID->"31953769-4dbe-4d54-ba05-7dddef0db796",
+ CellID->482038747],
+Cell[21783, 632, 1304, 39, 53, "Output",ExpressionUUID->"889ddf99-bdaf-49cb-bbbf-262deee9e8fb",
+ CellID->99004304]
+}, Open  ]],
+Cell[23102, 674, 148, 1, 70, "ExampleText",ExpressionUUID->"2d5d3cf6-64e5-46ab-8da0-742a89200f16",
+ CellID->1380208235],
+Cell[CellGroupData[{
+Cell[23275, 679, 195, 4, 70, "Input",ExpressionUUID->"0b410a33-320e-4174-ae42-3555bf044a48",
+ CellID->1905904388],
+Cell[23473, 685, 1360, 41, 53, "Output",ExpressionUUID->"705be872-5127-4f15-bf01-ce6eba5695d6",
+ CellID->1346348355]
+}, Open  ]],
+Cell[24848, 729, 159, 2, 70, "ExampleText",ExpressionUUID->"fa4d33c8-d78e-4850-8a24-94958976568a",
+ CellID->976583655],
+Cell[CellGroupData[{
+Cell[25032, 735, 456, 12, 70, "Input",ExpressionUUID->"0b5a7b60-35d9-4637-b2da-f9221e40c9d2",
+ CellID->1246286866],
+Cell[25491, 749, 1311, 39, 53, "Output",ExpressionUUID->"459d9ed6-4148-4180-87b1-688e12326497",
+ CellID->588967279],
+Cell[26805, 790, 1332, 40, 53, "Output",ExpressionUUID->"bdb71b16-18f2-4fa9-9f01-a50149764ec3",
+ CellID->1020929130]
+}, Open  ]],
+Cell[28152, 833, 125, 2, 70, "Input",ExpressionUUID->"3d58cf39-aa71-47c0-9732-dd5cbffb780e",
+ CellID->1707569141]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "2"}, Closed]]]],
+Cell[CellGroupData[{
+Cell[28414, 842, 1401, 36, 70, "ExampleSection",ExpressionUUID->"481c3a69-9199-40cd-9df3-5119e5292645",
+ CellID->589267740],
+Cell[29818, 880, 181, 3, 70, "Input",ExpressionUUID->"cded59c4-51cd-49a1-b638-ef07f085c2d8",
+ CellID->1024075536],
+Cell[30002, 885, 178, 3, 70, "ExampleText",ExpressionUUID->"ec483bcd-224e-46bf-9aab-854f3bd0abe0",
+ CellID->1703586494],
+Cell[CellGroupData[{
+Cell[30205, 892, 655, 20, 70, "Input",ExpressionUUID->"42dfa39e-3ec1-4fbc-b486-e36c2820fc04",
+ CellID->1962471623],
+Cell[30863, 914, 1406, 43, 75, "Output",ExpressionUUID->"fa1ee772-07be-41ed-905f-83623c29306e",
+ CellID->1088787204]
+}, Open  ]],
+Cell[32284, 960, 175, 3, 70, "ExampleText",ExpressionUUID->"1e97a2f7-9a97-4e6f-8833-ab25530d1e5e",
+ CellID->433686313],
+Cell[CellGroupData[{
+Cell[32484, 967, 223, 5, 70, "Input",ExpressionUUID->"64649f11-c5f7-4ea5-b00f-202a2424bf31",
+ CellID->295334622],
+Cell[32710, 974, 1755, 54, 113, "Output",ExpressionUUID->"c3866797-1344-4f22-a69a-dfc48133fc61",
+ CellID->172334210]
+}, Open  ]]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "3"}, Closed]]]]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, Closed]]]],
+Cell[CellGroupData[{
+Cell[34729, 1039, 1267, 34, 70, "SeeAlsoSection",ExpressionUUID->"58d33f56-1fd6-4bc0-b16d-284e27de5cbb"],
+Cell[35999, 1075, 1382, 37, 70, "CitationContainerCell",ExpressionUUID->"231a4b8c-e2ed-4493-bed4-4188881be368"]
+}, Open  ]],
+Cell[37396, 1115, 78, 0, 70, "FooterCell",ExpressionUUID->"259400cc-9cea-4f3e-98fb-c9c23361ad28"]
+}
+]
+*)
+
+(* End of internal cache information *)
+

@@ -1,0 +1,10 @@
+variables = 
+ Association["depVars" -> {u}, "indVars" -> {x, t}, 
+  "VarDOperator" -> DVarDOperator]; problem = 
+ Association[
+  "expression" -> {u[x, t + 1] - u[x, t] - (u[x + 1, t] - u[x, t])}, 
+  "monomials" -> 
+   Association["degree" -> 2, 
+    "generators" -> {u[x, t], u[x + 1, t], u[x, t + 1], 
+      u[x + 1, t + 1]}]];
+FindIntegratingFactorOperator[variables][problem]

@@ -1,0 +1,1392 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     49506,       1382]
+NotebookOptionsPosition[     38307,       1140]
+NotebookOutlinePosition[     44238,       1282]
+CellTagsIndexPosition[     44152,       1277]
+WindowTitle->MonomialDependenceOperator
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[GridBox[{
+   {GridBox[{
+      {
+       ItemBox[Cell[BoxData[
+         RowBox[{
+          TemplateBox[{12},
+           "Spacer1"], Cell["PDE SYMBOLICS2022 SYMBOL", "PacletNameCell",
+           TextAlignment->Center,ExpressionUUID->
+           "00905b19-5302-48ef-9777-f9d29fc0ba84"], 
+          TemplateBox[{8},
+           "Spacer1"]}]],
+         TextAlignment->Center,ExpressionUUID->
+         "4e69134b-aec8-405d-8453-843e8c48b532"],
+        Background->RGBColor[0.490196, 0.576471, 0.690196],
+        ItemSize->Full], ""}
+     },
+     GridBoxAlignment->{"Rows" -> {{Center}}},
+     GridBoxItemSize->{"Columns" -> {Full, 
+         Scaled[0.02]}, "Rows" -> {{2.5}}}], Cell[TextData[{
+     Cell[BoxData[
+      TagBox[
+       ActionMenuBox[
+        FrameBox[Cell[TextData[{
+          "Related Guides",
+          " ",
+          Cell[BoxData[
+           GraphicsBox[
+            {GrayLevel[0.66667], Thickness[0.13], 
+             LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+            AspectRatio->1,
+            ImageSize->20,
+            PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+           "056dd268-894e-492c-8d9c-b6712145f4ae"]
+         }],ExpressionUUID->"cc8b4874-2045-41e1-93b3-becf692991ff"],
+         StripOnInput->False], {"\<\"PDESymbolics\"\>":>
+        Documentation`HelpLookup[
+        "paclet:PDESymbolics2022/guide/PDESymbolics"]},
+        Appearance->None,
+        MenuAppearance->Automatic,
+        MenuStyle->"MoreAbout"],
+       MouseAppearanceTag["LinkHand"]]],
+      LineSpacing->{1.4, 0},ExpressionUUID->
+      "4b3fa465-9583-48bc-8dc3-a23150e03b8d"],
+     "\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+     Cell[BoxData[
+      TagBox[
+       ActionMenuBox[
+        FrameBox[Cell[TextData[{
+          "URL",
+          " ",
+          Cell[BoxData[
+           GraphicsBox[
+            {GrayLevel[0.66667], Thickness[0.13], 
+             LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+            AspectRatio->1,
+            ImageSize->20,
+            PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+           "a3ed320b-6998-44f6-98c2-cdd8f52b95c5"]
+         }],ExpressionUUID->"c4bbfb1b-604f-4f4f-bff4-38c4ab46bc55"],
+         StripOnInput->
+          False], {"\<\"PDESymbolics2022/ref/MonomialDependenceOperator\"\>":>
+        None, "\<\"Copy Wolfram Documentation Center URL\"\>":>
+        Module[{DocumentationSearch`Private`nb$}, 
+         DocumentationSearch`Private`nb$ = NotebookPut[
+            Notebook[{
+              Cell["PDESymbolics2022/ref/MonomialDependenceOperator"]}, 
+             Visible -> False]]; 
+         SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+         FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+         NotebookClose[DocumentationSearch`Private`nb$]; Null], 
+        Delimiter, "\<\"Copy web URL\"\>":>
+        Module[{DocumentationSearch`Private`nb$}, 
+         DocumentationSearch`Private`nb$ = NotebookPut[
+            Notebook[{
+              Cell[
+               BoxData[
+                MakeBoxes[
+                 Hyperlink[
+                 "http://reference.wolfram.com/language/PDESymbolics2022/ref/\
+MonomialDependenceOperator.html"], StandardForm]], "Input", TextClipboardType -> 
+               "PlainText"]}, Visible -> False]]; 
+         SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+         FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+         NotebookClose[DocumentationSearch`Private`nb$]; 
+         Null], "\<\"Go to web URL\"\>":>FrontEndExecute[{
+          NotebookLocate[{
+            URL[
+             StringJoin[
+              If[
+               TrueQ[DocumentationBuild`Make`Private`wsmlinkQ$124631], 
+               "http://reference.wolfram.com/system-modeler/", 
+               "http://reference.wolfram.com/language/"], 
+              "PDESymbolics2022/ref/MonomialDependenceOperator", ".html"]], 
+            None}]}]},
+        Appearance->None,
+        MenuAppearance->Automatic,
+        MenuStyle->"URLMenu"],
+       MouseAppearanceTag["LinkHand"]]],
+      LineSpacing->{1.4, 0},ExpressionUUID->
+      "ce323dbf-0715-45d5-ad3f-340911399c26"]
+    }], "AnchorBar",
+     CacheGraphics->False,ExpressionUUID->
+     "d56e4f16-23fa-489e-ad14-5666c9dc7b98"]}
+  }]], "AnchorBarGrid",
+ GridBoxOptions->{GridBoxItemSize->{"Columns" -> {
+     Scaled[0.65], {
+      Scaled[0.34]}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+   "RowsIndexed" -> {}}},
+ CellID->1,ExpressionUUID->"ed4a3801-b957-43ff-899f-be09cdf1600f"],
+
+Cell["PDESymbolics2022`", "ContextNameCell",ExpressionUUID->"a5f39562-e4fb-4c50-bd1e-ababa8b3eeda"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[GridBox[{
+   {Cell[TextData[{
+     Cell[
+     "MonomialDependenceOperator", "ObjectName",ExpressionUUID->
+      "39d61054-41fc-48f5-baed-206eed079d8a"],
+     Cell[BoxData[
+      TemplateBox[{8},
+       "Spacer1"]],ExpressionUUID->"380e63b1-d5cc-4d42-88f7-314e45980aa8"],
+     Cell[BoxData[
+     ""], "ObjectNameTranslation",ExpressionUUID->
+      "fcb60737-2c79-4e37-bdf9-7b11ed508a45"]
+    }],ExpressionUUID->"7323633b-37e8-4124-a941-7afa164f7bd3"], 
+    "\[SpanFromLeft]"}
+  }]], "ObjectNameGrid",ExpressionUUID->"f8dc1cf4-0c36-48e2-830c-\
+22cae7d5404c"],
+
+Cell[BoxData[GridBox[{
+   {"", Cell[TextData[{
+     Cell[BoxData[
+      RowBox[{
+       RowBox[{"MonomialDependenceOperator", "[", "variables", "]"}], "[", 
+       "list", "]"}]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "6fd27764-e903-4992-b607-d7639675e432"],
+     " \[LineSeparator]Given a list of expressions finds the values of \
+parameters that correspond to two or more of the expressions being a multiple \
+of each other. Returns replacement rules for the parameters."
+    }],ExpressionUUID->"f961bcdc-cd82-4e7b-ab38-ff5694ffca3d"]}
+  }]], "Usage",
+ CellID->982511436,ExpressionUUID->"5f00a34e-90e0-475f-ac99-1306e3a4faa3"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[Cell[BoxData[
+ ButtonBox[Cell[TextData[{
+   Cell[BoxData[
+    DynamicBox[ToBoxes[
+      If[
+       MatchQ[
+        CurrentValue[
+         EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, 
+         Closed], 
+        Alternatives[Open, True]], 
+       Style[
+        Graphics[{
+          Thickness[0.18], 
+          RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+          Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+         PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+        0.68 Inherited], 
+       Rotate[
+        Style[
+         Graphics[{
+           Thickness[0.18], 
+           RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+           Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+          PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+         0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+     ImageSizeCache->{14., {0.45000000000000107`, 13.549999999999999`}}]],
+    ExpressionUUID->"7ca62737-15f9-4ad6-b40b-2d300dc7b50c"],
+   Cell[BoxData[
+    TemplateBox[{1},
+     "Spacer1"]],ExpressionUUID->"e4781a96-f64e-48a2-8713-5ea49b359992"],
+   "Details and Options"
+  }], "NotesFrameText",ExpressionUUID->"6661377d-3b45-4315-ad0b-7649d75bdc9d"],
+  Appearance->{Automatic, None, "Normal", Automatic},
+  BaseStyle->None,
+  ButtonFunction:>(FrontEndExecute[{
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], All, ButtonCell], 
+     FrontEndToken["OpenCloseGroup"], 
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], After, CellContents]}]& ),
+  Evaluator->None,
+  Method->
+   "Preemptive"]],ExpressionUUID->"1da41068-5b76-4d59-b179-eb54273c0c45"]], \
+"NotesSection",
+ WholeCellGroupOpener->True,
+ CellGroupingRules->{"SectionGrouping", 50},
+ CacheGraphics->False,
+ CellID->2111899493,ExpressionUUID->"efb4723d-b47e-4b3d-863c-c831e6460a63"],
+
+Cell["\<\
+To use MonomialDependenceOperator, you first need to load the PDESymbolics \
+Package using Needs[\"PDESymbolics2022`\"].\
+\>", "Notes",
+ CellID->2109207621,ExpressionUUID->"59935638-04bb-4452-9b02-dc0214d6aaf4"]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, Closed]]]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {
+       TaggingRules, "Openers", "PrimaryExamplesSection"}, Open], 
+      Alternatives[True, Open]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{14., {5., 9.}}]],ExpressionUUID->
+  "2d29b749-a7e6-4f93-98e9-c8cc2ff405db"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"45b71487-de0e-4c6a-94f1-1488c38ef69a"],
+ "Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(4)", "ExampleCount",ExpressionUUID->
+  "2ca94e34-2525-439d-a54e-f525688d64cb"]
+}], "PrimaryExamplesSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellTags->"PrimaryExamplesSection",
+ CellID->1085061235,ExpressionUUID->"ab0d25eb-710d-4d44-a8a3-12f1cca51545"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "0"},
+        Closed], 
+      Alternatives[Open, True]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{14., {5., 9.}}]],ExpressionUUID->
+  "baa2da47-08fa-4d4e-afdb-f4c9294878b0"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"98d3b04c-af9b-4848-a010-f0d4d5c44b7b"],
+ "Basic Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(2)", "ExampleCount",ExpressionUUID->
+  "e67e1f09-6b58-4f8a-ad34-9b941b307ab2"]
+}], "ExampleSection", "ExampleSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellID->193046321,ExpressionUUID->"f5761101-5374-4e77-845b-7fa288425bf4"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<PDESymbolics2022`\>\"", "]"}]], "Input",
+ CellLabel->"In[1]:=",
+ CellID->908297970,ExpressionUUID->"4397a8e5-6f0e-4642-bf52-5953a4ba1116"],
+
+Cell["\<\
+The monomials u, u^2, and u^a form a linearly dependent system when a=1 or \
+a=2:\
+\>", "ExampleText",
+ CellID->1450218914,ExpressionUUID->"ab82a51d-6b2a-42a5-b0d1-7f7a5351145d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"MonomialDependenceOperator", "[", 
+   RowBox[{"<|", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"\"\<pars\>\"", "\[Rule]", 
+       RowBox[{"{", "a", "}"}]}], ",", 
+      RowBox[{"\"\<depVars\>\"", "\[Rule]", 
+       RowBox[{"{", "u", "}"}]}], ",", " ", 
+      RowBox[{"\"\<indVars\>\"", "\[Rule]", 
+       RowBox[{"{", "x", "}"}]}]}], "}"}], "|>"}], "]"}], "[", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"u", "[", "x", "]"}], ",", 
+    RowBox[{
+     RowBox[{"u", "[", "x", "]"}], "^", "2"}], ",", " ", 
+    RowBox[{
+     RowBox[{"u", "[", "x", "]"}], "^", "a"}]}], "}"}], "]"}]], "Input",
+ CellLabel->"In[2]:=",
+ CellID->130722684,ExpressionUUID->"3fe37905-7a2d-4181-bf1f-de1d6c104d6d"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{"{", 
+         RowBox[{"a", "\[Rule]", "1"}], "}"}], 
+        RowBox[{"a", "\[Equal]", "1"}]},
+       {
+        RowBox[{"{", 
+         RowBox[{"a", "\[Rule]", "2"}], "}"}], 
+        RowBox[{"a", "\[Equal]", "2"}]},
+       {
+        RowBox[{"{", "}"}], 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Output",
+ CellLabel->"Out[2]=",
+ CellID->1602724421,ExpressionUUID->"43baac3f-8eb0-49e4-b86e-df2e4b2d187c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[Cell[
+  "\t", "ExampleDelimiter",ExpressionUUID->
+   "fbeaf825-74eb-44e4-859d-bf4a92f51fb5"],
+  $Line = 0; Null]], "ExampleDelimiter",
+ CellID->498918389,ExpressionUUID->"9e690936-b3f4-4d48-9e3f-c097e8fe948b"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<PDESymbolics2022`\>\"", "]"}]], "Input",
+ CellLabel->"In[1]:=",
+ CellID->1545206035,ExpressionUUID->"965cd0ce-650d-412a-b7af-aea57e43fe36"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"variables", " ", "=", " ", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<depVars\>\"", "\[Rule]", 
+      RowBox[{"{", "u", "}"}]}], ",", 
+     RowBox[{"\"\<indVars\>\"", "\[Rule]", 
+      RowBox[{"{", "x", "}"}]}], ",", 
+     RowBox[{"\"\<pars\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"a", ",", "b"}], "}"}]}]}], "|>"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"MonomialDependenceOperator", "[", "variables", "]"}], "[", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"u", "[", "x", "]"}], "^", "2"}], ",", 
+    RowBox[{"a", " ", 
+     RowBox[{
+      RowBox[{"u", "[", "x", "]"}], "^", "b"}]}]}], "}"}], "]"}]}], "Input",
+ CellLabel->"In[2]:=",
+ CellID->779331728,ExpressionUUID->"dcfc5511-811e-4584-bb18-2f07fc445209"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"a", "\[Rule]", "0"}], ",", 
+          RowBox[{"b", "\[Rule]", "2"}]}], "}"}], 
+        RowBox[{
+         RowBox[{"a", "\[Equal]", "0"}], "&&", 
+         RowBox[{"b", "\[Equal]", "2"}]}]},
+       {
+        RowBox[{"{", 
+         RowBox[{"a", "\[Rule]", "0"}], "}"}], 
+        RowBox[{"a", "\[Equal]", "0"}]},
+       {
+        RowBox[{"{", 
+         RowBox[{"b", "\[Rule]", "2"}], "}"}], 
+        RowBox[{"b", "\[Equal]", "2"}]},
+       {
+        RowBox[{"{", "}"}], 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Output",
+ CellLabel->"Out[2]=",
+ CellID->665985718,ExpressionUUID->"de7a803e-bfc3-4a5c-90c2-5590e93db90f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"variables", " ", "=", " ", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<depVars\>\"", "\[Rule]", 
+      RowBox[{"{", "u", "}"}]}], ",", 
+     RowBox[{"\"\<indVars\>\"", "\[Rule]", 
+      RowBox[{"{", "x", "}"}]}], ",", 
+     RowBox[{"\"\<pars\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"a", ",", "b"}], "}"}]}], ",", " ", 
+     RowBox[{"\"\<facts\>\"", "\[Rule]", 
+      RowBox[{"a", ">", "0"}]}]}], "|>"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"MonomialDependenceOperator", "[", "variables", "]"}], "[", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"u", "[", "x", "]"}], "^", "2"}], ",", 
+    RowBox[{"a", " ", 
+     RowBox[{
+      RowBox[{"u", "[", "x", "]"}], "^", "b"}]}]}], "}"}], "]"}]}], "Input",
+ CellLabel->"In[3]:=",
+ CellID->405720420,ExpressionUUID->"6ffffa17-9d4b-4fd9-b645-8aa3462067f2"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{"{", 
+         RowBox[{"b", "\[Rule]", "2"}], "}"}], 
+        RowBox[{
+         RowBox[{"b", "\[Equal]", "2"}], "&&", 
+         RowBox[{"a", ">", "0"}]}]},
+       {
+        RowBox[{"{", "}"}], 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Output",
+ CellLabel->"Out[3]=",
+ CellID->1236769226,ExpressionUUID->"02e48523-21f9-4191-808e-6eb4205c2fd9"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"variables", " ", "=", " ", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<depVars\>\"", "\[Rule]", 
+      RowBox[{"{", "u", "}"}]}], ",", 
+     RowBox[{"\"\<indVars\>\"", "\[Rule]", 
+      RowBox[{"{", "x", "}"}]}], ",", 
+     RowBox[{"\"\<pars\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"a", ",", "b"}], "}"}]}]}], "|>"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"MonomialDependenceOperator", "[", "variables", "]"}], "[", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"u", "[", "x", "]"}], "^", "2"}], ",", 
+    RowBox[{"a", " ", 
+     RowBox[{
+      RowBox[{"u", "[", "x", "]"}], "^", "b"}]}]}], "}"}], "]"}]}], "Input",
+ CellLabel->"In[4]:=",
+ CellID->520221703,ExpressionUUID->"4abde610-beb6-4a5b-aab1-1d07dc44e568"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"a", "\[Rule]", "0"}], ",", 
+          RowBox[{"b", "\[Rule]", "2"}]}], "}"}], 
+        RowBox[{
+         RowBox[{"a", "\[Equal]", "0"}], "&&", 
+         RowBox[{"b", "\[Equal]", "2"}]}]},
+       {
+        RowBox[{"{", 
+         RowBox[{"a", "\[Rule]", "0"}], "}"}], 
+        RowBox[{"a", "\[Equal]", "0"}]},
+       {
+        RowBox[{"{", 
+         RowBox[{"b", "\[Rule]", "2"}], "}"}], 
+        RowBox[{"b", "\[Equal]", "2"}]},
+       {
+        RowBox[{"{", "}"}], 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Output",
+ CellLabel->"Out[4]=",
+ CellID->1830529599,ExpressionUUID->"4540b077-61fe-43eb-b18f-b6b1c438e663"]
+}, Open  ]]
+}, Open  ]]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "0"}, 
+  Closed]]]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "1"},
+        Closed], 
+      Alternatives[Open, True]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{14., {0.45000000000000107`, 13.549999999999999`}}]],
+  ExpressionUUID->"a74d3f8f-2069-4e01-b3df-5baf7818afb2"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"adb25f5d-69ba-46b5-b4a2-3c0535529e67"],
+ "Options",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(1)", "ExampleCount",ExpressionUUID->
+  "539fe559-db04-4f8b-a5e1-599b5812daf0"]
+}], "ExampleSection", "ExampleSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellID->2061341341,ExpressionUUID->"685272da-6f5a-428b-aa53-3b805f684615"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {
+       TaggingRules, "Openers", "ExampleSubsection", "0"}, Closed], 
+      Alternatives[Open, True]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{14., {0.45000000000000107`, 13.549999999999999`}}]],
+  ExpressionUUID->"93b1db1c-5c78-4a96-b481-0b23588f9848"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"cb2f2703-195c-40d7-a3a5-d0c045d57a89"],
+ "XXSecond line automatically createdXX",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(1)", "ExampleCount",ExpressionUUID->
+  "2efcb3fd-5211-42e8-b32d-00234364b2f0"]
+}], "ExampleSubsection", "ExampleSubsection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellID->1295379749,ExpressionUUID->"e19b0eec-db48-410c-80dd-c5a54aea3110"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<PDESymbolics2022`\>\"", "]"}]], "Input",
+ CellLabel->"In[1]:=",
+ CellID->1633691590,ExpressionUUID->"9ea29289-9ba2-46fd-b78e-07de980f958a"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"variables", "=", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<depVars\>\"", "\[Rule]", 
+      RowBox[{"{", "u", "}"}]}], ",", 
+     RowBox[{"\"\<indVars\>\"", "\[Rule]", 
+      RowBox[{"{", "x", "}"}]}], ",", 
+     RowBox[{"\"\<pars\>\"", "\[Rule]", 
+      RowBox[{"{", "a", "}"}]}], ",", 
+     RowBox[{"\"\<refineconstantmonomials\>\"", "\[Rule]", "True"}]}], 
+    "|>"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"MonomialDependenceOperator", "[", "variables", "]"}], "[", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", 
+    RowBox[{
+     RowBox[{"u", "[", "x", "]"}], "^", "a"}], ",", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"u", "'"}], "[", "x", "]"}], "^", "2"}], ",", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"9", "+", "a"}], ")"}], 
+     RowBox[{
+      RowBox[{"u", "[", "x", "]"}], "^", "a"}], " ", 
+     RowBox[{
+      RowBox[{"u", "''"}], "[", "x", "]"}]}]}], "}"}], "]"}]}], "Input",
+ CellLabel->"In[2]:=",
+ CellID->1577570344,ExpressionUUID->"58b40b81-70ef-4bf3-9091-9b6d14bfc6d2"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{"{", 
+         RowBox[{"a", "\[Rule]", 
+          RowBox[{"-", "9"}]}], "}"}], 
+        RowBox[{"a", "\[Equal]", 
+         RowBox[{"-", "9"}]}]},
+       {
+        RowBox[{"{", 
+         RowBox[{"a", "\[Rule]", "0"}], "}"}], 
+        RowBox[{"a", "\[Equal]", "0"}]},
+       {
+        RowBox[{"{", "}"}], 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Output",
+ CellLabel->"Out[2]=",
+ CellID->2119824340,ExpressionUUID->"7d3915a5-43a0-4e8d-a7d2-5a9729ea7839"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"variables", "=", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<depVars\>\"", "\[Rule]", 
+      RowBox[{"{", "u", "}"}]}], ",", 
+     RowBox[{"\"\<indVars\>\"", "\[Rule]", 
+      RowBox[{"{", "x", "}"}]}], ",", 
+     RowBox[{"\"\<pars\>\"", "\[Rule]", 
+      RowBox[{"{", "a", "}"}]}], ",", 
+     RowBox[{"\"\<refineconstantmonomials\>\"", "\[Rule]", "False"}]}], 
+    "|>"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"MonomialDependenceOperator", "[", "variables", "]"}], "[", 
+  RowBox[{"{", 
+   RowBox[{"1", ",", 
+    RowBox[{
+     RowBox[{"u", "[", "x", "]"}], "^", 
+     RowBox[{"(", 
+      RowBox[{"a", "-", "3"}], ")"}]}], ",", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"u", "'"}], "[", "x", "]"}], "^", "2"}], ",", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"9", "+", "a"}], ")"}], 
+     RowBox[{
+      RowBox[{"u", "[", "x", "]"}], "^", "a"}], " ", 
+     RowBox[{
+      RowBox[{"u", "''"}], "[", "x", "]"}]}]}], "}"}], "]"}]}], "Input",
+ CellLabel->"In[3]:=",
+ CellID->113245149,ExpressionUUID->"5e685532-2b95-4825-aeb0-bfce511c896a"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{"{", 
+         RowBox[{"a", "\[Rule]", 
+          RowBox[{"-", "9"}]}], "}"}], 
+        RowBox[{"a", "\[Equal]", 
+         RowBox[{"-", "9"}]}]},
+       {
+        RowBox[{"{", 
+         RowBox[{"a", "\[Rule]", "3"}], "}"}], 
+        RowBox[{"a", "\[Equal]", "3"}]},
+       {
+        RowBox[{"{", "}"}], 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Output",
+ CellLabel->"Out[3]=",
+ CellID->903822021,ExpressionUUID->"3db493fe-3629-4742-9a59-4575b48ec5fc"]
+}, Open  ]]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSubsection", "0"}, 
+  Closed]]]]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "1"}, 
+  Closed]]]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "2"},
+        Closed], 
+      Alternatives[Open, True]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{14., {0.45000000000000107`, 13.549999999999999`}}]],
+  ExpressionUUID->"de4a8234-8aee-4696-adfb-c8169b99b0ab"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"a3ffa1a2-0bc3-423d-a7ca-184f577365a1"],
+ "Possible Issues",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(1)", "ExampleCount",ExpressionUUID->
+  "380cbe98-137f-4cc5-a97e-6a6a91a15e6c"]
+}], "ExampleSection", "ExampleSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellID->1305812373,ExpressionUUID->"a168d2f4-0d19-4f82-a0e9-9d0c3ebb1e9b"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<PDESymbolics2022`\>\"", "]"}]], "Input",
+ CellLabel->"In[1]:=",
+ CellID->651911961,ExpressionUUID->"a1a6d11f-b73f-499a-bf24-3168218e315c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"variables", "=", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<depVars\>\"", "\[Rule]", 
+      RowBox[{"{", "u", "}"}]}], ",", 
+     RowBox[{"\"\<indVars\>\"", "\[Rule]", 
+      RowBox[{"{", "x", "}"}]}], ",", 
+     RowBox[{"\"\<pars\>\"", "\[Rule]", 
+      RowBox[{"{", "a", "}"}]}]}], "|>"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"MonomialDependenceOperator", "[", "variables", "]"}], "[", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"D", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"u", "[", "x", "]"}], "^", "a"}], ",", "x"}], "]"}], ",", 
+    RowBox[{"D", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"u", "[", "x", "]"}], "^", "2"}], ",", "x"}], "]"}]}], "}"}], 
+  "]"}]}], "Input",
+ CellLabel->"In[2]:=",
+ CellID->185571970,ExpressionUUID->"233a8285-962f-44f1-bdd6-546bb32ae0a2"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{"{", 
+         RowBox[{"a", "\[Rule]", "0"}], "}"}], 
+        RowBox[{"a", "\[Equal]", "0"}]},
+       {
+        RowBox[{"{", 
+         RowBox[{"a", "\[Rule]", "2"}], "}"}], 
+        RowBox[{"a", "\[Equal]", "2"}]},
+       {
+        RowBox[{"{", "}"}], 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Output",
+ CellLabel->"Out[2]=",
+ CellID->372823364,ExpressionUUID->"4a1364f0-fe26-4c68-a2a7-39bb1e82b0b4"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"MonomialDependenceOperator", "[", 
+   RowBox[{"Append", "[", 
+    RowBox[{"variables", ",", 
+     RowBox[{"\"\<facts\>\"", "\[Rule]", 
+      RowBox[{
+       RowBox[{"a", "<", "0"}], "||", 
+       RowBox[{"0", "<", "a", "<", "2"}], "||", 
+       RowBox[{"a", ">", "2"}]}]}]}], "]"}], "]"}], "[", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"D", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"u", "[", "x", "]"}], "^", "2"}], ",", "x"}], "]"}], ",", 
+    RowBox[{"D", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"u", "[", "x", "]"}], "^", "a"}], ",", "x"}], "]"}]}], "}"}], 
+  "]"}]], "Input",
+ CellLabel->"In[3]:=",
+ CellID->787983211,ExpressionUUID->"13dc71ae-4ce6-4ed5-95aa-0c3ced4dba31"],
+
+Cell[BoxData[
+ RowBox[{"{", "}"}]], "Output",
+ CellLabel->"Out[3]=",
+ CellID->1462418289,ExpressionUUID->"71234ef2-edf1-47d2-ba00-3f37f81ece55"]
+}, Open  ]]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "2"}, 
+  Closed]]]]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, 
+  Closed]]]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[GridBox[{
+   {
+    DynamicBox[FEPrivate`ImportImage[
+      FrontEnd`FileName[{"Documentation", "FooterIcons"}, "RelatedGuide.png"]],
+     ImageSizeCache->{50., {27., 33.}}], GridBox[{
+      {
+       StyleBox[
+        RowBox[{"Related", " ", "Guides"}], "MoreAboutSection"]},
+      {
+       RowBox[{"\[FilledVerySmallSquare]", Cell[BoxData[
+         TemplateBox[{
+           Cell[
+            TextData["PDESymbolics"]], 
+           "paclet:PDESymbolics2022/guide/PDESymbolics"},
+          "RefLinkPlain",
+          BaseStyle->{"MoreAbout"}]], "MoreAbout",ExpressionUUID->
+         "35cf8782-3173-4cb9-bcf9-5cda287ac411"]}]}
+     }]}
+  }]], "MoreAboutSection",ExpressionUUID->"2c7752c8-f3d9-4371-a5ef-\
+b443c029bc60"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[If[CurrentValue[
+      EvaluationNotebook[], {TaggingRules, "ShowCitation"}] === False, 
+    TagBox[
+     ButtonBox[
+      FrameBox[
+       RowBox[{
+         DynamicBox[
+          FEPrivate`FrontEndResource[
+          "DocumentationExpressions", "CitationArrow"]], 
+         StyleBox[
+          DynamicBox[
+           FEPrivate`FrontEndResource["DocumentationStrings", "CiteThisAs"]], 
+          "CitationButtonText"]}]], BaseStyle -> "CiteThisAsButton"], 
+     MouseAppearanceTag["LinkHand"]], 
+    StyleBox[
+     TemplateBox[{86, 22}, "Spacer2"]]],
+   ImageSizeCache->{91., {7., 17.}}]], "CitationCell",ExpressionUUID->
+  "544fbce1-41aa-419d-9ccb-afd2ae1a8523"],
+ Cell[BoxData[
+  TemplateBox[{8},
+   "Spacer1"]],ExpressionUUID->"c5cd4f69-966d-426d-a0d5-aa49cdc31944"],
+ Cell[BoxData[
+  DynamicBox[If[CurrentValue[
+      EvaluationNotebook[], {TaggingRules, "ShowCitation"}] === False, 
+    StyleBox[
+     TemplateBox[{
+       Part[
+        CurrentValue[
+         EvaluationNotebook[], {TaggingRules, "CitationPopupData"}], 1]}, 
+      "ClickToCopy", BaseStyle -> "CitationText"], "CitationText"], 
+    StyleBox[
+     TemplateBox[{86, 22}, "Spacer2"]]],
+   ImageSizeCache->{581., {24., 15.}}]],ExpressionUUID->
+  "a8302333-ce17-42f5-84ee-2efefcdc2cdf"]
+}], "CitationContainerCell",ExpressionUUID->"4fb92f1c-4d1a-4300-ab96-\
+97ef5939b246"]
+}, Open  ]],
+
+Cell[" ", "FooterCell",ExpressionUUID->"441b4d47-9d36-408c-88cd-f726e6e88615"]
+},
+Saveable->False,
+ScreenStyleEnvironment->"Working",
+WindowSize->{900, 830},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowTitle->"MonomialDependenceOperator",
+TaggingRules->{
+ "ModificationHighlight" -> False, "ColorType" -> "", "LinkTrails" -> "", 
+  "HasOptions" -> True, "ExampleCounter" -> 1, 
+  "Openers" -> {
+   "PrimaryExamplesSection" -> Open, 
+    "ExampleSection" -> {"0" -> Open, "1" -> Closed, "2" -> Closed}, 
+    "NotesSection" -> Closed, "ExampleSubsection" -> {"0" -> Closed}}, 
+  "NewStyles" -> True, 
+  "CitationPopupData" -> {
+   "Wolfram Research (0), MonomialDependenceOperator, Wolfram Language \
+function, \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/\
+MonomialDependenceOperator.html.", 
+    GridBox[{{
+       ItemBox["", ItemSize -> "Fit"], 
+       ItemBox[
+        TagBox[
+         ButtonBox[
+          DynamicBox[
+           FEPrivate`FrontEndResource[
+           "DocumentationExpressions", "CitationCloseButton"]], BaseStyle -> 
+          "CitationPopupCloseButton", Appearance -> None], 
+         MouseAppearanceTag["LinkHand"]], Alignment -> Right]}, {
+       Cell[
+        TextData[{
+          StyleBox["Text", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "Wolfram Research (0), MonomialDependenceOperator, Wolfram \
+Language function, \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/\
+MonomialDependenceOperator.html.", TextForm]}, "ClickToCopy", BaseStyle -> 
+               "CitationText"], ShowStringCharacters -> True], 
+             "CitationText"]]]}]], "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["CMS", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "Wolfram Language. 0. \"MonomialDependenceOperator.\" Wolfram \
+Language & System Documentation Center. Wolfram Research. \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/\
+MonomialDependenceOperator.html.", TextForm]}, "ClickToCopy", BaseStyle -> 
+               "CitationText"], ShowStringCharacters -> True], 
+             "CitationText"]]]}]], "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["APA", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "Wolfram Language. (0). MonomialDependenceOperator. Wolfram \
+Language & System Documentation Center. Retrieved from \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/\
+MonomialDependenceOperator.html", TextForm]}, "ClickToCopy", BaseStyle -> 
+               "CitationText"], ShowStringCharacters -> True], 
+             "CitationText"]]]}]], "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["BibTeX", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "@misc{reference.wolfram_2023_monomialdependenceoperator, \
+author=\"Wolfram Research\", title=\"{MonomialDependenceOperator}\", year=\"0\
+\", howpublished=\"\\url{https://reference.wolfram.com/language/\
+PDESymbolics2022/ref/MonomialDependenceOperator.html}\", note=\"[version \
+12.1]\"}", TextForm]}, "ClickToCopy", BaseStyle -> "CitationText"], 
+              ShowStringCharacters -> True], "CitationText"]]]}]], 
+       "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["BibLaTeX", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "@online{reference.wolfram_2023_monomialdependenceoperator, \
+organization={Wolfram Research}, title={MonomialDependenceOperator}, \
+year={0}, \
+url={https://reference.wolfram.com/language/PDESymbolics2022/ref/\
+MonomialDependenceOperator.html}, note=\"[version 12.1]\"}", TextForm]}, 
+               "ClickToCopy", BaseStyle -> "CitationText"], 
+              ShowStringCharacters -> True], "CitationText"]]]}]], 
+       "\[SpanFromLeft]"}}]}, "ShowCitation" -> False, "RootCaptions" -> "", 
+  "Metadata" -> {
+   "built" -> "{2023, 1, 11, 10, 34, 30.961492}", 
+    "history" -> {"0.0", "", "", ""}, "context" -> "PDESymbolics2022`", 
+    "keywords" -> {}, "specialkeywords" -> {}, 
+    "tutorialcollectionlinks" -> {}, "index" -> True, "label" -> 
+    "PDE Symbolics2022 Symbol", "language" -> "en", "paclet" -> 
+    "PDESymbolics2022", "status" -> "None", "summary" -> 
+    "MonomialDependenceOperator[variables][list] Given a list of expressions \
+finds the values of parameters that correspond to two or more of the \
+expressions being a multiple of each other. Returns replacement rules for the \
+parameters.", "synonyms" -> {}, "tabletags" -> {}, "title" -> 
+    "MonomialDependenceOperator", "titlemodifier" -> "", "windowtitle" -> 
+    "MonomialDependenceOperator", "type" -> "Symbol", "uri" -> 
+    "PDESymbolics2022/ref/MonomialDependenceOperator"}},
+FrontEndVersion->"12.3 for Mac OS X x86 (64-bit) (July 9, 2021)",
+StyleDefinitions->FrontEnd`FileName[{"Wolfram"}, "Reference.nb", 
+  CharacterEncoding -> "UTF-8"],
+ExpressionUUID->"9b9a4cda-e3dd-432f-991e-888ffdc4e519"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "PrimaryExamplesSection"->{
+  Cell[8779, 229, 1390, 37, 36, "PrimaryExamplesSection",ExpressionUUID->"ab0d25eb-710d-4d44-a8a3-12f1cca51545",
+   CellTags->"PrimaryExamplesSection",
+   CellID->1085061235]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"PrimaryExamplesSection", 43952, 1270}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[598, 21, 4529, 109, 57, "AnchorBarGrid",ExpressionUUID->"ed4a3801-b957-43ff-899f-be09cdf1600f",
+ CellID->1],
+Cell[5130, 132, 99, 0, 23, "ContextNameCell",ExpressionUUID->"a5f39562-e4fb-4c50-bd1e-ababa8b3eeda"],
+Cell[CellGroupData[{
+Cell[5254, 136, 569, 14, 60, "ObjectNameGrid",ExpressionUUID->"f8dc1cf4-0c36-48e2-830c-22cae7d5404c"],
+Cell[5826, 152, 666, 13, 134, "Usage",ExpressionUUID->"5f00a34e-90e0-475f-ac99-1306e3a4faa3",
+ CellID->982511436]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6529, 170, 1899, 47, 37, "NotesSection",ExpressionUUID->"efb4723d-b47e-4b3d-863c-c831e6460a63",
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->2111899493],
+Cell[8431, 219, 221, 4, 36, "Notes",ExpressionUUID->"59935638-04bb-4452-9b02-dc0214d6aaf4",
+ CellID->2109207621]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, Closed]]]],
+Cell[CellGroupData[{
+Cell[8779, 229, 1390, 37, 36, "PrimaryExamplesSection",ExpressionUUID->"ab0d25eb-710d-4d44-a8a3-12f1cca51545",
+ CellTags->"PrimaryExamplesSection",
+ CellID->1085061235],
+Cell[CellGroupData[{
+Cell[10194, 270, 1367, 36, 31, "ExampleSection",ExpressionUUID->"f5761101-5374-4e77-845b-7fa288425bf4",
+ CellID->193046321],
+Cell[11564, 308, 180, 3, 29, "Input",ExpressionUUID->"4397a8e5-6f0e-4642-bf52-5953a4ba1116",
+ CellID->908297970],
+Cell[11747, 313, 188, 4, 38, "ExampleText",ExpressionUUID->"ab82a51d-6b2a-42a5-b0d1-7f7a5351145d",
+ CellID->1450218914],
+Cell[CellGroupData[{
+Cell[11960, 321, 723, 20, 48, "Input",ExpressionUUID->"3fe37905-7a2d-4181-bf1f-de1d6c104d6d",
+ CellID->130722684],
+Cell[12686, 343, 1508, 46, 71, "Output",ExpressionUUID->"43baac3f-8eb0-49e4-b86e-df2e4b2d187c",
+ CellID->1602724421]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14231, 394, 242, 5, 14, "ExampleDelimiter",ExpressionUUID->"9e690936-b3f4-4d48-9e3f-c097e8fe948b",
+ CellID->498918389],
+Cell[14476, 401, 181, 3, 29, "Input",ExpressionUUID->"965cd0ce-650d-412a-b7af-aea57e43fe36",
+ CellID->1545206035],
+Cell[CellGroupData[{
+Cell[14682, 408, 775, 22, 48, "Input",ExpressionUUID->"dcfc5511-811e-4584-bb18-2f07fc445209",
+ CellID->779331728],
+Cell[15460, 432, 1763, 54, 87, "Output",ExpressionUUID->"de7a803e-bfc3-4a5c-90c2-5590e93db90f",
+ CellID->665985718]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17260, 491, 861, 24, 48, "Input",ExpressionUUID->"6ffffa17-9d4b-4fd9-b645-8aa3462067f2",
+ CellID->405720420],
+Cell[18124, 517, 1449, 44, 53, "Output",ExpressionUUID->"02e48523-21f9-4191-808e-6eb4205c2fd9",
+ CellID->1236769226]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[19610, 566, 775, 22, 48, "Input",ExpressionUUID->"4abde610-beb6-4a5b-aab1-1d07dc44e568",
+ CellID->520221703],
+Cell[20388, 590, 1764, 54, 87, "Output",ExpressionUUID->"4540b077-61fe-43eb-b18f-b6b1c438e663",
+ CellID->1830529599]
+}, Open  ]]
+}, Open  ]]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "0"}, Closed]]]],
+Cell[CellGroupData[{
+Cell[22313, 653, 1396, 36, 70, "ExampleSection",ExpressionUUID->"685272da-6f5a-428b-aa53-3b805f684615",
+ CellID->2061341341],
+Cell[CellGroupData[{
+Cell[23734, 693, 1435, 36, 70, "ExampleSubsection",ExpressionUUID->"e19b0eec-db48-410c-80dd-c5a54aea3110",
+ CellID->1295379749],
+Cell[25172, 731, 181, 3, 70, "Input",ExpressionUUID->"9ea29289-9ba2-46fd-b78e-07de980f958a",
+ CellID->1633691590],
+Cell[CellGroupData[{
+Cell[25378, 738, 1045, 30, 70, "Input",ExpressionUUID->"58b40b81-70ef-4bf3-9091-9b6d14bfc6d2",
+ CellID->1577570344],
+Cell[26426, 770, 1559, 48, 71, "Output",ExpressionUUID->"7d3915a5-43a0-4e8d-a7d2-5a9729ea7839",
+ CellID->2119824340]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[28022, 823, 1098, 32, 70, "Input",ExpressionUUID->"5e685532-2b95-4825-aeb0-bfce511c896a",
+ CellID->113245149],
+Cell[29123, 857, 1558, 48, 71, "Output",ExpressionUUID->"3db493fe-3629-4742-9a59-4575b48ec5fc",
+ CellID->903822021]
+}, Open  ]]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSubsection", "0"}, Closed]]]]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "1"}, Closed]]]],
+Cell[CellGroupData[{
+Cell[30945, 916, 1404, 36, 70, "ExampleSection",ExpressionUUID->"a168d2f4-0d19-4f82-a0e9-9d0c3ebb1e9b",
+ CellID->1305812373],
+Cell[32352, 954, 180, 3, 70, "Input",ExpressionUUID->"a1a6d11f-b73f-499a-bf24-3168218e315c",
+ CellID->651911961],
+Cell[CellGroupData[{
+Cell[32557, 961, 850, 25, 70, "Input",ExpressionUUID->"233a8285-962f-44f1-bdd6-546bb32ae0a2",
+ CellID->185571970],
+Cell[33410, 988, 1507, 46, 71, "Output",ExpressionUUID->"4a1364f0-fe26-4c68-a2a7-39bb1e82b0b4",
+ CellID->372823364]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[34954, 1039, 731, 22, 70, "Input",ExpressionUUID->"13dc71ae-4ce6-4ed5-95aa-0c3ced4dba31",
+ CellID->787983211],
+Cell[35688, 1063, 144, 3, 37, "Output",ExpressionUUID->"71234ef2-edf1-47d2-ba00-3f37f81ece55",
+ CellID->1462418289]
+}, Open  ]]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "2"}, Closed]]]]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, Closed]]]],
+Cell[CellGroupData[{
+Cell[36096, 1077, 728, 19, 70, "MoreAboutSection",ExpressionUUID->"2c7752c8-f3d9-4371-a5ef-b443c029bc60"],
+Cell[36827, 1098, 1383, 37, 70, "CitationContainerCell",ExpressionUUID->"4fb92f1c-4d1a-4300-ab96-97ef5939b246"]
+}, Open  ]],
+Cell[38225, 1138, 78, 0, 70, "FooterCell",ExpressionUUID->"441b4d47-9d36-408c-88cd-f726e6e88615"]
+}
+]
+*)
+
+(* End of internal cache information *)
+

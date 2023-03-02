@@ -1,0 +1,167 @@
+
+		<!DOCTYPE html>
+		<html lang="en">
+
+		<head>
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset="utf-8">
+	
+
+<title>RangeSchemeTranslationsOperator&mdash;Wolfram Language Documentation</title>
+<meta name="buildnumber" content="0000000">
+<meta name="historydata" content="{0.0, , , }" />
+<meta name="keywords" content="RangeSchemeTranslationsOperator" />
+
+<meta name="description" content="RangeSchemeTranslationsOperator[variables][masterstencil, stencil] computes all possible translations of stencil such that the translated stencil stays inside the range of the masterstencil. The range of the masterstencil are all combinations of independent variables such that they are less or equal then the maximum argument and greater or equal then the minimum argument of this variable." />
+<link rel="stylesheet" href="../../common/framework/css/framework.en.css"><link rel="stylesheet" href="../../common/framework/css/gui.en.css"><link rel="stylesheet" href="../../common/js/clipboard/2.0/clipboard.css"><link rel="stylesheet" href="../../fonts/source-code-pro/1.0/all.css"><link rel="stylesheet" href="../../fonts/source-sans-pro/1.0/global.css"><link rel="stylesheet" href="../../language-assets/css/entities.css"><link rel="stylesheet" href="../../language-assets/css/footer.css"><link rel="stylesheet" href="../../language-assets/css/global.css"><link rel="stylesheet" href="../../language-assets/css/guide.css"><link rel="stylesheet" href="../../language-assets/css/header-language.css"><link rel="stylesheet" href="../../language-assets/css/iconography.css"><link rel="stylesheet" href="../../language-assets/css/icons.css"><link rel="stylesheet" href="../../language-assets/css/in-out.css"><link rel="stylesheet" href="../../language-assets/css/language-specific.css"><link rel="stylesheet" href="../../language-assets/css/language.css"><link rel="stylesheet" href="../../language-assets/css/man-page.css"><link rel="stylesheet" href="../../language-assets/css/related-links.css"><link rel="stylesheet" href="../../language-assets/css/root-guide-language.css"><link rel="stylesheet" href="../../language-assets/css/special-styles.css"><link rel="stylesheet" href="../../language-assets/css/tables.css"><link rel="stylesheet" href="../../language-assets/css/technotes.css"><link rel="stylesheet" href="../../language-assets/css/tooltips.css"><link rel="stylesheet" href="../../language-assets/css/workflows.css">
+<script>var baselang = 'RangeSchemeTranslationsOperator.en';</script>
+</head>
+
+<body id="ref" class="package">
+  <main class="main">
+  <nav class="topContentWrap"><span class="badge">PDE SYMBOLICS2022 SYMBOL</span><ul class="dropdown">
+   <li>
+    <a href="#" class="menu see-also">See Also</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="../ref/StencilOperator.html"><span class="dropdownPad">StencilOperator</span></a>
+     </li>
+     <li>
+      <a href="../ref/ReduceModSchemeOperator.html"><span class="dropdownPad">ReduceModSchemeOperator</span></a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="#" class="menu related-guides">Related Guides</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="../guide/PDESymbolics.html"><span class="dropdownPad">PDESymbolics</span></a>
+     </li>
+    </ul>
+   </li>
+  </ul></nav><div class="ContextNameCell">PDESymbolics2022`</div><div class="main-heading"><span class="main-title-top">PDESymbolics2022`</span><h1 class="main-title">RangeSchemeTranslationsOperator</h1><div class="iconography" data-src="s= d= m= c= u= l= n= e="></div></div><div class="functionIntroWrap">
+  <div class="functionIntro"><span class="IF"><span class="specialcharacters">RangeSchemeTranslationsOperator<span class="openbracket">[</span>variables<span class="closebracket">]</span><span class="openbracket">[</span>masterstencil<span class="comma">,</span>stencil<span class="closebracket">]</span></span></span> computes all possible translations of stencil such that the translated stencil stays inside the range of the masterstencil. The range of the masterstencil are all combinations of independent variables such that they are less or equal then the maximum argument and greater or equal then the minimum argument of this variable.</div>
+ </div><section id="DetailsAndOptions"><div class="inner">
+   <h1 class="toggle">Details and Options</h1>
+   <div class="hideable">
+    <ul class="functionList">
+     <li><a name="1067943069"></a>To use RangeSchemeTranslationsOperator, you first need to load the PDESymbolics Package using Needs[&quot;PDESymbolics2022`&quot;].</li>
+    </ul>
+   </div>
+  </div></section><section id="Examples"><h1 class="toggle open">Examples</h1><span class="open-all on">open all</span><span class="close-all">close all</span><div class="hideable">
+   <div>
+    <h2 class="toggle open">Basic Examples<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span class="total-examples">(1)</span></h2>
+    <div class="hideable">
+     <div class="Code">
+      <pre>Needs[&quot;PDESymbolics2022`&quot;]</pre>
+     </div>
+     <div class="Code">
+      <pre>variables=&lt;|&quot;indVars&quot;-&gt;{n},&quot;depVars&quot;-&gt;{u}|&gt;;<br />scheme=u[n+1]-u[n];<br />expression=u[n+2]+u[n];<br />stencil=StencilOperator[variables][scheme]<br />masterstencil=StencilOperator[variables][expression]<br />RangeSchemeTranslationsOperator[variables][masterstencil,stencil]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[5]="
+         data-out-num="5"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/RangeSchemeTranslationsOperator.en/O_1.png"
+         data-out-width="86"
+         data-out-height="16"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[6]="
+         data-out-num="6"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/RangeSchemeTranslationsOperator.en/O_2.png"
+         data-out-width="86"
+         data-out-height="16"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[7]="
+         data-out-num="7"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/RangeSchemeTranslationsOperator.en/O_3.png"
+         data-out-width="40"
+         data-out-height="16"
+         ></div>
+     <p><a name="1375194635"></a>In the previous example, the stencil of the expression is {0,2} and the stencil of the scheme is {0,1}.</p>
+     <div class="Code">
+      <pre>variables=&lt;|<br />&quot;indVars&quot;-&gt;{n,m},<br />&quot;depVars&quot;-&gt;{u}<br />|&gt;;<br />scheme=u[n+1,m+2]-u[n,m];<br />expression=u[n+3,m+3]-u[n-1,m-2];<br />stencil=StencilOperator[variables][scheme]<br />masterstencil=StencilOperator[variables][expression]<br />RangeSchemeTranslationsOperator[variables][masterstencil,stencil]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[11]="
+         data-out-num="11"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/RangeSchemeTranslationsOperator.en/O_4.png"
+         data-out-width="110"
+         data-out-height="16"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[12]="
+         data-out-num="12"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/RangeSchemeTranslationsOperator.en/O_5.png"
+         data-out-width="124"
+         data-out-height="16"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[13]="
+         data-out-num="13"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/RangeSchemeTranslationsOperator.en/O_6.png"
+         data-out-width="347"
+         data-out-height="33"
+         ></div>
+     <p><a name="1626076603"></a>In the preceding example the range of the stencil of the expression is {-1,3} x {-2,3} (in n and in m).</p>
+    </div>
+   </div>
+   <div>
+    <h2 class="toggle">Options<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span class="total-examples">(1)</span></h2>
+    <div class="hideable">
+     <p><a name="1253300925"></a>When specifying &quot;intersect&quot;-&gt;True in variables, then the operator will compute all the translations such that the translated scheme intersects the stencil of the expression.</p>
+     <div class="Code">
+      <pre>variables=&lt;|&quot;indVars&quot;-&gt;{n},&quot;depVars&quot;-&gt;{u}|&gt;;<br />scheme=u[n+1]-u[n];<br />expression=u[n+2]-u[n];<br />stencil=StencilOperator[variables][scheme];<br />masterstencil=StencilOperator[variables][expression];<br />RangeSchemeTranslationsOperator[variables][masterstencil,stencil]<br />RangeSchemeTranslationsOperator[Append[variables,&quot;intersect&quot;-&gt;True]][masterstencil,stencil]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[19]="
+         data-out-num="19"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/RangeSchemeTranslationsOperator.en/O_7.png"
+         data-out-width="40"
+         data-out-height="16"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[20]="
+         data-out-num="20"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/RangeSchemeTranslationsOperator.en/O_8.png"
+         data-out-width="85"
+         data-out-height="16"
+         ></div>
+    </div>
+   </div>
+   <div class="clear"><!-- --></div>
+  </div></section><section id="SeeAlso" class="related-links"><div class="inner">
+   <h1>See Also</h1>
+   <p class="inlineFunctionList"><span class="IF"><a class="package-symbol" href="../ref/StencilOperator.html">StencilOperator</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"></span> <span class="IF"><a class="package-symbol" href="../ref/ReduceModSchemeOperator.html">ReduceModSchemeOperator</a></span></p>
+  </div></section><section id="RelatedGuides" class="related-links"><div class="inner">
+   <h1>Related Guides</h1>
+   <ul class="functionList">
+    <span class="special-character FilledVerySmallSquare">&#9642;</span>
+    <li>
+     <a href="../guide/PDESymbolics.html">PDESymbolics</a>
+    </li>
+   </ul>
+  </div></section><section id="Citations" class="citations"><div class="inner">
+   <div class="citation">
+    <span class="citation-tooltip"><button type="button" class="citation-tooltip-button"><span class="citation-text">Cite this as:</span></button><span class="citation-default clipboard-inlineblock clipboard-hover">Wolfram Research (0), RangeSchemeTranslationsOperator, Wolfram Language function, https://reference.wolfram.com/language/PDESymbolics2022/ref/RangeSchemeTranslationsOperator.html.</span><span class="citation-tooltip-content"><button class="x-close-svg"><img src="/language-assets/img/CitationCloseButton.svg" height="10px" width="10px" /></button><h4>Text</h4><p class="clipboard-inlineblock clipboard-hover">Wolfram Research (0), RangeSchemeTranslationsOperator, Wolfram Language function, https://reference.wolfram.com/language/PDESymbolics2022/ref/RangeSchemeTranslationsOperator.html.</p><h4>CMS</h4><p class="clipboard-inlineblock clipboard-hover">Wolfram Language. 0. &quot;RangeSchemeTranslationsOperator.&quot; Wolfram Language &amp; System Documentation Center. Wolfram Research. https://reference.wolfram.com/language/PDESymbolics2022/ref/RangeSchemeTranslationsOperator.html.</p><h4>APA</h4><p class="clipboard-inlineblock clipboard-hover">Wolfram Language. (0). RangeSchemeTranslationsOperator. Wolfram Language &amp; System Documentation Center. Retrieved from https://reference.wolfram.com/language/PDESymbolics2022/ref/RangeSchemeTranslationsOperator.html</p><h4>BibTeX</h4><p class="clipboard-inlineblock clipboard-hover citation-timestamp">@misc{reference.wolfram_2023_rangeschemetranslationsoperator, author=&quot;Wolfram Research&quot;, title=&quot;{RangeSchemeTranslationsOperator}&quot;, year=&quot;0&quot;, howpublished=&quot;\url{https://reference.wolfram.com/language/PDESymbolics2022/ref/RangeSchemeTranslationsOperator.html}&quot;, note=[<!--#include virtual="/language-assets/inc/timestamp.html.en"-->]}</p><h4>BibLaTeX</h4><p class="clipboard-inlineblock clipboard-hover citation-timestamp">@online{reference.wolfram_2023_rangeschemetranslationsoperator, organization={Wolfram Research}, title={RangeSchemeTranslationsOperator}, year={0}, url={https://reference.wolfram.com/language/PDESymbolics2022/ref/RangeSchemeTranslationsOperator.html}, note=[<!--#include virtual="/language-assets/inc/timestamp.html.en"-->]}</p></span><span class="citation-overlay"></span></span>
+   </div>
+  </div></section>
+  
+
+  
+		</main>
+		<div id="_footer-offset"></div>
+		<div id="_footer"></div>
+		<script src="../../common/js/jquery/2.2.4/jquery.min.js"></script><script src="../../common/js/jquery/plugins/hoverintent/1.8.0/hoverintent.min.j2"></script><script src="../../common/js/clipboard/2.0/clipboard.js"></script><script src="../../common/js/clipboard/2.0/code-clipboard.js"></script><script src="../../common/framework/js/body.en.js"></script><script src="../../common/framework/js/head.en.js"></script><script src="../../language-assets/js/dropdowns.js"></script><script src="../../language-assets/js/global.js"></script><script src="../../language-assets/js/language-specific.js.en"></script><script src="../../language-assets/js/language.js"></script><script src="../../language-assets/js/temporary.js"></script><script src="../../language-assets/js/toggles.js"></script><script src="../../language-assets/js/tooltips.js"></script><script src="../../language-assets/js/workflows.js"></script>
+</body>
+</html>

@@ -1,0 +1,967 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     35449,        957]
+NotebookOptionsPosition[     24269,        711]
+NotebookOutlinePosition[     30249,        857]
+CellTagsIndexPosition[     30164,        852]
+WindowTitle->TimeOrderedQOperator
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[GridBox[{
+   {GridBox[{
+      {
+       ItemBox[Cell[BoxData[
+         RowBox[{
+          TemplateBox[{12},
+           "Spacer1"], Cell["PDE SYMBOLICS2022 SYMBOL", "PacletNameCell",
+           TextAlignment->Center,ExpressionUUID->
+           "ca609c51-5c6c-4b33-8633-770eaf1167ad"], 
+          TemplateBox[{8},
+           "Spacer1"]}]],
+         TextAlignment->Center,ExpressionUUID->
+         "166ef8db-50aa-4f53-b376-e3bec153ba0c"],
+        Background->RGBColor[0.490196, 0.576471, 0.690196],
+        ItemSize->Full], ""}
+     },
+     GridBoxAlignment->{"Rows" -> {{Center}}},
+     GridBoxItemSize->{"Columns" -> {Full, 
+         Scaled[0.02]}, "Rows" -> {{2.5}}}], Cell[TextData[{
+     Cell[BoxData[
+      TagBox[
+       ActionMenuBox[
+        FrameBox[Cell[TextData[{
+          "Related Guides",
+          " ",
+          Cell[BoxData[
+           GraphicsBox[
+            {GrayLevel[0.66667], Thickness[0.13], 
+             LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+            AspectRatio->1,
+            ImageSize->20,
+            PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+           "9eb7339d-2910-4e57-b7e3-00cf6d3e0e6d"]
+         }],ExpressionUUID->"04ce7dd3-b169-4e9c-95a5-4ca11c3485d6"],
+         StripOnInput->False], {"\<\"PDESymbolics\"\>":>
+        Documentation`HelpLookup[
+        "paclet:PDESymbolics2022/guide/PDESymbolics"]},
+        Appearance->None,
+        MenuAppearance->Automatic,
+        MenuStyle->"MoreAbout"],
+       MouseAppearanceTag["LinkHand"]]],
+      LineSpacing->{1.4, 0},ExpressionUUID->
+      "1580579e-edc3-4296-bbbb-50c7f5ebbd29"],
+     "\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+     Cell[BoxData[
+      TagBox[
+       ActionMenuBox[
+        FrameBox[Cell[TextData[{
+          "URL",
+          " ",
+          Cell[BoxData[
+           GraphicsBox[
+            {GrayLevel[0.66667], Thickness[0.13], 
+             LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+            AspectRatio->1,
+            ImageSize->20,
+            PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+           "70e218f4-0663-4a1a-98f5-6382253cf776"]
+         }],ExpressionUUID->"0104cd7b-8e0b-45c2-b318-fcd2f832d585"],
+         StripOnInput->
+          False], {"\<\"PDESymbolics2022/ref/TimeOrderedQOperator\"\>":>
+        None, "\<\"Copy Wolfram Documentation Center URL\"\>":>
+        Module[{DocumentationSearch`Private`nb$}, 
+         DocumentationSearch`Private`nb$ = NotebookPut[
+            Notebook[{
+              Cell["PDESymbolics2022/ref/TimeOrderedQOperator"]}, Visible -> 
+             False]]; SelectionMove[
+          DocumentationSearch`Private`nb$, All, Notebook]; 
+         FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+         NotebookClose[DocumentationSearch`Private`nb$]; Null], 
+        Delimiter, "\<\"Copy web URL\"\>":>
+        Module[{DocumentationSearch`Private`nb$}, 
+         DocumentationSearch`Private`nb$ = NotebookPut[
+            Notebook[{
+              Cell[
+               BoxData[
+                MakeBoxes[
+                 Hyperlink[
+                 "http://reference.wolfram.com/language/PDESymbolics2022/ref/\
+TimeOrderedQOperator.html"], StandardForm]], "Input", TextClipboardType -> 
+               "PlainText"]}, Visible -> False]]; 
+         SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+         FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+         NotebookClose[DocumentationSearch`Private`nb$]; 
+         Null], "\<\"Go to web URL\"\>":>FrontEndExecute[{
+          NotebookLocate[{
+            URL[
+             StringJoin[
+              If[
+               TrueQ[DocumentationBuild`Make`Private`wsmlinkQ$138485], 
+               "http://reference.wolfram.com/system-modeler/", 
+               "http://reference.wolfram.com/language/"], 
+              "PDESymbolics2022/ref/TimeOrderedQOperator", ".html"]], 
+            None}]}]},
+        Appearance->None,
+        MenuAppearance->Automatic,
+        MenuStyle->"URLMenu"],
+       MouseAppearanceTag["LinkHand"]]],
+      LineSpacing->{1.4, 0},ExpressionUUID->
+      "c313a03f-caa7-4b9e-879c-7d90eee0a710"]
+    }], "AnchorBar",
+     CacheGraphics->False,ExpressionUUID->
+     "e1f7ba41-d2e1-4adc-b356-edbee3c19164"]}
+  }]], "AnchorBarGrid",
+ GridBoxOptions->{GridBoxItemSize->{"Columns" -> {
+     Scaled[0.65], {
+      Scaled[0.34]}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+   "RowsIndexed" -> {}}},
+ CellID->1,ExpressionUUID->"43e79f59-8c77-4280-937b-28b04f5debda"],
+
+Cell["PDESymbolics2022`", "ContextNameCell",ExpressionUUID->"74ef0a0f-6628-458f-9fe3-c9259df8fb4c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[GridBox[{
+   {Cell[TextData[{
+     Cell[
+     "TimeOrderedQOperator", "ObjectName",ExpressionUUID->
+      "dffd985b-7afe-49df-b125-11e316e786f2"],
+     Cell[BoxData[
+      TemplateBox[{8},
+       "Spacer1"]],ExpressionUUID->"c9dbb809-3f4b-406a-9548-a098d466e263"],
+     Cell[BoxData[
+     ""], "ObjectNameTranslation",ExpressionUUID->
+      "52d6cd2d-00e5-4d7f-a9ba-e30102d9e556"]
+    }],ExpressionUUID->"e4992933-7ae3-4286-bdb4-197c69f31618"], 
+    "\[SpanFromLeft]"}
+  }]], "ObjectNameGrid",ExpressionUUID->"6ff3b76d-2e34-4bb4-913a-\
+6d248a53838a"],
+
+Cell[BoxData[GridBox[{
+   {"", Cell[TextData[{
+     Cell[BoxData[
+      RowBox[{
+       RowBox[{"TimeOrderedQOperator", "[", "variables", "]"}], "[", 
+       RowBox[{"x", ",", "y"}], "]"}]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "b757dfc2-0b18-42ff-a70a-86843765024a"],
+     " returns True if x is greater or equal to y with respect to the \
+\"time-ordering\" or False otherwise."
+    }],ExpressionUUID->"a9558bc1-bb1f-4238-a6a9-55e79a53ea78"]}
+  }]], "Usage",
+ CellID->982511436,ExpressionUUID->"84b46d60-eb29-4946-9d6e-7a4f2776aec3"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[Cell[BoxData[
+ ButtonBox[Cell[TextData[{
+   Cell[BoxData[
+    DynamicBox[ToBoxes[
+      If[
+       MatchQ[
+        CurrentValue[
+         EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, 
+         Closed], 
+        Alternatives[Open, True]], 
+       Style[
+        Graphics[{
+          Thickness[0.18], 
+          RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+          Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+         PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+        0.68 Inherited], 
+       Rotate[
+        Style[
+         Graphics[{
+           Thickness[0.18], 
+           RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+           Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+          PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+         0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+     ImageSizeCache->{14., {0.45000000000000107`, 13.549999999999999`}}]],
+    ExpressionUUID->"4c66633b-eefa-4c75-bb33-c14750cc5d77"],
+   Cell[BoxData[
+    TemplateBox[{1},
+     "Spacer1"]],ExpressionUUID->"a21d65b6-2be4-4c8c-a945-b1d560d80b9a"],
+   "Details and Options"
+  }], "NotesFrameText",ExpressionUUID->"451a7bdd-de5a-4b11-a997-88b6eeb7df69"],
+  Appearance->{Automatic, None, "Normal", Automatic},
+  BaseStyle->None,
+  ButtonFunction:>(FrontEndExecute[{
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], All, ButtonCell], 
+     FrontEndToken["OpenCloseGroup"], 
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], After, CellContents]}]& ),
+  Evaluator->None,
+  Method->
+   "Preemptive"]],ExpressionUUID->"597e665b-6f2c-4217-992c-23fba6d17fc2"]], \
+"NotesSection",
+ WholeCellGroupOpener->True,
+ CellGroupingRules->{"SectionGrouping", 50},
+ CacheGraphics->False,
+ CellID->1511578103,ExpressionUUID->"fe5b75c2-15f2-41c6-a989-afa4b35d77b8"],
+
+Cell["\<\
+To use TimeOrderedQOperator, you first need to load the PDESymbolics Package \
+using Needs[\"PDESymbolics2022`\"].\
+\>", "Notes",
+ CellID->1067943069,ExpressionUUID->"337b21f6-8b42-4df1-b6b3-36702a830282"]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, Closed]]]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {
+       TaggingRules, "Openers", "PrimaryExamplesSection"}, Open], 
+      Alternatives[True, Open]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{14., {5., 9.}}]],ExpressionUUID->
+  "f17733bf-1522-44ab-8244-b10b79b44a15"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"b10c3654-876b-4ac7-b7e8-5f15c5b64379"],
+ "Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(2)", "ExampleCount",ExpressionUUID->
+  "a0a2ea24-0863-4a46-8ab9-ef3723e5b14e"]
+}], "PrimaryExamplesSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellTags->"PrimaryExamplesSection",
+ CellID->361633111,ExpressionUUID->"636244e0-e0c0-4a54-ab19-afe63792b49c"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "0"},
+        Closed], 
+      Alternatives[Open, True]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{14., {5., 9.}}]],ExpressionUUID->
+  "332cd8ce-9704-4daa-bb95-93bd4c7b9a9c"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"8d3c05a4-39b6-4184-b1f7-f15b07f55309"],
+ "Basic Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(1)", "ExampleCount",ExpressionUUID->
+  "f60dd707-f240-493a-821a-8bee953a8c1b"]
+}], "ExampleSection", "ExampleSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellID->588975567,ExpressionUUID->"3203992e-2f08-4412-8cc7-508170013952"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<PDESymbolics2022`\>\"", "]"}]], "Code",
+ CellLabel->"In[147]:=",
+ CellID->6820834,ExpressionUUID->"aff7e737-8b3e-4755-bad0-7acd99ebc4af"],
+
+Cell["\<\
+In the time-ordering, basically an instance of a (discrete) function is \
+greater or equal than another instance of another function if it is at a \
+later time, where we assume the time to always be the last independent \
+variable:\
+\>", "ExampleText",
+ CellID->821123747,ExpressionUUID->"c53eafaa-78fc-4116-84a1-08a726b2f47d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"variables", "=", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<indVars\>\"", "->", 
+      RowBox[{"{", 
+       RowBox[{"n", ",", "t"}], "}"}]}], ",", 
+     RowBox[{"\"\<depVars\>\"", "->", 
+      RowBox[{"{", "u", "}"}]}]}], "|>"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"TimeOrderedQOperator", "[", "variables", "]"}], "[", 
+  RowBox[{
+   RowBox[{"u", "[", 
+    RowBox[{"n", ",", 
+     RowBox[{"t", "+", "2"}]}], "]"}], ",", 
+   RowBox[{"u", "[", 
+    RowBox[{
+     RowBox[{"n", "+", "3"}], ",", 
+     RowBox[{"t", "+", "1"}]}], "]"}]}], "]"}]}], "Code",
+ CellLabel->"In[148]:=",
+ CellID->1776370281,ExpressionUUID->"d881ab33-10e9-4d0c-bfb0-221bfe93b8b3"],
+
+Cell[BoxData["True"], "Output",
+ CellLabel->"Out[149]=",
+ CellID->358932587,ExpressionUUID->"cf040f6d-3b75-4a32-ba85-43296267257c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"TimeOrderedQOperator", "[", "variables", "]"}], "[", 
+  RowBox[{
+   RowBox[{"u", "[", 
+    RowBox[{"n", ",", 
+     RowBox[{"t", "-", "1"}]}], "]"}], ",", 
+   RowBox[{"u", "[", 
+    RowBox[{"n", ",", "t"}], "]"}]}], "]"}]], "Code",
+ CellLabel->"In[150]:=",
+ CellID->2062736379,ExpressionUUID->"8c44f536-4d15-4b40-9471-b5d499988834"],
+
+Cell[BoxData["False"], "Output",
+ CellLabel->"Out[150]=",
+ CellID->298425286,ExpressionUUID->"12f8d955-0c08-4cf2-a414-c7d87a2271de"]
+}, Open  ]],
+
+Cell["\<\
+We can use TimeOrderedQOperator to sort a list according to the time-ordering:\
+\>", "ExampleText",
+ CellID->2136865353,ExpressionUUID->"a46ff829-50d7-4e90-a159-78ad7d2bf74b"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Sort", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"u", "[", 
+       RowBox[{"n", ",", 
+        RowBox[{"t", "+", "3"}]}], "]"}], ",", " ", 
+      RowBox[{"u", "[", 
+       RowBox[{"n", ",", 
+        RowBox[{"t", "+", "4"}]}], "]"}], ",", " ", 
+      RowBox[{"u", "[", 
+       RowBox[{"n", ",", "t"}], "]"}]}], "}"}], ",", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"TimeOrderedQOperator", "[", "variables", "]"}], "[", 
+      RowBox[{"#1", ",", "#2"}], "]"}], "&"}]}], "]"}], " "}]], "Code",
+ CellLabel->"In[159]:=",
+ CellID->1163891348,ExpressionUUID->"a45db4d8-1a15-49fa-92da-96a8cc02e685"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"u", "[", 
+    RowBox[{"n", ",", 
+     RowBox[{"4", "+", "t"}]}], "]"}], ",", 
+   RowBox[{"u", "[", 
+    RowBox[{"n", ",", 
+     RowBox[{"3", "+", "t"}]}], "]"}], ",", 
+   RowBox[{"u", "[", 
+    RowBox[{"n", ",", "t"}], "]"}]}], "}"}]], "Output",
+ CellLabel->"Out[159]=",
+ CellID->104299543,ExpressionUUID->"b30a28ec-b061-495f-a1c1-9f4a30d38725"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Sort", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"u", "[", 
+       RowBox[{"n", ",", 
+        RowBox[{"t", "+", "3"}]}], "]"}], ",", " ", 
+      RowBox[{"u", "[", 
+       RowBox[{"n", ",", 
+        RowBox[{"t", "+", "4"}]}], "]"}], ",", " ", 
+      RowBox[{"u", "[", 
+       RowBox[{"n", ",", "t"}], "]"}]}], "}"}], ",", 
+    RowBox[{
+     RowBox[{"!", 
+      RowBox[{
+       RowBox[{"TimeOrderedQOperator", "[", "variables", "]"}], "[", 
+       RowBox[{"#1", ",", "#2"}], "]"}]}], "&"}]}], "]"}], " "}]], "Code",
+ CellLabel->"In[152]:=",
+ CellID->1040590254,ExpressionUUID->"f5341afc-e817-4450-bec0-d77eccfe10b5"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"u", "[", 
+    RowBox[{"n", ",", "t"}], "]"}], ",", 
+   RowBox[{"u", "[", 
+    RowBox[{"n", ",", 
+     RowBox[{"3", "+", "t"}]}], "]"}], ",", 
+   RowBox[{"u", "[", 
+    RowBox[{"n", ",", 
+     RowBox[{"4", "+", "t"}]}], "]"}]}], "}"}]], "Output",
+ CellLabel->"Out[152]=",
+ CellID->99711520,ExpressionUUID->"acf93513-8294-4618-9fbc-75b42ee5bce4"]
+}, Open  ]],
+
+Cell["\<\
+This also compares two instances of different functions just depending on \
+their time:\
+\>", "ExampleText",
+ CellID->1915612700,ExpressionUUID->"7988dfc5-cf0f-4221-bfc3-a8aed83cb059"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"variables", "=", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<indVars\>\"", "->", 
+      RowBox[{"{", 
+       RowBox[{"n", ",", "t"}], "}"}]}], ",", 
+     RowBox[{"\"\<depVars\>\"", "->", 
+      RowBox[{"{", 
+       RowBox[{"u", ",", "v"}], "}"}]}]}], "|>"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"TimeOrderedQOperator", "[", "variables", "]"}], "[", 
+  RowBox[{
+   RowBox[{"u", "[", 
+    RowBox[{"n", ",", 
+     RowBox[{"t", "+", "1"}]}], "]"}], ",", 
+   RowBox[{"v", "[", 
+    RowBox[{"n", ",", 
+     RowBox[{"t", "+", "2"}]}], "]"}]}], "]"}]}], "Code",
+ CellLabel->"In[153]:=",
+ CellID->2115459847,ExpressionUUID->"f7aec012-d9bc-44bf-9ad3-430813a65100"],
+
+Cell[BoxData["False"], "Output",
+ CellLabel->"Out[154]=",
+ CellID->814271980,ExpressionUUID->"4910139a-8040-4948-88e8-b1066cf82649"]
+}, Open  ]],
+
+Cell["\<\
+If two instances of functions are at the same time, the operator compares the \
+second-last variables and then the third-last variables and so on.\
+\>", "ExampleText",
+ CellID->1708830584,ExpressionUUID->"529e74dd-d690-43d6-8877-45972d5f0949"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"variables", "=", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<indVars\>\"", "->", 
+      RowBox[{"{", 
+       RowBox[{"n", ",", "m", ",", "t"}], "}"}]}], ",", 
+     RowBox[{"\"\<depVars\>\"", "->", 
+      RowBox[{"{", "u", "}"}]}]}], "|>"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"TimeOrderedQOperator", "[", "variables", "]"}], "[", 
+  RowBox[{
+   RowBox[{"u", "[", 
+    RowBox[{"n", ",", 
+     RowBox[{"m", "+", "2"}], ",", "t"}], "]"}], ",", 
+   RowBox[{"u", "[", 
+    RowBox[{"n", ",", "m", ",", "t"}], "]"}]}], "]"}]}], "Code",
+ CellLabel->"In[155]:=",
+ CellID->464114284,ExpressionUUID->"2d18fd9a-3405-4c0e-b0b8-648f7ec5e1cc"],
+
+Cell[BoxData["True"], "Output",
+ CellLabel->"Out[156]=",
+ CellID->1703369176,ExpressionUUID->"ced9d435-3db3-4c72-9394-b9117cb125ec"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"TimeOrderedQOperator", "[", "variables", "]"}], "[", 
+  RowBox[{
+   RowBox[{"u", "[", 
+    RowBox[{
+     RowBox[{"n", "+", "1"}], ",", 
+     RowBox[{"m", "+", "1"}], ",", 
+     RowBox[{"t", "+", "1"}]}], "]"}], ",", 
+   RowBox[{"u", "[", 
+    RowBox[{
+     RowBox[{"n", "+", "2"}], ",", 
+     RowBox[{"m", "+", "1"}], ",", 
+     RowBox[{"t", "+", "1"}]}], "]"}]}], "]"}]], "Code",
+ CellLabel->"In[157]:=",
+ CellID->7517788,ExpressionUUID->"48300f2d-72d3-4c79-abb8-afa510deffc4"],
+
+Cell[BoxData["False"], "Output",
+ CellLabel->"Out[157]=",
+ CellID->421242875,ExpressionUUID->"df627eca-d54b-48e3-89cc-cee904da0f05"]
+}, Open  ]],
+
+Cell["\<\
+In general, instances of functions from \"depVars\" are greater then plain \
+constants, even if the constants are at the same or a later time:\
+\>", "ExampleText",
+ CellID->253451159,ExpressionUUID->"21c27bf6-42ee-4ee5-b1f5-d718f1755559"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"TimeOrderedQOperator", "[", "variables", "]"}], "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"t", "+", "2"}], ")"}], "^", "2"}], ",", 
+   RowBox[{"u", "[", 
+    RowBox[{"n", ",", "m", ",", "t"}], "]"}]}], "]"}]], "Code",
+ CellLabel->"In[175]:=",
+ CellID->1486156932,ExpressionUUID->"694cba58-087a-42a6-93ef-8d528136adc3"],
+
+Cell[BoxData["False"], "Output",
+ CellLabel->"Out[175]=",
+ CellID->1564420034,ExpressionUUID->"d9ec09c5-368b-4335-be51-eec1bd211325"]
+}, Open  ]]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "0"}, 
+  Closed]]]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "1"},
+        Closed], 
+      Alternatives[Open, True]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{14., {0.45000000000000107`, 13.549999999999999`}}]],
+  ExpressionUUID->"7f0137a9-8f01-442e-b373-6ac44a9960b3"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"fc10fff9-6e2c-4562-b2e4-cea8f4dc95d0"],
+ "Options",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(1)", "ExampleCount",ExpressionUUID->
+  "1cd64dfd-c0ab-491c-86da-6c894c0f1569"]
+}], "ExampleSection", "ExampleSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellID->2061341341,ExpressionUUID->"c7842453-d8fd-48b3-b5a3-729feb13c18e"],
+
+Cell["\<\
+Instead of the explicit time-ordering, we can also use the implicit \
+time-ordering, by specifying \"elimOrder\"->\"implicit\", that orders later \
+times as less than earlier times:\
+\>", "ExampleText",
+ CellID->409382904,ExpressionUUID->"e855fd8f-9362-48e5-92b1-10e4de219774"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+variables=<|\"indVars\"->{t},\"depVars\"->{u}|>;
+TimeOrderedQOperator[variables][u[t+1],u[t]]
+TimeOrderedQOperator[Append[variables,\"elimOrder\"->\"implicit\"]][u[t+1],u[\
+t]]\
+\>", "Code",
+ CellLabel->"In[176]:=",
+ CellID->1204511479,ExpressionUUID->"6249695f-c310-47f3-a5ae-9e0a8569063e"],
+
+Cell[BoxData["True"], "Output",
+ CellLabel->"Out[177]=",
+ CellID->1801598841,ExpressionUUID->"49c96858-866d-4c25-aff2-d5eee06a8509"],
+
+Cell[BoxData["False"], "Output",
+ CellLabel->"Out[178]=",
+ CellID->2099781634,ExpressionUUID->"84cd3f90-fa3a-43e3-8039-95c9e080541e"]
+}, Open  ]]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "1"}, 
+  Closed]]]]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, 
+  Closed]]]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[GridBox[{
+   {
+    DynamicBox[FEPrivate`ImportImage[
+      FrontEnd`FileName[{"Documentation", "FooterIcons"}, "RelatedGuide.png"]],
+     ImageSizeCache->{50., {27., 33.}}], GridBox[{
+      {
+       StyleBox[
+        RowBox[{"Related", " ", "Guides"}], "MoreAboutSection"]},
+      {
+       RowBox[{"\[FilledVerySmallSquare]", Cell[BoxData[
+         TemplateBox[{
+           Cell[
+            TextData["PDESymbolics"]], 
+           "paclet:PDESymbolics2022/guide/PDESymbolics"},
+          "RefLinkPlain",
+          BaseStyle->{"MoreAbout"}]], "MoreAbout",ExpressionUUID->
+         "3a328cee-91df-4488-88a9-e0d1d54910d1"]}]}
+     }]}
+  }]], "MoreAboutSection",ExpressionUUID->"0569629e-1adf-4039-9ed3-\
+021e70e05d13"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[If[CurrentValue[
+      EvaluationNotebook[], {TaggingRules, "ShowCitation"}] === False, 
+    TagBox[
+     ButtonBox[
+      FrameBox[
+       RowBox[{
+         DynamicBox[
+          FEPrivate`FrontEndResource[
+          "DocumentationExpressions", "CitationArrow"]], 
+         StyleBox[
+          DynamicBox[
+           FEPrivate`FrontEndResource["DocumentationStrings", "CiteThisAs"]], 
+          "CitationButtonText"]}]], BaseStyle -> "CiteThisAsButton"], 
+     MouseAppearanceTag["LinkHand"]], 
+    StyleBox[
+     TemplateBox[{86, 22}, "Spacer2"]]],
+   ImageSizeCache->{91., {7., 17.}}]], "CitationCell",ExpressionUUID->
+  "7c848365-fcc0-4b9a-8152-dec8f0cc1b91"],
+ Cell[BoxData[
+  TemplateBox[{8},
+   "Spacer1"]],ExpressionUUID->"151c5539-0c69-4885-9985-7a38d827b9ef"],
+ Cell[BoxData[
+  DynamicBox[If[CurrentValue[
+      EvaluationNotebook[], {TaggingRules, "ShowCitation"}] === False, 
+    StyleBox[
+     TemplateBox[{
+       Part[
+        CurrentValue[
+         EvaluationNotebook[], {TaggingRules, "CitationPopupData"}], 1]}, 
+      "ClickToCopy", BaseStyle -> "CitationText"], "CitationText"], 
+    StyleBox[
+     TemplateBox[{86, 22}, "Spacer2"]]],
+   ImageSizeCache->{538., {24., 15.}}]],ExpressionUUID->
+  "f6359055-de65-4089-a084-3ad252b468dd"]
+}], "CitationContainerCell",ExpressionUUID->"cb19e07b-bd56-495e-805d-\
+d81e886d0c22"]
+}, Open  ]],
+
+Cell[" ", "FooterCell",ExpressionUUID->"f7629471-9a4d-4a0d-8033-4c489aaf68d3"]
+},
+Saveable->False,
+ScreenStyleEnvironment->"Working",
+WindowSize->{900, 830},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowTitle->"TimeOrderedQOperator",
+TaggingRules->{
+ "ModificationHighlight" -> False, "ColorType" -> "", "LinkTrails" -> "", 
+  "HasOptions" -> True, "ExampleCounter" -> 1, 
+  "Openers" -> {
+   "PrimaryExamplesSection" -> Open, 
+    "ExampleSection" -> {"0" -> Open, "1" -> Closed}, "NotesSection" -> 
+    Closed}, "NewStyles" -> True, 
+  "CitationPopupData" -> {
+   "Wolfram Research (0), TimeOrderedQOperator, Wolfram Language function, \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/\
+TimeOrderedQOperator.html.", 
+    GridBox[{{
+       ItemBox["", ItemSize -> "Fit"], 
+       ItemBox[
+        TagBox[
+         ButtonBox[
+          DynamicBox[
+           FEPrivate`FrontEndResource[
+           "DocumentationExpressions", "CitationCloseButton"]], BaseStyle -> 
+          "CitationPopupCloseButton", Appearance -> None], 
+         MouseAppearanceTag["LinkHand"]], Alignment -> Right]}, {
+       Cell[
+        TextData[{
+          StyleBox["Text", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "Wolfram Research (0), TimeOrderedQOperator, Wolfram Language \
+function, \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/\
+TimeOrderedQOperator.html.", TextForm]}, "ClickToCopy", BaseStyle -> 
+               "CitationText"], ShowStringCharacters -> True], 
+             "CitationText"]]]}]], "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["CMS", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "Wolfram Language. 0. \"TimeOrderedQOperator.\" Wolfram \
+Language & System Documentation Center. Wolfram Research. \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/\
+TimeOrderedQOperator.html.", TextForm]}, "ClickToCopy", BaseStyle -> 
+               "CitationText"], ShowStringCharacters -> True], 
+             "CitationText"]]]}]], "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["APA", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "Wolfram Language. (0). TimeOrderedQOperator. Wolfram \
+Language & System Documentation Center. Retrieved from \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/\
+TimeOrderedQOperator.html", TextForm]}, "ClickToCopy", BaseStyle -> 
+               "CitationText"], ShowStringCharacters -> True], 
+             "CitationText"]]]}]], "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["BibTeX", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "@misc{reference.wolfram_2023_timeorderedqoperator, \
+author=\"Wolfram Research\", title=\"{TimeOrderedQOperator}\", year=\"0\", \
+howpublished=\"\\url{https://reference.wolfram.com/language/PDESymbolics2022/\
+ref/TimeOrderedQOperator.html}\", note=\"[version 12.1]\"}", TextForm]}, 
+               "ClickToCopy", BaseStyle -> "CitationText"], 
+              ShowStringCharacters -> True], "CitationText"]]]}]], 
+       "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["BibLaTeX", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "@online{reference.wolfram_2023_timeorderedqoperator, \
+organization={Wolfram Research}, title={TimeOrderedQOperator}, year={0}, \
+url={https://reference.wolfram.com/language/PDESymbolics2022/ref/\
+TimeOrderedQOperator.html}, note=\"[version 12.1]\"}", TextForm]}, 
+               "ClickToCopy", BaseStyle -> "CitationText"], 
+              ShowStringCharacters -> True], "CitationText"]]]}]], 
+       "\[SpanFromLeft]"}}]}, "ShowCitation" -> False, "RootCaptions" -> "", 
+  "Metadata" -> {
+   "built" -> "{2023, 1, 11, 10, 34, 54.450070}", 
+    "history" -> {"0.0", "", "", ""}, "context" -> "PDESymbolics2022`", 
+    "keywords" -> {}, "specialkeywords" -> {}, 
+    "tutorialcollectionlinks" -> {}, "index" -> True, "label" -> 
+    "PDE Symbolics2022 Symbol", "language" -> "en", "paclet" -> 
+    "PDESymbolics2022", "status" -> "None", "summary" -> 
+    "TimeOrderedQOperator[variables][x, y] returns True if x is greater or \
+equal to y with respect to the \"time-ordering\" or False otherwise.", 
+    "synonyms" -> {}, "tabletags" -> {}, "title" -> "TimeOrderedQOperator", 
+    "titlemodifier" -> "", "windowtitle" -> "TimeOrderedQOperator", "type" -> 
+    "Symbol", "uri" -> "PDESymbolics2022/ref/TimeOrderedQOperator"}},
+CellContext->"Global`",
+FrontEndVersion->"12.3 for Mac OS X x86 (64-bit) (July 9, 2021)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[
+    StyleDefinitions -> FrontEnd`FileName[{"Wolfram"}, "Reference.nb"]]], 
+   Cell[
+    StyleData["Input"], CellContext -> "Global`"], 
+   Cell[
+    StyleData["Output"], CellContext -> "Global`"]}, Visible -> False, 
+  FrontEndVersion -> "12.3 for Mac OS X x86 (64-bit) (July 9, 2021)", 
+  StyleDefinitions -> "Default.nb"],
+ExpressionUUID->"daaaa548-9c64-4bd3-b43e-fc4e6764bf1b"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "PrimaryExamplesSection"->{
+  Cell[8645, 228, 1389, 37, 36, "PrimaryExamplesSection",ExpressionUUID->"636244e0-e0c0-4a54-ab19-afe63792b49c",
+   CellTags->"PrimaryExamplesSection",
+   CellID->361633111]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"PrimaryExamplesSection", 29965, 845}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[592, 21, 4506, 109, 57, "AnchorBarGrid",ExpressionUUID->"43e79f59-8c77-4280-937b-28b04f5debda",
+ CellID->1],
+Cell[5101, 132, 99, 0, 23, "ContextNameCell",ExpressionUUID->"74ef0a0f-6628-458f-9fe3-c9259df8fb4c"],
+Cell[CellGroupData[{
+Cell[5225, 136, 563, 14, 60, "ObjectNameGrid",ExpressionUUID->"6ff3b76d-2e34-4bb4-913a-6d248a53838a"],
+Cell[5791, 152, 573, 12, 90, "Usage",ExpressionUUID->"84b46d60-eb29-4946-9d6e-7a4f2776aec3",
+ CellID->982511436]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6401, 169, 1899, 47, 37, "NotesSection",ExpressionUUID->"fe5b75c2-15f2-41c6-a989-afa4b35d77b8",
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->1511578103],
+Cell[8303, 218, 215, 4, 36, "Notes",ExpressionUUID->"337b21f6-8b42-4df1-b6b3-36702a830282",
+ CellID->1067943069]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, Closed]]]],
+Cell[CellGroupData[{
+Cell[8645, 228, 1389, 37, 36, "PrimaryExamplesSection",ExpressionUUID->"636244e0-e0c0-4a54-ab19-afe63792b49c",
+ CellTags->"PrimaryExamplesSection",
+ CellID->361633111],
+Cell[CellGroupData[{
+Cell[10059, 269, 1367, 36, 31, "ExampleSection",ExpressionUUID->"3203992e-2f08-4412-8cc7-508170013952",
+ CellID->588975567],
+Cell[11429, 307, 179, 3, 52, "Code",ExpressionUUID->"aff7e737-8b3e-4755-bad0-7acd99ebc4af",
+ CellID->6820834],
+Cell[11611, 312, 337, 6, 57, "ExampleText",ExpressionUUID->"c53eafaa-78fc-4116-84a1-08a726b2f47d",
+ CellID->821123747],
+Cell[CellGroupData[{
+Cell[11973, 322, 694, 21, 70, "Code",ExpressionUUID->"d881ab33-10e9-4d0c-bfb0-221bfe93b8b3",
+ CellID->1776370281],
+Cell[12670, 345, 131, 2, 37, "Output",ExpressionUUID->"cf040f6d-3b75-4a32-ba85-43296267257c",
+ CellID->358932587]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12838, 352, 366, 10, 52, "Code",ExpressionUUID->"8c44f536-4d15-4b40-9471-b5d499988834",
+ CellID->2062736379],
+Cell[13207, 364, 132, 2, 37, "Output",ExpressionUUID->"12f8d955-0c08-4cf2-a414-c7d87a2271de",
+ CellID->298425286]
+}, Open  ]],
+Cell[13354, 369, 185, 3, 38, "ExampleText",ExpressionUUID->"a46ff829-50d7-4e90-a159-78ad7d2bf74b",
+ CellID->2136865353],
+Cell[CellGroupData[{
+Cell[13564, 376, 647, 19, 52, "Code",ExpressionUUID->"a45db4d8-1a15-49fa-92da-96a8cc02e685",
+ CellID->1163891348],
+Cell[14214, 397, 397, 12, 37, "Output",ExpressionUUID->"b30a28ec-b061-495f-a1c1-9f4a30d38725",
+ CellID->104299543]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14648, 414, 671, 20, 52, "Code",ExpressionUUID->"f5341afc-e817-4450-bec0-d77eccfe10b5",
+ CellID->1040590254],
+Cell[15322, 436, 396, 12, 37, "Output",ExpressionUUID->"acf93513-8294-4618-9fbc-75b42ee5bce4",
+ CellID->99711520]
+}, Open  ]],
+Cell[15733, 451, 194, 4, 38, "ExampleText",ExpressionUUID->"7988dfc5-cf0f-4221-bfc3-a8aed83cb059",
+ CellID->1915612700],
+Cell[CellGroupData[{
+Cell[15952, 459, 696, 21, 70, "Code",ExpressionUUID->"f7aec012-d9bc-44bf-9ad3-430813a65100",
+ CellID->2115459847],
+Cell[16651, 482, 132, 2, 37, "Output",ExpressionUUID->"4910139a-8040-4948-88e8-b1066cf82649",
+ CellID->814271980]
+}, Open  ]],
+Cell[16798, 487, 253, 4, 70, "ExampleText",ExpressionUUID->"529e74dd-d690-43d6-8877-45972d5f0949",
+ CellID->1708830584],
+Cell[CellGroupData[{
+Cell[17076, 495, 671, 19, 70, "Code",ExpressionUUID->"2d18fd9a-3405-4c0e-b0b8-648f7ec5e1cc",
+ CellID->464114284],
+Cell[17750, 516, 132, 2, 37, "Output",ExpressionUUID->"ced9d435-3db3-4c72-9394-b9117cb125ec",
+ CellID->1703369176]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17919, 523, 513, 15, 70, "Code",ExpressionUUID->"48300f2d-72d3-4c79-abb8-afa510deffc4",
+ CellID->7517788],
+Cell[18435, 540, 132, 2, 37, "Output",ExpressionUUID->"df627eca-d54b-48e3-89cc-cee904da0f05",
+ CellID->421242875]
+}, Open  ]],
+Cell[18582, 545, 248, 4, 70, "ExampleText",ExpressionUUID->"21c27bf6-42ee-4ee5-b1f5-d718f1755559",
+ CellID->253451159],
+Cell[CellGroupData[{
+Cell[18855, 553, 371, 10, 70, "Code",ExpressionUUID->"694cba58-087a-42a6-93ef-8d528136adc3",
+ CellID->1486156932],
+Cell[19229, 565, 133, 2, 37, "Output",ExpressionUUID->"d9ec09c5-368b-4335-be51-eec1bd211325",
+ CellID->1564420034]
+}, Open  ]]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "0"}, Closed]]]],
+Cell[CellGroupData[{
+Cell[19511, 575, 1396, 36, 70, "ExampleSection",ExpressionUUID->"c7842453-d8fd-48b3-b5a3-729feb13c18e",
+ CellID->2061341341],
+Cell[20910, 613, 287, 5, 70, "ExampleText",ExpressionUUID->"e855fd8f-9362-48e5-92b1-10e4de219774",
+ CellID->409382904],
+Cell[CellGroupData[{
+Cell[21222, 622, 301, 7, 70, "Code",ExpressionUUID->"6249695f-c310-47f3-a5ae-9e0a8569063e",
+ CellID->1204511479],
+Cell[21526, 631, 132, 2, 37, "Output",ExpressionUUID->"49c96858-866d-4c25-aff2-d5eee06a8509",
+ CellID->1801598841],
+Cell[21661, 635, 133, 2, 37, "Output",ExpressionUUID->"84cd3f90-fa3a-43e3-8039-95c9e080541e",
+ CellID->2099781634]
+}, Open  ]]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "1"}, Closed]]]]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, Closed]]]],
+Cell[CellGroupData[{
+Cell[22058, 648, 728, 19, 70, "MoreAboutSection",ExpressionUUID->"0569629e-1adf-4039-9ed3-021e70e05d13"],
+Cell[22789, 669, 1383, 37, 70, "CitationContainerCell",ExpressionUUID->"cb19e07b-bd56-495e-805d-d81e886d0c22"]
+}, Open  ]],
+Cell[24187, 709, 78, 0, 70, "FooterCell",ExpressionUUID->"f7629471-9a4d-4a0d-8033-4c489aaf68d3"]
+}
+]
+*)
+
+(* End of internal cache information *)
+

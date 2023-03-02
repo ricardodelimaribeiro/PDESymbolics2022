@@ -1,0 +1,1804 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     65107,       1794]
+NotebookOptionsPosition[     53434,       1538]
+NotebookOutlinePosition[     59546,       1686]
+CellTagsIndexPosition[     59460,       1681]
+WindowTitle->FindIntegratingFactorOperator
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[GridBox[{
+   {GridBox[{
+      {
+       ItemBox[Cell[BoxData[
+         RowBox[{
+          TemplateBox[{12},
+           "Spacer1"], Cell["PDE SYMBOLICS2022 SYMBOL", "PacletNameCell",
+           TextAlignment->Center,ExpressionUUID->
+           "682d884b-b9d4-4569-ac57-22ff8350f35e"], 
+          TemplateBox[{8},
+           "Spacer1"]}]],
+         TextAlignment->Center,ExpressionUUID->
+         "164c4bc5-89a7-4a78-81d6-3ccb8dd769eb"],
+        Background->RGBColor[0.490196, 0.576471, 0.690196],
+        ItemSize->Full], ""}
+     },
+     GridBoxAlignment->{"Rows" -> {{Center}}},
+     GridBoxItemSize->{"Columns" -> {Full, 
+         Scaled[0.02]}, "Rows" -> {{2.5}}}], Cell[TextData[{
+     Cell[BoxData[
+      TagBox[
+       ActionMenuBox[
+        FrameBox[Cell[TextData[{
+          "See Also",
+          " ",
+          Cell[BoxData[
+           GraphicsBox[
+            {GrayLevel[0.66667], Thickness[0.13], 
+             LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+            AspectRatio->1,
+            ImageSize->20,
+            PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+           "ec238e5f-d05a-4de7-b236-f88b300fc856"]
+         }],ExpressionUUID->"95d5bdd1-efb9-4068-af5b-dd0320426479"],
+         StripOnInput->False], {"\<\"FindIntegratingFactorBasisOperator\"\>":>
+        Documentation`HelpLookup[
+        "paclet:PDESymbolics2022/ref/FindIntegratingFactorBasisOperator"], \
+"\<\"FindConservedQuantityOperator\"\>":>Documentation`HelpLookup[
+        "paclet:PDESymbolics2022/ref/FindConservedQuantityOperator"], \
+"\<\"FindConservedQuantityBasisOperator\"\>":>Documentation`HelpLookup[
+        "paclet:PDESymbolics2022/ref/FindConservedQuantityBasisOperator"]},
+        Appearance->None,
+        MenuAppearance->Automatic,
+        MenuStyle->"SeeAlso"],
+       MouseAppearanceTag["LinkHand"]]],
+      LineSpacing->{1.4, 0},ExpressionUUID->
+      "04bb3b0f-1e15-44a2-8b6f-20e7aa764ff5"],
+     "\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+     Cell[BoxData[
+      TagBox[
+       ActionMenuBox[
+        FrameBox[Cell[TextData[{
+          "URL",
+          " ",
+          Cell[BoxData[
+           GraphicsBox[
+            {GrayLevel[0.66667], Thickness[0.13], 
+             LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+            AspectRatio->1,
+            ImageSize->20,
+            PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+           "cfe61c2f-2b1b-4f26-b717-aebaf1db9b00"]
+         }],ExpressionUUID->"129e54fb-ad4c-49df-b04a-edfbfc488acf"],
+         StripOnInput->
+          False], {"\<\"PDESymbolics2022/ref/FindIntegratingFactorOperator\"\>\
+":>None, "\<\"Copy Wolfram Documentation Center URL\"\>":>
+        Module[{DocumentationSearch`Private`nb$}, 
+         DocumentationSearch`Private`nb$ = NotebookPut[
+            Notebook[{
+              Cell["PDESymbolics2022/ref/FindIntegratingFactorOperator"]}, 
+             Visible -> False]]; 
+         SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+         FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+         NotebookClose[DocumentationSearch`Private`nb$]; Null], 
+        Delimiter, "\<\"Copy web URL\"\>":>
+        Module[{DocumentationSearch`Private`nb$}, 
+         DocumentationSearch`Private`nb$ = NotebookPut[
+            Notebook[{
+              Cell[
+               BoxData[
+                MakeBoxes[
+                 Hyperlink[
+                 "http://reference.wolfram.com/language/PDESymbolics2022/ref/\
+FindIntegratingFactorOperator.html"], StandardForm]], "Input", 
+               TextClipboardType -> "PlainText"]}, Visible -> False]]; 
+         SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+         FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+         NotebookClose[DocumentationSearch`Private`nb$]; 
+         Null], "\<\"Go to web URL\"\>":>FrontEndExecute[{
+          NotebookLocate[{
+            URL[
+             StringJoin[
+              If[
+               TrueQ[DocumentationBuild`Make`Private`wsmlinkQ$119910], 
+               "http://reference.wolfram.com/system-modeler/", 
+               "http://reference.wolfram.com/language/"], 
+              "PDESymbolics2022/ref/FindIntegratingFactorOperator", ".html"]],
+             None}]}]},
+        Appearance->None,
+        MenuAppearance->Automatic,
+        MenuStyle->"URLMenu"],
+       MouseAppearanceTag["LinkHand"]]],
+      LineSpacing->{1.4, 0},ExpressionUUID->
+      "ff60621a-e909-40da-8a94-2f52ba535e99"]
+    }], "AnchorBar",
+     CacheGraphics->False,ExpressionUUID->
+     "5b74a1b2-ea0b-417f-9520-ceb7ac9567a2"]}
+  }]], "AnchorBarGrid",
+ GridBoxOptions->{GridBoxItemSize->{"Columns" -> {
+     Scaled[0.65], {
+      Scaled[0.34]}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+   "RowsIndexed" -> {}}},
+ CellID->1,ExpressionUUID->"f77da335-267e-4b22-9abc-0b3b4b7b8780"],
+
+Cell["PDESymbolics2022`", "ContextNameCell",ExpressionUUID->"84aabb4b-8e9e-4aeb-a6d5-b33efc86f211"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[GridBox[{
+   {Cell[TextData[{
+     Cell[
+     "FindIntegratingFactorOperator", "ObjectName",ExpressionUUID->
+      "e81d937b-b949-4974-8181-6d67f70b41b5"],
+     Cell[BoxData[
+      TemplateBox[{8},
+       "Spacer1"]],ExpressionUUID->"cd1b3c4c-b782-4176-92c1-95e612a69427"],
+     Cell[BoxData[
+     ""], "ObjectNameTranslation",ExpressionUUID->
+      "df66fdba-d0ab-4534-be65-b62a2067eade"]
+    }],ExpressionUUID->"72e30e55-5351-4010-b164-e2967c95879f"], 
+    "\[SpanFromLeft]"}
+  }]], "ObjectNameGrid",ExpressionUUID->"bb6a1b82-e6a3-4b5f-9197-\
+0e0f7f07f8cb"],
+
+Cell[BoxData[GridBox[{
+   {"", Cell[TextData[{
+     Cell[BoxData[
+      RowBox[{
+       RowBox[{"FindIntegratingFactorOperator", "[", "variable", "]"}], "[", 
+       "problem", "]"}]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "5449c487-19ad-4440-bcc8-0337fcbdd370"],
+     " \[LineSeparator]returns a linear combination of monomials conserved by \
+the equation in the problem."
+    }],ExpressionUUID->"1a1d1139-fcb1-46f1-83ec-1bfc11d5dd61"]}
+  }]], "Usage",
+ CellID->982511436,ExpressionUUID->"d33f4ad7-6e95-4ae9-995b-368f2cdab127"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[Cell[BoxData[
+ ButtonBox[Cell[TextData[{
+   Cell[BoxData[
+    DynamicBox[ToBoxes[
+      If[
+       MatchQ[
+        CurrentValue[
+         EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, 
+         Closed], 
+        Alternatives[Open, True]], 
+       Style[
+        Graphics[{
+          Thickness[0.18], 
+          RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+          Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+         PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+        0.68 Inherited], 
+       Rotate[
+        Style[
+         Graphics[{
+           Thickness[0.18], 
+           RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+           Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+          PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+         0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+     ImageSizeCache->{14., {0.45000000000000107`, 13.549999999999999`}}]],
+    ExpressionUUID->"0226aa16-47bb-457a-9ba6-ef320a7212d3"],
+   Cell[BoxData[
+    TemplateBox[{1},
+     "Spacer1"]],ExpressionUUID->"659c326d-f2e5-42c0-b400-b3a1d2cbc923"],
+   "Details and Options"
+  }], "NotesFrameText",ExpressionUUID->"a97933d5-0a0e-40b9-a519-554323a6c150"],
+  Appearance->{Automatic, None, "Normal", Automatic},
+  BaseStyle->None,
+  ButtonFunction:>(FrontEndExecute[{
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], All, ButtonCell], 
+     FrontEndToken["OpenCloseGroup"], 
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], After, CellContents]}]& ),
+  Evaluator->None,
+  Method->
+   "Preemptive"]],ExpressionUUID->"de2677b8-6aa0-4902-99a3-9884cec29513"]], \
+"NotesSection",
+ WholeCellGroupOpener->True,
+ CellGroupingRules->{"SectionGrouping", 50},
+ CacheGraphics->False,
+ CellID->371320019,ExpressionUUID->"0497d35e-eb5c-455f-a03c-a48c6c44a984"],
+
+Cell["\<\
+To use FindIntegratingFactorOperator, you first need to load the \
+PDESymbolics2022 Package using Needs[\"PDESymbolics2022`\"].\
+\>", "Notes",
+ CellID->1067943069,ExpressionUUID->"3473c27a-27ee-49cf-9d2d-71ddc448f576"]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, Closed]]]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {
+       TaggingRules, "Openers", "PrimaryExamplesSection"}, Open], 
+      Alternatives[True, Open]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{14., {5., 9.}}]],ExpressionUUID->
+  "c4aee25d-c61b-4542-a41f-e5cb71b87468"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"e54d6671-e58a-47f2-a2ad-98e94df50e72"],
+ "Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(5)", "ExampleCount",ExpressionUUID->
+  "a8450aae-ab89-43e4-a406-839306204b85"]
+}], "PrimaryExamplesSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellTags->"PrimaryExamplesSection",
+ CellID->188081151,ExpressionUUID->"0411db4c-d1f1-419e-8e98-7e589b1285cc"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "0"},
+        Closed], 
+      Alternatives[Open, True]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{14., {5., 9.}}]],ExpressionUUID->
+  "a0c3b5f1-84cc-4e19-83ff-15a577e8f112"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"337b376b-6409-4ce9-8875-cb4dbb5a8bca"],
+ "Basic Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(5)", "ExampleCount",ExpressionUUID->
+  "25ed8443-d072-4c30-86ca-d51ce1deb331"]
+}], "ExampleSection", "ExampleSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellID->2131460120,ExpressionUUID->"8150ea50-7da5-4f47-a536-6a14dcef9dfa"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<PDESymbolics2022`\>\"", "]"}]], "Input",
+ CellLabel->"In[1]:=",
+ CellID->1457969490,ExpressionUUID->"569b2051-2aec-4cae-b227-922dbead96bd"],
+
+Cell["A simple transport equation conserves the quantity", "ExampleText",
+ CellID->1921611603,ExpressionUUID->"372785b1-bdb9-4f40-8d43-5d7a3e6f63a5"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\n", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"variables", "=", 
+     RowBox[{"Association", "[", 
+      RowBox[{
+       RowBox[{"\"\<depVars\>\"", "\[Rule]", 
+        RowBox[{"{", "u", "}"}]}], ",", 
+       RowBox[{"\"\<indVars\>\"", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"x", ",", "t"}], "}"}]}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"problem", "=", 
+     RowBox[{"Association", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"\"\<expression\>\"", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"D", "[", 
+           RowBox[{
+            RowBox[{"u", "[", 
+             RowBox[{"x", ",", "t"}], "]"}], ",", "t"}], "]"}], "-", 
+          RowBox[{"D", "[", 
+           RowBox[{
+            RowBox[{"u", "[", 
+             RowBox[{"x", ",", "t"}], "]"}], ",", "x"}], "]"}]}], "}"}]}], 
+       ",", 
+       RowBox[{"\"\<monomials\>\"", "\[Rule]", 
+        RowBox[{"Association", "[", 
+         RowBox[{
+          RowBox[{"\"\<degree\>\"", "\[Rule]", "1"}], ",", 
+          RowBox[{"\"\<derivatives\>\"", "\[Rule]", "2"}]}], "]"}]}]}], 
+      "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"FindIntegratingFactorOperator", "[", "variables", "]"}], "[", 
+    "problem", "]"}]}]}]], "Input",
+ CellLabel->"In[2]:=",
+ CellID->1863735254,ExpressionUUID->"40e6875f-618a-4fda-b224-f6812dc6482d"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   SubscriptBox["\[FormalA]", "1"], "+", 
+   RowBox[{
+    SubscriptBox["\[FormalA]", "2"], " ", 
+    RowBox[{"u", "[", 
+     RowBox[{"x", ",", "t"}], "]"}]}], "+", 
+   RowBox[{
+    SubscriptBox["\[FormalA]", "3"], " ", 
+    RowBox[{
+     SuperscriptBox["u", 
+      TagBox[
+       RowBox[{"(", 
+        RowBox[{"0", ",", "2"}], ")"}],
+       Derivative],
+      MultilineFunction->None], "[", 
+     RowBox[{"x", ",", "t"}], "]"}]}], "+", 
+   RowBox[{
+    SubscriptBox["\[FormalA]", "4"], " ", 
+    RowBox[{
+     SuperscriptBox["u", 
+      TagBox[
+       RowBox[{"(", 
+        RowBox[{"1", ",", "1"}], ")"}],
+       Derivative],
+      MultilineFunction->None], "[", 
+     RowBox[{"x", ",", "t"}], "]"}]}], "+", 
+   RowBox[{
+    SubscriptBox["\[FormalA]", "5"], " ", 
+    RowBox[{
+     SuperscriptBox["u", 
+      TagBox[
+       RowBox[{"(", 
+        RowBox[{"2", ",", "0"}], ")"}],
+       Derivative],
+      MultilineFunction->None], "[", 
+     RowBox[{"x", ",", "t"}], "]"}]}]}], "}"}]], "Output",
+ CellLabel->"Out[2]=",
+ CellID->1010243968,ExpressionUUID->"b1ab8d8d-2dd5-443c-b332-7211704e83b2"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[Cell[
+  "\t", "ExampleDelimiter",ExpressionUUID->
+   "688188a9-7e73-4202-bfa0-4aa1bb70fadc"],
+  $Line = 0; Null]], "ExampleDelimiter",
+ CellID->415632058,ExpressionUUID->"7b9e659e-4946-4a9e-afd2-984253352bb3"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<PDESymbolics2022`\>\"", "]"}]], "Input",
+ CellLabel->"In[1]:=",
+ CellID->1268544755,ExpressionUUID->"1c176f67-3d86-414c-802e-3c1a5109ac53"],
+
+Cell["\<\
+This is a linear combination of the monomials of degree at most 2 in u and \
+its derivatives of order at most 2 that is conserved\
+\>", "ExampleText",
+ CellID->501039558,ExpressionUUID->"4f9b7f1d-5694-4cee-b761-f58fec7ada99"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"variables", "=", 
+   RowBox[{"Association", "[", 
+    RowBox[{
+     RowBox[{"\"\<depVars\>\"", "\[Rule]", 
+      RowBox[{"{", "u", "}"}]}], ",", 
+     RowBox[{"\"\<indVars\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", "t"}], "}"}]}]}], "]"}]}], ";", 
+  RowBox[{"problem", "=", 
+   RowBox[{"Association", "[", 
+    RowBox[{
+     RowBox[{"\"\<expression\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"D", "[", 
+         RowBox[{
+          RowBox[{"u", "[", 
+           RowBox[{"x", ",", "t"}], "]"}], ",", "t"}], "]"}], "-", 
+        RowBox[{
+         RowBox[{"u", "[", 
+          RowBox[{"x", ",", "t"}], "]"}], " ", 
+         RowBox[{"D", "[", 
+          RowBox[{
+           RowBox[{"u", "[", 
+            RowBox[{"x", ",", "t"}], "]"}], ",", "x"}], "]"}]}], "-", 
+        RowBox[{"D", "[", 
+         RowBox[{
+          RowBox[{"u", "[", 
+           RowBox[{"x", ",", "t"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"x", ",", "3"}], "}"}]}], "]"}]}], "}"}]}], ",", 
+     RowBox[{"\"\<monomials\>\"", "\[Rule]", 
+      RowBox[{"Association", "[", 
+       RowBox[{
+        RowBox[{"\"\<degree\>\"", "\[Rule]", "2"}], ",", 
+        RowBox[{"\"\<derivatives\>\"", "\[Rule]", "2"}]}], "]"}]}]}], "]"}]}],
+   ";"}], "\n", 
+ RowBox[{
+  RowBox[{"FindIntegratingFactorOperator", "[", "variables", "]"}], "[", 
+  "problem", "]"}]}], "Input",
+ CellLabel->"In[2]:=",
+ CellID->1907583321,ExpressionUUID->"81e661e4-92a1-48ad-9506-748147c7915e"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   SubscriptBox["\[FormalA]", "1"], "+", 
+   RowBox[{
+    SubscriptBox["\[FormalA]", "2"], " ", 
+    RowBox[{"u", "[", 
+     RowBox[{"x", ",", "t"}], "]"}]}], "+", 
+   RowBox[{
+    FractionBox["1", "2"], " ", 
+    SubscriptBox["\[FormalA]", "3"], " ", 
+    SuperscriptBox[
+     RowBox[{"u", "[", 
+      RowBox[{"x", ",", "t"}], "]"}], "2"]}], "+", 
+   RowBox[{
+    SubscriptBox["\[FormalA]", "3"], " ", 
+    RowBox[{
+     SuperscriptBox["u", 
+      TagBox[
+       RowBox[{"(", 
+        RowBox[{"2", ",", "0"}], ")"}],
+       Derivative],
+      MultilineFunction->None], "[", 
+     RowBox[{"x", ",", "t"}], "]"}]}]}], "}"}]], "Output",
+ CellLabel->"Out[2]=",
+ CellID->572776841,ExpressionUUID->"8988befb-6e5c-47c9-8bfe-1e58cb6a8ccb"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[Cell[
+  "\t", "ExampleDelimiter",ExpressionUUID->
+   "59bbf603-6451-4d6f-9d47-213700d93e5f"],
+  $Line = 0; Null]], "ExampleDelimiter",
+ CellID->1075048124,ExpressionUUID->"51d24e7d-754f-478f-94f2-a66f84ec6dea"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<PDESymbolics2022`\>\"", "]"}]], "Input",
+ CellLabel->"In[1]:=",
+ CellID->236622704,ExpressionUUID->"9560b559-449b-48ca-887e-ba918ea51b91"],
+
+Cell["\<\
+Here we deal with a decoupled system of transport and diffusion equations. \
+The integrating factors with the same monomials is\
+\>", "ExampleText",
+ CellID->1062102414,ExpressionUUID->"9b26ff35-7fed-444f-a2b2-99bc9c65bb73"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"variables", "=", 
+   RowBox[{"Association", "[", 
+    RowBox[{
+     RowBox[{"\"\<depVars\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"u", ",", "v"}], "}"}]}], ",", 
+     RowBox[{"\"\<indVars\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", "t"}], "}"}]}]}], "]"}]}], ";", 
+  RowBox[{"problem", "=", 
+   RowBox[{"Association", "[", 
+    RowBox[{
+     RowBox[{"\"\<expression\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"D", "[", 
+          RowBox[{
+           RowBox[{"u", "[", 
+            RowBox[{"x", ",", "t"}], "]"}], ",", "t"}], "]"}], "-", 
+         RowBox[{"D", "[", 
+          RowBox[{
+           RowBox[{"u", "[", 
+            RowBox[{"x", ",", "t"}], "]"}], ",", "x"}], "]"}]}], ",", 
+        RowBox[{
+         RowBox[{"D", "[", 
+          RowBox[{
+           RowBox[{"v", "[", 
+            RowBox[{"x", ",", "t"}], "]"}], ",", "t"}], "]"}], "-", 
+         RowBox[{"D", "[", 
+          RowBox[{
+           RowBox[{"v", "[", 
+            RowBox[{"x", ",", "t"}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", "2"}], "}"}]}], "]"}]}]}], "}"}]}], ",", 
+     RowBox[{"\"\<monomials\>\"", "\[Rule]", 
+      RowBox[{"Association", "[", 
+       RowBox[{
+        RowBox[{"\"\<degree\>\"", "\[Rule]", "1"}], ",", 
+        RowBox[{"\"\<derivatives\>\"", "\[Rule]", "2"}]}], "]"}]}]}], "]"}]}],
+   ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"FindIntegratingFactorOperator", "[", "variables", "]"}], "[", 
+  "problem", "]"}]}], "Input",
+ CellLabel->"In[2]:=",
+ CellID->806581909,ExpressionUUID->"e0dd6bb9-485d-43d3-a2cc-98393060472c"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    SubscriptBox["\[FormalA]", "1"], "+", 
+    RowBox[{
+     SubscriptBox["\[FormalA]", "2"], " ", 
+     RowBox[{"u", "[", 
+      RowBox[{"x", ",", "t"}], "]"}]}], "+", 
+    RowBox[{
+     SubscriptBox["\[FormalA]", "3"], " ", 
+     RowBox[{
+      SuperscriptBox["v", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "1"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "t"}], "]"}]}], "+", 
+    RowBox[{
+     SubscriptBox["\[FormalA]", "4"], " ", 
+     RowBox[{
+      SuperscriptBox["u", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "2"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "t"}], "]"}]}], "+", 
+    RowBox[{
+     SubscriptBox["\[FormalA]", "5"], " ", 
+     RowBox[{
+      SuperscriptBox["u", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"1", ",", "1"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "t"}], "]"}]}], "+", 
+    RowBox[{
+     SubscriptBox["\[FormalA]", "6"], " ", 
+     RowBox[{
+      SuperscriptBox["u", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"2", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "t"}], "]"}]}], "-", 
+    RowBox[{
+     SubscriptBox["\[FormalA]", "3"], " ", 
+     RowBox[{
+      SuperscriptBox["v", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"2", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "t"}], "]"}]}]}], ",", 
+   RowBox[{
+    SubscriptBox["\[FormalA]", "7"], "-", 
+    RowBox[{
+     SubscriptBox["\[FormalA]", "3"], " ", 
+     RowBox[{
+      SuperscriptBox["u", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "1"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "t"}], "]"}]}], "+", 
+    RowBox[{
+     SubscriptBox["\[FormalA]", "3"], " ", 
+     RowBox[{
+      SuperscriptBox["u", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"1", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "t"}], "]"}]}]}]}], "}"}]], "Output",
+ CellLabel->"Out[2]=",
+ CellID->1153128123,ExpressionUUID->"c0845e95-46be-454e-bf13-ef4bd6270cf9"]
+}, Open  ]],
+
+Cell["\<\
+In this case, providing the same monomials for each of the equations gives \
+the same result as above:\
+\>", "ExampleText",
+ CellID->1913519550,ExpressionUUID->"422bed83-9519-4321-ba99-16d0e1615222"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"variables", "=", 
+   RowBox[{"Association", "[", 
+    RowBox[{
+     RowBox[{"\"\<depVars\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"u", ",", "v"}], "}"}]}], ",", 
+     RowBox[{"\"\<indVars\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", "t"}], "}"}]}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"problem", "=", 
+   RowBox[{"Association", "[", 
+    RowBox[{
+     RowBox[{"\"\<expression\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"D", "[", 
+          RowBox[{
+           RowBox[{"u", "[", 
+            RowBox[{"x", ",", "t"}], "]"}], ",", "t"}], "]"}], "-", 
+         RowBox[{"D", "[", 
+          RowBox[{
+           RowBox[{"u", "[", 
+            RowBox[{"x", ",", "t"}], "]"}], ",", "x"}], "]"}]}], ",", 
+        RowBox[{
+         RowBox[{"D", "[", 
+          RowBox[{
+           RowBox[{"v", "[", 
+            RowBox[{"x", ",", "t"}], "]"}], ",", "t"}], "]"}], "-", 
+         RowBox[{"D", "[", 
+          RowBox[{
+           RowBox[{"v", "[", 
+            RowBox[{"x", ",", "t"}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", "2"}], "}"}]}], "]"}]}]}], "}"}]}], ",", 
+     RowBox[{"\"\<monomials\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Association", "[", 
+         RowBox[{
+          RowBox[{"\"\<degree\>\"", "\[Rule]", "1"}], ",", 
+          RowBox[{"\"\<derivatives\>\"", "\[Rule]", "2"}]}], "]"}], ",", 
+        RowBox[{"Association", "[", 
+         RowBox[{
+          RowBox[{"\"\<degree\>\"", "\[Rule]", "1"}], ",", 
+          RowBox[{"\"\<derivatives\>\"", "\[Rule]", "2"}]}], "]"}]}], 
+       "}"}]}]}], "]"}]}], ";", 
+  RowBox[{
+   RowBox[{"FindIntegratingFactorOperator", "[", "variables", "]"}], "[", 
+   "problem", "]"}]}]}], "Input",
+ CellLabel->"In[3]:=",
+ CellID->304573876,ExpressionUUID->"87c1c555-7736-4295-84cc-cb9ec9df2071"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    SubscriptBox["\[FormalA]", "1"], "+", 
+    RowBox[{
+     SubscriptBox["\[FormalA]", "2"], " ", 
+     RowBox[{"u", "[", 
+      RowBox[{"x", ",", "t"}], "]"}]}], "+", 
+    RowBox[{
+     SubscriptBox["\[FormalA]", "3"], " ", 
+     RowBox[{
+      SuperscriptBox["v", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "1"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "t"}], "]"}]}], "+", 
+    RowBox[{
+     SubscriptBox["\[FormalA]", "4"], " ", 
+     RowBox[{
+      SuperscriptBox["u", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "2"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "t"}], "]"}]}], "+", 
+    RowBox[{
+     SubscriptBox["\[FormalA]", "5"], " ", 
+     RowBox[{
+      SuperscriptBox["u", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"1", ",", "1"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "t"}], "]"}]}], "+", 
+    RowBox[{
+     SubscriptBox["\[FormalA]", "6"], " ", 
+     RowBox[{
+      SuperscriptBox["u", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"2", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "t"}], "]"}]}], "-", 
+    RowBox[{
+     SubscriptBox["\[FormalA]", "3"], " ", 
+     RowBox[{
+      SuperscriptBox["v", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"2", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "t"}], "]"}]}]}], ",", 
+   RowBox[{
+    SubscriptBox["\[FormalA]", "7"], "-", 
+    RowBox[{
+     SubscriptBox["\[FormalA]", "3"], " ", 
+     RowBox[{
+      SuperscriptBox["u", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"0", ",", "1"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "t"}], "]"}]}], "+", 
+    RowBox[{
+     SubscriptBox["\[FormalA]", "3"], " ", 
+     RowBox[{
+      SuperscriptBox["u", 
+       TagBox[
+        RowBox[{"(", 
+         RowBox[{"1", ",", "0"}], ")"}],
+        Derivative],
+       MultilineFunction->None], "[", 
+      RowBox[{"x", ",", "t"}], "]"}]}]}]}], "}"}]], "Output",
+ CellLabel->"Out[3]=",
+ CellID->283808072,ExpressionUUID->"760b36d0-6561-4798-98bb-412b528c04b4"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[Cell[
+  "\t", "ExampleDelimiter",ExpressionUUID->
+   "d059523d-4867-43ce-b9a9-df8882f79511"],
+  $Line = 0; Null]], "ExampleDelimiter",
+ CellID->1963223215,ExpressionUUID->"f44af6f3-1601-4362-8934-c470ff4fd7fd"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<PDESymbolics2022`\>\"", "]"}]], "Input",
+ CellLabel->"In[1]:=",
+ CellID->1191699328,ExpressionUUID->"bc8a25fc-01a5-4bd7-99aa-d14360b49569"],
+
+Cell["\<\
+This is a way to treat the discrete (in time and space) transport equation\
+\>", "ExampleText",
+ CellID->1582303701,ExpressionUUID->"05d561d1-ca45-4506-a9ef-b5ea8507d07c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"variables", "=", 
+   RowBox[{"Association", "[", 
+    RowBox[{
+     RowBox[{"\"\<depVars\>\"", "\[Rule]", 
+      RowBox[{"{", "u", "}"}]}], ",", 
+     RowBox[{"\"\<indVars\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", "t"}], "}"}]}], ",", 
+     RowBox[{"\"\<VarDOperator\>\"", "\[Rule]", "DVarDOperator"}]}], "]"}]}], 
+  ";", 
+  RowBox[{"problem", "=", 
+   RowBox[{"Association", "[", 
+    RowBox[{
+     RowBox[{"\"\<expression\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"u", "[", 
+         RowBox[{"x", ",", 
+          RowBox[{"t", "+", "1"}]}], "]"}], "-", 
+        RowBox[{"u", "[", 
+         RowBox[{"x", ",", "t"}], "]"}], "-", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"u", "[", 
+           RowBox[{
+            RowBox[{"x", "+", "1"}], ",", "t"}], "]"}], "-", 
+          RowBox[{"u", "[", 
+           RowBox[{"x", ",", "t"}], "]"}]}], ")"}]}], "}"}]}], ",", 
+     RowBox[{"\"\<monomials\>\"", "\[Rule]", 
+      RowBox[{"Association", "[", 
+       RowBox[{
+        RowBox[{"\"\<degree\>\"", "\[Rule]", "2"}], ",", 
+        RowBox[{"\"\<generators\>\"", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"u", "[", 
+            RowBox[{"x", ",", "t"}], "]"}], ",", 
+           RowBox[{"u", "[", 
+            RowBox[{
+             RowBox[{"x", "+", "1"}], ",", 
+             RowBox[{"t", "+", "1"}]}], "]"}]}], "}"}]}]}], "]"}]}]}], 
+    "]"}]}], ";", 
+  RowBox[{
+   RowBox[{"FindIntegratingFactorOperator", "[", "variables", "]"}], "[", 
+   "problem", "]"}]}]], "Input",
+ CellLabel->"In[2]:=",
+ CellID->2095544919,ExpressionUUID->"7b40b7e2-7d01-40c5-a4e6-7f6ce820a5e3"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   SubscriptBox["\[FormalA]", "1"], "+", 
+   RowBox[{
+    SubscriptBox["\[FormalA]", "2"], " ", 
+    RowBox[{"u", "[", 
+     RowBox[{"x", ",", "t"}], "]"}]}], "+", 
+   RowBox[{
+    SubscriptBox["\[FormalA]", "2"], " ", 
+    RowBox[{"u", "[", 
+     RowBox[{
+      RowBox[{"1", "+", "x"}], ",", 
+      RowBox[{"1", "+", "t"}]}], "]"}]}]}], "}"}]], "Output",
+ CellLabel->"Out[2]=",
+ CellID->1037476256,ExpressionUUID->"69e1b403-cbb4-4414-b600-eb14b80555f5"]
+}, Open  ]],
+
+Cell["\<\
+Notice how we may find more terms in the integrating factor if we expand the \
+generators list:\
+\>", "ExampleText",
+ CellID->495609040,ExpressionUUID->"0d5ce9a3-5641-41c9-9c88-859ce7a67376"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"variables", "=", 
+   RowBox[{"Association", "[", 
+    RowBox[{
+     RowBox[{"\"\<depVars\>\"", "\[Rule]", 
+      RowBox[{"{", "u", "}"}]}], ",", 
+     RowBox[{"\"\<indVars\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", "t"}], "}"}]}], ",", 
+     RowBox[{"\"\<VarDOperator\>\"", "\[Rule]", "DVarDOperator"}]}], "]"}]}], 
+  ";", 
+  RowBox[{"problem", "=", 
+   RowBox[{"Association", "[", 
+    RowBox[{
+     RowBox[{"\"\<expression\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"u", "[", 
+         RowBox[{"x", ",", 
+          RowBox[{"t", "+", "1"}]}], "]"}], "-", 
+        RowBox[{"u", "[", 
+         RowBox[{"x", ",", "t"}], "]"}], "-", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"u", "[", 
+           RowBox[{
+            RowBox[{"x", "+", "1"}], ",", "t"}], "]"}], "-", 
+          RowBox[{"u", "[", 
+           RowBox[{"x", ",", "t"}], "]"}]}], ")"}]}], "}"}]}], ",", 
+     RowBox[{"\"\<monomials\>\"", "\[Rule]", 
+      RowBox[{"Association", "[", 
+       RowBox[{
+        RowBox[{"\"\<degree\>\"", "\[Rule]", "2"}], ",", 
+        RowBox[{"\"\<generators\>\"", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"u", "[", 
+            RowBox[{"x", ",", "t"}], "]"}], ",", 
+           RowBox[{"u", "[", 
+            RowBox[{
+             RowBox[{"x", "+", "1"}], ",", "t"}], "]"}], ",", 
+           RowBox[{"u", "[", 
+            RowBox[{"x", ",", 
+             RowBox[{"t", "+", "1"}]}], "]"}], ",", 
+           RowBox[{"u", "[", 
+            RowBox[{
+             RowBox[{"x", "+", "1"}], ",", 
+             RowBox[{"t", "+", "1"}]}], "]"}]}], "}"}]}]}], "]"}]}]}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"FindIntegratingFactorOperator", "[", "variables", "]"}], "[", 
+  "problem", "]"}]}], "Input",
+ CellLabel->"In[3]:=",
+ CellID->152776283,ExpressionUUID->"5a4cabc2-a4a4-4914-aa96-abb0da57b510"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   SubscriptBox["\[FormalA]", "1"], "+", 
+   RowBox[{
+    SubscriptBox["\[FormalA]", "2"], " ", 
+    RowBox[{"u", "[", 
+     RowBox[{"x", ",", "t"}], "]"}]}], "+", 
+   RowBox[{
+    SubscriptBox["\[FormalA]", "3"], " ", 
+    SuperscriptBox[
+     RowBox[{"u", "[", 
+      RowBox[{"x", ",", "t"}], "]"}], "2"]}], "+", 
+   RowBox[{
+    SubscriptBox["\[FormalA]", "4"], " ", 
+    RowBox[{"u", "[", 
+     RowBox[{"x", ",", 
+      RowBox[{"1", "+", "t"}]}], "]"}]}], "+", 
+   RowBox[{
+    SubscriptBox["\[FormalA]", "5"], " ", 
+    RowBox[{"u", "[", 
+     RowBox[{"x", ",", "t"}], "]"}], " ", 
+    RowBox[{"u", "[", 
+     RowBox[{"x", ",", 
+      RowBox[{"1", "+", "t"}]}], "]"}]}], "+", 
+   RowBox[{
+    SubscriptBox["\[FormalA]", "6"], " ", 
+    SuperscriptBox[
+     RowBox[{"u", "[", 
+      RowBox[{"x", ",", 
+       RowBox[{"1", "+", "t"}]}], "]"}], "2"]}], "+", 
+   RowBox[{
+    SubscriptBox["\[FormalA]", "4"], " ", 
+    RowBox[{"u", "[", 
+     RowBox[{
+      RowBox[{"1", "+", "x"}], ",", "t"}], "]"}]}], "+", 
+   RowBox[{
+    SubscriptBox["\[FormalA]", "5"], " ", 
+    RowBox[{"u", "[", 
+     RowBox[{"x", ",", "t"}], "]"}], " ", 
+    RowBox[{"u", "[", 
+     RowBox[{
+      RowBox[{"1", "+", "x"}], ",", "t"}], "]"}]}], "+", 
+   RowBox[{
+    SubscriptBox["\[FormalA]", "6"], " ", 
+    RowBox[{"u", "[", 
+     RowBox[{"x", ",", 
+      RowBox[{"1", "+", "t"}]}], "]"}], " ", 
+    RowBox[{"u", "[", 
+     RowBox[{
+      RowBox[{"1", "+", "x"}], ",", "t"}], "]"}]}], "+", 
+   RowBox[{
+    SubscriptBox["\[FormalA]", "6"], " ", 
+    SuperscriptBox[
+     RowBox[{"u", "[", 
+      RowBox[{
+       RowBox[{"1", "+", "x"}], ",", "t"}], "]"}], "2"]}], "+", 
+   RowBox[{
+    SubscriptBox["\[FormalA]", "2"], " ", 
+    RowBox[{"u", "[", 
+     RowBox[{
+      RowBox[{"1", "+", "x"}], ",", 
+      RowBox[{"1", "+", "t"}]}], "]"}]}], "+", 
+   RowBox[{
+    SubscriptBox["\[FormalA]", "3"], " ", 
+    RowBox[{"u", "[", 
+     RowBox[{"x", ",", 
+      RowBox[{"1", "+", "t"}]}], "]"}], " ", 
+    RowBox[{"u", "[", 
+     RowBox[{
+      RowBox[{"1", "+", "x"}], ",", 
+      RowBox[{"1", "+", "t"}]}], "]"}]}], "+", 
+   RowBox[{
+    SubscriptBox["\[FormalA]", "3"], " ", 
+    RowBox[{"u", "[", 
+     RowBox[{
+      RowBox[{"1", "+", "x"}], ",", "t"}], "]"}], " ", 
+    RowBox[{"u", "[", 
+     RowBox[{
+      RowBox[{"1", "+", "x"}], ",", 
+      RowBox[{"1", "+", "t"}]}], "]"}]}], "+", 
+   RowBox[{
+    SubscriptBox["\[FormalA]", "5"], " ", 
+    SuperscriptBox[
+     RowBox[{"u", "[", 
+      RowBox[{
+       RowBox[{"1", "+", "x"}], ",", 
+       RowBox[{"1", "+", "t"}]}], "]"}], "2"]}]}], "}"}]], "Output",
+ CellLabel->"Out[3]=",
+ CellID->188544462,ExpressionUUID->"d17156f4-f123-4daa-b05e-a7e973b18069"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[Cell[
+  "\t", "ExampleDelimiter",ExpressionUUID->
+   "a67b54df-d86b-4a07-b9cf-9f9e60e5494c"],
+  $Line = 0; Null]], "ExampleDelimiter",
+ CellID->1951895733,ExpressionUUID->"b387ae23-32c3-44f7-a408-b97d024429fc"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<PDESymbolics2022`\>\"", "]"}]], "Input",
+ CellLabel->"In[1]:=",
+ CellID->947615269,ExpressionUUID->"664bd247-3e64-4c34-baf7-493a84bc0dbf"],
+
+Cell["\<\
+Use parameters to find a discretization with \"good\" properties\
+\>", "ExampleText",
+ CellID->1395173057,ExpressionUUID->"71657cf7-d70e-479f-8c36-3a6cb01ca69c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"variables", "=", 
+   RowBox[{"Association", "[", 
+    RowBox[{
+     RowBox[{"\"\<depVars\>\"", "\[Rule]", 
+      RowBox[{"{", "u", "}"}]}], ",", 
+     RowBox[{"\"\<pars\>\"", "\[Rule]", 
+      RowBox[{"{", "a", "}"}]}], ",", 
+     RowBox[{"\"\<indVars\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", "t"}], "}"}]}], ",", 
+     RowBox[{"\"\<VarDOperator\>\"", "\[Rule]", "DVarDOperator"}]}], "]"}]}], 
+  ";", 
+  RowBox[{"problem", "=", 
+   RowBox[{"Association", "[", 
+    RowBox[{
+     RowBox[{"\"\<expression\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"u", "[", 
+         RowBox[{"x", ",", 
+          RowBox[{"t", "+", "1"}]}], "]"}], "-", 
+        RowBox[{"u", "[", 
+         RowBox[{"x", ",", "t"}], "]"}], "-", 
+        RowBox[{"a", " ", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"u", "[", 
+            RowBox[{
+             RowBox[{"x", "-", "1"}], ",", "t"}], "]"}], "-", 
+           RowBox[{"u", "[", 
+            RowBox[{
+             RowBox[{"x", "+", "1"}], ",", "t"}], "]"}]}], ")"}]}], "-", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"1", "-", "a"}], ")"}], " ", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"u", "[", 
+            RowBox[{
+             RowBox[{"x", "-", "1"}], ",", 
+             RowBox[{"t", "+", "1"}]}], "]"}], "-", 
+           RowBox[{"u", "[", 
+            RowBox[{
+             RowBox[{"x", "+", "1"}], ",", 
+             RowBox[{"t", "+", "1"}]}], "]"}]}], ")"}]}]}], "}"}]}], ",", 
+     RowBox[{"\"\<monomials\>\"", "\[Rule]", 
+      RowBox[{"Association", "[", 
+       RowBox[{
+        RowBox[{"\"\<degree\>\"", "\[Rule]", "2"}], ",", 
+        RowBox[{"\"\<generators\>\"", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"u", "[", 
+            RowBox[{"x", ",", "t"}], "]"}], ",", 
+           RowBox[{"u", "[", 
+            RowBox[{
+             RowBox[{"x", "+", "1"}], ",", "t"}], "]"}], ",", 
+           RowBox[{"u", "[", 
+            RowBox[{
+             RowBox[{"x", "-", "1"}], ",", "t"}], "]"}], ",", 
+           RowBox[{"u", "[", 
+            RowBox[{"x", ",", 
+             RowBox[{"t", "+", "1"}]}], "]"}], ",", 
+           RowBox[{"u", "[", 
+            RowBox[{
+             RowBox[{"x", "-", "1"}], ",", 
+             RowBox[{"t", "+", "1"}]}], "]"}], ",", 
+           RowBox[{"u", "[", 
+            RowBox[{
+             RowBox[{"x", "+", "1"}], ",", 
+             RowBox[{"t", "+", "1"}]}], "]"}]}], "}"}]}]}], "]"}]}]}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"FindIntegratingFactorOperator", "[", "variables", "]"}], "[", 
+  "problem", "]"}]}], "Input",
+ CellLabel->"In[2]:=",
+ CellID->751753797,ExpressionUUID->"c1700bb4-ab2c-499a-8fa8-8ac7c27a7a7c"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{"{", 
+         SubscriptBox["\[FormalA]", "1"], "}"}], 
+        RowBox[{
+         RowBox[{"a", "\[Equal]", 
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{"-", "1"}], ")"}], 
+           RowBox[{"1", "/", "3"}]]}], "||", 
+         RowBox[{"a", "\[Equal]", 
+          InterpretationBox[
+           TemplateBox[{"Root", 
+             RowBox[{
+               InterpretationBox[
+                StyleBox[
+                 TemplateBox[{"\"0.620\"", 
+                   DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                  "RowDefault"], ShowStringCharacters -> False], 
+                0.62008496014910785554263839003397151828`16.008631187092547, 
+                Editable -> False], "-", 
+               RowBox[{
+                 InterpretationBox[
+                  StyleBox[
+                   TemplateBox[{"\"0.464\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"], ShowStringCharacters -> False], 
+                  0.46376500835772255237898775703797582537`15.882477966696943,
+                   Editable -> False], " ", "\[ImaginaryI]"}]}], 
+             TagBox[
+              RowBox[{"Root", "[", 
+                RowBox[{
+                  RowBox[{
+                    RowBox[{"2", "-", 
+                    RowBox[{"15", " ", "#1"}], "+", 
+                    RowBox[{"33", " ", 
+                    SuperscriptBox["#1", "2"]}], "-", 
+                    RowBox[{"33", " ", 
+                    SuperscriptBox["#1", "3"]}], "+", 
+                    RowBox[{"12", " ", 
+                    SuperscriptBox["#1", "4"]}]}], "&"}], ",", "3"}], "]"}], 
+              Short[#, 7]& ], 
+             Complex[0.6200849601491079, -0.46376500835772255`]},
+            "NumericalApproximation"],
+           Root[2 - 15 # + 33 #^2 - 33 #^3 + 12 #^4& , 3, 0]]}], "||", 
+         RowBox[{"a", "\[Equal]", 
+          InterpretationBox[
+           TemplateBox[{"Root", 
+             RowBox[{
+               InterpretationBox[
+                StyleBox[
+                 TemplateBox[{"\"0.620\"", 
+                   DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                  "RowDefault"], ShowStringCharacters -> False], 
+                0.62008496014910785554263839003397151828`16.008631187092547, 
+                Editable -> False], "+", 
+               RowBox[{
+                 InterpretationBox[
+                  StyleBox[
+                   TemplateBox[{"\"0.464\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"], ShowStringCharacters -> False], 
+                  0.46376500835772255237898775703797582537`15.882477966696943,
+                   Editable -> False], " ", "\[ImaginaryI]"}]}], 
+             TagBox[
+              RowBox[{"Root", "[", 
+                RowBox[{
+                  RowBox[{
+                    RowBox[{"2", "-", 
+                    RowBox[{"15", " ", "#1"}], "+", 
+                    RowBox[{"33", " ", 
+                    SuperscriptBox["#1", "2"]}], "-", 
+                    RowBox[{"33", " ", 
+                    SuperscriptBox["#1", "3"]}], "+", 
+                    RowBox[{"12", " ", 
+                    SuperscriptBox["#1", "4"]}]}], "&"}], ",", "4"}], "]"}], 
+              Short[#, 7]& ], 
+             Complex[0.6200849601491079, 0.46376500835772255`]},
+            "NumericalApproximation"],
+           Root[2 - 15 # + 33 #^2 - 33 #^3 + 12 #^4& , 4, 0]]}], "||", 
+         RowBox[{"a", "\[Equal]", 
+          InterpretationBox[
+           TemplateBox[{"Root", 
+             RowBox[{
+               InterpretationBox[
+                StyleBox[
+                 TemplateBox[{"\"0.643\"", 
+                   DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                  "RowDefault"], ShowStringCharacters -> False], 
+                0.64323295655905399215157558501232415438`15.981275911035961, 
+                Editable -> False], "-", 
+               RowBox[{
+                 InterpretationBox[
+                  StyleBox[
+                   TemplateBox[{"\"0.564\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"], ShowStringCharacters -> False], 
+                  0.56396324233832839656344049217295832932`15.924158422015278,
+                   Editable -> False], " ", "\[ImaginaryI]"}]}], 
+             TagBox[
+              RowBox[{"Root", "[", 
+                RowBox[{
+                  RowBox[{
+                    RowBox[{"1", "-", 
+                    RowBox[{"2", " ", "#1"}], "-", 
+                    RowBox[{"5", " ", 
+                    SuperscriptBox["#1", "2"]}], "+", 
+                    RowBox[{"16", " ", 
+                    SuperscriptBox["#1", "3"]}], "-", 
+                    RowBox[{"17", " ", 
+                    SuperscriptBox["#1", "4"]}], "+", 
+                    RowBox[{"6", " ", 
+                    SuperscriptBox["#1", "5"]}]}], "&"}], ",", "4"}], "]"}], 
+              Short[#, 7]& ], 
+             Complex[0.643232956559054, -0.5639632423383284]},
+            "NumericalApproximation"],
+           Root[1 - 2 # - 5 #^2 + 16 #^3 - 17 #^4 + 6 #^5& , 4, 0]]}], "||", 
+         RowBox[{"a", "\[Equal]", 
+          InterpretationBox[
+           TemplateBox[{"Root", 
+             RowBox[{
+               InterpretationBox[
+                StyleBox[
+                 TemplateBox[{"\"0.643\"", 
+                   DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                  "RowDefault"], ShowStringCharacters -> False], 
+                0.64323295655905399215157558501232415438`15.981275911035961, 
+                Editable -> False], "+", 
+               RowBox[{
+                 InterpretationBox[
+                  StyleBox[
+                   TemplateBox[{"\"0.564\"", 
+                    DynamicBox[
+                    FEPrivate`FrontEndResource[
+                    "FEExpressions", "NumericalApproximationElider"]]}, 
+                    "RowDefault"], ShowStringCharacters -> False], 
+                  0.56396324233832839656344049217295832932`15.924158422015278,
+                   Editable -> False], " ", "\[ImaginaryI]"}]}], 
+             TagBox[
+              RowBox[{"Root", "[", 
+                RowBox[{
+                  RowBox[{
+                    RowBox[{"1", "-", 
+                    RowBox[{"2", " ", "#1"}], "-", 
+                    RowBox[{"5", " ", 
+                    SuperscriptBox["#1", "2"]}], "+", 
+                    RowBox[{"16", " ", 
+                    SuperscriptBox["#1", "3"]}], "-", 
+                    RowBox[{"17", " ", 
+                    SuperscriptBox["#1", "4"]}], "+", 
+                    RowBox[{"6", " ", 
+                    SuperscriptBox["#1", "5"]}]}], "&"}], ",", "5"}], "]"}], 
+              Short[#, 7]& ], 
+             Complex[0.643232956559054, 0.5639632423383284]},
+            "NumericalApproximation"],
+           Root[1 - 2 # - 5 #^2 + 16 #^3 - 17 #^4 + 6 #^5& , 5, 0]]}], "||", 
+         RowBox[{
+          RowBox[{
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{"-", "1"}], ")"}], 
+            RowBox[{"2", "/", "3"}]], "+", "a"}], "\[Equal]", "0"}], "||", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"-", "\[ImaginaryI]"}], " ", 
+            SqrtBox["3"]}], "+", 
+           RowBox[{"6", " ", "a"}]}], "\[Equal]", "3"}], "||", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"\[ImaginaryI]", " ", 
+            SqrtBox["3"]}], "+", 
+           RowBox[{"6", " ", "a"}]}], "\[Equal]", "3"}], "||", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"-", "\[ImaginaryI]"}], " ", 
+            SqrtBox["3"]}], "+", 
+           RowBox[{"14", " ", "a"}]}], "\[Equal]", "9"}], "||", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"\[ImaginaryI]", " ", 
+            SqrtBox["3"]}], "+", 
+           RowBox[{"14", " ", "a"}]}], "\[Equal]", "9"}], "||", 
+         RowBox[{"a", "\[NotEqual]", 
+          FractionBox["1", "2"]}]}]},
+       {
+        RowBox[{"{", 
+         RowBox[{
+          SubscriptBox["\[FormalA]", "1"], "+", 
+          RowBox[{
+           SubscriptBox["\[FormalA]", "2"], " ", 
+           RowBox[{"u", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"-", "1"}], "+", "x"}], ",", "t"}], "]"}]}], "+", 
+          RowBox[{
+           SubscriptBox["\[FormalA]", "3"], " ", 
+           RowBox[{"u", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"-", "1"}], "+", "x"}], ",", 
+             RowBox[{"1", "+", "t"}]}], "]"}]}], "+", 
+          RowBox[{
+           SubscriptBox["\[FormalA]", "4"], " ", 
+           RowBox[{"u", "[", 
+            RowBox[{"x", ",", "t"}], "]"}]}], "+", 
+          RowBox[{
+           SubscriptBox["\[FormalA]", "4"], " ", 
+           RowBox[{"u", "[", 
+            RowBox[{"x", ",", 
+             RowBox[{"1", "+", "t"}]}], "]"}]}], "+", 
+          RowBox[{
+           SubscriptBox["\[FormalA]", "3"], " ", 
+           RowBox[{"u", "[", 
+            RowBox[{
+             RowBox[{"1", "+", "x"}], ",", "t"}], "]"}]}], "+", 
+          RowBox[{
+           SubscriptBox["\[FormalA]", "2"], " ", 
+           RowBox[{"u", "[", 
+            RowBox[{
+             RowBox[{"1", "+", "x"}], ",", 
+             RowBox[{"1", "+", "t"}]}], "]"}]}]}], "}"}], 
+        RowBox[{"a", "\[Equal]", 
+         FractionBox["1", "2"]}]},
+       {"$Failed", 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Output",
+ CellLabel->"Out[2]=",
+ CellID->700504929,ExpressionUUID->"9b9fcf11-facd-4e61-a3fe-fda9c24a0050"]
+}, Open  ]]
+}, Open  ]]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "0"}, 
+  Closed]]]]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, 
+  Closed]]]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[GridBox[{
+   {
+    DynamicBox[FEPrivate`ImportImage[
+      FrontEnd`FileName[{"Documentation", "FooterIcons"}, 
+       "RelatedFunction.png"]],
+     ImageSizeCache->{50., {27., 33.}}], GridBox[{
+      {
+       StyleBox[
+        RowBox[{"See", " ", "Also"}], "SeeAlsoSection"]},
+      {Cell[TextData[{
+        Cell[BoxData[
+         TemplateBox[{
+           Cell[
+            TextData["FindIntegratingFactorBasisOperator"]], 
+           "paclet:PDESymbolics2022/ref/FindIntegratingFactorBasisOperator", 
+           "PDESymbolics2022 Package Symbol"},
+          "PackageLink",
+          BaseStyle->"InlineFormula"]], "InlineFormula",
+         FontFamily->"Source Sans Pro",ExpressionUUID->
+         "a1acf2a4-1a02-4cb2-9aa3-c118ffdc1e4a"],
+        "\[NonBreakingSpace]",
+        StyleBox[
+        "\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+         "InlineSeparator"],
+        " ",
+        Cell[BoxData[
+         TemplateBox[{
+           Cell[
+            TextData["FindConservedQuantityOperator"]], 
+           "paclet:PDESymbolics2022/ref/FindConservedQuantityOperator", 
+           "PDESymbolics2022 Package Symbol"},
+          "PackageLink",
+          BaseStyle->"InlineFormula"]], "InlineFormula",
+         FontFamily->"Source Sans Pro",ExpressionUUID->
+         "77b484dd-39aa-4ee4-88f1-bfb6786eaf3f"],
+        "\[NonBreakingSpace]",
+        StyleBox[
+        "\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+         "InlineSeparator"],
+        " ",
+        Cell[BoxData[
+         TemplateBox[{
+           Cell[
+            TextData["FindConservedQuantityBasisOperator"]], 
+           "paclet:PDESymbolics2022/ref/FindConservedQuantityBasisOperator", 
+           "PDESymbolics2022 Package Symbol"},
+          "PackageLink",
+          BaseStyle->"InlineFormula"]], "InlineFormula",
+         FontFamily->"Source Sans Pro",ExpressionUUID->
+         "d6bc1cea-9b4c-4ae4-bcb5-1aa1018ef6f4"]
+       }], "SeeAlso",ExpressionUUID->"a68c4f9b-a318-44d5-af6d-b2e3a87944f7"]}
+     }]}
+  }]], "SeeAlsoSection",ExpressionUUID->"c02a631a-0697-4fb3-abda-\
+3ad1e02a4b5f"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[If[CurrentValue[
+      EvaluationNotebook[], {TaggingRules, "ShowCitation"}] === False, 
+    TagBox[
+     ButtonBox[
+      FrameBox[
+       RowBox[{
+         DynamicBox[
+          FEPrivate`FrontEndResource[
+          "DocumentationExpressions", "CitationArrow"]], 
+         StyleBox[
+          DynamicBox[
+           FEPrivate`FrontEndResource["DocumentationStrings", "CiteThisAs"]], 
+          "CitationButtonText"]}]], BaseStyle -> "CiteThisAsButton"], 
+     MouseAppearanceTag["LinkHand"]], 
+    StyleBox[
+     TemplateBox[{86, 22}, "Spacer2"]]],
+   ImageSizeCache->{91., {7., 17.}}]], "CitationCell",ExpressionUUID->
+  "cdc7b589-4fba-450d-9728-a01a3fece729"],
+ Cell[BoxData[
+  TemplateBox[{8},
+   "Spacer1"]],ExpressionUUID->"c2f9ec6f-d36c-4019-85d6-a303fec84bfc"],
+ Cell[BoxData[
+  DynamicBox[If[CurrentValue[
+      EvaluationNotebook[], {TaggingRules, "ShowCitation"}] === False, 
+    StyleBox[
+     TemplateBox[{
+       Part[
+        CurrentValue[
+         EvaluationNotebook[], {TaggingRules, "CitationPopupData"}], 1]}, 
+      "ClickToCopy", BaseStyle -> "CitationText"], "CitationText"], 
+    StyleBox[
+     TemplateBox[{86, 22}, "Spacer2"]]],
+   ImageSizeCache->{578., {24., 15.}}]],ExpressionUUID->
+  "39c3e6bf-c60d-4d8e-88e0-b2cc27bf1d02"]
+}], "CitationContainerCell",ExpressionUUID->"85c52603-6291-4a44-acfd-\
+05867faf25e5"]
+}, Open  ]],
+
+Cell[" ", "FooterCell",ExpressionUUID->"cb0d2dc9-04d3-4859-a261-d9b4da823b85"]
+},
+Saveable->False,
+ScreenStyleEnvironment->"Working",
+WindowSize->{900, 830},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowTitle->"FindIntegratingFactorOperator",
+TaggingRules->{
+ "ModificationHighlight" -> False, "ColorType" -> "", "LinkTrails" -> "", 
+  "HasOptions" -> True, "ExampleCounter" -> 1, 
+  "Openers" -> {
+   "PrimaryExamplesSection" -> Open, "ExampleSection" -> {"0" -> Open}, 
+    "NotesSection" -> Closed}, "NewStyles" -> True, 
+  "CitationPopupData" -> {
+   "Wolfram Research (0), FindIntegratingFactorOperator, Wolfram Language \
+function, \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/\
+FindIntegratingFactorOperator.html.", 
+    GridBox[{{
+       ItemBox["", ItemSize -> "Fit"], 
+       ItemBox[
+        TagBox[
+         ButtonBox[
+          DynamicBox[
+           FEPrivate`FrontEndResource[
+           "DocumentationExpressions", "CitationCloseButton"]], BaseStyle -> 
+          "CitationPopupCloseButton", Appearance -> None], 
+         MouseAppearanceTag["LinkHand"]], Alignment -> Right]}, {
+       Cell[
+        TextData[{
+          StyleBox["Text", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "Wolfram Research (0), FindIntegratingFactorOperator, Wolfram \
+Language function, \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/\
+FindIntegratingFactorOperator.html.", TextForm]}, "ClickToCopy", BaseStyle -> 
+               "CitationText"], ShowStringCharacters -> True], 
+             "CitationText"]]]}]], "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["CMS", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "Wolfram Language. 0. \"FindIntegratingFactorOperator.\" \
+Wolfram Language & System Documentation Center. Wolfram Research. \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/\
+FindIntegratingFactorOperator.html.", TextForm]}, "ClickToCopy", BaseStyle -> 
+               "CitationText"], ShowStringCharacters -> True], 
+             "CitationText"]]]}]], "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["APA", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "Wolfram Language. (0). FindIntegratingFactorOperator. \
+Wolfram Language & System Documentation Center. Retrieved from \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/\
+FindIntegratingFactorOperator.html", TextForm]}, "ClickToCopy", BaseStyle -> 
+               "CitationText"], ShowStringCharacters -> True], 
+             "CitationText"]]]}]], "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["BibTeX", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "@misc{reference.wolfram_2023_findintegratingfactoroperator, \
+author=\"Wolfram Research\", title=\"{FindIntegratingFactorOperator}\", year=\
+\"0\", howpublished=\"\\url{https://reference.wolfram.com/language/\
+PDESymbolics2022/ref/FindIntegratingFactorOperator.html}\", note=\"[version \
+12.1]\"}", TextForm]}, "ClickToCopy", BaseStyle -> "CitationText"], 
+              ShowStringCharacters -> True], "CitationText"]]]}]], 
+       "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["BibLaTeX", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "@online{reference.wolfram_2023_findintegratingfactoroperator,\
+ organization={Wolfram Research}, title={FindIntegratingFactorOperator}, \
+year={0}, \
+url={https://reference.wolfram.com/language/PDESymbolics2022/ref/\
+FindIntegratingFactorOperator.html}, note=\"[version 12.1]\"}", TextForm]}, 
+               "ClickToCopy", BaseStyle -> "CitationText"], 
+              ShowStringCharacters -> True], "CitationText"]]]}]], 
+       "\[SpanFromLeft]"}}]}, "ShowCitation" -> False, "RootCaptions" -> "", 
+  "Metadata" -> {
+   "built" -> "{2023, 1, 11, 10, 34, 23.052135}", 
+    "history" -> {"0.0", "", "", ""}, "context" -> "PDESymbolics2022`", 
+    "keywords" -> {}, "specialkeywords" -> {}, 
+    "tutorialcollectionlinks" -> {}, "index" -> True, "label" -> 
+    "PDE Symbolics2022 Symbol", "language" -> "en", "paclet" -> 
+    "PDESymbolics2022", "status" -> "None", "summary" -> 
+    "FindIntegratingFactorOperator[variable][problem] returns a linear \
+combination of monomials conserved by the equation in the problem.", 
+    "synonyms" -> {}, "tabletags" -> {}, "title" -> 
+    "FindIntegratingFactorOperator", "titlemodifier" -> "", "windowtitle" -> 
+    "FindIntegratingFactorOperator", "type" -> "Symbol", "uri" -> 
+    "PDESymbolics2022/ref/FindIntegratingFactorOperator"}},
+CellContext->"Global`",
+FrontEndVersion->"12.3 for Mac OS X x86 (64-bit) (July 9, 2021)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[
+    StyleDefinitions -> FrontEnd`FileName[{"Wolfram"}, "Reference.nb"]]], 
+   Cell[
+    StyleData["Input"], CellContext -> "Global`"], 
+   Cell[
+    StyleData["Output"], CellContext -> "Global`"]}, Visible -> False, 
+  FrontEndVersion -> "12.3 for Mac OS X x86 (64-bit) (July 9, 2021)", 
+  StyleDefinitions -> "Default.nb"],
+ExpressionUUID->"2901dc93-f696-4afa-9b46-2b4cd9063946"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "PrimaryExamplesSection"->{
+  Cell[9018, 232, 1389, 37, 36, "PrimaryExamplesSection",ExpressionUUID->"0411db4c-d1f1-419e-8e98-7e589b1285cc",
+   CellTags->"PrimaryExamplesSection",
+   CellID->188081151]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"PrimaryExamplesSection", 59261, 1674}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[601, 21, 4856, 113, 57, "AnchorBarGrid",ExpressionUUID->"f77da335-267e-4b22-9abc-0b3b4b7b8780",
+ CellID->1],
+Cell[5460, 136, 99, 0, 23, "ContextNameCell",ExpressionUUID->"84aabb4b-8e9e-4aeb-a6d5-b33efc86f211"],
+Cell[CellGroupData[{
+Cell[5584, 140, 572, 14, 60, "ObjectNameGrid",ExpressionUUID->"bb6a1b82-e6a3-4b5f-9197-0e0f7f07f8cb"],
+Cell[6159, 156, 566, 12, 112, "Usage",ExpressionUUID->"d33f4ad7-6e95-4ae9-995b-368f2cdab127",
+ CellID->982511436]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6762, 173, 1898, 47, 37, "NotesSection",ExpressionUUID->"0497d35e-eb5c-455f-a03c-a48c6c44a984",
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->371320019],
+Cell[8663, 222, 228, 4, 57, "Notes",ExpressionUUID->"3473c27a-27ee-49cf-9d2d-71ddc448f576",
+ CellID->1067943069]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, Closed]]]],
+Cell[CellGroupData[{
+Cell[9018, 232, 1389, 37, 36, "PrimaryExamplesSection",ExpressionUUID->"0411db4c-d1f1-419e-8e98-7e589b1285cc",
+ CellTags->"PrimaryExamplesSection",
+ CellID->188081151],
+Cell[CellGroupData[{
+Cell[10432, 273, 1368, 36, 31, "ExampleSection",ExpressionUUID->"8150ea50-7da5-4f47-a536-6a14dcef9dfa",
+ CellID->2131460120],
+Cell[11803, 311, 181, 3, 29, "Input",ExpressionUUID->"569b2051-2aec-4cae-b227-922dbead96bd",
+ CellID->1457969490],
+Cell[11987, 316, 149, 1, 38, "ExampleText",ExpressionUUID->"372785b1-bdb9-4f40-8d43-5d7a3e6f63a5",
+ CellID->1921611603],
+Cell[CellGroupData[{
+Cell[12161, 321, 1448, 39, 156, "Input",ExpressionUUID->"40e6875f-618a-4fda-b224-f6812dc6482d",
+ CellID->1863735254],
+Cell[13612, 362, 1133, 39, 40, "Output",ExpressionUUID->"b1ab8d8d-2dd5-443c-b332-7211704e83b2",
+ CellID->1010243968]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14782, 406, 242, 5, 14, "ExampleDelimiter",ExpressionUUID->"7b9e659e-4946-4a9e-afd2-984253352bb3",
+ CellID->415632058],
+Cell[15027, 413, 181, 3, 29, "Input",ExpressionUUID->"1c176f67-3d86-414c-802e-3c1a5109ac53",
+ CellID->1268544755],
+Cell[15211, 418, 235, 4, 38, "ExampleText",ExpressionUUID->"4f9b7f1d-5694-4cee-b761-f58fec7ada99",
+ CellID->501039558],
+Cell[CellGroupData[{
+Cell[15471, 426, 1522, 43, 84, "Input",ExpressionUUID->"81e661e4-92a1-48ad-9506-748147c7915e",
+ CellID->1907583321],
+Cell[16996, 471, 772, 25, 53, "Output",ExpressionUUID->"8988befb-6e5c-47c9-8bfe-1e58cb6a8ccb",
+ CellID->572776841]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17817, 502, 243, 5, 14, "ExampleDelimiter",ExpressionUUID->"51d24e7d-754f-478f-94f2-a66f84ec6dea",
+ CellID->1075048124],
+Cell[18063, 509, 180, 3, 29, "Input",ExpressionUUID->"9560b559-449b-48ca-887e-ba918ea51b91",
+ CellID->236622704],
+Cell[18246, 514, 234, 4, 70, "ExampleText",ExpressionUUID->"9b26ff35-7fed-444f-a2b2-99bc9c65bb73",
+ CellID->1062102414],
+Cell[CellGroupData[{
+Cell[18505, 522, 1665, 47, 70, "Input",ExpressionUUID->"e0dd6bb9-485d-43d3-a2cc-98393060472c",
+ CellID->806581909],
+Cell[20173, 571, 2367, 82, 59, "Output",ExpressionUUID->"c0845e95-46be-454e-bf13-ef4bd6270cf9",
+ CellID->1153128123]
+}, Open  ]],
+Cell[22555, 656, 209, 4, 70, "ExampleText",ExpressionUUID->"422bed83-9519-4321-ba99-16d0e1615222",
+ CellID->1913519550],
+Cell[CellGroupData[{
+Cell[22789, 664, 1930, 55, 70, "Input",ExpressionUUID->"87c1c555-7736-4295-84cc-cb9ec9df2071",
+ CellID->304573876],
+Cell[24722, 721, 2366, 82, 59, "Output",ExpressionUUID->"760b36d0-6561-4798-98bb-412b528c04b4",
+ CellID->283808072]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[27137, 809, 243, 5, 70, "ExampleDelimiter",ExpressionUUID->"f44af6f3-1601-4362-8934-c470ff4fd7fd",
+ CellID->1963223215],
+Cell[27383, 816, 181, 3, 70, "Input",ExpressionUUID->"bc8a25fc-01a5-4bd7-99aa-d14360b49569",
+ CellID->1191699328],
+Cell[27567, 821, 181, 3, 70, "ExampleText",ExpressionUUID->"05d561d1-ca45-4506-a9ef-b5ea8507d07c",
+ CellID->1582303701],
+Cell[CellGroupData[{
+Cell[27773, 828, 1692, 48, 70, "Input",ExpressionUUID->"7b40b7e2-7d01-40c5-a4e6-7f6ce820a5e3",
+ CellID->2095544919],
+Cell[29468, 878, 494, 15, 39, "Output",ExpressionUUID->"69e1b403-cbb4-4414-b600-eb14b80555f5",
+ CellID->1037476256]
+}, Open  ]],
+Cell[29977, 896, 201, 4, 70, "ExampleText",ExpressionUUID->"0d5ce9a3-5641-41c9-9c88-859ce7a67376",
+ CellID->495609040],
+Cell[CellGroupData[{
+Cell[30203, 904, 1941, 54, 70, "Input",ExpressionUUID->"5a4cabc2-a4a4-4914-aa96-abb0da57b510",
+ CellID->152776283],
+Cell[32147, 960, 2724, 89, 77, "Output",ExpressionUUID->"d17156f4-f123-4daa-b05e-a7e973b18069",
+ CellID->188544462]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[34920, 1055, 243, 5, 70, "ExampleDelimiter",ExpressionUUID->"b387ae23-32c3-44f7-a408-b97d024429fc",
+ CellID->1951895733],
+Cell[35166, 1062, 180, 3, 70, "Input",ExpressionUUID->"664bd247-3e64-4c34-baf7-493a84bc0dbf",
+ CellID->947615269],
+Cell[35349, 1067, 171, 3, 70, "ExampleText",ExpressionUUID->"71657cf7-d70e-479f-8c36-3a6cb01ca69c",
+ CellID->1395173057],
+Cell[CellGroupData[{
+Cell[35545, 1074, 2790, 78, 70, "Input",ExpressionUUID->"c1700bb4-ab2c-499a-8fa8-8ac7c27a7a7c",
+ CellID->751753797],
+Cell[38338, 1154, 11243, 275, 187, "Output",ExpressionUUID->"9b9fcf11-facd-4e61-a3fe-fda9c24a0050",
+ CellID->700504929]
+}, Open  ]]
+}, Open  ]]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "0"}, Closed]]]]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, Closed]]]],
+Cell[CellGroupData[{
+Cell[49857, 1441, 2094, 53, 70, "SeeAlsoSection",ExpressionUUID->"c02a631a-0697-4fb3-abda-3ad1e02a4b5f"],
+Cell[51954, 1496, 1383, 37, 70, "CitationContainerCell",ExpressionUUID->"85c52603-6291-4a44-acfd-05867faf25e5"]
+}, Open  ]],
+Cell[53352, 1536, 78, 0, 70, "FooterCell",ExpressionUUID->"cb0d2dc9-04d3-4859-a261-d9b4da823b85"]
+}
+]
+*)
+
+(* End of internal cache information *)
+
