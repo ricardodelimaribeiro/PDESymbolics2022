@@ -108,7 +108,7 @@ removemultiples[??] returns..."
 
 logicalcleaner::usage =  
 "internal function, here for debugging purposes.
-logicalcleaner[list] returns ";
+logicalcleaner[list] returns a simplified list where the (n+1)-th condition includes the negation of the n-th condition.";
 Begin["`Private`"]
 (* ######## mini-Function: Numerizer ########## *)
 (**********************************************************************)
@@ -617,7 +617,7 @@ ImprovedHomogeneousSolveAlwaysOperator[variables_Association][eqs0_] :=
     ]
  
 (*TODO this implementation does not use facts explicitly, check ImprovedHomogeneousSolveAlwaysOperator.*)
-(*EqualToZeroOperator[variables_Association][XP_] :=
+EqualToZeroOperator[variables_Association][XP_] :=
      Which[
      XP === $Failed, $Failed,
      Head[XP] === Piecewise, 
@@ -638,9 +638,9 @@ ImprovedHomogeneousSolveAlwaysOperator[variables_Association][eqs0_] :=
         ]
     ], 
     True, EqualToZeroOperator[variables][{XP}]
-    ]*)
+    ]
 
-EqualToZero[variables_][XP_] := 
+(*EqualToZero[variables_][XP_] := 
 If[Head[XP]===List,
         If[ And @@ ((# === 0)||(#===0.) & /@ XP),
             True,
@@ -657,7 +657,7 @@ If[Head[XP]===List,
         EqualToZero[variables][{XP}]
 ];
    
-EqualToZeroOperator = Kleisli[EqualToZero];
+EqualToZeroOperator = Kleisli[EqualToZero];*)
 (**** SolveAlwaysOperator *****)
 
 
@@ -684,10 +684,10 @@ SolveAlwaysOperator[variables_Association][xp_] :=
 (* ######mini-Function: logicalcleaner ######## *)
 (* this function attempts to remove logical overlaps in branching *)
 (*************************************************************)
-logicalcleaner::usage =  
-"logicalcleaner[list] returns ";
+
 (*logicalcleaner = Function[lst, Simplify/@MapThread[And[!#1,#2]&, {FoldList[Or,False, lst][[;;-2]], lst}]]*)
 logicalcleaner[lst_List] := Simplify/@MapThread[And[!#1,#2]&, {Most@FoldList[Or,False, lst], lst}];
+
 (* ######mini-Function: CompareRows ######## *)
 (*************************************************************)
 CompareRows::usage =
