@@ -4,17 +4,19 @@ InferGeneratorsOperator::usage =
 
 PiecewisePolynomialLCM::usage =
 "PiecewisePolynomialLCM[f, g] gives the polynomial Least Common Multiple of f and g.";
+
 LeadingTermOperator::usage = 
 "LeadingTermOperator[variables][xp] returns a Piecewise expression with the leading term depending on the parameters. ";
 
 PiecewiseSPolynomialOperator::usage =
-   "PiecewiseSPolynomialOperator[variables][f, g] returns the S-polynomial for f and g. If one of them is a Piecewise expression, it takes care of the cases.";
+"PiecewiseSPolynomialOperator[variables][f, g] returns the S-polynomial for f and g. If one of them is a Piecewise expression, it takes care of the cases.";
 
 PiecewiseDivision::usage =
 "PiecewiseDivision[a,b] takes care of $Failed and division by zero."
 
 AutoReduceOperator::usage =
 "AutoReduceOperator[variables][polylist] returns the reduced polylist.";
+
 Begin["`Private`"]
 InferGeneratorsOperator[variables_][xplist_List] :=
   
