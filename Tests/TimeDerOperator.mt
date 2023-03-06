@@ -16,7 +16,8 @@ variables = Association[
 	"eqRhs"-> {H[u[x],u'[x],u''[x]]},
 	"result" -> H[u[x],u'[x],u''[x]],
 	"depVars" -> {u},
-	"indVars" -> {x}
+	"indVars" -> {x},
+	"Beautify"->False
 	];
 
 label = "Identity"
@@ -27,8 +28,9 @@ variables = Association[
 	"indVars" -> {x},
 	"eqRhs" -> {u''[x]},
 	"expression" -> u[x],
-	"result" -> u''[x]
-]
+	"result" -> u''[x],
+	"Beautify"->False
+];
 label = "Heat equation without Beautify";
 Get[ test ]
 
@@ -39,7 +41,7 @@ variables = Association[
 	"expression" -> u[x],
 	"Beautify" -> True,
 	"result" -> 0
-]
+];
 label = "Heat equation with Beautify";
 Get[ test ]
 
@@ -50,7 +52,7 @@ variables = Association[
 	"expression" -> u[x]^2,
 	"Beautify" -> False,
 	"result" -> 2 u[x] (u[x] u'[x] + Derivative[3][u][x])
-]
+];
 label = "KdV equation without Beautify";
 Get[ test ]
 
@@ -77,6 +79,7 @@ label = "H-J - F-P equation with Beautify";
 Get[ test ]
 
 variables = Association[
+	"VarDOperator"->VarDOperator,
 	"depVars" -> {r,u},
 	"indVars" -> {x},
 	"timederivativeorder" -> 2,
@@ -84,7 +87,7 @@ variables = Association[
 	"expression" -> U[r[x]],
 	"Beautify" -> True,
 	"result" -> r[x]^2 (u'')[x]^2 (U'')[r[x]](*from user-guide-presentation*)
-]
+];
 label = "Displacement convexity for MFGs with Beautify: Optimal transport";
 Get[ test ]
 
@@ -96,7 +99,7 @@ variables = Association[
 	"expression" -> U[r[x]],
 	"Beautify" -> True,
 	"result" -> ((2*r[x]*Derivative[1][g][r[x]]*Derivative[1][r][x]^2 + 2*r[x]^2*Derivative[2][u][x]^2)*Derivative[2][U][r[x]])/2
-]
+];
 label = "Displacement convexity for MFGs with Beautify: MFGs";
 Get[ test ]
 
@@ -108,7 +111,7 @@ variables = Association[
 	"expression" -> a[x] (u[x]^2+v[x]^2),
 	"Beautify" -> False,
 	"result" -> -((4*Derivative[1][a][x]*Derivative[1][u][x] + 2*u[x]*Derivative[2][a][x])*Derivative[2][u][x]) + (-4*Derivative[1][a][x]*Derivative[1][v][x] - 2*v[x]*Derivative[2][a][x])*Derivative[2][v][x]
-]
+];
 label = "Virial identities for Schrodinger equation: generic a[x] without Beautify";
 Get[ test ]
 
@@ -120,7 +123,7 @@ variables = Association[
 	"expression" -> a[x] (u[x]^2+v[x]^2),
 	"Beautify" -> True,
 	"result" -> -2*(2*Derivative[1][a][x]*Derivative[1][u][x]*Derivative[2][u][x] + u[x]*Derivative[2][a][x]*Derivative[2][u][x] + (2*Derivative[1][a][x]*Derivative[1][v][x] + v[x]*Derivative[2][a][x])*Derivative[2][v][x])
-]
+];
 label = "Virial identities for Schrodinger equation: generic a[x] with Beautify";
 Get[ test ]
 
@@ -132,7 +135,7 @@ variables = Association[
 	"expression" -> x^2 (u[x]^2+v[x]^2),
 	"Beautify" -> False,
 	"result" -> -((4*u[x] + 8*x*Derivative[1][u][x])*Derivative[2][u][x]) + (-4*v[x] - 8*x*Derivative[1][v][x])*Derivative[2][v][x]
-]
+];
 label = "Virial identities for Schrodinger equation: x^2 without Beautify";
 Get[ test ]
 
@@ -144,7 +147,7 @@ variables = Association[
 	"expression" -> (u[x]^2+v[x]^2),
 	"Beautify" -> True,
 	"result" -> 0
-]
+];
 label = "Virial identities for Schrodinger equation: 1 with Beautify";
 Get[ test ]
 
@@ -156,7 +159,7 @@ variables = Association[
 	"expression" -> x^2(u[x]^2+v[x]^2),
 	"Beautify" -> True,
 	"result" -> 4*(2*Derivative[1][u][x]^2 + 2*Derivative[1][v][x]^2)
-]
+];
 label = "Virial identities for Schrodinger equation: x^2 with Beautify";
 Get[ test ]
 
@@ -168,7 +171,7 @@ variables = Association[
 	"expression" -> x^4 (u[x]^2+v[x]^2),
 	"Beautify" -> True,
 	"result" -> 576*((2*Derivative[2][u][x]^2)/3 + (2*Derivative[2][v][x]^2)/3)
-]
+];
 label = "Virial identities for Schrodinger equation: x^4 with Beautify";
 Get[ test ]
 
@@ -180,9 +183,9 @@ variables = Association[
 	"expression" -> x^6 (u[x]^2+v[x]^2),
 	"Beautify" -> True,
 	"result" -> 69120*((2*Derivative[3][u][x]^2)/3 + (2*Derivative[3][v][x]^2)/3)
-]
+];
 label = "Virial identities for Schrodinger equation: x^6 with Beautify";
-Get[ test ]
+(*Get[ test ]*)
 
 variables = Association[
 	"depVars" -> {u,v},
@@ -192,9 +195,9 @@ variables = Association[
 	"expression" -> x^8 (u[x]^2+v[x]^2),
 	"Beautify" -> True,
 	"result" -> 15482880*((2*Derivative[4][u][x]^2)/3 + (2*Derivative[4][v][x]^2)/3)
-]
+];
 label = "Virial identities for Schrodinger equation: x^8 with Beautify";
-Get[ test ]
+(*Get[ test ]*)
 
 variables = Association[
 	"depVars" -> {u,v},
@@ -204,7 +207,7 @@ variables = Association[
 	"expression" -> x^10 (u[x]^2+v[x]^2),
 	"Beautify" -> True,
 	"result" -> 5573836800*((2*Derivative[5][u][x]^2)/3 + (2*Derivative[5][v][x]^2)/3)
-]
+];
 label = "Virial identities for Schrodinger equation: x^10 with Beautify";
 (*Get[ test ]*)
 
@@ -217,7 +220,7 @@ variables = Association[
 	"Beautify" -> True,
 	"VarDOperator" -> VarDOperator,
 	"result" -> 4*Derivative[2][u][x]^2
-]
+];
 label = "Heat equation, u^2";
 Get[ test ]
 
