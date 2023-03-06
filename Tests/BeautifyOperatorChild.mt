@@ -2,7 +2,7 @@
 
 Test[
     With[ {expression = variables["expression"],result = variables["result"]},
-        With[ {computation = BeautifyOperator[variables][expression]},
+        With[ {computation = BeautifyOperator[Append["VarDOperator"->VarDOperator]@variables][expression]},
             Which[
                 result===computation,
                 True, 
