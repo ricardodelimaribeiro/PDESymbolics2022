@@ -206,7 +206,7 @@ variables = Association[
 	"result" -> 5573836800*((2*Derivative[5][u][x]^2)/3 + (2*Derivative[5][v][x]^2)/3)
 ]
 label = "Virial identities for Schrodinger equation: x^10 with Beautify";
-Get[ test ]
+(*Get[ test ]*)
 
 variables = Association[
 	"depVars" -> {u},
