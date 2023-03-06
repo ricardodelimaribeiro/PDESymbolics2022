@@ -1,0 +1,652 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     23517,        642]
+NotebookOptionsPosition[     16649,        498]
+NotebookOutlinePosition[     19165,        559]
+CellTagsIndexPosition[     19122,        556]
+WindowTitle->PDESymbolics2022
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[GridBox[{
+   {GridBox[{
+      {
+       ItemBox[Cell[BoxData[
+         RowBox[{
+          TemplateBox[{12},
+           "Spacer1"], Cell["PDE SYMBOLICS2022 TUTORIAL", "PacletNameCell",
+           TextAlignment->Center,ExpressionUUID->
+           "7b990b7d-5944-4a0e-86c1-63ed2bfc479e"], 
+          TemplateBox[{8},
+           "Spacer1"]}]],
+         TextAlignment->Center,ExpressionUUID->
+         "3beb61f3-2902-4041-8bee-b0b308e6b85b"],
+        Background->RGBColor[
+         0.7450980392156863, 0.3254901960784314, 0.1411764705882353],
+        ItemSize->Full], ""}
+     },
+     GridBoxAlignment->{"Rows" -> {{Center}}},
+     GridBoxItemSize->{"Columns" -> {Full, 
+         Scaled[0.02]}, "Rows" -> {{2.5}}}], Cell[TextData[Cell[BoxData[
+     TagBox[
+      ActionMenuBox[
+       FrameBox[Cell[TextData[{
+         "URL",
+         " ",
+         Cell[BoxData[
+          GraphicsBox[
+           {GrayLevel[0.66667], Thickness[0.13], 
+            LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+           AspectRatio->1,
+           ImageSize->20,
+           PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+          "c20e18cc-5722-402c-964c-2e9286eec2cf"]
+        }],ExpressionUUID->"fa464f81-38dc-441a-94bf-1471596d8b3a"],
+        StripOnInput->
+         False], {"\<\"PDESymbolics2022/tutorial/PDESymbolics2022\"\>":>
+       None, "\<\"Copy Wolfram Documentation Center URL\"\>":>
+       Module[{DocumentationSearch`Private`nb$}, 
+        DocumentationSearch`Private`nb$ = NotebookPut[
+           Notebook[{
+             Cell["PDESymbolics2022/tutorial/PDESymbolics2022"]}, Visible -> 
+            False]]; SelectionMove[
+         DocumentationSearch`Private`nb$, All, Notebook]; 
+        FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+        NotebookClose[DocumentationSearch`Private`nb$]; Null], 
+       Delimiter, "\<\"Copy web URL\"\>":>
+       Module[{DocumentationSearch`Private`nb$}, 
+        DocumentationSearch`Private`nb$ = NotebookPut[
+           Notebook[{
+             Cell[
+              BoxData[
+               MakeBoxes[
+                Hyperlink[
+                "http://reference.wolfram.com/language/PDESymbolics2022/\
+tutorial/PDESymbolics2022.html"], StandardForm]], "Input", TextClipboardType -> 
+              "PlainText"]}, Visible -> False]]; 
+        SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+        FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+        NotebookClose[DocumentationSearch`Private`nb$]; 
+        Null], "\<\"Go to web URL\"\>":>FrontEndExecute[{
+         NotebookLocate[{
+           URL[
+            StringJoin[
+             If[
+              TrueQ[DocumentationBuild`Make`Private`wsmlinkQ$142171], 
+              "http://reference.wolfram.com/system-modeler/", 
+              "http://reference.wolfram.com/language/"], 
+             "PDESymbolics2022/tutorial/PDESymbolics2022", ".html"]], 
+           None}]}]},
+       Appearance->None,
+       MenuAppearance->Automatic,
+       MenuStyle->"URLMenu"],
+      MouseAppearanceTag["LinkHand"]]],
+     LineSpacing->{1.4, 0},ExpressionUUID->
+     "69018be2-bc19-440e-8eaf-26aa87f89961"]], "AnchorBar",
+     CacheGraphics->False,ExpressionUUID->
+     "b465b6d7-838c-4e03-aaef-a4f2d782d65e"]}
+  }]], "AnchorBarGrid",
+ GridBoxOptions->{GridBoxItemSize->{"Columns" -> {
+     Scaled[0.65], {
+      Scaled[0.34]}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+   "RowsIndexed" -> {}}},
+ CellID->1,ExpressionUUID->"917c14ea-b1bc-48fe-b882-bb347cebbf50"],
+
+Cell[CellGroupData[{
+
+Cell["PDESymbolics2022", "Title",
+ CellID->509267359,ExpressionUUID->"4b904f71-dff7-4b57-846a-efa6d7fc039f"],
+
+Cell["\<\
+The functions defined in PDESymbolics2022` Package provide support for \
+automatic manipulation of expressions appearing in the study of Partial \
+Differential Equations.\
+\>", "Text",
+ CellID->1534169418,ExpressionUUID->"061c3d46-bbc4-4a88-8c67-0a88852c99dd"],
+
+Cell["This loads the package:", "MathCaption",
+ CellID->1196598286,ExpressionUUID->"cd0f2fc4-8a74-486a-8b1a-11cbaa9adb89"],
+
+Cell[BoxData[
+ RowBox[{"Get", "[", "\"\<PDESymbolics2022`\>\"", "]"}]], "Input",
+ CellLabel->"In[1]:=",
+ CellID->124791621,ExpressionUUID->"668e09d7-aef2-49c3-a95d-7b07d84221dd"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[StyleBox["Determination of variational derivatives", \
+"Subsection"]], "Section",
+ CellID->1697778101,ExpressionUUID->"3c9c641c-6284-4cc8-8216-df56467ad377"],
+
+Cell["\<\
+The function VarDOperator is an operator implementation of the variational \
+derivative. It is build using VarD, a local implementation of VariationalD \
+contained in the VariationalMethods Package.\
+\>", "Text",
+ CellID->1011303937,ExpressionUUID->"d17d978c-0e8d-4fa8-8c02-438b9fde1d46"],
+
+Cell[BoxData[GridBox[{
+   {
+    RowBox[{
+     RowBox[{"VarDOperator", "[", 
+      RowBox[{"<|", 
+       RowBox[{
+        RowBox[{"\"\<depVars\>\"", " ", "\[Rule]", " ", 
+         RowBox[{"{", "u", "}"}]}], ",", " ", 
+        RowBox[{"\"\<indVars\>\"", " ", "\[Rule]", " ", 
+         RowBox[{"{", "x", "}"}]}]}], "|>"}], "]"}], "[", "f", "]"}], Cell[
+    TextData[{
+     "returns the variational derivative of ",
+     Cell[BoxData[
+      RowBox[{"\[Integral]", 
+       RowBox[{"f", 
+        RowBox[{"\[DifferentialD]", "x"}]}]}]],ExpressionUUID->
+      "5256b087-f5c5-4b0e-9a8f-f2002818094e"],
+     " with respect to u[x], its derivatives, and x."
+    }], "TableText",ExpressionUUID->"1784dcc4-c0e5-4ef5-ab31-1c08f5f61680"]},
+   {
+    RowBox[{
+     RowBox[{"VarDOperator", "[", 
+      RowBox[{"<|", 
+       RowBox[{
+        RowBox[{"\"\<depVars\>\"", " ", "\[Rule]", " ", 
+         RowBox[{"{", "u", "}"}]}], ",", " ", 
+        RowBox[{"\"\<indVars\>\"", " ", "\[Rule]", " ", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", "y"}], "}"}]}]}], "|>"}], "]"}], "[", "f", "]"}], 
+    Cell[TextData[{
+     "returns the variational derivative of ",
+     Cell[BoxData[
+      RowBox[{"\[Integral]", 
+       RowBox[{"f", 
+        RowBox[{"\[DifferentialD]", "x"}], 
+        RowBox[{"\[DifferentialD]", "y"}]}]}]],ExpressionUUID->
+      "6bcfa73f-8cdc-495d-8c0d-b1b83b0a2a46"],
+     " with respect to u[x,y], its derivatives, x, and y."
+    }], "TableText",ExpressionUUID->"28a51d3d-7098-4662-ae61-eabd951f7fb1"]}
+  }]], "DefinitionBox",
+ CellID->550540124,ExpressionUUID->"fa240fc0-c8a4-49bf-8811-d16b6e271269"],
+
+Cell["Computing variational derivatives.", "Caption",
+ CellID->1891092685,ExpressionUUID->"c15f3edd-634e-4fc0-8f47-8faacb11d2bb"],
+
+Cell[TextData[{
+ "Here is the variational derivative of  ",
+ Cell[BoxData[
+  RowBox[{
+   RowBox[{"\[Integral]", " ", 
+    RowBox[{"\[PartialD]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"$x", " ", "[", "u", "]"}], "[", 
+       RowBox[{"x", ",", "y"}], "]"}], "^", "2"}]}]}], "+", 
+   RowBox[{
+    RowBox[{"\[PartialD]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"$y", " ", "[", "u", "]"}], "[", 
+       RowBox[{"x", ",", "y"}], "]"}], "^", "2"}]}], 
+    RowBox[{"\[DifferentialD]", "x"}]}]}]],ExpressionUUID->
+  "3f1818e6-084a-4e29-8629-24d5f50b876c"],
+ ": "
+}], "MathCaption",
+ CellID->836781195,ExpressionUUID->"09b4a4fd-3d4a-4c35-b7e4-89fb69ffc6c5"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"VarDOperator", "[", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<depVars\>\"", " ", "\[Rule]", " ", 
+      RowBox[{"{", "u", "}"}]}], ",", " ", 
+     RowBox[{"\"\<indVars\>\"", " ", "\[Rule]", " ", 
+      RowBox[{"{", 
+       RowBox[{"x", ",", "y"}], "}"}]}]}], "|>"}], "]"}], "[", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"-", "1"}], "/", "2"}], ")"}], " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"Derivative", "[", 
+         RowBox[{"1", ",", "0"}], "]"}], "[", "u", "]"}], "[", 
+       RowBox[{"x", ",", "y"}], "]"}], "^", "2"}], "+", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"Derivative", "[", 
+         RowBox[{"0", ",", "1"}], "]"}], "[", "u", "]"}], "[", 
+       RowBox[{"x", ",", "y"}], "]"}], "^", "2"}]}], ")"}]}], "]"}]], "Input",\
+
+ CellLabel->"In[20]:=",
+ CellID->2058623809,ExpressionUUID->"e0987115-01cd-4952-ab06-91221f29f1fa"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    SuperscriptBox["u", 
+     TagBox[
+      RowBox[{"(", 
+       RowBox[{"0", ",", "2"}], ")"}],
+      Derivative],
+     MultilineFunction->None], "[", 
+    RowBox[{"x", ",", "y"}], "]"}], "+", 
+   RowBox[{
+    SuperscriptBox["u", 
+     TagBox[
+      RowBox[{"(", 
+       RowBox[{"2", ",", "0"}], ")"}],
+      Derivative],
+     MultilineFunction->None], "[", 
+    RowBox[{"x", ",", "y"}], "]"}]}], "}"}]], "Output",
+ CellLabel->"Out[20]=",
+ CellID->1531685909,ExpressionUUID->"97a1faf8-fe05-4bc4-b59d-d79df1bc5df6"]
+}, Open  ]],
+
+Cell["\<\
+This variational derivative is the same as the Laplacian of u[x,y]\
+\>", "MathCaption",
+ CellID->138374225,ExpressionUUID->"88dc6da0-44e0-4739-b884-dd5acc552ea5"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Laplacian", "[", 
+  RowBox[{
+   RowBox[{"u", "[", 
+    RowBox[{"x", ",", "y"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "y"}], "}"}]}], "]"}]], "Input",
+ CellLabel->"In[21]:=",
+ CellID->2078293521,ExpressionUUID->"de1f2d2a-1149-4432-b5d4-8ca9e2f1d8a0"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   SuperscriptBox["u", 
+    TagBox[
+     RowBox[{"(", 
+      RowBox[{"0", ",", "2"}], ")"}],
+     Derivative],
+    MultilineFunction->None], "[", 
+   RowBox[{"x", ",", "y"}], "]"}], "+", 
+  RowBox[{
+   SuperscriptBox["u", 
+    TagBox[
+     RowBox[{"(", 
+      RowBox[{"2", ",", "0"}], ")"}],
+     Derivative],
+    MultilineFunction->None], "[", 
+   RowBox[{"x", ",", "y"}], "]"}]}]], "Output",
+ CellLabel->"Out[21]=",
+ CellID->304136232,ExpressionUUID->"e8781b4a-01cd-4c7c-90ba-7081ae8aaeb3"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Determination of discrete variational derivatives", "Subsection",
+ CellID->1540750161,ExpressionUUID->"35343053-4360-4a8d-b984-f887683ede26"],
+
+Cell["\<\
+In the study of sums it is interesting to look into the discrete variational \
+derivative.\
+\>", "Text",
+ CellID->1519970170,ExpressionUUID->"84c09fa9-4a4d-4985-bfe9-3f38f59f9566"],
+
+Cell["\[AliasDelimiter]sum", "Text",
+ CellID->907293328,ExpressionUUID->"ba8757eb-18bb-40e8-a907-39fc9288c95f"],
+
+Cell[BoxData[GridBox[{
+   {
+    RowBox[{
+     RowBox[{"DVarDOperator", "[", 
+      RowBox[{"<|", 
+       RowBox[{
+        RowBox[{"\"\<depVars\>\"", " ", "\[Rule]", " ", 
+         RowBox[{"{", "u", "}"}]}], ",", " ", 
+        RowBox[{"\"\<indVars\>\"", " ", "\[Rule]", " ", 
+         RowBox[{"{", "n", "}"}]}]}], "|>"}], "]"}], "[", "f", "]"}], Cell[
+    TextData[{
+     "returns the discrete variational derivative of ",
+     Cell[BoxData[
+      RowBox[{
+       UnderscriptBox["\[Sum]", "n"], "f"}]],ExpressionUUID->
+      "dd115bc8-e76d-4d90-9a8e-5744ac1b7d23"],
+     " whit respect to u[n], its translations in n, and n."
+    }], "TableText",ExpressionUUID->"856304fe-043e-4874-85b9-00e77ff7ecb5"]}
+  }]], "DefinitionBox",
+ CellID->562821188,ExpressionUUID->"02560404-f2a4-4998-8ce3-2cf030477ab1"],
+
+Cell["XXXX.", "Caption",
+ CellID->1817725328,ExpressionUUID->"f78eb839-2b0e-4e55-88bc-19f280651f17"],
+
+Cell["Computing discrete variational derivatives.", "Caption",
+ CellID->793243068,ExpressionUUID->"1084eda3-511a-4cfa-89c3-79a8876060a3"],
+
+Cell[TextData[{
+ "Here is the discrete variational derivative of ",
+ Cell[BoxData[
+  RowBox[{
+   UnderscriptBox["\[Sum]", "n"], 
+   RowBox[{
+    RowBox[{
+     RowBox[{"-", "1"}], "/", "2"}], " ", 
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"-", 
+        RowBox[{"u", "[", "n", "]"}]}], "+", 
+       RowBox[{"u", "[", 
+        RowBox[{"1", "+", "n"}], "]"}]}], ")"}], "2"]}]}]],ExpressionUUID->
+  "635f3a14-d8cf-4611-9f4d-a0706a005a28"]
+}], "MathCaption",
+ CellID->1845130738,ExpressionUUID->"42629492-bd15-40fa-951b-3fece8597954"],
+
+Cell[BoxData[
+ RowBox[{"2", "+", "2"}]], "Input",
+ CellID->1448450886,ExpressionUUID->"2e70ed9b-222c-4a29-8abe-e13d568ab165"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"DVarDOperator", "[", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<depVars\>\"", " ", "\[Rule]", " ", 
+      RowBox[{"{", "u", "}"}]}], ",", " ", 
+     RowBox[{"\"\<indVars\>\"", " ", "\[Rule]", " ", 
+      RowBox[{"{", "n", "}"}]}]}], "|>"}], "]"}], "[", 
+  RowBox[{
+   RowBox[{"-", 
+    RowBox[{
+     RowBox[{"DifferenceDelta", "[", 
+      RowBox[{
+       RowBox[{"u", "[", "n", "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"n", ",", "1"}], "}"}]}], "]"}], "^", "2"}]}], "/", "2"}], 
+  "]"}]], "Input",
+ CellLabel->"In[26]:=",
+ CellID->73305886,ExpressionUUID->"89dc290b-ea60-4275-9243-9e614ae0dcb5"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"u", "[", 
+    RowBox[{
+     RowBox[{"-", "1"}], "+", "n"}], "]"}], "-", 
+   RowBox[{"2", " ", 
+    RowBox[{"u", "[", "n", "]"}]}], "+", 
+   RowBox[{"u", "[", 
+    RowBox[{"1", "+", "n"}], "]"}]}], "}"}]], "Output",
+ CellLabel->"Out[26]=",
+ CellID->950267331,ExpressionUUID->"1bdc45fa-e1b0-4e96-a1f8-cf239b677916"]
+}, Open  ]],
+
+Cell["\<\
+This discrete variational derivative is the same as the second order \
+difference centered in n\
+\>", "MathCaption",
+ CellID->307149378,ExpressionUUID->"2b992011-dc9f-41c2-b04a-f6822934d353"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DifferenceDelta", "[", 
+  RowBox[{
+   RowBox[{"u", "[", 
+    RowBox[{"n", "-", "1"}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"n", ",", "2"}], "}"}]}], "]"}]], "Input",
+ CellLabel->"In[27]:=",
+ CellID->1856392305,ExpressionUUID->"d1b70c4d-34a3-4552-8c9e-fab93e514719"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"u", "[", 
+   RowBox[{
+    RowBox[{"-", "1"}], "+", "n"}], "]"}], "-", 
+  RowBox[{"2", " ", 
+   RowBox[{"u", "[", "n", "]"}]}], "+", 
+  RowBox[{"u", "[", 
+   RowBox[{"1", "+", "n"}], "]"}]}]], "Output",
+ CellLabel->"Out[27]=",
+ CellID->1015164723,ExpressionUUID->"22dec3d1-9740-4f32-9df0-091ffc9e5ee5"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Basis mod null Lagrangians", "Subsection",
+ CellID->1469351266,ExpressionUUID->"63019774-12b3-4ee9-b22c-486eee5a8fda"],
+
+Cell["\<\
+The main use for this package is the simplification of integral expressions.\
+\>", "Text",
+ CellID->318677499,ExpressionUUID->"f88ef6c1-1d72-4490-a672-cb74a12ef555"],
+
+Cell[BoxData[GridBox[{
+   {
+    RowBox[{
+     RowBox[{"BasisModNullLagrangiansOperator", "[", 
+      RowBox[{"<|", 
+       RowBox[{
+        RowBox[{"\"\<depVars\>\"", "\[Rule]", " ", 
+         RowBox[{"{", "u", "}"}]}], ",", " ", 
+        RowBox[{"\"\<indVars\>\"", "\[Rule]", " ", 
+         RowBox[{"{", "x", "}"}]}]}], "|>"}], "]"}], "[", 
+     RowBox[{"{", 
+      RowBox[{"f$1", ",", " ", "f$2", ",", " ", "..."}], "}"}], "]"}], 
+    Cell["\<\
+returns a basis mod null Lagrangians for the subspace generated by {f$1, f$2, \
+...}.\
+\>", "TableText",ExpressionUUID->"75aff12c-146c-4dac-90f1-edba266de18f"]}
+  }]], "DefinitionBox",
+ CellID->2055968370,ExpressionUUID->"ee9cad26-bc7f-435f-bf33-3efa1e50ddde"],
+
+Cell["Simplification of generating sets.", "Caption",
+ CellID->1648514360,ExpressionUUID->"42a1d434-dfab-43ea-b8f5-a91c1a2ea29e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"BasisModNullLagrangiansOperator", "[", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<depVars\>\"", "\[RightArrow]", 
+      RowBox[{"{", "u", "}"}]}], ",", 
+     RowBox[{"\"\<indVars\>\"", "\[RightArrow]", 
+      RowBox[{"{", "x", "}"}]}]}], "|>"}], "]"}], "[", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"u", "[", "x", "]"}], " ", 
+     RowBox[{
+      RowBox[{"u", "''"}], "[", "x", "]"}]}], ",", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"u", "'"}], "[", "x", "]"}], "2"}]}], "}"}], "]"}]], "Input",
+ CellLabel->"In[33]:=",
+ CellID->1312904691,ExpressionUUID->"d4010177-8930-488a-b209-0f08aea9db90"],
+
+Cell[BoxData[""], "Input",ExpressionUUID->"80b8a635-d9e8-492e-a7fc-85fead301701"],
+
+Cell[BoxData[""], "Input",ExpressionUUID->"a04d779e-e469-4e6c-8440-1d34f164d70b"],
+
+Cell[BoxData[""], "Input",ExpressionUUID->"6871db3e-45b5-4fe7-9425-8c751ce6c5c8"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[" ", "FooterCell",ExpressionUUID->"7d407e92-45fd-4436-b6ce-96ae70c3837c"]
+},
+Saveable->False,
+ScreenStyleEnvironment->"Working",
+WindowSize->{900, 830},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowTitle->"PDESymbolics2022",
+TaggingRules->{
+ "ModificationHighlight" -> False, "ColorType" -> "", "LinkTrails" -> "", 
+  "ExampleCounter" -> 1, 
+  "Openers" -> {
+   "PrimaryExamplesSection" -> Open, "ExampleSection" -> {"0" -> Open}}, 
+  "NewStyles" -> True, "CitationPopupData" -> {"0", ""}, "ShowCitation" -> 
+  False, "RootCaptions" -> "", 
+  "Metadata" -> {
+   "built" -> "{2023, 1, 11, 10, 35, 2.139474}", 
+    "history" -> {"0.0", "", "", ""}, "context" -> "PDESymbolics2022`", 
+    "keywords" -> {}, "specialkeywords" -> {}, 
+    "tutorialcollectionlinks" -> {}, "index" -> True, "label" -> 
+    "PDE Symbolics2022 Tutorial", "language" -> "en", "paclet" -> 
+    "PDESymbolics2022", "status" -> "None", "summary" -> 
+    "The functions defined in PDESymbolics2022` Package provide support for \
+automatic manipulation of expressions appearing in the study of Partial \
+Differential Equations. This loads the package: The function VarDOperator is \
+an operator implementation of the variational derivative. It is build using \
+VarD, a local implementation of VariationalD contained in the \
+VariationalMethods Package.", "synonyms" -> {}, "tabletags" -> 
+    DocumentationBuild`Make`Private`tabletaggingrules$142134, "title" -> 
+    "PDESymbolics2022", "titlemodifier" -> "", "windowtitle" -> 
+    "PDESymbolics2022", "type" -> "Tutorial", "uri" -> 
+    "PDESymbolics2022/tutorial/PDESymbolics2022"}},
+FrontEndVersion->"12.3 for Mac OS X x86 (64-bit) (July 9, 2021)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[
+    StyleDefinitions -> FrontEnd`FileName[{"Wolfram"}, "Reference.nb"]]], 
+   Cell[
+    StyleData["Input"], CellContext -> Notebook], 
+   Cell[
+    StyleData["Output"], CellContext -> Notebook], 
+   Cell[
+    StyleData["TutorialMoreAboutSection"], 
+    CellGroupingRules -> {"SectionGrouping", 30}], 
+   Cell[
+    StyleData["RelatedTutorialsSection"], 
+    CellGroupingRules -> {"SectionGrouping", 30}], 
+   Cell[
+    StyleData["TutorialRelatedLinksSection"], 
+    CellGroupingRules -> {"SectionGrouping", 30}]}, Visible -> False, 
+  FrontEndVersion -> "12.3 for Mac OS X x86 (64-bit) (July 9, 2021)", 
+  StyleDefinitions -> "Default.nb"],
+ExpressionUUID->"2a47eb75-96e4-4a93-bb09-470dd591e995"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[588, 21, 3498, 82, 57, "AnchorBarGrid",ExpressionUUID->"917c14ea-b1bc-48fe-b882-bb347cebbf50",
+ CellID->1],
+Cell[CellGroupData[{
+Cell[4111, 107, 108, 1, 63, "Title",ExpressionUUID->"4b904f71-dff7-4b57-846a-efa6d7fc039f",
+ CellID->509267359],
+Cell[4222, 110, 270, 5, 60, "Text",ExpressionUUID->"061c3d46-bbc4-4a88-8c67-0a88852c99dd",
+ CellID->1534169418],
+Cell[4495, 117, 122, 1, 36, "MathCaption",ExpressionUUID->"cd0f2fc4-8a74-486a-8b1a-11cbaa9adb89",
+ CellID->1196598286],
+Cell[4620, 120, 178, 3, 29, "Input",ExpressionUUID->"668e09d7-aef2-49c3-a95d-7b07d84221dd",
+ CellID->124791621],
+Cell[CellGroupData[{
+Cell[4823, 127, 171, 2, 68, "Section",ExpressionUUID->"3c9c641c-6284-4cc8-8216-df56467ad377",
+ CellID->1697778101],
+Cell[4997, 131, 298, 5, 60, "Text",ExpressionUUID->"d17d978c-0e8d-4fa8-8c02-438b9fde1d46",
+ CellID->1011303937],
+Cell[5298, 138, 1604, 40, 139, "DefinitionBox",ExpressionUUID->"fa240fc0-c8a4-49bf-8811-d16b6e271269",
+ CellID->550540124],
+Cell[6905, 180, 129, 1, 36, "Caption",ExpressionUUID->"c15f3edd-634e-4fc0-8f47-8faacb11d2bb",
+ CellID->1891092685],
+Cell[7037, 183, 659, 20, 40, "MathCaption",ExpressionUUID->"09b4a4fd-3d4a-4c35-b7e4-89fb69ffc6c5",
+ CellID->836781195],
+Cell[CellGroupData[{
+Cell[7721, 207, 971, 30, 48, "Input",ExpressionUUID->"e0987115-01cd-4952-ab06-91221f29f1fa",
+ CellID->2058623809],
+Cell[8695, 239, 567, 20, 40, "Output",ExpressionUUID->"97a1faf8-fe05-4bc4-b59d-d79df1bc5df6",
+ CellID->1531685909]
+}, Open  ]],
+Cell[9277, 262, 172, 3, 36, "MathCaption",ExpressionUUID->"88dc6da0-44e0-4739-b884-dd5acc552ea5",
+ CellID->138374225],
+Cell[CellGroupData[{
+Cell[9474, 269, 288, 8, 29, "Input",ExpressionUUID->"de1f2d2a-1149-4432-b5d4-8ca9e2f1d8a0",
+ CellID->2078293521],
+Cell[9765, 279, 527, 19, 38, "Output",ExpressionUUID->"e8781b4a-01cd-4c7c-90ba-7081ae8aaeb3",
+ CellID->304136232]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10329, 303, 147, 1, 59, "Subsection",ExpressionUUID->"35343053-4360-4a8d-b984-f887683ede26",
+ CellID->1540750161],
+Cell[10479, 306, 190, 4, 36, "Text",ExpressionUUID->"84c09fa9-4a4d-4985-bfe9-3f38f59f9566",
+ CellID->1519970170],
+Cell[10672, 312, 111, 1, 70, "Text",ExpressionUUID->"ba8757eb-18bb-40e8-a907-39fc9288c95f",
+ CellID->907293328],
+Cell[10786, 315, 800, 19, 70, "DefinitionBox",ExpressionUUID->"02560404-f2a4-4998-8ce3-2cf030477ab1",
+ CellID->562821188],
+Cell[11589, 336, 100, 1, 70, "Caption",ExpressionUUID->"f78eb839-2b0e-4e55-88bc-19f280651f17",
+ CellID->1817725328],
+Cell[11692, 339, 137, 1, 70, "Caption",ExpressionUUID->"1084eda3-511a-4cfa-89c3-79a8876060a3",
+ CellID->793243068],
+Cell[11832, 342, 556, 17, 70, "MathCaption",ExpressionUUID->"42629492-bd15-40fa-951b-3fece8597954",
+ CellID->1845130738],
+Cell[12391, 361, 125, 2, 70, "Input",ExpressionUUID->"2e70ed9b-222c-4a29-8abe-e13d568ab165",
+ CellID->1448450886],
+Cell[CellGroupData[{
+Cell[12541, 367, 646, 19, 70, "Input",ExpressionUUID->"89dc290b-ea60-4275-9243-9e614ae0dcb5",
+ CellID->73305886],
+Cell[13190, 388, 365, 11, 37, "Output",ExpressionUUID->"1bdc45fa-e1b0-4e96-a1f8-cf239b677916",
+ CellID->950267331]
+}, Open  ]],
+Cell[13570, 402, 201, 4, 70, "MathCaption",ExpressionUUID->"2b992011-dc9f-41c2-b04a-f6822934d353",
+ CellID->307149378],
+Cell[CellGroupData[{
+Cell[13796, 410, 294, 8, 70, "Input",ExpressionUUID->"d1b70c4d-34a3-4552-8c9e-fab93e514719",
+ CellID->1856392305],
+Cell[14093, 420, 336, 10, 37, "Output",ExpressionUUID->"22dec3d1-9740-4f32-9df0-091ffc9e5ee5",
+ CellID->1015164723]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14478, 436, 124, 1, 70, "Subsection",ExpressionUUID->"63019774-12b3-4ee9-b22c-486eee5a8fda",
+ CellID->1469351266],
+Cell[14605, 439, 175, 3, 70, "Text",ExpressionUUID->"f88ef6c1-1d72-4490-a672-cb74a12ef555",
+ CellID->318677499],
+Cell[14783, 444, 707, 17, 70, "DefinitionBox",ExpressionUUID->"ee9cad26-bc7f-435f-bf33-3efa1e50ddde",
+ CellID->2055968370],
+Cell[15493, 463, 129, 1, 70, "Caption",ExpressionUUID->"42a1d434-dfab-43ea-b8f5-a91c1a2ea29e",
+ CellID->1648514360],
+Cell[15625, 466, 651, 19, 70, "Input",ExpressionUUID->"d4010177-8930-488a-b209-0f08aea9db90",
+ CellID->1312904691],
+Cell[16279, 487, 81, 0, 70, "Input",ExpressionUUID->"80b8a635-d9e8-492e-a7fc-85fead301701"],
+Cell[16363, 489, 81, 0, 70, "Input",ExpressionUUID->"a04d779e-e469-4e6c-8440-1d34f164d70b"],
+Cell[16447, 491, 81, 0, 70, "Input",ExpressionUUID->"6871db3e-45b5-4fe7-9425-8c751ce6c5c8"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[16567, 496, 78, 0, 70, "FooterCell",ExpressionUUID->"7d407e92-45fd-4436-b6ce-96ae70c3837c"]
+}
+]
+*)
+
+(* End of internal cache information *)
+

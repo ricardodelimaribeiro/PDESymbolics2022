@@ -1,0 +1,439 @@
+
+		<!DOCTYPE html>
+		<html lang="en">
+
+		<head>
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset="utf-8">
+	
+
+<title>RepresentModNullLagrangiansOperator&mdash;Wolfram Language Documentation</title>
+<meta name="buildnumber" content="0000000">
+<meta name="historydata" content="{0.0, , , }" />
+<meta name="keywords" content="RepresentModNullLagrangiansOperator" />
+
+<meta name="description" content="RepresentModNullLagrangiansOperator[&lt;|&quot;depVars&quot; -&gt; {u$1, u$2, ...}, &quot;indVars&quot; -&gt; {x$1, x$2, ...}|&gt;][{f$1, f$2, ...}] returns a list with the representations of f$1, f$2, ... with respect to a basis modulo null Lagrangians defined for each f$i. RepresentModNullLagrangiansOperator[&lt;|&quot;depVars&quot; -&gt; {u$1, u$2, ...}, &quot;indVars&quot; -&gt; {x$1, x$2, ...}, &quot;basis&quot; -&gt; {b$1, b$2, ...}|&gt;][{f$1, f$2, ...}] returns a list with the representations of f$1, f$2, ... with respect to a common base." />
+<link rel="stylesheet" href="../../common/framework/css/framework.en.css"><link rel="stylesheet" href="../../common/framework/css/gui.en.css"><link rel="stylesheet" href="../../common/js/clipboard/2.0/clipboard.css"><link rel="stylesheet" href="../../fonts/source-code-pro/1.0/all.css"><link rel="stylesheet" href="../../fonts/source-sans-pro/1.0/global.css"><link rel="stylesheet" href="../../language-assets/css/entities.css"><link rel="stylesheet" href="../../language-assets/css/footer.css"><link rel="stylesheet" href="../../language-assets/css/global.css"><link rel="stylesheet" href="../../language-assets/css/guide.css"><link rel="stylesheet" href="../../language-assets/css/header-language.css"><link rel="stylesheet" href="../../language-assets/css/iconography.css"><link rel="stylesheet" href="../../language-assets/css/icons.css"><link rel="stylesheet" href="../../language-assets/css/in-out.css"><link rel="stylesheet" href="../../language-assets/css/language-specific.css"><link rel="stylesheet" href="../../language-assets/css/language.css"><link rel="stylesheet" href="../../language-assets/css/man-page.css"><link rel="stylesheet" href="../../language-assets/css/related-links.css"><link rel="stylesheet" href="../../language-assets/css/root-guide-language.css"><link rel="stylesheet" href="../../language-assets/css/special-styles.css"><link rel="stylesheet" href="../../language-assets/css/tables.css"><link rel="stylesheet" href="../../language-assets/css/technotes.css"><link rel="stylesheet" href="../../language-assets/css/tooltips.css"><link rel="stylesheet" href="../../language-assets/css/workflows.css">
+<script>var baselang = 'RepresentModNullLagrangiansOperator.en';</script>
+</head>
+
+<body id="ref" class="package">
+  <main class="main">
+  <nav class="topContentWrap"><span class="badge">PDE SYMBOLICS2022 SYMBOL</span><ul class="dropdown">
+   <li>
+    <a href="#" class="menu see-also">See Also</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="../ref/VarDOperator.html"><span class="dropdownPad">VarDOperator</span></a>
+     </li>
+     <li>
+      <a href="../ref/VariationalDOperator.html"><span class="dropdownPad">VariationalDOperator</span></a>
+     </li>
+     <li>
+      <a href="../ref/DVarDOperator.html"><span class="dropdownPad">DVarDOperator</span></a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="#" class="menu related-guides">Related Guides</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="../guide/PDESymbolics.html"><span class="dropdownPad">PDESymbolics</span></a>
+     </li>
+    </ul>
+   </li>
+  </ul></nav><div class="ContextNameCell">PDESymbolics2022`</div><div class="main-heading"><span class="main-title-top">PDESymbolics2022`</span><h1 class="main-title">RepresentModNullLagrangiansOperator</h1><div class="iconography" data-src="s= d= m= c= u= l= n= e="></div></div><div class="functionIntroWrap">
+  <div class="functionIntro">
+   <p class="code">
+    <span class="IF"><span class="specialcharacters">RepresentModNullLagrangiansOperator<span class="openbracket">[</span>&lt;<span class="verticalbar">|</span>&quot;depVars&quot; -&gt; <span class="openbrace">{</span>u$1<span class="comma">,</span> u$2<span class="comma">,</span> ...<span class="closebrace">}</span><span class="comma">,</span> &quot;indVars&quot; -&gt; <span class="openbrace">{</span>x$1<span class="comma">,</span> x$2<span class="comma">,</span> ...<span class="closebrace">}</span><span class="verticalbar">|</span>&gt;<span class="closebracket">]</span><span class="openbracket">[</span><span class="openbrace">{</span>f$1<span class="comma">,</span> f$2<span class="comma">,</span> ...<span class="closebrace">}</span><span class="closebracket">]</span></span></span>
+   </p>
+   <p class="code-description">returns a list with the representations of f$1, f$2, ... with respect to a basis modulo null Lagrangians defined for each f$i.
+</p>
+  </div>
+  <div class="functionIntro">
+   <p class="code">
+    <span class="IF">RepresentModNullLagrangiansOperator<span class="openbracket">[</span><span class="specialcharacters">&lt;<span class="verticalbar">|</span></span>&quot;depVars&quot; -&gt; <span class="openbrace">{</span>u$1<span class="comma">,</span> u$2<span class="comma">,</span> ...<span class="closebrace">}</span><span class="comma">,</span> &quot;indVars&quot; -&gt; <span class="openbrace">{</span>x$1<span class="comma">,</span> x$2<span class="comma">,</span> ...<span class="closebrace">}</span><span class="comma">,</span> &quot;basis&quot; <span class="special-character Rule">&#62754;</span> <span class="openbrace">{</span>b$1<span class="comma">,</span> b$2<span class="comma">,</span> ...<span class="closebrace">}</span><span class="specialcharacters"><span class="verticalbar">|</span>&gt;</span><span class="closebracket">]</span><span class="openbracket">[</span><span class="openbrace">{</span>f$1<span class="comma">,</span> f$2<span class="comma">,</span> ...<span class="closebrace">}</span><span class="closebracket">]</span></span>
+   </p>
+   <p class="code-description">returns a list with the representations of f$1, f$2, ... with respect to a common base.</p>
+  </div>
+ </div><section id="DetailsAndOptions"><div class="inner">
+   <h1 class="toggle">Details and Options</h1>
+   <div class="hideable">
+    <ul class="functionList">
+     <li><a name="1067943069"></a>To use RepresentModNullLagrangiansOperator, you first need to load the PDESymbolics2022 Package using Needs[&quot;PDESymbolics2022`&quot;].</li>
+    </ul>
+   </div>
+  </div></section><section id="Examples"><h1 class="toggle open">Examples</h1><span class="open-all on">open all</span><span class="close-all">close all</span><div class="hideable">
+   <div>
+    <h2 class="toggle open">Basic Examples<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span class="total-examples">(2)</span></h2>
+    <div class="hideable">
+     <div id="572049410"
+         class="clipboard-input"
+         data-in="In[1]:="
+         data-in-num="1"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/RepresentModNullLagrangiansOperator.en/I_1.png"
+         data-in-width="187"
+         data-in-height="19"
+         data-link="https://wolfram.com/xid/0snlxrkuz4c446ngf10fmdr2we4aqs1c9pdb6hrw16-jqvafo"
+         data-code="Files/RepresentModNullLagrangiansOperator.en/i_1.txt"
+         ></div>
+     <div id="2091701675"
+         class="clipboard-input"
+         data-in="In[2]:="
+         data-in-num="2"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/RepresentModNullLagrangiansOperator.en/I_2.png"
+         data-big="486 39"
+         data-small="391 59"
+         data-link="https://wolfram.com/xid/0snlxrkuz4c446ngf10fmdr2we4aqs1c9pdb6hrw16-8vmpml"
+         data-code="Files/RepresentModNullLagrangiansOperator.en/i_2.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[2]="
+         data-out-num="2"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/RepresentModNullLagrangiansOperator.en/O_1.png"
+         data-out-width="185"
+         data-out-height="72"
+         ></div>
+     <div class="ExLine"><a name="575589675"></a><!-- --></div>
+     <div id="1669321637"
+         class="clipboard-input"
+         data-in="In[1]:="
+         data-in-num="1"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/RepresentModNullLagrangiansOperator.en/I_3.png"
+         data-in-width="187"
+         data-in-height="19"
+         data-link="https://wolfram.com/xid/0snlxrkuz4c446ngf10fmdr2we4aqs1c9pdb6hrw16-1v5m3r"
+         data-code="Files/RepresentModNullLagrangiansOperator.en/i_3.txt"
+         ></div>
+     <p><a name="1562388651"></a>Notice how the output changes when the critical values of the parameters are considered:</p>
+     <div id="690922211"
+         class="clipboard-input"
+         data-in="In[2]:="
+         data-in-num="2"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/RepresentModNullLagrangiansOperator.en/I_4.png"
+         data-big="480 39"
+         data-small="389 59"
+         data-link="https://wolfram.com/xid/0snlxrkuz4c446ngf10fmdr2we4aqs1c9pdb6hrw16-lpm49x"
+         data-code="Files/RepresentModNullLagrangiansOperator.en/i_4.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[2]="
+         data-out-num="2"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/RepresentModNullLagrangiansOperator.en/O_2.png"
+         data-out-width="185"
+         data-out-height="72"
+         ></div>
+    </div>
+   </div>
+   <div>
+    <h2 class="toggle">Generalizations &amp; Extensions<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span class="total-examples">(1)</span></h2>
+    <div class="hideable">
+     <div id="1252182679"
+         class="clipboard-input"
+         data-in="In[1]:="
+         data-in-num="1"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/RepresentModNullLagrangiansOperator.en/I_5.png"
+         data-in-width="187"
+         data-in-height="19"
+         data-link="https://wolfram.com/xid/0snlxrkuz4c446ngf10fmdr2we4aqs1c9pdb6hrw16-uzswmh"
+         data-code="Files/RepresentModNullLagrangiansOperator.en/i_5.txt"
+         ></div>
+     <p><a name="130870612"></a>One can choose the discrete variational derivative operator. This is an example from a semi-discretization of the pressure-less Navier-Stokes equation:</p>
+     <div id="2082705281"
+         class="clipboard-input"
+         data-in="In[2]:="
+         data-in-num="2"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/RepresentModNullLagrangiansOperator.en/I_6.png"
+         data-big="544 59"
+         data-small="399 78"
+         data-link="https://wolfram.com/xid/0snlxrkuz4c446ngf10fmdr2we4aqs1c9pdb6hrw16-8p9vyr"
+         data-code="Files/RepresentModNullLagrangiansOperator.en/i_6.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[2]="
+         data-out-num="2"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/RepresentModNullLagrangiansOperator.en/O_3.png"
+         data-out-width="122"
+         data-out-height="16"
+         ></div>
+    </div>
+   </div>
+   <div>
+    <h2 class="toggle">Options<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span class="total-examples">(3)</span></h2>
+    <div class="hideable">
+     <p><a name="375384131"></a>You can determine the &quot;basis&quot;. Here is an example with the basis {u[x]^2, u'[x]^2}:</p>
+     <div id="152849376"
+         class="clipboard-input"
+         data-in="In[1]:="
+         data-in-num="1"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/RepresentModNullLagrangiansOperator.en/I_7.png"
+         data-big="460 59"
+         data-small="350 78"
+         data-link="https://wolfram.com/xid/0snlxrkuz4c446ngf10fmdr2we4aqs1c9pdb6hrw16-ctadma"
+         data-code="Files/RepresentModNullLagrangiansOperator.en/i_7.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[1]="
+         data-out-num="1"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/RepresentModNullLagrangiansOperator.en/O_4.png"
+         data-out-width="92"
+         data-out-height="16"
+         ></div>
+     <div class="ExLine"><a name="604137275"></a><!-- --></div>
+     <p><a name="1109962507"></a>Here is the same example with the equivalent (mod null Lagrangians) basis {u[x]^2, u''[x]u[x]}:</p>
+     <div id="2050788936"
+         class="clipboard-input"
+         data-in="In[1]:="
+         data-in-num="1"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/RepresentModNullLagrangiansOperator.en/I_8.png"
+         data-big="482 59"
+         data-small="373 78"
+         data-link="https://wolfram.com/xid/0snlxrkuz4c446ngf10fmdr2we4aqs1c9pdb6hrw16-769s5m"
+         data-code="Files/RepresentModNullLagrangiansOperator.en/i_8.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[1]="
+         data-out-num="1"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/RepresentModNullLagrangiansOperator.en/O_5.png"
+         data-out-width="116"
+         data-out-height="16"
+         ></div>
+     <div class="ExLine"><a name="432497909"></a><!-- --></div>
+     <p><a name="1907695115"></a>Running RepresentModNullLagrangiansOperator without the &quot;basis&quot; Key is the same as running with a basis obtained from BasisModNullLagrangiansOperator on each element of the expression:</p>
+     <div id="1755758786"
+         class="clipboard-input"
+         data-in="In[1]:="
+         data-in-num="1"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/RepresentModNullLagrangiansOperator.en/I_9.png"
+         data-big="484 39"
+         data-small="329 59"
+         data-link="https://wolfram.com/xid/0snlxrkuz4c446ngf10fmdr2we4aqs1c9pdb6hrw16-3bmafo"
+         data-code="Files/RepresentModNullLagrangiansOperator.en/i_9.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[1]="
+         data-out-num="1"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/RepresentModNullLagrangiansOperator.en/O_6.png"
+         data-out-width="130"
+         data-out-height="16"
+         ></div>
+     <p><a name="1796898941"></a>When a linearly dependent set is supplied for the basis, it only removes the null Lagrangians:</p>
+     <div id="339358669"
+         class="clipboard-input"
+         data-in="In[2]:="
+         data-in-num="2"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/RepresentModNullLagrangiansOperator.en/I_10.png"
+         data-big="844 19"
+         data-small="844 19"
+         data-link="https://wolfram.com/xid/0snlxrkuz4c446ngf10fmdr2we4aqs1c9pdb6hrw16-fwbw3z"
+         data-code="Files/RepresentModNullLagrangiansOperator.en/i_10.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[2]="
+         data-out-num="2"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/RepresentModNullLagrangiansOperator.en/O_7.png"
+         data-out-width="129"
+         data-out-height="17"
+         ></div>
+     <div id="972782632"
+         class="clipboard-input"
+         data-in="In[3]:="
+         data-in-num="3"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/RepresentModNullLagrangiansOperator.en/I_11.png"
+         data-big="593 39"
+         data-small="368 59"
+         data-link="https://wolfram.com/xid/0snlxrkuz4c446ngf10fmdr2we4aqs1c9pdb6hrw16-qdgd52"
+         data-code="Files/RepresentModNullLagrangiansOperator.en/i_11.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[3]="
+         data-out-num="3"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/RepresentModNullLagrangiansOperator.en/O_8.png"
+         data-out-width="130"
+         data-out-height="16"
+         ></div>
+    </div>
+   </div>
+   <div>
+    <h2 class="toggle">Possible Issues<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span class="total-examples">(1)</span></h2>
+    <div class="hideable">
+     <div id="759593962"
+         class="clipboard-input"
+         data-in="In[1]:="
+         data-in-num="1"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/RepresentModNullLagrangiansOperator.en/I_12.png"
+         data-in-width="187"
+         data-in-height="19"
+         data-link="https://wolfram.com/xid/0snlxrkuz4c446ngf10fmdr2we4aqs1c9pdb6hrw16-mui0qk"
+         data-code="Files/RepresentModNullLagrangiansOperator.en/i_12.txt"
+         ></div>
+     <p><a name="1852921566"></a>Giving a &quot;basis&quot; that does not generate the expressions gives errors:</p>
+     <div id="1007507668"
+         class="clipboard-input"
+         data-in="In[2]:="
+         data-in-num="2"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/RepresentModNullLagrangiansOperator.en/I_13.png"
+         data-in-width="397"
+         data-in-height="78"
+         data-link="https://wolfram.com/xid/0snlxrkuz4c446ngf10fmdr2we4aqs1c9pdb6hrw16-qx4n6e"
+         data-code="Files/RepresentModNullLagrangiansOperator.en/i_13.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[2]="
+         data-out-num="2"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/RepresentModNullLagrangiansOperator.en/O_9.png"
+         data-out-width="37"
+         data-out-height="16"
+         ></div>
+     <p><a name="2044802303"></a>To avoid this kind of error, provide a generating set:</p>
+     <div id="1598747075"
+         class="clipboard-input"
+         data-in="In[3]:="
+         data-in-num="3"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/RepresentModNullLagrangiansOperator.en/I_14.png"
+         data-big="1000 19"
+         data-small="1000 19"
+         data-link="https://wolfram.com/xid/0snlxrkuz4c446ngf10fmdr2we4aqs1c9pdb6hrw16-0p4ze9"
+         data-code="Files/RepresentModNullLagrangiansOperator.en/i_14.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[3]="
+         data-out-num="3"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/RepresentModNullLagrangiansOperator.en/O_10.png"
+         data-out-width="211"
+         data-out-height="76"
+         ></div>
+     <div id="1630936958"
+         class="clipboard-input"
+         data-in="In[4]:="
+         data-in-num="4"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/RepresentModNullLagrangiansOperator.en/I_15.png"
+         data-big="538 59"
+         data-small="397 78"
+         data-link="https://wolfram.com/xid/0snlxrkuz4c446ngf10fmdr2we4aqs1c9pdb6hrw16-09axao"
+         data-code="Files/RepresentModNullLagrangiansOperator.en/i_15.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[4]="
+         data-out-num="4"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/RepresentModNullLagrangiansOperator.en/O_11.png"
+         data-out-width="218"
+         data-out-height="72"
+         ></div>
+    </div>
+   </div>
+   <div>
+    <h2 class="toggle">Neat Examples<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span class="total-examples">(1)</span></h2>
+    <div class="hideable">
+     <div id="1551092275"
+         class="clipboard-input"
+         data-in="In[1]:="
+         data-in-num="1"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/RepresentModNullLagrangiansOperator.en/I_16.png"
+         data-in-width="187"
+         data-in-height="19"
+         data-link="https://wolfram.com/xid/0snlxrkuz4c446ngf10fmdr2we4aqs1c9pdb6hrw16-zxrkqt"
+         data-code="Files/RepresentModNullLagrangiansOperator.en/i_16.txt"
+         ></div>
+     <p><a name="903874992"></a>When it operates on a list it is specially interesting to provide a basis for the common representation of the expressions:</p>
+     <div id="1692629573"
+         class="clipboard-input"
+         data-in="In[2]:="
+         data-in-num="2"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/RepresentModNullLagrangiansOperator.en/I_17.png"
+         data-in-width="391"
+         data-in-height="59"
+         data-link="https://wolfram.com/xid/0snlxrkuz4c446ngf10fmdr2we4aqs1c9pdb6hrw16-1907mf"
+         data-code="Files/RepresentModNullLagrangiansOperator.en/i_17.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[2]="
+         data-out-num="2"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/RepresentModNullLagrangiansOperator.en/O_12.png"
+         data-out-width="234"
+         data-out-height="97"
+         ></div>
+     <div id="804283154"
+         class="clipboard-input"
+         data-in="In[3]:="
+         data-in-num="3"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/RepresentModNullLagrangiansOperator.en/I_18.png"
+         data-in-width="391"
+         data-in-height="78"
+         data-link="https://wolfram.com/xid/0snlxrkuz4c446ngf10fmdr2we4aqs1c9pdb6hrw16-nk4u40"
+         data-code="Files/RepresentModNullLagrangiansOperator.en/i_18.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[3]="
+         data-out-num="3"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/RepresentModNullLagrangiansOperator.en/O_13.png"
+         data-out-width="131"
+         data-out-height="17"
+         ></div>
+    </div>
+   </div>
+   <div class="clear"><!-- --></div>
+  </div></section><section id="SeeAlso" class="related-links"><div class="inner">
+   <h1>See Also</h1>
+   <p class="inlineFunctionList"><span class="IF"><a class="package-symbol" href="../ref/VarDOperator.html">VarDOperator</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"></span> <span class="IF"><a class="package-symbol" href="../ref/VariationalDOperator.html">VariationalDOperator</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"></span> <span class="IF"><a class="package-symbol" href="../ref/DVarDOperator.html">DVarDOperator</a></span></p>
+  </div></section><section id="RelatedGuides" class="related-links"><div class="inner">
+   <h1>Related Guides</h1>
+   <ul class="functionList">
+    <span class="special-character FilledVerySmallSquare">&#9642;</span>
+    <li>
+     <a href="../guide/PDESymbolics.html">PDESymbolics</a>
+    </li>
+   </ul>
+  </div></section><section id="RelatedLinks" class="related-links"><div class="inner">
+   <h1>Related Links</h1>
+   <ul class="functionList">
+    <li>
+     <span class="IF"><img src="Files/RepresentModNullLagrangiansOperator.en/1.png" height="24" width="17" alt="" /><span class="special-character FilledVerySmallSquare">&#9642;</span><a href="../ref/BasisModNullLagrangiansOperator.html"><img src="Files/RepresentModNullLagrangiansOperator.en/4.png" height="16" width="3" alt="" />BasisModNullLagrangiansOperator</a></span>
+    </li>
+   </ul>
+  </div></section><section id="Citations" class="citations"><div class="inner">
+   <div class="citation">
+    <span class="citation-tooltip"><button type="button" class="citation-tooltip-button"><span class="citation-text">Cite this as:</span></button><span class="citation-default clipboard-inlineblock clipboard-hover">Wolfram Research (0), RepresentModNullLagrangiansOperator, Wolfram Language function, https://reference.wolfram.com/language/PDESymbolics2022/ref/RepresentModNullLagrangiansOperator.html.</span><span class="citation-tooltip-content"><button class="x-close-svg"><img src="/language-assets/img/CitationCloseButton.svg" height="10px" width="10px" /></button><h4>Text</h4><p class="clipboard-inlineblock clipboard-hover">Wolfram Research (0), RepresentModNullLagrangiansOperator, Wolfram Language function, https://reference.wolfram.com/language/PDESymbolics2022/ref/RepresentModNullLagrangiansOperator.html.</p><h4>CMS</h4><p class="clipboard-inlineblock clipboard-hover">Wolfram Language. 0. &quot;RepresentModNullLagrangiansOperator.&quot; Wolfram Language &amp; System Documentation Center. Wolfram Research. https://reference.wolfram.com/language/PDESymbolics2022/ref/RepresentModNullLagrangiansOperator.html.</p><h4>APA</h4><p class="clipboard-inlineblock clipboard-hover">Wolfram Language. (0). RepresentModNullLagrangiansOperator. Wolfram Language &amp; System Documentation Center. Retrieved from https://reference.wolfram.com/language/PDESymbolics2022/ref/RepresentModNullLagrangiansOperator.html</p><h4>BibTeX</h4><p class="clipboard-inlineblock clipboard-hover citation-timestamp">@misc{reference.wolfram_2023_representmodnulllagrangiansoperator, author=&quot;Wolfram Research&quot;, title=&quot;{RepresentModNullLagrangiansOperator}&quot;, year=&quot;0&quot;, howpublished=&quot;\url{https://reference.wolfram.com/language/PDESymbolics2022/ref/RepresentModNullLagrangiansOperator.html}&quot;, note=[<!--#include virtual="/language-assets/inc/timestamp.html.en"-->]}</p><h4>BibLaTeX</h4><p class="clipboard-inlineblock clipboard-hover citation-timestamp">@online{reference.wolfram_2023_representmodnulllagrangiansoperator, organization={Wolfram Research}, title={RepresentModNullLagrangiansOperator}, year={0}, url={https://reference.wolfram.com/language/PDESymbolics2022/ref/RepresentModNullLagrangiansOperator.html}, note=[<!--#include virtual="/language-assets/inc/timestamp.html.en"-->]}</p></span><span class="citation-overlay"></span></span>
+   </div>
+  </div></section>
+  
+
+  
+		</main>
+		<div id="_footer-offset"></div>
+		<div id="_footer"></div>
+		<script src="../../common/js/jquery/2.2.4/jquery.min.js"></script><script src="../../common/js/jquery/plugins/hoverintent/1.8.0/hoverintent.min.j2"></script><script src="../../common/js/clipboard/2.0/clipboard.js"></script><script src="../../common/js/clipboard/2.0/code-clipboard.js"></script><script src="../../common/framework/js/body.en.js"></script><script src="../../common/framework/js/head.en.js"></script><script src="../../language-assets/js/dropdowns.js"></script><script src="../../language-assets/js/global.js"></script><script src="../../language-assets/js/language-specific.js.en"></script><script src="../../language-assets/js/language.js"></script><script src="../../language-assets/js/temporary.js"></script><script src="../../language-assets/js/toggles.js"></script><script src="../../language-assets/js/tooltips.js"></script><script src="../../language-assets/js/workflows.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+variables = Association["depVars" -> {u, v}, "indVars" -> {x, t}];
+problem = 
+ Association[
+  "expression" -> {D[u[x, t], t] - D[u[x, t], x], 
+    D[v[x, t], t] - D[v[x, t], {x, 2}]}, 
+  "monomials" -> {Association["degree" -> 1, "derivatives" -> 2], 
+    Association["degree" -> 1, "derivatives" -> 2]}]; 
+FindIntegratingFactorBasisOperator[variables][problem]

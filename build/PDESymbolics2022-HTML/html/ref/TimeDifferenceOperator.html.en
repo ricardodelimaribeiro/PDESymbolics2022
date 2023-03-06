@@ -1,0 +1,216 @@
+
+		<!DOCTYPE html>
+		<html lang="en">
+
+		<head>
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset="utf-8">
+	
+
+<title>TimeDifferenceOperator&mdash;Wolfram Language Documentation</title>
+<meta name="buildnumber" content="0000000">
+<meta name="historydata" content="{0.0, , , }" />
+<meta name="keywords" content="TimeDifferenceOperator" />
+
+<meta name="description" content="TimeDifferenceOperator[variables][expression] builds the discrete forward time-difference of the expression. If given a scheme or a righthand-side, it will simplify/change the resulting time-difference using those." />
+<link rel="stylesheet" href="../../common/framework/css/framework.en.css"><link rel="stylesheet" href="../../common/framework/css/gui.en.css"><link rel="stylesheet" href="../../common/js/clipboard/2.0/clipboard.css"><link rel="stylesheet" href="../../fonts/source-code-pro/1.0/all.css"><link rel="stylesheet" href="../../fonts/source-sans-pro/1.0/global.css"><link rel="stylesheet" href="../../language-assets/css/entities.css"><link rel="stylesheet" href="../../language-assets/css/footer.css"><link rel="stylesheet" href="../../language-assets/css/global.css"><link rel="stylesheet" href="../../language-assets/css/guide.css"><link rel="stylesheet" href="../../language-assets/css/header-language.css"><link rel="stylesheet" href="../../language-assets/css/iconography.css"><link rel="stylesheet" href="../../language-assets/css/icons.css"><link rel="stylesheet" href="../../language-assets/css/in-out.css"><link rel="stylesheet" href="../../language-assets/css/language-specific.css"><link rel="stylesheet" href="../../language-assets/css/language.css"><link rel="stylesheet" href="../../language-assets/css/man-page.css"><link rel="stylesheet" href="../../language-assets/css/related-links.css"><link rel="stylesheet" href="../../language-assets/css/root-guide-language.css"><link rel="stylesheet" href="../../language-assets/css/special-styles.css"><link rel="stylesheet" href="../../language-assets/css/tables.css"><link rel="stylesheet" href="../../language-assets/css/technotes.css"><link rel="stylesheet" href="../../language-assets/css/tooltips.css"><link rel="stylesheet" href="../../language-assets/css/workflows.css">
+<script>var baselang = 'TimeDifferenceOperator.en';</script>
+</head>
+
+<body id="ref" class="package">
+  <main class="main">
+  <nav class="topContentWrap"><span class="badge">PDE SYMBOLICS2022 SYMBOL</span><ul class="dropdown">
+   <li>
+    <a href="#" class="menu see-also">See Also</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="../ref/ReduceModSchemeOperator.html"><span class="dropdownPad">ReduceModSchemeOperator</span></a>
+     </li>
+     <li>
+      <a href="../ref/VariationalTimeDifferenceOperator.html"><span class="dropdownPad">VariationalTimeDifferenceOperator</span></a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="#" class="menu related-guides">Related Guides</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="../guide/PDESymbolics.html"><span class="dropdownPad">PDESymbolics</span></a>
+     </li>
+    </ul>
+   </li>
+  </ul></nav><div class="ContextNameCell">PDESymbolics2022`</div><div class="main-heading"><span class="main-title-top">PDESymbolics2022`</span><h1 class="main-title">TimeDifferenceOperator</h1><div class="iconography" data-src="s= d= m= c= u= l= n= e="></div></div><div class="functionIntroWrap">
+  <div class="functionIntro"><span class="IF"><span class="specialcharacters">TimeDifferenceOperator<span class="openbracket">[</span>variables<span class="closebracket">]</span><span class="openbracket">[</span>expression<span class="closebracket">]</span></span></span> builds the discrete forward time-difference of the expression. If given a scheme or a righthand-side, it will simplify/change the resulting time-difference using those.</div>
+ </div><section id="DetailsAndOptions"><div class="inner">
+   <h1 class="toggle">Details and Options</h1>
+   <div class="hideable">
+    <ul class="functionList">
+     <li>
+      <a name="1067943069"></a>
+      <span class="Notes">To use TimeDifferenceOperator, you first need to load the PDESymbolics Package using Needs[&quot;PDESymbolics2022`&quot;].</span>
+     </li>
+    </ul>
+   </div>
+  </div></section><section id="Examples"><h1 class="toggle open">Examples</h1><span class="open-all on">open all</span><span class="close-all">close all</span><div class="hideable">
+   <div>
+    <h2 class="toggle open">Basic Examples<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span class="total-examples">(1)</span></h2>
+    <div class="hideable">
+     <div class="Code">
+      <pre>Needs[&quot;PDESymbolics2022`&quot;]</pre>
+     </div>
+     <p>Builds the discrete forward first-order time difference, assuming the last variable to be the time</p>
+     <div class="Code">
+      <pre>TimeDifferenceOperator[&lt;|&quot;depVars&quot;-&gt;{u},&quot;indVars&quot;-&gt;{n,t}|&gt;][u[n,t]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[81]="
+         data-out-num="81"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/TimeDifferenceOperator.en/O_1.png"
+         data-out-width="151"
+         data-out-height="16"
+         ></div>
+     <p>Also higher orders of discrete time derivatives are possible</p>
+     <div class="Code">
+      <pre>TimeDifferenceOperator[&lt;|&quot;depVars&quot;-&gt;{u},&quot;indVars&quot;-&gt;{n,t},&quot;timederivativeorder&quot;<span class="special-character Rule">&#62754;</span>2|&gt;][u[n,t]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[82]="
+         data-out-num="82"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/TimeDifferenceOperator.en/O_2.png"
+         data-out-width="208"
+         data-out-height="16"
+         ></div>
+     <p>If given a righthandside, the operator will evaluate the expression at the next time using the rhs:</p>
+     <div class="Code">
+      <pre>variables=&lt;|&quot;depVars&quot;-&gt;{u},&quot;indVars&quot;-&gt;{n},&quot;rhs&quot;-&gt;{u[n]^2}|&gt;;</pre>
+     </div>
+     <p>The rhs should be understood as u[n,t+1] = u[n,t]^2 but we are only specifying the rhs of the equation and the time is implicit. So</p>
+     <div class="Code">
+      <pre>TimeDifferenceOperator[variables][u[n]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[83]="
+         data-out-num="83"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/TimeDifferenceOperator.en/O_3.png"
+         data-out-width="225"
+         data-out-height="16"
+         ></div>
+     <p><a name="776233177"></a>Here are some examples with a discretized heat equation. </p>
+     <div class="Code">
+      <pre>variables=&lt;|&quot;depVars&quot;-&gt;{u},&quot;indVars&quot;-&gt;{n},&quot;rhs&quot;-&gt;{u[n-1]-u[n]+u[n+1]}|&gt;;<br />TimeDifferenceOperator[variables][u[n]]<br />TimeDifferenceOperator[variables][n u[n]]<br />variables=&lt;|&quot;depVars&quot;-&gt;{u},&quot;indVars&quot;-&gt;{n},&quot;rhs&quot;-&gt;{u[n-1]-u[n]+u[n+1]},<br />&quot;timederivativeorder&quot;<span class="special-character Rule">&#62754;</span>2|&gt;;<br />TimeDifferenceOperator[variables][n^2 u[n]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[85]="
+         data-out-num="85"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/TimeDifferenceOperator.en/O_4.png"
+         data-out-width="225"
+         data-out-height="16"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[86]="
+         data-out-num="86"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/TimeDifferenceOperator.en/O_5.png"
+         data-out-width="225"
+         data-out-height="16"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[88]="
+         data-out-num="88"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/TimeDifferenceOperator.en/O_6.png"
+         data-out-width="225"
+         data-out-height="16"
+         ></div>
+     <p>If we instead of a rhs specify a scheme, we need to give the time explicitly. The TimeDifferenceOperator will build the time difference and then in a second step try to reduce it (using the ReduceModSchemeOperator) using the scheme:</p>
+     <div class="Code">
+      <pre>variables=&lt;|&quot;depVars&quot;-&gt;{u},&quot;indVars&quot;-&gt;{n,t},&quot;scheme&quot;-&gt;{u[n,t+1]-u[n,t]}|&gt;;</pre>
+     </div>
+     <p>The scheme should be understood as 0 = u[n,t+1] - u[n,t] but we only specify the right side of the equation. This also gives an easy way to rewrite a rhs as a scheme.</p>
+     <div class="Code">
+      <pre>TimeDifferenceOperator[variables][u[n,t]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[90]="
+         data-out-num="90"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/TimeDifferenceOperator.en/O_7.png"
+         data-out-width="223"
+         data-out-height="16"
+         ></div>
+     <p>More information about how the reduction process works can be found in the documentation for the ReduceModSchemeOperator.</p>
+    </div>
+   </div>
+   <div>
+    <h2 class="toggle">Options<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span class="total-examples">(1)</span></h2>
+    <div class="hideable">
+     <p>One can specify the operator for the variational derivative that should be used for simplifying the expression using IntegralEquivalenceClassOperator:</p>
+     <div class="Code">
+      <pre>variables=&lt;|&quot;depVars&quot;-&gt;{u},&quot;indVars&quot;-&gt;{n,t},&quot;VarDOperator&quot;-&gt;YourVarDOperator|&gt;;</pre>
+     </div>
+     <p>If no VarDOperator is specified or if the DVarDOperator from the PDESymbolics2022 package is given, then TimeDifferenceOperator will by default use the PartialDVarDOperator from the PDESymbolics2022 package.</p>
+     <p>By default the operator simplifies the resulting expression (in case of giving a scheme also before applying ReduceModSchemeOperator), this can be turned off:</p>
+     <div class="Code">
+      <pre>variables=&lt;|&quot;depVars&quot;-&gt;{u},&quot;indVars&quot;-&gt;{n},&quot;rhs&quot;-&gt;{2*u[n+1]}|&gt;;<br />TimeDifferenceOperator[variables][u[n]]<br />variables=&lt;|&quot;depVars&quot;-&gt;{u},&quot;indVars&quot;-&gt;{n},&quot;rhs&quot;-&gt;{2*u[n+1]},&quot;Beautify&quot;-&gt;False|&gt;;<br />TimeDifferenceOperator[variables][u[n]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[42]="
+         data-out-num="42"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/TimeDifferenceOperator.en/O_8.png"
+         data-out-width="164"
+         data-out-height="16"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[44]="
+         data-out-num="44"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/TimeDifferenceOperator.en/O_9.png"
+         data-out-width="225"
+         data-out-height="16"
+         ></div>
+     <p><a name="641812077"></a>Instead of using the standard forward difference, one can also specify another &quot;timedifference&quot; in the variables, that TimeDifferenceOperator will then use to build the appropriate time-difference:</p>
+     <div class="Code">
+      <pre>variables=&lt;|{&quot;depVars&quot;-&gt;{u},&quot;indVars&quot;-&gt;{n,t},&quot;timedifference&quot;-&gt;(1/2*((#/. t-&gt;t+1)-(#/. t-&gt;t-1))&amp;)}|&gt;;<br />TimeDifferenceOperator[variables][u[n,t]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[146]="
+         data-out-num="146"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/TimeDifferenceOperator.en/O_10.png"
+         data-out-width="199"
+         data-out-height="29"
+         ></div>
+    </div>
+   </div>
+   <div class="clear"><!-- --></div>
+  </div></section><section id="SeeAlso" class="related-links"><div class="inner">
+   <h1>See Also</h1>
+   <p class="inlineFunctionList"><span class="IF"><a class="package-symbol" href="../ref/ReduceModSchemeOperator.html">ReduceModSchemeOperator</a></span><span class="special-character NonBreakingSpace">&#160;</span><span class="inlineSeparator"></span> <span class="IF"><a class="package-symbol" href="../ref/VariationalTimeDifferenceOperator.html">VariationalTimeDifferenceOperator</a></span></p>
+  </div></section><section id="RelatedGuides" class="related-links"><div class="inner">
+   <h1>Related Guides</h1>
+   <ul class="functionList">
+    <span class="special-character FilledVerySmallSquare">&#9642;</span>
+    <li>
+     <a href="../guide/PDESymbolics.html">PDESymbolics</a>
+    </li>
+   </ul>
+  </div></section><section id="Citations" class="citations"><div class="inner">
+   <div class="citation">
+    <span class="citation-tooltip"><button type="button" class="citation-tooltip-button"><span class="citation-text">Cite this as:</span></button><span class="citation-default clipboard-inlineblock clipboard-hover">Wolfram Research (0), TimeDifferenceOperator, Wolfram Language function, https://reference.wolfram.com/language/PDESymbolics2022/ref/TimeDifferenceOperator.html.</span><span class="citation-tooltip-content"><button class="x-close-svg"><img src="/language-assets/img/CitationCloseButton.svg" height="10px" width="10px" /></button><h4>Text</h4><p class="clipboard-inlineblock clipboard-hover">Wolfram Research (0), TimeDifferenceOperator, Wolfram Language function, https://reference.wolfram.com/language/PDESymbolics2022/ref/TimeDifferenceOperator.html.</p><h4>CMS</h4><p class="clipboard-inlineblock clipboard-hover">Wolfram Language. 0. &quot;TimeDifferenceOperator.&quot; Wolfram Language &amp; System Documentation Center. Wolfram Research. https://reference.wolfram.com/language/PDESymbolics2022/ref/TimeDifferenceOperator.html.</p><h4>APA</h4><p class="clipboard-inlineblock clipboard-hover">Wolfram Language. (0). TimeDifferenceOperator. Wolfram Language &amp; System Documentation Center. Retrieved from https://reference.wolfram.com/language/PDESymbolics2022/ref/TimeDifferenceOperator.html</p><h4>BibTeX</h4><p class="clipboard-inlineblock clipboard-hover citation-timestamp">@misc{reference.wolfram_2023_timedifferenceoperator, author=&quot;Wolfram Research&quot;, title=&quot;{TimeDifferenceOperator}&quot;, year=&quot;0&quot;, howpublished=&quot;\url{https://reference.wolfram.com/language/PDESymbolics2022/ref/TimeDifferenceOperator.html}&quot;, note=[<!--#include virtual="/language-assets/inc/timestamp.html.en"-->]}</p><h4>BibLaTeX</h4><p class="clipboard-inlineblock clipboard-hover citation-timestamp">@online{reference.wolfram_2023_timedifferenceoperator, organization={Wolfram Research}, title={TimeDifferenceOperator}, year={0}, url={https://reference.wolfram.com/language/PDESymbolics2022/ref/TimeDifferenceOperator.html}, note=[<!--#include virtual="/language-assets/inc/timestamp.html.en"-->]}</p></span><span class="citation-overlay"></span></span>
+   </div>
+  </div></section>
+  
+
+  
+		</main>
+		<div id="_footer-offset"></div>
+		<div id="_footer"></div>
+		<script src="../../common/js/jquery/2.2.4/jquery.min.js"></script><script src="../../common/js/jquery/plugins/hoverintent/1.8.0/hoverintent.min.j2"></script><script src="../../common/js/clipboard/2.0/clipboard.js"></script><script src="../../common/js/clipboard/2.0/code-clipboard.js"></script><script src="../../common/framework/js/body.en.js"></script><script src="../../common/framework/js/head.en.js"></script><script src="../../language-assets/js/dropdowns.js"></script><script src="../../language-assets/js/global.js"></script><script src="../../language-assets/js/language-specific.js.en"></script><script src="../../language-assets/js/language.js"></script><script src="../../language-assets/js/temporary.js"></script><script src="../../language-assets/js/toggles.js"></script><script src="../../language-assets/js/tooltips.js"></script><script src="../../language-assets/js/workflows.js"></script>
+</body>
+</html>

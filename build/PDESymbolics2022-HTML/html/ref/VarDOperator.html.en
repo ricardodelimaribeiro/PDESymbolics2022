@@ -1,0 +1,777 @@
+
+		<!DOCTYPE html>
+		<html lang="en">
+
+		<head>
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset="utf-8">
+	
+
+<title>VarDOperator&mdash;Wolfram Language Documentation</title>
+<meta name="buildnumber" content="0000000">
+<meta name="historydata" content="{0.0, , , }" />
+<meta name="keywords" content="VarDOperator" />
+
+<meta name="description" content="VarDOperator[&lt;|&quot; depVars&quot; -&gt; {u1, u2, ...}, &quot; indVars&quot; -&gt; {x1, x2, ...}|&gt;][ {f1, f2, ...}] returns a list with the variational derivatives of the (multiple) integrals \[Integral]f1 \[DifferentialD]x1 \[DifferentialD]x2 ..., \[Integral]f2 \[DifferentialD]x1 \[DifferentialD]x2 ..., ... with respect to u1[x1, x2, ...], u2[x1, x2, ...], ... where f1, f2, ... are functions of u1, u2, ... , their derivatives, and the coordinates x1, x2, ... . VarDOperator[&lt;|&quot; depVars&quot; -&gt; {u}, &quot; indVars&quot; -&gt; {x}|&gt;][f] returns the variational derivative of the integral \[Integral]f \[DifferentialD]xwith respect to u[x], where the integrand f is a function of u, its derivatives, and x. VarDOperator[&lt;|&quot; depVars&quot; -&gt; {u}, &quot; indVars&quot; -&gt; {x1, x2, ...}|&gt;][f] returns the variational derivative of the multiple integral \[Integral]f \[DifferentialD]xwith respect to u[x], where the integrand f is a function of u, its derivatives, and x." />
+<link rel="stylesheet" href="../../common/framework/css/framework.en.css"><link rel="stylesheet" href="../../common/framework/css/gui.en.css"><link rel="stylesheet" href="../../common/js/clipboard/2.0/clipboard.css"><link rel="stylesheet" href="../../fonts/source-code-pro/1.0/all.css"><link rel="stylesheet" href="../../fonts/source-sans-pro/1.0/global.css"><link rel="stylesheet" href="../../language-assets/css/entities.css"><link rel="stylesheet" href="../../language-assets/css/footer.css"><link rel="stylesheet" href="../../language-assets/css/global.css"><link rel="stylesheet" href="../../language-assets/css/guide.css"><link rel="stylesheet" href="../../language-assets/css/header-language.css"><link rel="stylesheet" href="../../language-assets/css/iconography.css"><link rel="stylesheet" href="../../language-assets/css/icons.css"><link rel="stylesheet" href="../../language-assets/css/in-out.css"><link rel="stylesheet" href="../../language-assets/css/language-specific.css"><link rel="stylesheet" href="../../language-assets/css/language.css"><link rel="stylesheet" href="../../language-assets/css/man-page.css"><link rel="stylesheet" href="../../language-assets/css/related-links.css"><link rel="stylesheet" href="../../language-assets/css/root-guide-language.css"><link rel="stylesheet" href="../../language-assets/css/special-styles.css"><link rel="stylesheet" href="../../language-assets/css/tables.css"><link rel="stylesheet" href="../../language-assets/css/technotes.css"><link rel="stylesheet" href="../../language-assets/css/tooltips.css"><link rel="stylesheet" href="../../language-assets/css/workflows.css">
+<script>var baselang = 'VarDOperator.en';</script>
+</head>
+
+<body id="ref" class="package">
+  <main class="main">
+  <nav class="topContentWrap"><span class="badge">PDE SYMBOLICS2022 SYMBOL</span><ul class="dropdown">
+   <li>
+    <a href="#" class="menu see-also">See Also</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="../guide/VariationalDOperator.html"><span class="dropdownPad">VariationalDOperator</span></a>
+     </li>
+     <li>
+      <a href="../guide/DVarDOperator.html"><span class="dropdownPad">DVarDOperator</span></a>
+     </li>
+    </ul>
+   </li>
+   <li>
+    <a href="#" class="menu related-guides">Related Guides</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="../guide/PDESymbolics.html"><span class="dropdownPad">PDESymbolics</span></a>
+     </li>
+    </ul>
+   </li>
+  </ul></nav><div class="ContextNameCell">PDESymbolics2022`</div><div class="main-heading"><span class="main-title-top">PDESymbolics2022`</span><h1 class="main-title">VarDOperator</h1><div class="iconography" data-src="s= d= m= c= u= l= n= e="></div></div><div class="functionIntroWrap">
+  <div class="functionIntro">
+   <p class="code"><span class="IF">VarDOperator<span class="openbracket">[</span><span class="specialcharacters">&lt;<span class="verticalbar">|</span></span>&quot;<span class="TI">depVars</span>&quot; <span class="special-character Rule">&#62754;</span> <span class="openbrace">{</span><span class="TI">u</span><sub><span class="TR">1</span></sub><span class="comma">,</span> <span class="TI">u</span><sub><span class="TR">2</span></sub><span class="comma">,</span> ...<span class="closebrace">}</span><span class="comma">,</span> &quot;<span class="TI">indVars</span>&quot; <span class="special-character Rule">&#62754;</span> <span class="openbrace">{</span><span class="TI">x</span><sub><span class="TR">1</span></sub><span class="comma">,</span> <span class="TI">x</span><sub><span class="TR">2</span></sub><span class="comma">,</span> ...<span class="closebrace">}</span><span class="specialcharacters"><span class="verticalbar">|</span>&gt;</span><span class="closebracket">]</span><span class="openbracket">[</span></span> <span class="IF"><span class="openbrace">{</span><span class="TI">f</span><sub><span class="TR">1</span></sub><span class="comma">,</span> <span class="TI">f</span><sub><span class="TR">2</span></sub><span class="comma">,</span> ...<span class="closebrace">}</span><span class="closebracket">]</span></span></p>
+   <p class="code-description">returns a list with the variational derivatives of the (multiple) integrals <span class="IF"><span class="special-character Integral">&#8747;</span><span class="TI">f</span><sub><span class="TR">1</span></sub><span class="special-character DifferentialD">&#63308;</span><span class="TI">x</span><sub><span class="TR">1</span></sub> <span class="special-character DifferentialD">&#63308;</span><span class="TI">x</span><sub><span class="TR">2</span></sub>...</span>,  <span class="IF"><span class="special-character Integral">&#8747;</span><span class="TI">f</span><sub><span class="TR">2</span></sub><span class="special-character DifferentialD">&#63308;</span><span class="TI">x</span><sub><span class="TR">1</span></sub> <span class="special-character DifferentialD">&#63308;</span><span class="TI">x</span><sub><span class="TR">2</span></sub> ...</span>, ... with respect to <span class="IF"><span class="TI">u</span><sub><span class="TR">1</span></sub><span class="openbracket">[</span><span class="TI">x</span><sub><span class="TR">1</span></sub><span class="comma">,</span> <span class="TI">x</span><sub><span class="TR">2</span></sub><span class="comma">,</span> ...<span class="closebracket">]</span></span>, <span class="IF"><span class="TI">u</span><sub><span class="TR">2</span></sub><span class="openbracket">[</span><span class="TI">x</span><sub><span class="TR">1</span></sub><span class="comma">,</span> <span class="TI">x</span><sub><span class="TR">2</span></sub><span class="comma">,</span> ...<span class="closebracket">]</span><span class="comma">,</span></span> <span class="IF">... </span>where <span class="IF"><span class="TI">f</span><sub><span class="TR">1</span></sub><span class="comma">,</span> <span class="TI">f</span><sub><span class="TR">2</span></sub><span class="comma">,</span> ...</span> are functions of <span class="IF"><span class="TI">u</span><sub><span class="TR">1</span></sub><span class="comma">,</span> <span class="TI">u</span><sub><span class="TR">2</span></sub><span class="comma">,</span> ...</span> , their derivatives, and the coordinates <span class="IF"><span class="TI">x</span><sub><span class="TR">1</span></sub><span class="comma">,</span> <span class="TI">x</span><sub><span class="TR">2</span></sub><span class="comma">,</span> ...</span> .
+</p>
+  </div>
+  <div class="functionIntro">
+   <p class="code">
+    <span class="IF">VarDOperator<span class="openbracket">[</span><span class="specialcharacters">&lt;<span class="verticalbar">|</span></span>&quot;<span class="TI">depVars</span>&quot; <span class="special-character Rule">&#62754;</span> <span class="openbrace">{</span><span class="TI">u</span><span class="closebrace">}</span><span class="comma">,</span> &quot;<span class="TI">indVars</span>&quot; <span class="special-character Rule">&#62754;</span> <span class="openbrace">{</span><span class="TI">x</span><span class="closebrace">}</span><span class="specialcharacters"><span class="verticalbar">|</span>&gt;</span><span class="closebracket">]</span><span class="openbracket">[</span><span class="TI">f</span><span class="closebracket">]</span></span>
+   </p>
+   <p class="code-description">returns the variational derivative of the integral <span class="special-character Integral">&#8747;</span>f<span class="special-character DifferentialD">&#63308;</span>xwith respect to u[x], where the integrand f is a function of u, its derivatives, and x.
+</p>
+  </div>
+  <div class="functionIntro">
+   <p class="code">
+    <span class="IF">VarDOperator<span class="openbracket">[</span><span class="specialcharacters">&lt;<span class="verticalbar">|</span></span>&quot;<span class="TI">depVars</span>&quot; <span class="special-character Rule">&#62754;</span> <span class="openbrace">{</span><span class="TI">u</span><span class="TI"><span class="closebrace">}</span></span><span class="comma">,</span> &quot;<span class="TI">indVars</span>&quot; <span class="special-character Rule">&#62754;</span> <span class="openbrace">{</span><span class="TI">x</span><sub><span class="TR">1</span></sub><span class="comma">,</span> <span class="TI">x</span><sub><span class="TR">2</span></sub><span class="comma">,</span> ...<span class="closebrace">}</span><span class="specialcharacters"><span class="verticalbar">|</span>&gt;</span><span class="closebracket">]</span><span class="openbracket">[</span><span class="TI">f</span><span class="TI"><span class="closebracket">]</span></span></span>
+   </p>
+   <p class="code-description">returns the variational derivative of the multiple integral <span class="special-character Integral">&#8747;</span>f<span class="special-character DifferentialD">&#63308;</span>xwith respect to u[x], where the integrand f is a function of u, its derivatives, and x.</p>
+  </div>
+ </div><section id="DetailsAndOptions"><div class="inner">
+   <h1 class="toggle">Details and Options</h1>
+   <div class="hideable">
+    <ul class="functionList">
+     <li><a name="1067943069"></a>To use VarDOperator, you first need to load the PDESymbolics2022 Package using Needs[&quot;PDESymbolics2022`&quot;].</li>
+    </ul>
+   </div>
+  </div></section><section id="Examples"><h1 class="toggle open">Examples</h1><span class="open-all on">open all</span><span class="close-all">close all</span><div class="hideable">
+   <div>
+    <h2 class="toggle open">Basic Examples<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span class="total-examples">(3)</span></h2>
+    <div class="hideable">
+     <div id="1349128517"
+         class="clipboard-input"
+         data-in="In[1]:="
+         data-in-num="1"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/I_1.png"
+         data-in-width="187"
+         data-in-height="19"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-wlisif"
+         data-code="Files/VarDOperator.en/i_1.txt"
+         ></div>
+     <p><a name="638965044"></a>Variational derivative for the arc length <span class="special-character Integral">&#8747;</span><span class="special-character DifferentialD">&#63308;</span>s of a plane curve:</p>
+     <div id="949163620"
+         class="clipboard-input"
+         data-in="In[2]:="
+         data-in-num="2"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/VarDOperator.en/I_2.png"
+         data-big="445 19"
+         data-small="335 39"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-pzd5me"
+         data-code="Files/VarDOperator.en/i_2.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[2]="
+         data-out-num="2"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/O_1.png"
+         data-out-width="143"
+         data-out-height="41"
+         ></div>
+     <p><a name="87635422"></a>You can simplify and remove the brackets to get the usual expression:</p>
+     <div id="1063950520"
+         class="clipboard-input"
+         data-in="In[3]:="
+         data-in-num="3"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/I_3.png"
+         data-in-width="115"
+         data-in-height="19"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-rvqfre"
+         data-code="Files/VarDOperator.en/i_3.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[3]="
+         data-out-num="3"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/O_2.png"
+         data-out-width="71"
+         data-out-height="35"
+         ></div>
+     <div class="ExLine"><a name="12624634"></a><!-- --></div>
+     <div id="1113282973"
+         class="clipboard-input"
+         data-in="In[1]:="
+         data-in-num="1"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/I_4.png"
+         data-in-width="187"
+         data-in-height="19"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-so3sxb"
+         data-code="Files/VarDOperator.en/i_4.txt"
+         ></div>
+     <p><a name="1728826232"></a>Variational derivative for the Dirichlet integral in two variables:</p>
+     <div id="101039226"
+         class="clipboard-input"
+         data-in="In[2]:="
+         data-in-num="2"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/I_5.png"
+         data-in-width="353"
+         data-in-height="39"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-byfwng"
+         data-code="Files/VarDOperator.en/i_5.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[2]="
+         data-out-num="2"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/O_3.png"
+         data-out-width="134"
+         data-out-height="17"
+         ></div>
+     <p><a name="140869872"></a>You can simplify and remove the brackets to get the usual expression:</p>
+     <div id="142296952"
+         class="clipboard-input"
+         data-in="In[3]:="
+         data-in-num="3"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/I_6.png"
+         data-in-width="113"
+         data-in-height="19"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-cmz7be"
+         data-code="Files/VarDOperator.en/i_6.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[3]="
+         data-out-num="3"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/O_4.png"
+         data-out-width="125"
+         data-out-height="18"
+         ></div>
+     <div class="ExLine"><a name="1797368556"></a><!-- --></div>
+     <div id="1868341990"
+         class="clipboard-input"
+         data-in="In[1]:="
+         data-in-num="1"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/I_7.png"
+         data-in-width="187"
+         data-in-height="19"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-46nb6w"
+         data-code="Files/VarDOperator.en/i_7.txt"
+         ></div>
+     <p><a name="717939496"></a>A trace based null Lagrangian:</p>
+     <div id="702063704"
+         class="clipboard-input"
+         data-in="In[2]:="
+         data-in-num="2"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/VarDOperator.en/I_8.png"
+         data-big="431 19"
+         data-small="431 19"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-lv9x3u"
+         data-code="Files/VarDOperator.en/i_8.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[2]="
+         data-out-num="2"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/O_5.png"
+         data-out-width="445"
+         data-out-height="35"
+         ></div>
+     <div id="1630971947"
+         class="clipboard-input"
+         data-in="In[3]:="
+         data-in-num="3"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/VarDOperator.en/I_9.png"
+         data-big="595 19"
+         data-small="397 39"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-09boal"
+         data-code="Files/VarDOperator.en/i_9.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[3]="
+         data-out-num="3"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/O_6.png"
+         data-out-width="497"
+         data-out-height="52"
+         ></div>
+     <p><a name="1356587603"></a>You can simplify and put it in MatrixForm:</p>
+     <div id="2071591376"
+         class="clipboard-input"
+         data-in="In[4]:="
+         data-in-num="4"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/I_10.png"
+         data-in-width="159"
+         data-in-height="19"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-8jnoe6"
+         data-code="Files/VarDOperator.en/i_10.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out=" "
+         data-out-num=""
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/O_7.png"
+         data-out-width="20"
+         data-out-height="47"
+         ></div>
+     <div id="520301843"
+         class="clipboard-input"
+         data-in="In[5]:="
+         data-in-num="5"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/VarDOperator.en/I_11.png"
+         data-big="521 117"
+         data-small="427 137"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-iv15q9"
+         data-code="Files/VarDOperator.en/i_11.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[5]="
+         data-out-num="5"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/O_8.png"
+         data-out-width="538"
+         data-out-height="135"
+         ></div>
+     <div id="1616103506"
+         class="clipboard-input"
+         data-in="In[6]:="
+         data-in-num="6"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/I_12.png"
+         data-in-width="165"
+         data-in-height="19"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-00gzqc"
+         data-code="Files/VarDOperator.en/i_12.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out=" "
+         data-out-num=""
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/O_9.png"
+         data-out-width="20"
+         data-out-height="63"
+         ></div>
+     <div id="106123274"
+         class="clipboard-input"
+         data-in="In[7]:="
+         data-in-num="7"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/I_13.png"
+         data-in-width="361"
+         data-in-height="19"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-b1gvi0"
+         data-code="Files/VarDOperator.en/i_13.txt"
+         ></div>
+     <div class="Message">
+      <img src="Files/VarDOperator.en/1.gif"
+          height="14"
+          width="277"
+          alt="" />
+     </div>
+     <div class="Message">
+      <img src="Files/VarDOperator.en/2.gif"
+          height="14"
+          width="308"
+          alt="" />
+     </div>
+     <div class="Message">
+      <img src="Files/VarDOperator.en/3.gif"
+          height="14"
+          width="279"
+          alt="" />
+     </div>
+     <div class="Message">
+      <img src="Files/VarDOperator.en/4.gif"
+          height="14"
+          width="309"
+          alt="" />
+     </div>
+     <div class="Message">
+      <img src="Files/VarDOperator.en/5.gif"
+          height="14"
+          width="279"
+          alt="" />
+     </div>
+     <div class="Message">
+      <img src="Files/VarDOperator.en/6.gif"
+          height="14"
+          width="409"
+          alt="" />
+     </div>
+     <div class="Message">
+      <img src="Files/VarDOperator.en/7.gif"
+          height="14"
+          width="309"
+          alt="" />
+     </div>
+     <div class="Message">
+      <img src="Files/VarDOperator.en/8.gif"
+          height="14"
+          width="397"
+          alt="" />
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[7]="
+         data-out-num="7"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/O_10.png"
+         data-out-width="348"
+         data-out-height="16"
+         ></div>
+     <div id="1345836014"
+         class="clipboard-input"
+         data-in="In[8]:="
+         data-in-num="8"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/I_14.png"
+         data-in-width="128"
+         data-in-height="19"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-wjj7z0"
+         data-code="Files/VarDOperator.en/i_14.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[8]="
+         data-out-num="8"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/O_11.png"
+         data-out-width="17"
+         data-out-height="16"
+         ></div>
+     <div id="652978627"
+         class="clipboard-input"
+         data-in="In[9]:="
+         data-in-num="9"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/I_15.png"
+         data-in-width="80"
+         data-in-height="19"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-k21vth"
+         data-code="Files/VarDOperator.en/i_15.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[9]="
+         data-out-num="9"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/O_12.png"
+         data-out-width="13"
+         data-out-height="16"
+         ></div>
+     <div id="979056139"
+         class="clipboard-input"
+         data-in="In[10]:="
+         data-in-num="10"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/I_16.png"
+         data-in-width="97"
+         data-in-height="19"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-qg6ut5"
+         data-code="Files/VarDOperator.en/i_16.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[10]="
+         data-out-num="10"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/O_13.png"
+         data-out-width="13"
+         data-out-height="16"
+         ></div>
+     <div id="1954178501"
+         class="clipboard-input"
+         data-in="In[11]:="
+         data-in-num="11"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/I_17.png"
+         data-in-width="59"
+         data-in-height="19"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-6lq32f"
+         data-code="Files/VarDOperator.en/i_17.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[11]="
+         data-out-num="11"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/O_14.png"
+         data-out-width="39"
+         data-out-height="16"
+         ></div>
+     <div id="995591176"
+         class="clipboard-input"
+         data-in="In[12]:="
+         data-in-num="12"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/I_18.png"
+         data-in-width="55"
+         data-in-height="19"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-qq09cq"
+         data-code="Files/VarDOperator.en/i_18.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[12]="
+         data-out-num="12"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/O_15.png"
+         data-out-width="19"
+         data-out-height="16"
+         ></div>
+     <div id="677789826"
+         class="clipboard-input"
+         data-in="In[13]:="
+         data-in-num="13"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/I_19.png"
+         data-in-width="248"
+         data-in-height="78"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-lhtn9g"
+         data-code="Files/VarDOperator.en/i_19.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[13]="
+         data-out-num="13"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/O_16.png"
+         data-out-width="287"
+         data-out-height="52"
+         ></div>
+     <div id="1695204065"
+         class="clipboard-input"
+         data-in="In[14]:="
+         data-in-num="14"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/VarDOperator.en/I_20.png"
+         data-big="550 19"
+         data-small="353 39"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-2bkd33"
+         data-code="Files/VarDOperator.en/i_20.txt"
+         ></div>
+     <div class="Message">
+      <img src="Files/VarDOperator.en/9.gif"
+          height="14"
+          width="307"
+          alt="" />
+     </div>
+     <div class="Message">
+      <img src="Files/VarDOperator.en/10.gif"
+          height="14"
+          width="307"
+          alt="" />
+     </div>
+     <div class="Message">
+      <img src="Files/VarDOperator.en/11.gif"
+          height="14"
+          width="307"
+          alt="" />
+     </div>
+     <div class="Message">
+      <img src="Files/VarDOperator.en/12.gif"
+          height="14"
+          width="538"
+          alt="" />
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[14]="
+         data-out-num="14"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/O_17.png"
+         data-out-width="514"
+         data-out-height="172"
+         ></div>
+    </div>
+   </div>
+   <div>
+    <h2 class="toggle">Generalizations &amp; Extensions<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span class="total-examples">(2)</span></h2>
+    <div class="hideable">
+     <div id="1053712470"
+         class="clipboard-input"
+         data-in="In[1]:="
+         data-in-num="1"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/I_21.png"
+         data-in-width="187"
+         data-in-height="19"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-rpmz04"
+         data-code="Files/VarDOperator.en/i_21.txt"
+         ></div>
+     <p><a name="814137285"></a>Variational derivative of higher-dimension functionals and systems:</p>
+     <div id="1595330128"
+         class="clipboard-input"
+         data-in="In[2]:="
+         data-in-num="2"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/VarDOperator.en/I_22.png"
+         data-big="580 39"
+         data-small="365 59"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-0n3qv2"
+         data-code="Files/VarDOperator.en/i_22.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[2]="
+         data-out-num="2"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/O_18.png"
+         data-out-width="305"
+         data-out-height="17"
+         ></div>
+     <div class="ExLine"><a name="2051506676"></a><!-- --></div>
+     <div id="1822750947"
+         class="clipboard-input"
+         data-in="In[1]:="
+         data-in-num="1"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/I_23.png"
+         data-in-width="187"
+         data-in-height="19"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-4fh5w1"
+         data-code="Files/VarDOperator.en/i_23.txt"
+         ></div>
+     <p><a name="1120941774"></a>Higher order variational derivatives:</p>
+     <div id="1874898108"
+         class="clipboard-input"
+         data-in="In[2]:="
+         data-in-num="2"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/VarDOperator.en/I_24.png"
+         data-big="528 19"
+         data-small="424 39"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-5ajuxa"
+         data-code="Files/VarDOperator.en/i_24.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[2]="
+         data-out-num="2"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/O_19.png"
+         data-out-width="21"
+         data-out-height="16"
+         ></div>
+    </div>
+   </div>
+   <div>
+    <h2 class="toggle">Applications<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span class="total-examples">(2)</span></h2>
+    <div class="hideable">
+     <div id="352840849"
+         class="clipboard-input"
+         data-in="In[1]:="
+         data-in-num="1"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/I_25.png"
+         data-in-width="187"
+         data-in-height="19"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-f4cv0z"
+         data-code="Files/VarDOperator.en/i_25.txt"
+         ></div>
+     <p><a name="993799776"></a>Variational derivative for the distance between two points (on the plane):</p>
+     <div id="667669275"
+         class="clipboard-input"
+         data-in="In[2]:="
+         data-in-num="2"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/VarDOperator.en/I_26.png"
+         data-big="486 19"
+         data-small="348 39"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-lbsq61"
+         data-code="Files/VarDOperator.en/i_26.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[2]="
+         data-out-num="2"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/O_20.png"
+         data-out-width="479"
+         data-out-height="38"
+         ></div>
+     <p><a name="136656747"></a>You can simplify and put it in matrix form:</p>
+     <div id="2119343160"
+         class="clipboard-input"
+         data-in="In[3]:="
+         data-in-num="3"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/I_27.png"
+         data-in-width="159"
+         data-in-height="19"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-9b25xm"
+         data-code="Files/VarDOperator.en/i_27.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out=" "
+         data-out-num=""
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/O_21.png"
+         data-out-width="110"
+         data-out-height="61"
+         ></div>
+     <div class="ExLine"><a name="2022568495"></a><!-- --></div>
+     <div id="790047102"
+         class="clipboard-input"
+         data-in="In[1]:="
+         data-in-num="1"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/I_28.png"
+         data-in-width="187"
+         data-in-height="19"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-ncnqi4"
+         data-code="Files/VarDOperator.en/i_28.txt"
+         ></div>
+     <p><a name="430253913"></a>Variational derivative for the surface area:</p>
+     <div id="585432299"
+         class="clipboard-input"
+         data-in="In[2]:="
+         data-in-num="2"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/I_29.png"
+         data-in-width="351"
+         data-in-height="39"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-jyt4ql"
+         data-code="Files/VarDOperator.en/i_29.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[2]="
+         data-out-num="2"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/O_22.png"
+         data-out-width="455"
+         data-out-height="85"
+         ></div>
+     <p><a name="569438219"></a>You can simplify and remove brackets to get the usual expression:</p>
+     <div id="1875538063"
+         class="clipboard-input"
+         data-in="In[3]:="
+         data-in-num="3"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/I_30.png"
+         data-in-width="115"
+         data-in-height="19"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-5axkpt"
+         data-code="Files/VarDOperator.en/i_30.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[3]="
+         data-out-num="3"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/O_23.png"
+         data-out-width="470"
+         data-out-height="35"
+         ></div>
+    </div>
+   </div>
+   <div>
+    <h2 class="toggle">Neat Examples<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span class="total-examples">(2)</span></h2>
+    <div class="hideable">
+     <div id="354667136"
+         class="clipboard-input"
+         data-in="In[1]:="
+         data-in-num="1"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/I_31.png"
+         data-in-width="187"
+         data-in-height="19"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-f5f066"
+         data-code="Files/VarDOperator.en/i_31.txt"
+         ></div>
+     <p><a name="1766408777"></a>This operator works with Piecewise functions:</p>
+     <div id="1749335580"
+         class="clipboard-input"
+         data-in="In[2]:="
+         data-in-num="2"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/I_32.png"
+         data-in-width="369"
+         data-in-height="39"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-27sl9a"
+         data-code="Files/VarDOperator.en/i_32.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[2]="
+         data-out-num="2"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/O_24.png"
+         data-out-width="93"
+         data-out-height="64"
+         ></div>
+     <div class="ExLine"><a name="879948623"></a><!-- --></div>
+     <div id="1724113519"
+         class="clipboard-input"
+         data-in="In[1]:="
+         data-in-num="1"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/I_33.png"
+         data-in-width="187"
+         data-in-height="19"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-2sr0sh"
+         data-code="Files/VarDOperator.en/i_33.txt"
+         ></div>
+     <p><a name="1179064862"></a>This operator works with Piecewise functions:</p>
+     <div id="1711524765"
+         class="clipboard-input"
+         data-in="In[2]:="
+         data-in-num="2"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/VarDOperator.en/I_34.png"
+         data-big="434 39"
+         data-small="434 39"
+         data-link="https://wolfram.com/xid/0hud0ogvr2qklp90z6kh5idpni-2k968v"
+         data-code="Files/VarDOperator.en/i_34.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[2]="
+         data-out-num="2"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/VarDOperator.en/O_25.png"
+         data-out-width="171"
+         data-out-height="55"
+         ></div>
+    </div>
+   </div>
+   <div class="clear"><!-- --></div>
+  </div></section><section id="RelatedGuides" class="related-links"><div class="inner">
+   <h1>Related Guides</h1>
+   <ul class="functionList">
+    <span class="special-character FilledVerySmallSquare">&#9642;</span>
+    <li>
+     <a href="../guide/PDESymbolics.html">PDESymbolics</a>
+    </li>
+   </ul>
+  </div></section><section id="Citations" class="citations"><div class="inner">
+   <div class="citation">
+    <span class="citation-tooltip"><button type="button" class="citation-tooltip-button"><span class="citation-text">Cite this as:</span></button><span class="citation-default clipboard-inlineblock clipboard-hover">Wolfram Research (0), VarDOperator, Wolfram Language function, https://reference.wolfram.com/language/PDESymbolics2022/ref/VarDOperator.html.</span><span class="citation-tooltip-content"><button class="x-close-svg"><img src="/language-assets/img/CitationCloseButton.svg" height="10px" width="10px" /></button><h4>Text</h4><p class="clipboard-inlineblock clipboard-hover">Wolfram Research (0), VarDOperator, Wolfram Language function, https://reference.wolfram.com/language/PDESymbolics2022/ref/VarDOperator.html.</p><h4>CMS</h4><p class="clipboard-inlineblock clipboard-hover">Wolfram Language. 0. &quot;VarDOperator.&quot; Wolfram Language &amp; System Documentation Center. Wolfram Research. https://reference.wolfram.com/language/PDESymbolics2022/ref/VarDOperator.html.</p><h4>APA</h4><p class="clipboard-inlineblock clipboard-hover">Wolfram Language. (0). VarDOperator. Wolfram Language &amp; System Documentation Center. Retrieved from https://reference.wolfram.com/language/PDESymbolics2022/ref/VarDOperator.html</p><h4>BibTeX</h4><p class="clipboard-inlineblock clipboard-hover citation-timestamp">@misc{reference.wolfram_2023_vardoperator, author=&quot;Wolfram Research&quot;, title=&quot;{VarDOperator}&quot;, year=&quot;0&quot;, howpublished=&quot;\url{https://reference.wolfram.com/language/PDESymbolics2022/ref/VarDOperator.html}&quot;, note=[<!--#include virtual="/language-assets/inc/timestamp.html.en"-->]}</p><h4>BibLaTeX</h4><p class="clipboard-inlineblock clipboard-hover citation-timestamp">@online{reference.wolfram_2023_vardoperator, organization={Wolfram Research}, title={VarDOperator}, year={0}, url={https://reference.wolfram.com/language/PDESymbolics2022/ref/VarDOperator.html}, note=[<!--#include virtual="/language-assets/inc/timestamp.html.en"-->]}</p></span><span class="citation-overlay"></span></span>
+   </div>
+  </div></section>
+  
+
+  
+		</main>
+		<div id="_footer-offset"></div>
+		<div id="_footer"></div>
+		<script src="../../common/js/jquery/2.2.4/jquery.min.js"></script><script src="../../common/js/jquery/plugins/hoverintent/1.8.0/hoverintent.min.j2"></script><script src="../../common/js/clipboard/2.0/clipboard.js"></script><script src="../../common/js/clipboard/2.0/code-clipboard.js"></script><script src="../../common/framework/js/body.en.js"></script><script src="../../common/framework/js/head.en.js"></script><script src="../../language-assets/js/dropdowns.js"></script><script src="../../language-assets/js/global.js"></script><script src="../../language-assets/js/language-specific.js.en"></script><script src="../../language-assets/js/language.js"></script><script src="../../language-assets/js/temporary.js"></script><script src="../../language-assets/js/toggles.js"></script><script src="../../language-assets/js/tooltips.js"></script><script src="../../language-assets/js/workflows.js"></script>
+</body>
+</html>

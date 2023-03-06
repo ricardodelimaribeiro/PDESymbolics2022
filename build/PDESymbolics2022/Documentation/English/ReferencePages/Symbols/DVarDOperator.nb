@@ -1,0 +1,1019 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     36176,       1009]
+NotebookOptionsPosition[     25811,        779]
+NotebookOutlinePosition[     31845,        927]
+CellTagsIndexPosition[     31760,        922]
+WindowTitle->DVarDOperator
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[GridBox[{
+   {GridBox[{
+      {
+       ItemBox[Cell[BoxData[
+         RowBox[{
+          TemplateBox[{12},
+           "Spacer1"], Cell["PDE SYMBOLICS2022 SYMBOL", "PacletNameCell",
+           TextAlignment->Center,ExpressionUUID->
+           "5de1be43-2897-4149-a374-642c6914c8a0"], 
+          TemplateBox[{8},
+           "Spacer1"]}]],
+         TextAlignment->Center,ExpressionUUID->
+         "615df239-9cfb-4b5e-bc67-d8370becab01"],
+        Background->RGBColor[0.490196, 0.576471, 0.690196],
+        ItemSize->Full], ""}
+     },
+     GridBoxAlignment->{"Rows" -> {{Center}}},
+     GridBoxItemSize->{"Columns" -> {Full, 
+         Scaled[0.02]}, "Rows" -> {{2.5}}}], Cell[TextData[{
+     Cell[BoxData[
+      TagBox[
+       ActionMenuBox[
+        FrameBox[Cell[TextData[{
+          "Related Guides",
+          " ",
+          Cell[BoxData[
+           GraphicsBox[
+            {GrayLevel[0.66667], Thickness[0.13], 
+             LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+            AspectRatio->1,
+            ImageSize->20,
+            PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+           "79b74bce-ad5d-4aac-99ae-d670609bf8a7"]
+         }],ExpressionUUID->"50c39512-ef14-4fc0-8bf4-5b6f1730e20e"],
+         StripOnInput->False], {"\<\"PDESymbolics\"\>":>
+        Documentation`HelpLookup[
+        "paclet:PDESymbolics2022/guide/PDESymbolics"]},
+        Appearance->None,
+        MenuAppearance->Automatic,
+        MenuStyle->"MoreAbout"],
+       MouseAppearanceTag["LinkHand"]]],
+      LineSpacing->{1.4, 0},ExpressionUUID->
+      "3a04c544-11f6-480f-be02-f29c232063a2"],
+     "\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+     Cell[BoxData[
+      TagBox[
+       ActionMenuBox[
+        FrameBox[Cell[TextData[{
+          "URL",
+          " ",
+          Cell[BoxData[
+           GraphicsBox[
+            {GrayLevel[0.66667], Thickness[0.13], 
+             LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+            AspectRatio->1,
+            ImageSize->20,
+            PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+           "b69c8237-5e20-45af-b5ec-dc24bdd69532"]
+         }],ExpressionUUID->"8b59c1c5-ec21-465a-9ee2-0f966abf883e"],
+         StripOnInput->False], {"\<\"PDESymbolics2022/ref/DVarDOperator\"\>":>
+        None, "\<\"Copy Wolfram Documentation Center URL\"\>":>
+        Module[{DocumentationSearch`Private`nb$}, 
+         DocumentationSearch`Private`nb$ = NotebookPut[
+            Notebook[{
+              Cell["PDESymbolics2022/ref/DVarDOperator"]}, Visible -> False]]; 
+         SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+         FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+         NotebookClose[DocumentationSearch`Private`nb$]; Null], 
+        Delimiter, "\<\"Copy web URL\"\>":>
+        Module[{DocumentationSearch`Private`nb$}, 
+         DocumentationSearch`Private`nb$ = NotebookPut[
+            Notebook[{
+              Cell[
+               BoxData[
+                MakeBoxes[
+                 Hyperlink[
+                 "http://reference.wolfram.com/language/PDESymbolics2022/ref/\
+DVarDOperator.html"], StandardForm]], "Input", TextClipboardType -> 
+               "PlainText"]}, Visible -> False]]; 
+         SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+         FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+         NotebookClose[DocumentationSearch`Private`nb$]; 
+         Null], "\<\"Go to web URL\"\>":>FrontEndExecute[{
+          NotebookLocate[{
+            URL[
+             StringJoin[
+              If[
+               TrueQ[DocumentationBuild`Make`Private`wsmlinkQ$115095], 
+               "http://reference.wolfram.com/system-modeler/", 
+               "http://reference.wolfram.com/language/"], 
+              "PDESymbolics2022/ref/DVarDOperator", ".html"]], None}]}]},
+        Appearance->None,
+        MenuAppearance->Automatic,
+        MenuStyle->"URLMenu"],
+       MouseAppearanceTag["LinkHand"]]],
+      LineSpacing->{1.4, 0},ExpressionUUID->
+      "4bbdf205-42b6-4cf3-a83b-8712f349bf43"]
+    }], "AnchorBar",
+     CacheGraphics->False,ExpressionUUID->
+     "75174c9c-c75e-4b64-aedb-bdf5b2ed5f79"]}
+  }]], "AnchorBarGrid",
+ GridBoxOptions->{GridBoxItemSize->{"Columns" -> {
+     Scaled[0.65], {
+      Scaled[0.34]}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+   "RowsIndexed" -> {}}},
+ CellID->1,ExpressionUUID->"6cb13a1b-3c3c-4345-bcc3-b691d3b62586"],
+
+Cell["PDESymbolics2022`", "ContextNameCell",ExpressionUUID->"d306e58f-73e9-4252-b465-37c2234ff477"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[GridBox[{
+   {Cell[TextData[{
+     Cell[
+     "DVarDOperator", "ObjectName",ExpressionUUID->
+      "6f46cedf-9f8c-4b79-a2b8-9a9ffcd2ac4f"],
+     Cell[BoxData[
+      TemplateBox[{8},
+       "Spacer1"]],ExpressionUUID->"70414e2d-55cf-4b94-9f9a-4149be313e1d"],
+     Cell[BoxData[
+     ""], "ObjectNameTranslation",ExpressionUUID->
+      "e31cd17c-6b3a-4dd3-a8f9-bc178356ada7"]
+    }],ExpressionUUID->"50fd1ccd-ea05-4b9f-bb14-d711c216d3dd"], 
+    "\[SpanFromLeft]"}
+  }]], "ObjectNameGrid",ExpressionUUID->"b9ffc1ca-5a6d-45cd-843c-\
+7b7d46285e07"],
+
+Cell[BoxData[GridBox[{
+   {"", Cell[TextData[{
+     Cell[BoxData[
+      RowBox[{
+       RowBox[{"DVarDOperator", "[", 
+        RowBox[{"<|", 
+         RowBox[{
+          RowBox[{
+          "\"\<\!\(\*StyleBox[\"depVars\", \"TI\"]\)\>\"", " ", "\[Rule]", 
+           " ", 
+           RowBox[{"{", 
+            RowBox[{
+             SubscriptBox[
+              StyleBox["u", "TI"], 
+              StyleBox["1", "TR"]], ",", " ", 
+             SubscriptBox[
+              StyleBox["u", "TI"], 
+              StyleBox["2", "TR"]], ",", " ", "..."}], "}"}]}], ",", " ", 
+          RowBox[{
+          "\"\<\!\(\*StyleBox[\"indVars\", \"TI\"]\)\>\"", " ", "\[Rule]", 
+           " ", 
+           RowBox[{"{", 
+            RowBox[{
+             SubscriptBox[
+              StyleBox["n", "TI"], 
+              StyleBox["1", "TR"]], ",", " ", 
+             SubscriptBox[
+              StyleBox["n", "TI"], 
+              StyleBox["2", "TR"]], ",", " ", "..."}], "}"}]}]}], "|>"}], 
+        "]"}], "[", 
+       RowBox[{"{", 
+        RowBox[{
+         SubscriptBox[
+          StyleBox["f", "TI"], 
+          StyleBox["1", "TR"]], ",", " ", 
+         SubscriptBox[
+          StyleBox["f", "TI"], 
+          StyleBox["2", "TR"]], ",", " ", "..."}], "}"}], "]"}]], 
+      "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "7044b94f-1a7b-4a93-81e9-567a375d13c3"],
+     " \[LineSeparator]returns a list of discrete variational derivative of \
+the multiple sums ",
+     Cell[BoxData[
+      RowBox[{
+       RowBox[{
+        UnderscriptBox["\[Sum]", 
+         RowBox[{
+          SubscriptBox[
+           StyleBox["n", "TI"], 
+           StyleBox["1", "TR"]], ",", " ", 
+          SubscriptBox[
+           StyleBox["n", "TI"], 
+           StyleBox["2", "TR"]], ",", " ", "..."}]], 
+        SubscriptBox[
+         StyleBox["f", "TI"], 
+         StyleBox["1", "TR"]]}], ",", 
+       RowBox[{
+        UnderscriptBox["\[Sum]", 
+         RowBox[{
+          SubscriptBox[
+           StyleBox["n", "TI"], 
+           StyleBox["1", "TR"]], ",", " ", 
+          SubscriptBox[
+           StyleBox["n", "TI"], 
+           StyleBox["2", "TR"]], ",", " ", "..."}]], 
+        SubscriptBox[
+         StyleBox["f", "TI"], 
+         StyleBox["2", "TR"]]}], ",", " ", "...", " "}]],ExpressionUUID->
+      "c8093f1a-7666-4fca-80d3-ad86244fc5e9"],
+     "with respect to ",
+     Cell[BoxData[
+      RowBox[{
+       RowBox[{
+        SubscriptBox[
+         StyleBox["u", "TI"], 
+         StyleBox["1", "TR"]], "[", 
+        RowBox[{
+         SubscriptBox[
+          StyleBox["n", "TI"], 
+          StyleBox["1", "TR"]], ",", " ", 
+         SubscriptBox[
+          StyleBox["n", "TI"], 
+          StyleBox["2", "TR"]], ",", " ", "..."}], "]"}], ",", " ", 
+       RowBox[{
+        SubscriptBox[
+         StyleBox["u", "TI"], 
+         StyleBox["2", "TR"]], "[", 
+        RowBox[{
+         SubscriptBox[
+          StyleBox["n", "TI"], 
+          StyleBox["1", "TR"]], ",", " ", 
+         SubscriptBox[
+          StyleBox["n", "TI"], 
+          StyleBox["2", "TR"]], ",", " ", "..."}], "]"}], ",", " ", "..."}]], 
+      "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "b83a4f90-02f8-4e34-8121-231d55c5fb24"],
+     ", their translations, and ",
+     Cell[BoxData[
+      RowBox[{
+       SubscriptBox[
+        StyleBox["n", "TI"], 
+        StyleBox["1", "TR"]], ",", " ", 
+       SubscriptBox[
+        StyleBox["n", "TI"], 
+        StyleBox["2", "TR"]], ",", " ", "..."}]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "addb479e-a22b-4157-83e3-82af32c38219"],
+     " . "
+    }],ExpressionUUID->"b4b1381e-bb71-46e6-b680-2d506942bee5"]}
+  }]], "Usage",
+ CellID->982511436,ExpressionUUID->"ab12b806-2360-4ac5-8316-72e30933b1b2"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[Cell[BoxData[
+ ButtonBox[Cell[TextData[{
+   Cell[BoxData[
+    DynamicBox[ToBoxes[
+      If[
+       MatchQ[
+        CurrentValue[
+         EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, 
+         Closed], 
+        Alternatives[Open, True]], 
+       Style[
+        Graphics[{
+          Thickness[0.18], 
+          RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+          Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+         PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+        0.68 Inherited], 
+       Rotate[
+        Style[
+         Graphics[{
+           Thickness[0.18], 
+           RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+           Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+          PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+         0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+     ImageSizeCache->{14., {0.45000000000000107`, 13.549999999999999`}}]],
+    ExpressionUUID->"631a88c7-23ec-4626-895f-eea464fc7dc0"],
+   Cell[BoxData[
+    TemplateBox[{1},
+     "Spacer1"]],ExpressionUUID->"9b251d43-cd67-4df2-871a-42d29a87dbe5"],
+   "Details and Options"
+  }], "NotesFrameText",ExpressionUUID->"3be3a94b-a672-436f-b20f-19bdfa0ec907"],
+  Appearance->{Automatic, None, "Normal", Automatic},
+  BaseStyle->None,
+  ButtonFunction:>(FrontEndExecute[{
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], All, ButtonCell], 
+     FrontEndToken["OpenCloseGroup"], 
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], After, CellContents]}]& ),
+  Evaluator->None,
+  Method->
+   "Preemptive"]],ExpressionUUID->"dfc8df77-d0b1-438f-a065-7c0de0357300"]], \
+"NotesSection",
+ WholeCellGroupOpener->True,
+ CellGroupingRules->{"SectionGrouping", 50},
+ CacheGraphics->False,
+ CellID->1421415586,ExpressionUUID->"891eab59-b968-4809-bd96-17c4224ed3e3"],
+
+Cell["\<\
+To use DVarDOperator, you first need to load the PDESymbolics2022 Package \
+using Needs[\"PDESymbolics2022`\"].\
+\>", "Notes",
+ CellID->1067943069,ExpressionUUID->"5129dcf2-af4f-4a07-baea-396fe412da0c"]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, Closed]]]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {
+       TaggingRules, "Openers", "PrimaryExamplesSection"}, Open], 
+      Alternatives[True, Open]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{14., {5., 9.}}]],ExpressionUUID->
+  "65027e7d-dff3-4879-9e14-50c7e50b081c"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"b619ff7d-c823-443c-ad3e-48346c529b70"],
+ "Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(2)", "ExampleCount",ExpressionUUID->
+  "19386ee1-df6e-4cb1-9077-721f8e838486"]
+}], "PrimaryExamplesSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellTags->"PrimaryExamplesSection",
+ CellID->1123664674,ExpressionUUID->"9e336077-3927-4e04-b307-d59715f60f54"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "0"},
+        Closed], 
+      Alternatives[Open, True]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{14., {5., 9.}}]],ExpressionUUID->
+  "9340b51b-4ca7-42cb-9d97-87800e347f6e"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"90e519ec-7117-4c7b-861c-0ba4f0057dca"],
+ "Basic Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(2)", "ExampleCount",ExpressionUUID->
+  "c6416f8b-32b0-48c1-ad84-3e3a79ed5fcf"]
+}], "ExampleSection", "ExampleSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellID->460984200,ExpressionUUID->"6f362d4b-e56b-42f0-903c-96a2a5cffa96"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<PDESymbolics2022`\>\"", "]"}]], "Input",
+ CellLabel->"In[1]:=",
+ CellID->1517024587,ExpressionUUID->"d5271b3f-a065-4f61-be19-8a55f17af6d3"],
+
+Cell[TextData[{
+ "Discrete variational derivative of ",
+ ButtonBox["DifferenceDelta",
+  BaseStyle->"Link",
+  ButtonData->"paclet:ref/DifferenceDelta"],
+ "[u[n],{n,1}] is zero:"
+}], "ExampleText",
+ CellID->1706376525,ExpressionUUID->"27beb60d-5342-4516-8ded-370576b5c5b5"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"DVarDOperator", "[", 
+    RowBox[{"<|", 
+     RowBox[{
+      RowBox[{"\"\<depVars\>\"", "\[Rule]", 
+       RowBox[{"{", "u", "}"}]}], ",", 
+      RowBox[{"\"\<indVars\>\"", " ", "\[Rule]", " ", 
+       RowBox[{"{", "n", "}"}]}]}], "|>"}], "]"}], "[", 
+   RowBox[{"DifferenceDelta", "[", 
+    RowBox[{
+     RowBox[{"u", "[", "n", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"n", ",", "1"}], "}"}]}], "]"}], "]"}], "//", 
+  "Simplify"}]], "Input",
+ CellLabel->"In[2]:=",
+ CellID->1799424254,ExpressionUUID->"3e0eefb1-65b9-41dd-90a3-c7825759511c"],
+
+Cell[BoxData[
+ RowBox[{"{", "0", "}"}]], "Output",
+ CellLabel->"Out[2]=",
+ CellID->1187543715,ExpressionUUID->"5d94a7a0-63c2-419b-ab4c-91e2d09ba8d9"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[Cell[
+  "\t", "ExampleDelimiter",ExpressionUUID->
+   "d3e35518-7ce6-4d3e-93f7-3c13f5211fb9"],
+  $Line = 0; Null]], "ExampleDelimiter",
+ CellID->1384713321,ExpressionUUID->"dfda6225-fbe3-4180-aa98-432f9a21494d"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<PDESymbolics2022`\>\"", "]"}]], "Input",
+ CellLabel->"In[1]:=",
+ CellID->1637551839,ExpressionUUID->"663da4ab-37ad-4c14-95ff-cabf760f9be3"],
+
+Cell[TextData[{
+ "Discrete variational derivative of ",
+ ButtonBox["DifferenceDelta",
+  BaseStyle->"Link",
+  ButtonData->"paclet:ref/DifferenceDelta"],
+ "[u[n],{n,1}]^2 is a discretized version of the Laplacian:"
+}], "ExampleText",
+ CellID->183338121,ExpressionUUID->"f14d45cd-3286-41eb-89a5-515ce4493381"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"DVarDOperator", "[", 
+    RowBox[{"<|", 
+     RowBox[{
+      RowBox[{"\"\<depVars\>\"", "\[Rule]", 
+       RowBox[{"{", "u", "}"}]}], ",", 
+      RowBox[{"\"\<indVars\>\"", " ", "\[Rule]", " ", 
+       RowBox[{"{", "n", "}"}]}]}], "|>"}], "]"}], "[", 
+   RowBox[{
+    RowBox[{"DifferenceDelta", "[", 
+     RowBox[{
+      RowBox[{"u", "[", "n", "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"n", ",", "1"}], "}"}]}], "]"}], "^", "2"}], "]"}], "//", 
+  "Simplify"}]], "Input",
+ CellLabel->"In[2]:=",
+ CellID->1872249849,ExpressionUUID->"050bf344-4104-4092-bdf7-0c294f980536"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"-", "2"}], " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"u", "[", 
+      RowBox[{
+       RowBox[{"-", "1"}], "+", "n"}], "]"}], "-", 
+     RowBox[{"2", " ", 
+      RowBox[{"u", "[", "n", "]"}]}], "+", 
+     RowBox[{"u", "[", 
+      RowBox[{"1", "+", "n"}], "]"}]}], ")"}]}], "}"}]], "Output",
+ CellLabel->"Out[2]=",
+ CellID->51727538,ExpressionUUID->"64e5e3ac-875f-4d87-88b1-814aecd478ea"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", "2"}], "*", 
+  RowBox[{"DifferenceDelta", "[", 
+   RowBox[{
+    RowBox[{"u", "[", 
+     RowBox[{"n", "-", "1"}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"n", ",", "2"}], "}"}]}], "]"}]}]], "Input",
+ CellLabel->"In[3]:=",
+ CellID->629447228,ExpressionUUID->"4598651b-b221-494d-b673-b25ca60f9704"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", "2"}], " ", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"u", "[", 
+     RowBox[{
+      RowBox[{"-", "1"}], "+", "n"}], "]"}], "-", 
+    RowBox[{"2", " ", 
+     RowBox[{"u", "[", "n", "]"}]}], "+", 
+    RowBox[{"u", "[", 
+     RowBox[{"1", "+", "n"}], "]"}]}], ")"}]}]], "Output",
+ CellLabel->"Out[3]=",
+ CellID->581495375,ExpressionUUID->"fc6cd7fa-b083-4c47-8eee-3b1f8aca049f"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<PDESymbolics2022`\>\"", "]"}]], "Input",
+ CellLabel->"In[4]:=",
+ CellID->596503508,ExpressionUUID->"0dec8b23-4272-482d-a99a-6bb5abc6697d"],
+
+Cell["\<\
+Discrete variational derivative of the Dirichlet sum in two variables:\
+\>", "ExampleText",
+ CellID->980794760,ExpressionUUID->"41cb86ab-a040-4e6f-af13-2888ccdd775c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"DVarDOperator", "[", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<depVars\>\"", "\[Rule]", 
+      RowBox[{"{", "u", "}"}]}], ",", 
+     RowBox[{"\"\<indVars\>\"", " ", "\[Rule]", " ", 
+      RowBox[{"{", 
+       RowBox[{"m", ",", "n"}], "}"}]}]}], "|>"}], "]"}], "[", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"DifferenceDelta", "[", 
+       RowBox[{
+        RowBox[{"u", "[", 
+         RowBox[{"m", ",", "n"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"m", ",", "1"}], "}"}]}], "]"}], "^", "2"}], "+", 
+     RowBox[{
+      RowBox[{"DifferenceDelta", "[", 
+       RowBox[{
+        RowBox[{"u", "[", 
+         RowBox[{"m", ",", "n"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"n", ",", "1"}], "}"}]}], "]"}], "^", "2"}]}], ")"}], "/", 
+   "2"}], "]"}]], "Input",
+ CellLabel->"In[5]:=",
+ CellID->636303956,ExpressionUUID->"116f50fa-9777-4ed6-9c82-e53bc572f061"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"-", 
+    RowBox[{"u", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "1"}], "+", "m"}], ",", "n"}], "]"}]}], "-", 
+   RowBox[{"u", "[", 
+    RowBox[{"m", ",", 
+     RowBox[{
+      RowBox[{"-", "1"}], "+", "n"}]}], "]"}], "+", 
+   RowBox[{"2", " ", 
+    RowBox[{"u", "[", 
+     RowBox[{"m", ",", "n"}], "]"}]}], "+", 
+   RowBox[{
+    FractionBox["1", "2"], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "2"}], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", 
+          RowBox[{"u", "[", 
+           RowBox[{"m", ",", "n"}], "]"}]}], "+", 
+         RowBox[{"u", "[", 
+          RowBox[{"m", ",", 
+           RowBox[{"1", "+", "n"}]}], "]"}]}], ")"}]}], "-", 
+      RowBox[{"2", " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", 
+          RowBox[{"u", "[", 
+           RowBox[{"m", ",", "n"}], "]"}]}], "+", 
+         RowBox[{"u", "[", 
+          RowBox[{
+           RowBox[{"1", "+", "m"}], ",", "n"}], "]"}]}], ")"}]}]}], ")"}]}]}],
+   "}"}]], "Output",
+ CellLabel->"Out[5]=",
+ CellID->590487052,ExpressionUUID->"b1295cb9-fb03-4ef0-8ef9-dfb5f6722b55"]
+}, Open  ]],
+
+Cell["Note that, after simplifying and removing the brackets", "ExampleText",
+ CellID->1765887511,ExpressionUUID->"80d2ed71-e01e-4cee-8618-b5b74cf10cf3"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"First", "@", 
+  RowBox[{"Simplify", "[", "%", "]"}]}]], "Input",
+ CellLabel->"In[6]:=",
+ CellID->1539173532,ExpressionUUID->"634857a4-deba-4bc9-94ff-c84cc27b5526"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", 
+   RowBox[{"u", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", "1"}], "+", "m"}], ",", "n"}], "]"}]}], "-", 
+  RowBox[{"u", "[", 
+   RowBox[{"m", ",", 
+    RowBox[{
+     RowBox[{"-", "1"}], "+", "n"}]}], "]"}], "+", 
+  RowBox[{"4", " ", 
+   RowBox[{"u", "[", 
+    RowBox[{"m", ",", "n"}], "]"}]}], "-", 
+  RowBox[{"u", "[", 
+   RowBox[{"m", ",", 
+    RowBox[{"1", "+", "n"}]}], "]"}], "-", 
+  RowBox[{"u", "[", 
+   RowBox[{
+    RowBox[{"1", "+", "m"}], ",", "n"}], "]"}]}]], "Output",
+ CellLabel->"Out[6]=",
+ CellID->1070021709,ExpressionUUID->"3d4c7a33-d66c-4dad-993b-0cfe1d6b7bb2"]
+}, Open  ]],
+
+Cell["it is the same as", "ExampleText",
+ CellID->1861934205,ExpressionUUID->"f22fa90b-1bdc-41c7-ae62-b8ca8002193c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", " ", 
+   RowBox[{"DifferenceDelta", "[", 
+    RowBox[{
+     RowBox[{"u", "[", 
+      RowBox[{
+       RowBox[{"m", "-", "1"}], ",", "n"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"m", ",", "2"}], "}"}]}], "]"}]}], " ", "-", " ", 
+  RowBox[{"DifferenceDelta", "[", 
+   RowBox[{
+    RowBox[{"u", "[", 
+     RowBox[{"m", ",", 
+      RowBox[{"n", "-", "1"}]}], "]"}], ",", 
+    RowBox[{"{", 
+     RowBox[{"n", ",", "2"}], "}"}]}], "]"}]}]], "Input",
+ CellLabel->"In[7]:=",
+ CellID->1212974872,ExpressionUUID->"f0942607-a54e-4ce1-92d1-f895ee3711b5"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", 
+   RowBox[{"u", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", "1"}], "+", "m"}], ",", "n"}], "]"}]}], "-", 
+  RowBox[{"u", "[", 
+   RowBox[{"m", ",", 
+    RowBox[{
+     RowBox[{"-", "1"}], "+", "n"}]}], "]"}], "+", 
+  RowBox[{"4", " ", 
+   RowBox[{"u", "[", 
+    RowBox[{"m", ",", "n"}], "]"}]}], "-", 
+  RowBox[{"u", "[", 
+   RowBox[{"m", ",", 
+    RowBox[{"1", "+", "n"}]}], "]"}], "-", 
+  RowBox[{"u", "[", 
+   RowBox[{
+    RowBox[{"1", "+", "m"}], ",", "n"}], "]"}]}]], "Output",
+ CellLabel->"Out[7]=",
+ CellID->1154623552,ExpressionUUID->"e80c45b0-5876-41a4-9224-1920e6a327e6"]
+}, Open  ]]
+}, Open  ]]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "0"}, 
+  Closed]]]]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, 
+  Closed]]]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[GridBox[{
+   {
+    DynamicBox[FEPrivate`ImportImage[
+      FrontEnd`FileName[{"Documentation", "FooterIcons"}, "RelatedGuide.png"]],
+     ImageSizeCache->{50., {27., 33.}}], GridBox[{
+      {
+       StyleBox[
+        RowBox[{"Related", " ", "Guides"}], "MoreAboutSection"]},
+      {
+       RowBox[{"\[FilledVerySmallSquare]", Cell[BoxData[
+         TemplateBox[{
+           Cell[
+            TextData["PDESymbolics"]], 
+           "paclet:PDESymbolics2022/guide/PDESymbolics"},
+          "RefLinkPlain",
+          BaseStyle->{"MoreAbout"}]], "MoreAbout",ExpressionUUID->
+         "03a5d8dc-2732-4f3c-9077-cad925cb0643"]}]}
+     }]}
+  }]], "MoreAboutSection",ExpressionUUID->"e0a3bccd-4bf9-4938-973a-\
+d30d7dd9f034"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[If[CurrentValue[
+      EvaluationNotebook[], {TaggingRules, "ShowCitation"}] === False, 
+    TagBox[
+     ButtonBox[
+      FrameBox[
+       RowBox[{
+         DynamicBox[
+          FEPrivate`FrontEndResource[
+          "DocumentationExpressions", "CitationArrow"]], 
+         StyleBox[
+          DynamicBox[
+           FEPrivate`FrontEndResource["DocumentationStrings", "CiteThisAs"]], 
+          "CitationButtonText"]}]], BaseStyle -> "CiteThisAsButton"], 
+     MouseAppearanceTag["LinkHand"]], 
+    StyleBox[
+     TemplateBox[{86, 22}, "Spacer2"]]],
+   ImageSizeCache->{91., {7., 17.}}]], "CitationCell",ExpressionUUID->
+  "98898b78-889f-4a72-b264-413b5c8a737c"],
+ Cell[BoxData[
+  TemplateBox[{8},
+   "Spacer1"]],ExpressionUUID->"c88d7f8f-6cda-44f3-bd6a-78413bc394e3"],
+ Cell[BoxData[
+  DynamicBox[If[CurrentValue[
+      EvaluationNotebook[], {TaggingRules, "ShowCitation"}] === False, 
+    StyleBox[
+     TemplateBox[{
+       Part[
+        CurrentValue[
+         EvaluationNotebook[], {TaggingRules, "CitationPopupData"}], 1]}, 
+      "ClickToCopy", BaseStyle -> "CitationText"], "CitationText"], 
+    StyleBox[
+     TemplateBox[{86, 22}, "Spacer2"]]],
+   ImageSizeCache->{873., {6., 15.}}]],ExpressionUUID->
+  "7870f6fc-e1da-4d00-a296-824143e6eaf2"]
+}], "CitationContainerCell",ExpressionUUID->"aafe1836-ffdd-4c08-b0ce-\
+861a371d601c"]
+}, Open  ]],
+
+Cell[" ", "FooterCell",ExpressionUUID->"30a2756c-d2c6-4a6b-a931-04b02873a245"]
+},
+Saveable->False,
+ScreenStyleEnvironment->"Working",
+WindowSize->{900, 830},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowTitle->"DVarDOperator",
+TaggingRules->{
+ "ModificationHighlight" -> False, "ColorType" -> "", "LinkTrails" -> "", 
+  "HasOptions" -> True, "ExampleCounter" -> 1, 
+  "Openers" -> {
+   "PrimaryExamplesSection" -> Open, "ExampleSection" -> {"0" -> Open}, 
+    "NotesSection" -> Closed}, "NewStyles" -> True, 
+  "CitationPopupData" -> {
+   "Wolfram Research (0), DVarDOperator, Wolfram Language function, \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/DVarDOperator.\
+html.", 
+    GridBox[{{
+       ItemBox["", ItemSize -> "Fit"], 
+       ItemBox[
+        TagBox[
+         ButtonBox[
+          DynamicBox[
+           FEPrivate`FrontEndResource[
+           "DocumentationExpressions", "CitationCloseButton"]], BaseStyle -> 
+          "CitationPopupCloseButton", Appearance -> None], 
+         MouseAppearanceTag["LinkHand"]], Alignment -> Right]}, {
+       Cell[
+        TextData[{
+          StyleBox["Text", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "Wolfram Research (0), DVarDOperator, Wolfram Language \
+function, \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/DVarDOperator.\
+html.", TextForm]}, "ClickToCopy", BaseStyle -> "CitationText"], 
+              ShowStringCharacters -> True], "CitationText"]]]}]], 
+       "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["CMS", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "Wolfram Language. 0. \"DVarDOperator.\" Wolfram Language & \
+System Documentation Center. Wolfram Research. \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/DVarDOperator.\
+html.", TextForm]}, "ClickToCopy", BaseStyle -> "CitationText"], 
+              ShowStringCharacters -> True], "CitationText"]]]}]], 
+       "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["APA", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "Wolfram Language. (0). DVarDOperator. Wolfram Language & \
+System Documentation Center. Retrieved from \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/DVarDOperator.\
+html", TextForm]}, "ClickToCopy", BaseStyle -> "CitationText"], 
+              ShowStringCharacters -> True], "CitationText"]]]}]], 
+       "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["BibTeX", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "@misc{reference.wolfram_2023_dvardoperator, author=\"Wolfram \
+Research\", title=\"{DVarDOperator}\", year=\"0\", \
+howpublished=\"\\url{https://reference.wolfram.com/language/PDESymbolics2022/\
+ref/DVarDOperator.html}\", note=\"[version 12.1]\"}", TextForm]}, 
+               "ClickToCopy", BaseStyle -> "CitationText"], 
+              ShowStringCharacters -> True], "CitationText"]]]}]], 
+       "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["BibLaTeX", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "@online{reference.wolfram_2023_dvardoperator, \
+organization={Wolfram Research}, title={DVarDOperator}, year={0}, \
+url={https://reference.wolfram.com/language/PDESymbolics2022/ref/\
+DVarDOperator.html}, note=\"[version 12.1]\"}", TextForm]}, "ClickToCopy", 
+               BaseStyle -> "CitationText"], ShowStringCharacters -> True], 
+             "CitationText"]]]}]], "\[SpanFromLeft]"}}]}, "ShowCitation" -> 
+  False, "RootCaptions" -> "", 
+  "Metadata" -> {
+   "built" -> "{2023, 1, 11, 10, 34, 14.876107}", 
+    "history" -> {"0.0", "", "", ""}, "context" -> "PDESymbolics2022`", 
+    "keywords" -> {}, "specialkeywords" -> {}, 
+    "tutorialcollectionlinks" -> {}, "index" -> True, "label" -> 
+    "PDE Symbolics2022 Symbol", "language" -> "en", "paclet" -> 
+    "PDESymbolics2022", "status" -> "None", "summary" -> 
+    "DVarDOperator[<|\" depVars\" -> {u1, u2, ...}, \" indVars\" -> {n1, n2, \
+...}|>][{f1, f2, ...}] returns a list of discrete variational derivative of \
+the multiple sums UnderscriptBox[\\[Sum], n1, \\ n2, \\ ... ]f1, \
+UnderscriptBox[\\[Sum], n1, \\ n2, \\ ... ]f2, ... with respect to u1[n1, n2, \
+...], u2[n1, n2, ...], ..., their translations, and n1, n2, ... . ", 
+    "synonyms" -> {}, "tabletags" -> {}, "title" -> "DVarDOperator", 
+    "titlemodifier" -> "", "windowtitle" -> "DVarDOperator", "type" -> 
+    "Symbol", "uri" -> "PDESymbolics2022/ref/DVarDOperator"}},
+CellContext->"Global`",
+FrontEndVersion->"12.3 for Mac OS X x86 (64-bit) (July 9, 2021)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[
+    StyleDefinitions -> FrontEnd`FileName[{"Wolfram"}, "Reference.nb"]]], 
+   Cell[
+    StyleData["Input"], CellContext -> "Global`"], 
+   Cell[
+    StyleData["Output"], CellContext -> "Global`"]}, Visible -> False, 
+  FrontEndVersion -> "12.3 for Mac OS X x86 (64-bit) (July 9, 2021)", 
+  StyleDefinitions -> "Default.nb"],
+ExpressionUUID->"23ef6397-2033-468a-8510-48f5673222d6"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "PrimaryExamplesSection"->{
+  Cell[11747, 325, 1390, 37, 36, "PrimaryExamplesSection",ExpressionUUID->"9e336077-3927-4e04-b307-d59715f60f54",
+   CellTags->"PrimaryExamplesSection",
+   CellID->1123664674]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"PrimaryExamplesSection", 31559, 915}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[585, 21, 4439, 106, 57, "AnchorBarGrid",ExpressionUUID->"6cb13a1b-3c3c-4345-bcc3-b691d3b62586",
+ CellID->1],
+Cell[5027, 129, 99, 0, 23, "ContextNameCell",ExpressionUUID->"d306e58f-73e9-4252-b465-37c2234ff477"],
+Cell[CellGroupData[{
+Cell[5151, 133, 556, 14, 60, "ObjectNameGrid",ExpressionUUID->"b9ffc1ca-5a6d-45cd-843c-7b7d46285e07"],
+Cell[5710, 149, 3759, 112, 138, "Usage",ExpressionUUID->"ab12b806-2360-4ac5-8316-72e30933b1b2",
+ CellID->982511436]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9506, 266, 1899, 47, 37, "NotesSection",ExpressionUUID->"891eab59-b968-4809-bd96-17c4224ed3e3",
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->1421415586],
+Cell[11408, 315, 212, 4, 36, "Notes",ExpressionUUID->"5129dcf2-af4f-4a07-baea-396fe412da0c",
+ CellID->1067943069]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, Closed]]]],
+Cell[CellGroupData[{
+Cell[11747, 325, 1390, 37, 36, "PrimaryExamplesSection",ExpressionUUID->"9e336077-3927-4e04-b307-d59715f60f54",
+ CellTags->"PrimaryExamplesSection",
+ CellID->1123664674],
+Cell[CellGroupData[{
+Cell[13162, 366, 1367, 36, 31, "ExampleSection",ExpressionUUID->"6f362d4b-e56b-42f0-903c-96a2a5cffa96",
+ CellID->460984200],
+Cell[14532, 404, 181, 3, 29, "Input",ExpressionUUID->"d5271b3f-a065-4f61-be19-8a55f17af6d3",
+ CellID->1517024587],
+Cell[14716, 409, 271, 7, 38, "ExampleText",ExpressionUUID->"27beb60d-5342-4516-8ded-370576b5c5b5",
+ CellID->1706376525],
+Cell[CellGroupData[{
+Cell[15012, 420, 593, 17, 29, "Input",ExpressionUUID->"3e0eefb1-65b9-41dd-90a3-c7825759511c",
+ CellID->1799424254],
+Cell[15608, 439, 149, 3, 37, "Output",ExpressionUUID->"5d94a7a0-63c2-419b-ab4c-91e2d09ba8d9",
+ CellID->1187543715]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15794, 447, 243, 5, 14, "ExampleDelimiter",ExpressionUUID->"dfda6225-fbe3-4180-aa98-432f9a21494d",
+ CellID->1384713321],
+Cell[16040, 454, 181, 3, 29, "Input",ExpressionUUID->"663da4ab-37ad-4c14-95ff-cabf760f9be3",
+ CellID->1637551839],
+Cell[16224, 459, 306, 7, 38, "ExampleText",ExpressionUUID->"f14d45cd-3286-41eb-89a5-515ce4493381",
+ CellID->183338121],
+Cell[CellGroupData[{
+Cell[16555, 470, 622, 18, 29, "Input",ExpressionUUID->"050bf344-4104-4092-bdf7-0c294f980536",
+ CellID->1872249849],
+Cell[17180, 490, 445, 14, 37, "Output",ExpressionUUID->"64e5e3ac-875f-4d87-88b1-814aecd478ea",
+ CellID->51727538]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17662, 509, 338, 10, 29, "Input",ExpressionUUID->"4598651b-b221-494d-b673-b25ca60f9704",
+ CellID->629447228],
+Cell[18003, 521, 413, 13, 37, "Output",ExpressionUUID->"fc6cd7fa-b083-4c47-8eee-3b1f8aca049f",
+ CellID->581495375]
+}, Open  ]],
+Cell[18431, 537, 180, 3, 29, "Input",ExpressionUUID->"0dec8b23-4272-482d-a99a-6bb5abc6697d",
+ CellID->596503508],
+Cell[18614, 542, 176, 3, 38, "ExampleText",ExpressionUUID->"41cb86ab-a040-4e6f-af13-2888ccdd775c",
+ CellID->980794760],
+Cell[CellGroupData[{
+Cell[18815, 549, 949, 29, 48, "Input",ExpressionUUID->"116f50fa-9777-4ed6-9c82-e53bc572f061",
+ CellID->636303956],
+Cell[19767, 580, 1172, 40, 53, "Output",ExpressionUUID->"b1295cb9-fb03-4ef0-8ef9-dfb5f6722b55",
+ CellID->590487052]
+}, Open  ]],
+Cell[20954, 623, 153, 1, 70, "ExampleText",ExpressionUUID->"80d2ed71-e01e-4cee-8618-b5b74cf10cf3",
+ CellID->1765887511],
+Cell[CellGroupData[{
+Cell[21132, 628, 187, 4, 70, "Input",ExpressionUUID->"634857a4-deba-4bc9-94ff-c84cc27b5526",
+ CellID->1539173532],
+Cell[21322, 634, 628, 21, 37, "Output",ExpressionUUID->"3d4c7a33-d66c-4dad-993b-0cfe1d6b7bb2",
+ CellID->1070021709]
+}, Open  ]],
+Cell[21965, 658, 116, 1, 70, "ExampleText",ExpressionUUID->"f22fa90b-1bdc-41c7-ae62-b8ca8002193c",
+ CellID->1861934205],
+Cell[CellGroupData[{
+Cell[22106, 663, 588, 18, 70, "Input",ExpressionUUID->"f0942607-a54e-4ce1-92d1-f895ee3711b5",
+ CellID->1212974872],
+Cell[22697, 683, 628, 21, 37, "Output",ExpressionUUID->"e80c45b0-5876-41a4-9224-1920e6a327e6",
+ CellID->1154623552]
+}, Open  ]]
+}, Open  ]]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "0"}, Closed]]]]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, Closed]]]],
+Cell[CellGroupData[{
+Cell[23601, 716, 728, 19, 70, "MoreAboutSection",ExpressionUUID->"e0a3bccd-4bf9-4938-973a-d30d7dd9f034"],
+Cell[24332, 737, 1382, 37, 70, "CitationContainerCell",ExpressionUUID->"aafe1836-ffdd-4c08-b0ce-861a371d601c"]
+}, Open  ]],
+Cell[25729, 777, 78, 0, 70, "FooterCell",ExpressionUUID->"30a2756c-d2c6-4a6b-a931-04b02873a245"]
+}
+]
+*)
+
+(* End of internal cache information *)
+

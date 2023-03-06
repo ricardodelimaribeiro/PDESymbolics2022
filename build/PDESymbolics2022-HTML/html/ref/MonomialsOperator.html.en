@@ -1,0 +1,752 @@
+
+		<!DOCTYPE html>
+		<html lang="en">
+
+		<head>
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset="utf-8">
+	
+
+<title>MonomialsOperator&mdash;Wolfram Language Documentation</title>
+<meta name="buildnumber" content="0000000">
+<meta name="historydata" content="{0.0, , , }" />
+<meta name="keywords" content="MonomialsOperator" />
+
+<meta name="description" content="MonomialsOperator[variables][specs] returns a list of monomials in the variables that meet the specs." />
+<link rel="stylesheet" href="../../common/framework/css/framework.en.css"><link rel="stylesheet" href="../../common/framework/css/gui.en.css"><link rel="stylesheet" href="../../common/js/clipboard/2.0/clipboard.css"><link rel="stylesheet" href="../../fonts/source-code-pro/1.0/all.css"><link rel="stylesheet" href="../../fonts/source-sans-pro/1.0/global.css"><link rel="stylesheet" href="../../language-assets/css/entities.css"><link rel="stylesheet" href="../../language-assets/css/footer.css"><link rel="stylesheet" href="../../language-assets/css/global.css"><link rel="stylesheet" href="../../language-assets/css/guide.css"><link rel="stylesheet" href="../../language-assets/css/header-language.css"><link rel="stylesheet" href="../../language-assets/css/iconography.css"><link rel="stylesheet" href="../../language-assets/css/icons.css"><link rel="stylesheet" href="../../language-assets/css/in-out.css"><link rel="stylesheet" href="../../language-assets/css/language-specific.css"><link rel="stylesheet" href="../../language-assets/css/language.css"><link rel="stylesheet" href="../../language-assets/css/man-page.css"><link rel="stylesheet" href="../../language-assets/css/related-links.css"><link rel="stylesheet" href="../../language-assets/css/root-guide-language.css"><link rel="stylesheet" href="../../language-assets/css/special-styles.css"><link rel="stylesheet" href="../../language-assets/css/tables.css"><link rel="stylesheet" href="../../language-assets/css/technotes.css"><link rel="stylesheet" href="../../language-assets/css/tooltips.css"><link rel="stylesheet" href="../../language-assets/css/workflows.css">
+<script>var baselang = 'MonomialsOperator.en';</script>
+</head>
+
+<body id="ref" class="package">
+  <main class="main">
+  <nav class="topContentWrap"><span class="badge">PDE SYMBOLICS2022 SYMBOL</span><ul class="dropdown">
+   <li>
+    <a href="#" class="menu related-guides">Related Guides</a>
+    <ul class="sub_menu">
+     <li>
+      <a href="../guide/PDESymbolics.html"><span class="dropdownPad">PDESymbolics</span></a>
+     </li>
+    </ul>
+   </li>
+  </ul></nav><div class="ContextNameCell">PDESymbolics2022`</div><div class="main-heading"><span class="main-title-top">PDESymbolics2022`</span><h1 class="main-title">MonomialsOperator</h1><div class="iconography" data-src="s= d= m= c= u= l= n= e="></div></div><div class="functionIntroWrap">
+  <div class="functionIntro">
+   <p class="code">
+    <span class="IF"><span class="specialcharacters">MonomialsOperator<span class="openbracket">[</span>variables<span class="closebracket">]</span><span class="openbracket">[</span>specs<span class="closebracket">]</span></span></span>
+   </p>
+   <p class="code-description">returns a list of monomials in the variables that meet the specs.</p>
+  </div>
+ </div><section id="Examples"><h1 class="toggle open">Examples</h1><div class="hideable">
+   <div>
+    <h2 class="toggle open">Basic Examples<span class="special-character NonBreakingSpace">&#160;</span><span class="special-character NonBreakingSpace">&#160;</span><span class="total-examples">(1)</span></h2>
+    <div class="hideable">
+     <div class="Code">
+      <pre>Get[&quot;PDESymbolics2022`&quot;]</pre>
+     </div>
+     <li><a name="1067943069"></a>Generates monomials base case</li>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;-&gt;{u}, &quot;indVars&quot;-&gt;{x}];<br />MonomialsOperator[variables][Association[]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[52]="
+         data-out-num="52"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_1.png"
+         data-out-width="68"
+         data-out-height="17"
+         ></div>
+     <li><a name="1319883146"></a>Degree and derivatives options (degree by default is 2 and derivatives by default are 0)</li>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;-&gt;{u}, &quot;indVars&quot;-&gt;{x}];<br />MonomialsOperator[variables][Association[&quot;degree&quot;-&gt;4]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[54]="
+         data-out-num="54"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_2.png"
+         data-out-width="126"
+         data-out-height="17"
+         ></div>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;-&gt;{u}, &quot;indVars&quot;-&gt;{x}];<br />MonomialsOperator[variables][Association[&quot;degree&quot;-&gt;1, &quot;derivatives&quot;-&gt;2]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[56]="
+         data-out-num="56"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_3.png"
+         data-out-width="94"
+         data-out-height="16"
+         ></div>
+     <li><a name="2665383"></a>Multiple dependent and independent variables are supported</li>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;-&gt;{u,v}, &quot;indVars&quot;-&gt;{x,y}];<br />MonomialsOperator[variables][Association[&quot;degree&quot;-&gt;1, &quot;derivatives&quot;-&gt;2]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[58]="
+         data-out-num="58"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_4.png"
+         data-out-width="318"
+         data-out-height="35"
+         ></div>
+     <li><a name="1039273739"></a>Type:Odd or even or all</li>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;-&gt;{u}, &quot;indVars&quot;-&gt;{x,y}];<br />MonomialsOperator[variables][Association[&quot;degree&quot;-&gt;2, &quot;derivatives&quot;-&gt;1,<br />&quot;type&quot;-&gt;&quot;Odd&quot;]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[60]="
+         data-out-num="60"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_5.png"
+         data-out-width="142"
+         data-out-height="17"
+         ></div>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;-&gt;{u}, &quot;indVars&quot;-&gt;{x,y}]<br />MonomialsOperator[variables][Association[&quot;degree&quot;-&gt;2, &quot;derivatives&quot;-&gt;1,<br />&quot;type&quot;-&gt;&quot;Even&quot;]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[29]="
+         data-out-num="29"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_6.png"
+         data-out-width="176"
+         data-out-height="16"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[30]="
+         data-out-num="30"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_7.png"
+         data-out-width="436"
+         data-out-height="17"
+         ></div>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;-&gt;{u}, &quot;indVars&quot;-&gt;{x,y}];<br />MonomialsOperator[variables][Association[&quot;degree&quot;-&gt;2, &quot;derivatives&quot;-&gt;1,<br />&quot;type&quot;-&gt;&quot;All&quot;]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[62]="
+         data-out-num="62"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_8.png"
+         data-out-width="359"
+         data-out-height="35"
+         ></div>
+     <li><a name="739955292"></a>Homogeneous degree</li>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;-&gt;{u}, &quot;indVars&quot;-&gt;{x,y}];<br />MonomialsOperator[variables][Association[&quot;degree&quot;-&gt;2, &quot;derivatives&quot;-&gt;1,<br />&quot;homogeneousdegree&quot;-&gt;True]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[64]="
+         data-out-num="64"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_9.png"
+         data-out-width="424"
+         data-out-height="17"
+         ></div>
+     <li><a name="1764329384"></a>Homogeneous derivatives</li>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;-&gt;{u}, &quot;indVars&quot;-&gt;{x}];<br />MonomialsOperator[variables][Association[&quot;degree&quot;-&gt;2, &quot;derivatives&quot;-&gt;2,<br />&quot;homogeneousderivatives&quot;-&gt;False]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[66]="
+         data-out-num="66"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_10.png"
+         data-out-width="340"
+         data-out-height="17"
+         ></div>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;-&gt;{u}, &quot;indVars&quot;-&gt;{x}];<br />MonomialsOperator[variables][Association[&quot;degree&quot;-&gt;2, &quot;derivatives&quot;-&gt;2,<br />&quot;homogeneousderivatives&quot;-&gt;True]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[68]="
+         data-out-num="68"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_11.png"
+         data-out-width="67"
+         data-out-height="17"
+         ></div>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;-&gt;{u}, &quot;indVars&quot;-&gt;{x,y}];<br />MonomialsOperator[variables][Association[&quot;degree&quot;-&gt;2, &quot;derivatives&quot;-&gt;2,<br />&quot;homogeneousderivatives&quot;-&gt;True, &quot;type&quot;-&gt;&quot;Odd&quot;]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[70]="
+         data-out-num="70"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_12.png"
+         data-out-width="159"
+         data-out-height="17"
+         ></div>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;-&gt;{u}, &quot;indVars&quot;-&gt;{x,y}];<br />MonomialsOperator[variables][Association[&quot;degree&quot;-&gt;2, &quot;derivatives&quot;-&gt;2,<br />&quot;homogeneousderivatives&quot;-&gt;True, &quot;homogeneousdegree&quot;-&gt;True]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[72]="
+         data-out-num="72"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_13.png"
+         data-out-width="474"
+         data-out-height="17"
+         ></div>
+     <li><a name="1125341067"></a>Independent variables</li>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;-&gt;{u}, &quot;indVars&quot;-&gt;{x,y}];<br />MonomialsOperator[variables][Association[&quot;degree&quot;-&gt;1, &quot;derivatives&quot;-&gt;1,<br />&quot;indVars&quot;-&gt;True]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[74]="
+         data-out-num="74"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_14.png"
+         data-out-width="177"
+         data-out-height="17"
+         ></div>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;-&gt;{u}, &quot;indVars&quot;-&gt;{x,y}];<br />MonomialsOperator[variables][Association[&quot;degree&quot;-&gt;2, &quot;derivatives&quot;-&gt;1,<br />&quot;indVars&quot;-&gt;True, &quot;homogeneousdegree&quot;-&gt;True]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[76]="
+         data-out-num="76"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_15.png"
+         data-out-width="426"
+         data-out-height="35"
+         ></div>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;-&gt;{u}, &quot;indVars&quot;-&gt;{x}];<br />MonomialsOperator[variables][Association[&quot;degree&quot;-&gt;2, &quot;derivatives&quot;-&gt;2,<br />&quot;indVars&quot;-&gt;True, &quot;homogeneousderivatives&quot;-&gt;True]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[78]="
+         data-out-num="78"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_16.png"
+         data-out-width="132"
+         data-out-height="17"
+         ></div>
+     <li><a name="2144821964"></a>Generic functions - if generic functions are true they are handled as dependent variables. </li>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;-&gt;{u}, &quot;indVars&quot;-&gt;{x}, &quot;genFuns&quot;-&gt;{V}];<br />MonomialsOperator[variables][Association[&quot;degree&quot;-&gt;2, &quot;derivatives&quot;-&gt;1]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[80]="
+         data-out-num="80"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_17.png"
+         data-out-width="174"
+         data-out-height="17"
+         ></div>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;-&gt;{u}, &quot;indVars&quot;-&gt;{x}, &quot;genFuns&quot;-&gt;{V}];<br />MonomialsOperator[variables][Association[&quot;degree&quot;-&gt;2, &quot;derivatives&quot;-&gt;1, <br />&quot;genFuns&quot;-&gt;True]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[82]="
+         data-out-num="82"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_18.png"
+         data-out-width="523"
+         data-out-height="17"
+         ></div>
+     <li><a name="65309880"></a>Weights - generates monomials with a degree given by weights</li>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;-&gt;{u}, &quot;indVars&quot;-&gt;{x}]<br />MonomialsOperator[variables][Association[&quot;degree&quot;-&gt;10, &quot;derivatives&quot;-&gt;2,<br />&quot;weights&quot;-&gt;{{1},{3}}]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[49]="
+         data-out-num="49"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_19.png"
+         data-out-width="165"
+         data-out-height="16"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[50]="
+         data-out-num="50"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_20.png"
+         data-out-width="200"
+         data-out-height="17"
+         ></div>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;-&gt;{u}, &quot;indVars&quot;-&gt;{x}]<br />MonomialsOperator[variables][Association[&quot;degree&quot;-&gt;8, &quot;derivatives&quot;-&gt;4,<br />&quot;weights&quot;-&gt;{{2},{1}}]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[51]="
+         data-out-num="51"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_21.png"
+         data-out-width="165"
+         data-out-height="16"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[52]="
+         data-out-num="52"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_22.png"
+         data-out-width="284"
+         data-out-height="17"
+         ></div>
+     <li><a name="391456679"></a>Monomials with weights using independent variables at a given depth<br /></li>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;-&gt;{u}, &quot;indVars&quot;-&gt;{x}]<br />MonomialsOperator[variables][Association[&quot;degree&quot;-&gt;4, &quot;derivatives&quot;-&gt;2,&quot;indVars&quot;-&gt;True,&quot;weights&quot;-&gt;{{1},{2}}, &quot;depth&quot;-&gt;0]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[53]="
+         data-out-num="53"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_23.png"
+         data-out-width="165"
+         data-out-height="16"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[54]="
+         data-out-num="54"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_24.png"
+         data-out-width="79"
+         data-out-height="17"
+         ></div>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;-&gt;{u}, &quot;indVars&quot;-&gt;{x}]<br />MonomialsOperator[variables][Association[&quot;degree&quot;-&gt;4, &quot;derivatives&quot;-&gt;2,&quot;indVars&quot;-&gt;True,&quot;weights&quot;-&gt;{{1},{2}}, &quot;depth&quot;-&gt;2]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[55]="
+         data-out-num="55"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_25.png"
+         data-out-width="165"
+         data-out-height="16"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[56]="
+         data-out-num="56"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_26.png"
+         data-out-width="307"
+         data-out-height="35"
+         ></div>
+     <li><a name="725515175"></a>Multiple weights</li>
+     <div id="637671916"
+         class="clipboard-input"
+         data-in="In[1]:="
+         data-in-num="1"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/I_1.png"
+         data-in-width="351"
+         data-in-height="78"
+         data-link="https://wolfram.com/xid/04io7u0n9f3fj1885ukk0bzda2-ktxs22"
+         data-code="Files/MonomialsOperator.en/i_1.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[1]="
+         data-out-num="1"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_27.png"
+         data-out-width="165"
+         data-out-height="16"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[1]="
+         data-out-num="1"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_28.png"
+         data-out-width="84"
+         data-out-height="17"
+         ></div>
+     <div id="1408493682"
+         class="clipboard-input"
+         data-in="In[2]:="
+         data-in-num="2"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/I_2.png"
+         data-in-width="351"
+         data-in-height="98"
+         data-link="https://wolfram.com/xid/04io7u0n9f3fj1885ukk0bzda2-xku6ys"
+         data-code="Files/MonomialsOperator.en/i_2.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[2]="
+         data-out-num="2"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_29.png"
+         data-out-width="165"
+         data-out-height="16"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[2]="
+         data-out-num="2"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_30.png"
+         data-out-width="32"
+         data-out-height="17"
+         ></div>
+     <div id="1778492193"
+         class="clipboard-input"
+         data-in="In[3]:="
+         data-in-num="3"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/MonomialsOperator.en/I_3.png"
+         data-big="462 78"
+         data-small="351 98"
+         data-link="https://wolfram.com/xid/04io7u0n9f3fj1885ukk0bzda2-3o5jm7"
+         data-code="Files/MonomialsOperator.en/i_3.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[3]="
+         data-out-num="3"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_31.png"
+         data-out-width="165"
+         data-out-height="16"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[3]="
+         data-out-num="3"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_32.png"
+         data-out-width="144"
+         data-out-height="17"
+         ></div>
+     <div id="1636922515"
+         class="clipboard-input"
+         data-in="In[4]:="
+         data-in-num="4"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/MonomialsOperator.en/I_4.png"
+         data-big="462 78"
+         data-small="351 98"
+         data-link="https://wolfram.com/xid/04io7u0n9f3fj1885ukk0bzda2-1cu7r5"
+         data-code="Files/MonomialsOperator.en/i_4.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[4]="
+         data-out-num="4"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_33.png"
+         data-out-width="165"
+         data-out-height="16"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[4]="
+         data-out-num="4"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_34.png"
+         data-out-width="191"
+         data-out-height="17"
+         ></div>
+     <li><a name="1677532291"></a>Generators. The idea is that dependent variables' role</li>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;<span class="special-character Rule">&#62754;</span>{u,v},&quot;indVars&quot;<span class="special-character Rule">&#62754;</span>{x}]<br />MonomialsOperator[variables][Association[{<br />&quot;degree&quot;<span class="special-character Rule">&#62754;</span>4, <br />&quot;generators&quot;<span class="special-character Rule">&#62754;</span>{E^(u[x]),E^v[x]}}]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[36]="
+         data-out-num="36"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_35.png"
+         data-out-width="176"
+         data-out-height="16"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[37]="
+         data-out-num="37"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_36.png"
+         data-out-width="539"
+         data-out-height="17"
+         ></div>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;<span class="special-character Rule">&#62754;</span>{u,v},&quot;indVars&quot;<span class="special-character Rule">&#62754;</span>{x}]<br />MonomialsOperator[variables][Association[{&quot;degree&quot;<span class="special-character Rule">&#62754;</span>4,&quot;type&quot;-&gt;&quot;Odd&quot;,<br /> &quot;generators&quot;<span class="special-character Rule">&#62754;</span>{E^(u[x]), v[x]}}]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[8]="
+         data-out-num="8"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_37.png"
+         data-out-width="176"
+         data-out-height="16"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[9]="
+         data-out-num="9"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_38.png"
+         data-out-width="211"
+         data-out-height="17"
+         ></div>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;<span class="special-character Rule">&#62754;</span>{u,v},&quot;indVars&quot;<span class="special-character Rule">&#62754;</span>{x}]<br />MonomialsOperator[variables][Association[{&quot;degree&quot;<span class="special-character Rule">&#62754;</span>4,&quot;type&quot;-&gt;&quot;Even&quot;,<br /> &quot;generators&quot;<span class="special-character Rule">&#62754;</span>{E^(u[x]), v[x]}}]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[10]="
+         data-out-num="10"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_39.png"
+         data-out-width="176"
+         data-out-height="16"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[11]="
+         data-out-num="11"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_40.png"
+         data-out-width="334"
+         data-out-height="17"
+         ></div>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;<span class="special-character Rule">&#62754;</span>{u,v},&quot;indVars&quot;<span class="special-character Rule">&#62754;</span>{x}]<br />MonomialsOperator[variables][Association[{&quot;degree&quot;<span class="special-character Rule">&#62754;</span>4,&quot;homogeneousdegree&quot;-&gt;True,<br /> &quot;generators&quot;<span class="special-character Rule">&#62754;</span>{E^(u[x]), v[x]}}]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[63]="
+         data-out-num="63"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_41.png"
+         data-out-width="176"
+         data-out-height="16"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[64]="
+         data-out-num="64"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_42.png"
+         data-out-width="218"
+         data-out-height="17"
+         ></div>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;<span class="special-character Rule">&#62754;</span>{u,v},&quot;indVars&quot;<span class="special-character Rule">&#62754;</span>{x}]<br />MonomialsOperator[variables][Association[{&quot;degree&quot;<span class="special-character Rule">&#62754;</span>2,&quot;derivatives&quot;-&gt;2,<br /> &quot;generators&quot;<span class="special-character Rule">&#62754;</span>{E^(u[x]), v[x]}}]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[12]="
+         data-out-num="12"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_43.png"
+         data-out-width="176"
+         data-out-height="16"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[13]="
+         data-out-num="13"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_44.png"
+         data-out-width="515"
+         data-out-height="69"
+         ></div>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;<span class="special-character Rule">&#62754;</span>{u,v},&quot;indVars&quot;<span class="special-character Rule">&#62754;</span>{x}]<br />MonomialsOperator[variables][Association[{&quot;degree&quot;<span class="special-character Rule">&#62754;</span>2,&quot;derivatives&quot;-&gt;2,<br />&quot;type&quot;-&gt;&quot;Even&quot;,<br /> &quot;generators&quot;<span class="special-character Rule">&#62754;</span>{E^(u[x]), v[x]}}]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[4]="
+         data-out-num="4"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_45.png"
+         data-out-width="176"
+         data-out-height="16"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[5]="
+         data-out-num="5"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_46.png"
+         data-out-width="428"
+         data-out-height="69"
+         ></div>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;<span class="special-character Rule">&#62754;</span>{u,v},&quot;indVars&quot;<span class="special-character Rule">&#62754;</span>{x}]<br />MonomialsOperator[variables][Association[{&quot;degree&quot;<span class="special-character Rule">&#62754;</span>2,&quot;derivatives&quot;-&gt;2,<br />&quot;type&quot;-&gt;&quot;Odd&quot;,<br /> &quot;generators&quot;<span class="special-character Rule">&#62754;</span>{E^(u[x]), v[x]}}]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[12]="
+         data-out-num="12"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_47.png"
+         data-out-width="176"
+         data-out-height="16"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[13]="
+         data-out-num="13"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_48.png"
+         data-out-width="469"
+         data-out-height="18"
+         ></div>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;<span class="special-character Rule">&#62754;</span>{u,v},&quot;indVars&quot;<span class="special-character Rule">&#62754;</span>{x}]<br />MonomialsOperator[variables][Association[{&quot;degree&quot;<span class="special-character Rule">&#62754;</span>2,&quot;derivatives&quot;-&gt;0,<br />&quot;homogeneousdegree&quot;-&gt;True,<br /> &quot;generators&quot;<span class="special-character Rule">&#62754;</span>{E^(u[x]), v[x]}}]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[7]="
+         data-out-num="7"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_49.png"
+         data-out-width="176"
+         data-out-height="16"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[8]="
+         data-out-num="8"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_50.png"
+         data-out-width="107"
+         data-out-height="17"
+         ></div>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;<span class="special-character Rule">&#62754;</span>{u,v},&quot;indVars&quot;<span class="special-character Rule">&#62754;</span>{x}]<br />MonomialsOperator[variables][Association[{&quot;degree&quot;<span class="special-character Rule">&#62754;</span>2,&quot;derivatives&quot;-&gt;2,<br />&quot;homogeneousderivatives&quot;-&gt;True,<br /> &quot;generators&quot;<span class="special-character Rule">&#62754;</span>{E^(u[x]), v[x]}}]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[10]="
+         data-out-num="10"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_51.png"
+         data-out-width="176"
+         data-out-height="16"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[11]="
+         data-out-num="11"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_52.png"
+         data-out-width="435"
+         data-out-height="17"
+         ></div>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;<span class="special-character Rule">&#62754;</span>{u,v},&quot;indVars&quot;<span class="special-character Rule">&#62754;</span>{x}]<br />MonomialsOperator[variables][Association[{&quot;degree&quot;<span class="special-character Rule">&#62754;</span>2,&quot;derivatives&quot;-&gt;2,<br />&quot;homogeneousderivatives&quot;-&gt;True,&quot;homogeneousdegree&quot;-&gt;True,<br /> &quot;generators&quot;<span class="special-character Rule">&#62754;</span>{E^(u[x]), v[x]}}]]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[12]="
+         data-out-num="12"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_53.png"
+         data-out-width="176"
+         data-out-height="16"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[13]="
+         data-out-num="13"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_54.png"
+         data-out-width="298"
+         data-out-height="17"
+         ></div>
+     <li><a name="871732051"></a>Weights and generators</li>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;<span class="special-character Rule">&#62754;</span>{u,v},&quot;indVars&quot;<span class="special-character Rule">&#62754;</span>{x}];<br />MonomialsOperator[variables][<br />Association[<br />{<br />&quot;degree&quot;<span class="special-character Rule">&#62754;</span>4,<br />&quot;derivatives&quot;-&gt;1,<br />&quot;weights&quot;-&gt;{{1,2},{1}},<br />&quot;generators&quot;<span class="special-character Rule">&#62754;</span>{E^(u[x]), E^(v[x])}<br />}<br />]<br />]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[48]="
+         data-out-num="48"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_55.png"
+         data-out-width="356"
+         data-out-height="17"
+         ></div>
+     <li><a name="1050989859"></a>Difference Operators - the idea is to use a stencil to generate automatically generators. Stencil can be a list or an association. </li>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;<span class="special-character Rule">&#62754;</span>{u,v},&quot;indVars&quot;<span class="special-character Rule">&#62754;</span>{x}];<br />xp=Association[{&quot;degree&quot;<span class="special-character Rule">&#62754;</span>1,&quot;derivatives&quot;<span class="special-character Rule">&#62754;</span>0,<br />&quot;stencil&quot;<span class="special-character Rule">&#62754;</span>{{0}, {1}, {-1}}}];<br />MonomialsOperator[variables][xp]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[135]="
+         data-out-num="135"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_56.png"
+         data-out-width="235"
+         data-out-height="16"
+         ></div>
+     <li><a name="2077785723"></a>In the case of association, the monomials will depend only on the variables that have a corresponding key </li>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;<span class="special-character Rule">&#62754;</span>{u,v},&quot;indVars&quot;<span class="special-character Rule">&#62754;</span>{x}];<br />xp=Association[{&quot;degree&quot;<span class="special-character Rule">&#62754;</span>1,&quot;derivatives&quot;<span class="special-character Rule">&#62754;</span>0,<br />&quot;stencil&quot;<span class="special-character Rule">&#62754;</span>Association[u-&gt;{{0}, {1}, {-1}}]}];<br />MonomialsOperator[variables][xp]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[144]="
+         data-out-num="144"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_57.png"
+         data-out-width="126"
+         data-out-height="16"
+         ></div>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;<span class="special-character Rule">&#62754;</span>{u,v},&quot;indVars&quot;<span class="special-character Rule">&#62754;</span>{x}];<br />xp=Association[{<br />&quot;degree&quot;<span class="special-character Rule">&#62754;</span>2,<br />&quot;stencil&quot;<span class="special-character Rule">&#62754;</span>Association[u-&gt;{{0}, {1} },v-&gt;{{0}, {-1} }]}];<br />MonomialsOperator[variables][xp]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[199]="
+         data-out-num="199"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_58.png"
+         data-out-width="373"
+         data-out-height="35"
+         ></div>
+     <div class="Code">
+      <pre>variables=Association[&quot;depVars&quot;<span class="special-character Rule">&#62754;</span>{u},&quot;indVars&quot;<span class="special-character Rule">&#62754;</span>{x}];<br />xp=Association[{<br />&quot;degree&quot;<span class="special-character Rule">&#62754;</span>2,<br />&quot;indVars&quot;<span class="special-character Rule">&#62754;</span>True,<br />&quot;stencil&quot;<span class="special-character Rule">&#62754;</span>Association[u-&gt;{{0}, {1} },v-&gt;{{0}, {-1} }]}];<br />MonomialsOperator[variables][xp]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[196]="
+         data-out-num="196"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_59.png"
+         data-out-width="329"
+         data-out-height="17"
+         ></div>
+     <div class="Code">
+      <pre>variables=Association[<br />&quot;depVars&quot;<span class="special-character Rule">&#62754;</span>{u,v},<br />&quot;indVars&quot;<span class="special-character Rule">&#62754;</span>{x,y}];<br />xp=Association[<br />&quot;degree&quot;<span class="special-character Rule">&#62754;</span>1,<br />&quot;stencil&quot;<span class="special-character Rule">&#62754;</span>Association[u-&gt;{{0,0}, {1,1}, {-1,-1}}]<br />];<br />MonomialsOperator[variables][xp]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[174]="
+         data-out-num="174"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_60.png"
+         data-out-width="200"
+         data-out-height="16"
+         ></div>
+     <li><a name="637561154"></a>Generic functions are also supported</li>
+     <div class="Code">
+      <pre>variables=Association[<br />&quot;depVars&quot;<span class="special-character Rule">&#62754;</span>{u,v},<br />&quot;indVars&quot;<span class="special-character Rule">&#62754;</span>{x}, <br />&quot;genFuns&quot;-&gt;{V}];<br />xp=Association[<br />&quot;degree&quot;<span class="special-character Rule">&#62754;</span>2,<br />&quot;stencil&quot;<span class="special-character Rule">&#62754;</span>{{0}, {1}}, <br />&quot;genFuns&quot;-&gt;True, <br />&quot;homogeneousdegree&quot;-&gt;True];<br />MonomialsOperator[variables][xp]</pre>
+     </div>
+     <div class="clipboard-output"
+         data-out="Out[177]="
+         data-out-num="177"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_61.png"
+         data-out-width="437"
+         data-out-height="68"
+         ></div>
+     <div class="Text"><a name="2023582569"></a>Monomials Operator also handles lists</div>
+     <div id="1645379669"
+         class="clipboard-input"
+         data-in="In[5]:="
+         data-in-num="5"
+         data-in-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src-swap="Files/MonomialsOperator.en/I_5.png"
+         data-big="489 78"
+         data-small="367 98"
+         data-link="https://wolfram.com/xid/04io7u0n9f3fj1885ukk0bzda2-1hwhc3"
+         data-code="Files/MonomialsOperator.en/i_5.txt"
+         ></div>
+     <div class="clipboard-output"
+         data-out="Out[5]="
+         data-out-num="5"
+         data-out-src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+         data-src="Files/MonomialsOperator.en/O_62.png"
+         data-out-width="252"
+         data-out-height="17"
+         ></div>
+    </div>
+   </div>
+   <div class="clear"><!-- --></div>
+  </div></section><section id="RelatedGuides" class="related-links"><div class="inner">
+   <h1>Related Guides</h1>
+   <ul class="functionList">
+    <span class="special-character FilledVerySmallSquare">&#9642;</span>
+    <li>
+     <a href="../guide/PDESymbolics.html">PDESymbolics</a>
+    </li>
+   </ul>
+  </div></section><section id="Citations" class="citations"><div class="inner">
+   <div class="citation">
+    <span class="citation-tooltip"><button type="button" class="citation-tooltip-button"><span class="citation-text">Cite this as:</span></button><span class="citation-default clipboard-inlineblock clipboard-hover">Wolfram Research (0), MonomialsOperator, Wolfram Language function, https://reference.wolfram.com/language/PDESymbolics2022/ref/MonomialsOperator.html.</span><span class="citation-tooltip-content"><button class="x-close-svg"><img src="/language-assets/img/CitationCloseButton.svg" height="10px" width="10px" /></button><h4>Text</h4><p class="clipboard-inlineblock clipboard-hover">Wolfram Research (0), MonomialsOperator, Wolfram Language function, https://reference.wolfram.com/language/PDESymbolics2022/ref/MonomialsOperator.html.</p><h4>CMS</h4><p class="clipboard-inlineblock clipboard-hover">Wolfram Language. 0. &quot;MonomialsOperator.&quot; Wolfram Language &amp; System Documentation Center. Wolfram Research. https://reference.wolfram.com/language/PDESymbolics2022/ref/MonomialsOperator.html.</p><h4>APA</h4><p class="clipboard-inlineblock clipboard-hover">Wolfram Language. (0). MonomialsOperator. Wolfram Language &amp; System Documentation Center. Retrieved from https://reference.wolfram.com/language/PDESymbolics2022/ref/MonomialsOperator.html</p><h4>BibTeX</h4><p class="clipboard-inlineblock clipboard-hover citation-timestamp">@misc{reference.wolfram_2023_monomialsoperator, author=&quot;Wolfram Research&quot;, title=&quot;{MonomialsOperator}&quot;, year=&quot;0&quot;, howpublished=&quot;\url{https://reference.wolfram.com/language/PDESymbolics2022/ref/MonomialsOperator.html}&quot;, note=[<!--#include virtual="/language-assets/inc/timestamp.html.en"-->]}</p><h4>BibLaTeX</h4><p class="clipboard-inlineblock clipboard-hover citation-timestamp">@online{reference.wolfram_2023_monomialsoperator, organization={Wolfram Research}, title={MonomialsOperator}, year={0}, url={https://reference.wolfram.com/language/PDESymbolics2022/ref/MonomialsOperator.html}, note=[<!--#include virtual="/language-assets/inc/timestamp.html.en"-->]}</p></span><span class="citation-overlay"></span></span>
+   </div>
+  </div></section>
+  
+
+  
+		</main>
+		<div id="_footer-offset"></div>
+		<div id="_footer"></div>
+		<script src="../../common/js/jquery/2.2.4/jquery.min.js"></script><script src="../../common/js/jquery/plugins/hoverintent/1.8.0/hoverintent.min.j2"></script><script src="../../common/js/clipboard/2.0/clipboard.js"></script><script src="../../common/js/clipboard/2.0/code-clipboard.js"></script><script src="../../common/framework/js/body.en.js"></script><script src="../../common/framework/js/head.en.js"></script><script src="../../language-assets/js/dropdowns.js"></script><script src="../../language-assets/js/global.js"></script><script src="../../language-assets/js/language-specific.js.en"></script><script src="../../language-assets/js/language.js"></script><script src="../../language-assets/js/temporary.js"></script><script src="../../language-assets/js/toggles.js"></script><script src="../../language-assets/js/tooltips.js"></script><script src="../../language-assets/js/workflows.js"></script>
+</body>
+</html>

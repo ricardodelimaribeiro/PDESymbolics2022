@@ -1,0 +1,813 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     30488,        803]
+NotebookOptionsPosition[     21575,        606]
+NotebookOutlinePosition[     27972,        759]
+CellTagsIndexPosition[     27887,        754]
+WindowTitle->FindDiscreteConservedQuantityOperator
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[GridBox[{
+   {GridBox[{
+      {
+       ItemBox[Cell[BoxData[
+         RowBox[{
+          TemplateBox[{12},
+           "Spacer1"], Cell["PDE SYMBOLICS2022 SYMBOL", "PacletNameCell",
+           TextAlignment->Center,ExpressionUUID->
+           "bf158226-6ecd-4f68-9e91-416645a97a95"], 
+          TemplateBox[{8},
+           "Spacer1"]}]],
+         TextAlignment->Center,ExpressionUUID->
+         "e77909c8-114a-4b83-92ba-08c963fa5be4"],
+        Background->RGBColor[0.490196, 0.576471, 0.690196],
+        ItemSize->Full], ""}
+     },
+     GridBoxAlignment->{"Rows" -> {{Center}}},
+     GridBoxItemSize->{"Columns" -> {Full, 
+         Scaled[0.02]}, "Rows" -> {{2.5}}}], Cell[TextData[{
+     Cell[BoxData[
+      TagBox[
+       ActionMenuBox[
+        FrameBox[Cell[TextData[{
+          "See Also",
+          " ",
+          Cell[BoxData[
+           GraphicsBox[
+            {GrayLevel[0.66667], Thickness[0.13], 
+             LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+            AspectRatio->1,
+            ImageSize->20,
+            PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+           "769ae00b-8fb7-493a-9707-f0b78d7b23cb"]
+         }],ExpressionUUID->"4c59e408-dce1-4eb8-828e-12392e71f4d7"],
+         StripOnInput->
+          False], {"\<\"FindDiscreteConservedQuantityBasisOperator\"\>":>
+        Documentation`HelpLookup[
+        "paclet:PDESymbolics2022/ref/\
+FindDiscreteConservedQuantityBasisOperator"], \
+"\<\"VariationalTimeDifferenceOperator\"\>":>Documentation`HelpLookup[
+        "paclet:PDESymbolics2022/ref/VariationalTimeDifferenceOperator"]},
+        Appearance->None,
+        MenuAppearance->Automatic,
+        MenuStyle->"SeeAlso"],
+       MouseAppearanceTag["LinkHand"]]],
+      LineSpacing->{1.4, 0},ExpressionUUID->
+      "e507b63e-82c6-4d55-8485-e60e5c27442b"],
+     "\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+     Cell[BoxData[
+      TagBox[
+       ActionMenuBox[
+        FrameBox[Cell[TextData[{
+          "URL",
+          " ",
+          Cell[BoxData[
+           GraphicsBox[
+            {GrayLevel[0.66667], Thickness[0.13], 
+             LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+            AspectRatio->1,
+            ImageSize->20,
+            PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+           "3f0ecb0b-685d-44f1-8ad9-3796a3b5e1df"]
+         }],ExpressionUUID->"883d63e4-3f3c-4fc1-a54a-b8d867e3ffe4"],
+         StripOnInput->
+          False], {"\<\"PDESymbolics2022/ref/\
+FindDiscreteConservedQuantityOperator\"\>":>
+        None, "\<\"Copy Wolfram Documentation Center URL\"\>":>
+        Module[{DocumentationSearch`Private`nb$}, 
+         DocumentationSearch`Private`nb$ = NotebookPut[
+            Notebook[{
+              Cell[
+              "PDESymbolics2022/ref/FindDiscreteConservedQuantityOperator"]}, 
+             Visible -> False]]; 
+         SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+         FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+         NotebookClose[DocumentationSearch`Private`nb$]; Null], 
+        Delimiter, "\<\"Copy web URL\"\>":>
+        Module[{DocumentationSearch`Private`nb$}, 
+         DocumentationSearch`Private`nb$ = NotebookPut[
+            Notebook[{
+              Cell[
+               BoxData[
+                MakeBoxes[
+                 Hyperlink[
+                 "http://reference.wolfram.com/language/PDESymbolics2022/ref/\
+FindDiscreteConservedQuantityOperator.html"], StandardForm]], "Input", 
+               TextClipboardType -> "PlainText"]}, Visible -> False]]; 
+         SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+         FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+         NotebookClose[DocumentationSearch`Private`nb$]; 
+         Null], "\<\"Go to web URL\"\>":>FrontEndExecute[{
+          NotebookLocate[{
+            URL[
+             StringJoin[
+              If[
+               TrueQ[DocumentationBuild`Make`Private`wsmlinkQ$118999], 
+               "http://reference.wolfram.com/system-modeler/", 
+               "http://reference.wolfram.com/language/"], 
+              "PDESymbolics2022/ref/FindDiscreteConservedQuantityOperator", 
+              ".html"]], None}]}]},
+        Appearance->None,
+        MenuAppearance->Automatic,
+        MenuStyle->"URLMenu"],
+       MouseAppearanceTag["LinkHand"]]],
+      LineSpacing->{1.4, 0},ExpressionUUID->
+      "3c8616a3-4502-4aa9-8dd8-2a0560be7ddf"]
+    }], "AnchorBar",
+     CacheGraphics->False,ExpressionUUID->
+     "78bdfb12-ff30-49c1-a1a0-38182c62a086"]}
+  }]], "AnchorBarGrid",
+ GridBoxOptions->{GridBoxItemSize->{"Columns" -> {
+     Scaled[0.65], {
+      Scaled[0.34]}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+   "RowsIndexed" -> {}}},
+ CellID->1,ExpressionUUID->"22df804e-1771-4c6f-803a-e49fb3c54712"],
+
+Cell["PDESymbolics2022`", "ContextNameCell",ExpressionUUID->"cb8e6e0a-a8b8-42f3-b67a-8ac6f2584cfd"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[GridBox[{
+   {Cell[TextData[{
+     Cell[
+     "FindDiscreteConservedQuantityOperator", "ObjectName",ExpressionUUID->
+      "41f06de3-e24f-495d-9cb9-e7556745b47c"],
+     Cell[BoxData[
+      TemplateBox[{8},
+       "Spacer1"]],ExpressionUUID->"6e012092-bc88-4677-a3f1-09fc5a2bd770"],
+     Cell[BoxData[
+     ""], "ObjectNameTranslation",ExpressionUUID->
+      "989672b7-cb70-4ef7-ab3b-8858ff4f34e2"]
+    }],ExpressionUUID->"724e0396-aea5-496e-9635-40060ce769fe"], 
+    "\[SpanFromLeft]"}
+  }]], "ObjectNameGrid",ExpressionUUID->"5d7885a0-1fda-458b-b336-\
+cfa06e04db35"],
+
+Cell[BoxData[GridBox[{
+   {"", Cell[TextData[{
+     Cell[BoxData[
+      RowBox[{
+       RowBox[{
+       "FindDiscreteConservedQuantityOperator", "[", "variables", "]"}], "[", 
+       "monomial_properties", "]"}]], "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "d425215d-85a1-4ad2-a994-68256514e797"],
+     " finds a generic conserved quantity with undetermined coefficients out \
+of monomials with the monomial_properties for the time-explicit scheme \
+specified by a rhs in the variables."
+    }],ExpressionUUID->"ac04b1db-ba48-44d5-b812-2c1560d419ba"]}
+  }]], "Usage",
+ CellID->982511436,ExpressionUUID->"e40518be-a797-47a8-8e31-fb89203251a9"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[Cell[BoxData[
+ ButtonBox[Cell[TextData[{
+   Cell[BoxData[
+    DynamicBox[ToBoxes[
+      If[
+       MatchQ[
+        CurrentValue[
+         EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, 
+         Closed], 
+        Alternatives[Open, True]], 
+       Style[
+        Graphics[{
+          Thickness[0.18], 
+          RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+          Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+         PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+        0.68 Inherited], 
+       Rotate[
+        Style[
+         Graphics[{
+           Thickness[0.18], 
+           RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+           Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+          PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+         0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+     ImageSizeCache->{14., {0.45000000000000107`, 13.549999999999999`}}]],
+    ExpressionUUID->"bf55f93e-f6bf-457c-aa14-77b93cdb859c"],
+   Cell[BoxData[
+    TemplateBox[{1},
+     "Spacer1"]],ExpressionUUID->"a1844451-3df5-41e1-aa0a-7956c34666e0"],
+   "Details and Options"
+  }], "NotesFrameText",ExpressionUUID->"6e2a6802-8466-49cf-ac64-407e811acb86"],
+  Appearance->{Automatic, None, "Normal", Automatic},
+  BaseStyle->None,
+  ButtonFunction:>(FrontEndExecute[{
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], All, ButtonCell], 
+     FrontEndToken["OpenCloseGroup"], 
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], After, CellContents]}]& ),
+  Evaluator->None,
+  Method->
+   "Preemptive"]],ExpressionUUID->"b8715cdf-8521-44b2-a347-f98e4b9fcae3"]], \
+"NotesSection",
+ WholeCellGroupOpener->True,
+ CellGroupingRules->{"SectionGrouping", 50},
+ CacheGraphics->False,
+ CellID->455259726,ExpressionUUID->"8c8a56aa-091a-4ac6-9224-6a551dc85f9e"],
+
+Cell["\<\
+To use FindDiscreteConservedQuantityOperator, you first need to load the \
+PDESymbolics2022 Package using Needs[\"PDESymbolics2022`\"].\
+\>", "Notes",
+ CellID->1067943069,ExpressionUUID->"3b616143-a4d7-45a6-804e-1bb9e66864df"]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, Closed]]]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {
+       TaggingRules, "Openers", "PrimaryExamplesSection"}, Open], 
+      Alternatives[True, Open]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{14., {5., 9.}}]],ExpressionUUID->
+  "b036c5c5-834a-4365-a7af-f1d87a093fa4"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"16542d1b-b8c1-497a-b777-b0181b3817a9"],
+ "Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(1)", "ExampleCount",ExpressionUUID->
+  "007a10f0-341f-4a03-8acc-01cfee23adf1"]
+}], "PrimaryExamplesSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellTags->"PrimaryExamplesSection",
+ CellID->65980621,ExpressionUUID->"605317d8-d815-4f57-a8c7-b39c7453fb5c"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "0"},
+        Closed], 
+      Alternatives[Open, True]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{14., {5., 9.}}]],ExpressionUUID->
+  "07de209d-f90c-4ecb-aa73-ac594818fa87"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"4128cb64-2779-4f6f-8df5-50b46e1b24f8"],
+ "Basic Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(1)", "ExampleCount",ExpressionUUID->
+  "afad1b71-5702-4c55-93f9-9465bfc9ad70"]
+}], "ExampleSection", "ExampleSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellID->834735295,ExpressionUUID->"b99ed1fe-a759-40de-8deb-b8a36aaa4da6"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<PDESymbolics2022`\>\"", "]"}]], "Code",
+ CellLabel->"In[43]:=",
+ CellID->2100804530,ExpressionUUID->"f4778414-52aa-4025-9596-8f7e63c8c621"],
+
+Cell["\<\
+We find a conserved quantity for the rhs u[n+1] generated by u[n] and n out \
+of monomials up to degree 3.\
+\>", "ExampleText",
+ CellID->581677927,ExpressionUUID->"6dde9ae6-082b-435e-b0cc-9e1769ae6076"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"variables", "=", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<depVars\>\"", "->", 
+      RowBox[{"{", "u", "}"}]}], ",", 
+     RowBox[{"\"\<indVars\>\"", "->", 
+      RowBox[{"{", "n", "}"}]}], ",", 
+     RowBox[{"\"\<rhs\>\"", "->", 
+      RowBox[{"{", 
+       RowBox[{"u", "[", 
+        RowBox[{"n", "+", "1"}], "]"}], "}"}]}]}], "|>"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"monprop", "=", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<generators\>\"", "->", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"u", "[", "n", "]"}], ",", "n"}], "}"}]}], ",", 
+     RowBox[{"\"\<degree\>\"", "->", "3"}]}], "|>"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"FindDiscreteConservedQuantityOperator", "[", "variables", "]"}], 
+  "[", "monprop", "]"}]}], "Code",
+ CellLabel->"In[50]:=",
+ CellID->249013130,ExpressionUUID->"2f52d8b5-7e71-4d86-a143-2e3a040586a3"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   SubscriptBox["\[FormalA]", "1"], " ", 
+   RowBox[{"u", "[", "n", "]"}]}], "+", 
+  RowBox[{
+   SubscriptBox["\[FormalA]", "4"], " ", 
+   SuperscriptBox[
+    RowBox[{"u", "[", "n", "]"}], "2"]}], "+", 
+  RowBox[{
+   SubscriptBox["\[FormalA]", "6"], " ", 
+   SuperscriptBox[
+    RowBox[{"u", "[", "n", "]"}], "3"]}]}]], "Output",
+ CellLabel->"Out[52]=",
+ CellID->1492367788,ExpressionUUID->"accfb539-7ee4-4f1f-bd6a-db966c28e21a"]
+}, Open  ]],
+
+Cell["Our code can also handle parameters:", "ExampleText",
+ CellID->1763899603,ExpressionUUID->"f3b3f29c-c613-41f4-b0a3-69c691c8aa26"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"variables", "=", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<depVars\>\"", "->", 
+      RowBox[{"{", "u", "}"}]}], ",", 
+     RowBox[{"\"\<indVars\>\"", "->", 
+      RowBox[{"{", "n", "}"}]}], ",", 
+     RowBox[{"\"\<rhs\>\"", "->", 
+      RowBox[{"{", 
+       RowBox[{"a", "*", 
+        RowBox[{"u", "[", 
+         RowBox[{"n", "+", "1"}], "]"}]}], "}"}]}], ",", 
+     RowBox[{"\"\<pars\>\"", "->", 
+      RowBox[{"{", "a", "}"}]}]}], "|>"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"monprop", "=", 
+   RowBox[{"<|", 
+    RowBox[{
+     RowBox[{"\"\<generators\>\"", "->", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"u", "[", "n", "]"}], ",", "n"}], "}"}]}], ",", 
+     RowBox[{"\"\<degree\>\"", "->", "3"}]}], "|>"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"FindDiscreteConservedQuantityOperator", "[", "variables", "]"}], 
+  "[", "monprop", "]"}]}], "Code",
+ CellLabel->"In[56]:=",
+ CellID->364341761,ExpressionUUID->"7a8d0aa2-2d3b-41cd-b3c9-59137a81873b"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {"0", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"a", "\[NotEqual]", 
+            SuperscriptBox[
+             RowBox[{"(", 
+              RowBox[{"-", "1"}], ")"}], 
+             RowBox[{"2", "/", "3"}]]}], "&&", 
+           RowBox[{
+            RowBox[{
+             SuperscriptBox[
+              RowBox[{"(", 
+               RowBox[{"-", "1"}], ")"}], 
+              RowBox[{"1", "/", "3"}]], "+", "a"}], "\[NotEqual]", "0"}], "&&", 
+           RowBox[{"a", "\[NotEqual]", 
+            RowBox[{"-", "1"}]}], "&&", 
+           RowBox[{"a", "\[NotEqual]", "1"}]}], ")"}], "||", 
+         RowBox[{"a", "\[Equal]", "0"}]}]},
+       {
+        RowBox[{
+         SubscriptBox["\[FormalA]", "6"], " ", 
+         SuperscriptBox[
+          RowBox[{"u", "[", "n", "]"}], "3"]}], 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"a", "\[Equal]", 
+            SuperscriptBox[
+             RowBox[{"(", 
+              RowBox[{"-", "1"}], ")"}], 
+             RowBox[{"2", "/", "3"}]]}], "&&", 
+           RowBox[{"a", "\[NotEqual]", "0"}]}], ")"}], "||", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{
+            RowBox[{
+             SuperscriptBox[
+              RowBox[{"(", 
+               RowBox[{"-", "1"}], ")"}], 
+              RowBox[{"1", "/", "3"}]], "+", "a"}], "\[Equal]", "0"}], "&&", 
+           RowBox[{"a", "\[NotEqual]", "0"}]}], ")"}]}]},
+       {
+        RowBox[{
+         SubscriptBox["\[FormalA]", "4"], " ", 
+         SuperscriptBox[
+          RowBox[{"u", "[", "n", "]"}], "2"]}], 
+        RowBox[{"a", "\[Equal]", 
+         RowBox[{"-", "1"}]}]},
+       {
+        RowBox[{
+         RowBox[{
+          SubscriptBox["\[FormalA]", "1"], " ", 
+          RowBox[{"u", "[", "n", "]"}]}], "+", 
+         RowBox[{
+          SubscriptBox["\[FormalA]", "4"], " ", 
+          SuperscriptBox[
+           RowBox[{"u", "[", "n", "]"}], "2"]}], "+", 
+         RowBox[{
+          SubscriptBox["\[FormalA]", "6"], " ", 
+          SuperscriptBox[
+           RowBox[{"u", "[", "n", "]"}], "3"]}]}], 
+        RowBox[{"a", "\[Equal]", "1"}]},
+       {"$Failed", 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Output",
+ CellLabel->"Out[58]=",
+ CellID->1328340568,ExpressionUUID->"c3901ad5-f987-498d-bc3f-bb7caba74432"]
+}, Open  ]]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "0"}, 
+  Closed]]]]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, 
+  Closed]]]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[GridBox[{
+   {
+    DynamicBox[FEPrivate`ImportImage[
+      FrontEnd`FileName[{"Documentation", "FooterIcons"}, 
+       "RelatedFunction.png"]],
+     ImageSizeCache->{50., {27., 33.}}], GridBox[{
+      {
+       StyleBox[
+        RowBox[{"See", " ", "Also"}], "SeeAlsoSection"]},
+      {Cell[TextData[{
+        Cell[BoxData[
+         TemplateBox[{
+           Cell[
+            TextData["FindDiscreteConservedQuantityBasisOperator"]], 
+           "paclet:PDESymbolics2022/ref/\
+FindDiscreteConservedQuantityBasisOperator", 
+           "PDESymbolics2022 Package Symbol"},
+          "PackageLink",
+          BaseStyle->"InlineFormula"]], "InlineFormula",
+         FontFamily->"Source Sans Pro",ExpressionUUID->
+         "c938d845-ca7f-41f4-b0a1-f49614dbec42"],
+        "\[NonBreakingSpace]",
+        StyleBox[
+        "\[MediumSpace]\[FilledVerySmallSquare]\[MediumSpace]", 
+         "InlineSeparator"],
+        " ",
+        Cell[BoxData[
+         TemplateBox[{
+           Cell[
+            TextData["VariationalTimeDifferenceOperator"]], 
+           "paclet:PDESymbolics2022/ref/VariationalTimeDifferenceOperator", 
+           "PDESymbolics2022 Package Symbol"},
+          "PackageLink",
+          BaseStyle->"InlineFormula"]], "InlineFormula",
+         FontFamily->"Source Sans Pro",ExpressionUUID->
+         "7492c685-2f83-4f53-b472-ab6c97a48872"]
+       }], "SeeAlso",ExpressionUUID->"406d6be3-0488-433a-bcec-396012847dfa"]}
+     }]}
+  }]], "SeeAlsoSection",ExpressionUUID->"46249c2e-be7d-48f3-b8a9-\
+6ea4e6606d8f"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[If[CurrentValue[
+      EvaluationNotebook[], {TaggingRules, "ShowCitation"}] === False, 
+    TagBox[
+     ButtonBox[
+      FrameBox[
+       RowBox[{
+         DynamicBox[
+          FEPrivate`FrontEndResource[
+          "DocumentationExpressions", "CitationArrow"]], 
+         StyleBox[
+          DynamicBox[
+           FEPrivate`FrontEndResource["DocumentationStrings", "CiteThisAs"]], 
+          "CitationButtonText"]}]], BaseStyle -> "CiteThisAsButton"], 
+     MouseAppearanceTag["LinkHand"]], 
+    StyleBox[
+     TemplateBox[{86, 22}, "Spacer2"]]],
+   ImageSizeCache->{91., {7., 17.}}]], "CitationCell",ExpressionUUID->
+  "4825c6fb-f1e7-4387-98a1-82ceff541a52"],
+ Cell[BoxData[
+  TemplateBox[{8},
+   "Spacer1"]],ExpressionUUID->"59b4291c-069f-4acf-b75a-93a2c642abbc"],
+ Cell[BoxData[
+  DynamicBox[If[CurrentValue[
+      EvaluationNotebook[], {TaggingRules, "ShowCitation"}] === False, 
+    StyleBox[
+     TemplateBox[{
+       Part[
+        CurrentValue[
+         EvaluationNotebook[], {TaggingRules, "CitationPopupData"}], 1]}, 
+      "ClickToCopy", BaseStyle -> "CitationText"], "CitationText"], 
+    StyleBox[
+     TemplateBox[{86, 22}, "Spacer2"]]],
+   ImageSizeCache->{634., {24., 15.}}]],ExpressionUUID->
+  "ae6db844-9b0e-44c7-a0b4-70db674114ab"]
+}], "CitationContainerCell",ExpressionUUID->"377589a0-c838-47da-9950-\
+b7ced366d018"]
+}, Open  ]],
+
+Cell[" ", "FooterCell",ExpressionUUID->"05aaa700-1e54-4995-aa92-13edf411396e"]
+},
+Saveable->False,
+ScreenStyleEnvironment->"Working",
+WindowSize->{900, 830},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowTitle->"FindDiscreteConservedQuantityOperator",
+TaggingRules->{
+ "ModificationHighlight" -> False, "ColorType" -> "", "LinkTrails" -> "", 
+  "HasOptions" -> True, "ExampleCounter" -> 1, 
+  "Openers" -> {
+   "PrimaryExamplesSection" -> Open, "ExampleSection" -> {"0" -> Open}, 
+    "NotesSection" -> Closed}, "NewStyles" -> True, 
+  "CitationPopupData" -> {
+   "Wolfram Research (0), FindDiscreteConservedQuantityOperator, Wolfram \
+Language function, \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/\
+FindDiscreteConservedQuantityOperator.html.", 
+    GridBox[{{
+       ItemBox["", ItemSize -> "Fit"], 
+       ItemBox[
+        TagBox[
+         ButtonBox[
+          DynamicBox[
+           FEPrivate`FrontEndResource[
+           "DocumentationExpressions", "CitationCloseButton"]], BaseStyle -> 
+          "CitationPopupCloseButton", Appearance -> None], 
+         MouseAppearanceTag["LinkHand"]], Alignment -> Right]}, {
+       Cell[
+        TextData[{
+          StyleBox["Text", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "Wolfram Research (0), FindDiscreteConservedQuantityOperator, \
+Wolfram Language function, \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/\
+FindDiscreteConservedQuantityOperator.html.", TextForm]}, "ClickToCopy", 
+               BaseStyle -> "CitationText"], ShowStringCharacters -> True], 
+             "CitationText"]]]}]], "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["CMS", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "Wolfram Language. 0. \
+\"FindDiscreteConservedQuantityOperator.\" Wolfram Language & System \
+Documentation Center. Wolfram Research. \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/\
+FindDiscreteConservedQuantityOperator.html.", TextForm]}, "ClickToCopy", 
+               BaseStyle -> "CitationText"], ShowStringCharacters -> True], 
+             "CitationText"]]]}]], "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["APA", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "Wolfram Language. (0). \
+FindDiscreteConservedQuantityOperator. Wolfram Language & System \
+Documentation Center. Retrieved from \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/\
+FindDiscreteConservedQuantityOperator.html", TextForm]}, "ClickToCopy", 
+               BaseStyle -> "CitationText"], ShowStringCharacters -> True], 
+             "CitationText"]]]}]], "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["BibTeX", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "@misc{reference.wolfram_2023_\
+finddiscreteconservedquantityoperator, author=\"Wolfram Research\", \
+title=\"{FindDiscreteConservedQuantityOperator}\", year=\"0\", \
+howpublished=\"\\url{https://reference.wolfram.com/language/PDESymbolics2022/\
+ref/FindDiscreteConservedQuantityOperator.html}\", note=\"[version 12.1]\"}", 
+                 TextForm]}, "ClickToCopy", BaseStyle -> "CitationText"], 
+              ShowStringCharacters -> True], "CitationText"]]]}]], 
+       "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["BibLaTeX", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "@online{reference.wolfram_2023_\
+finddiscreteconservedquantityoperator, organization={Wolfram Research}, \
+title={FindDiscreteConservedQuantityOperator}, year={0}, \
+url={https://reference.wolfram.com/language/PDESymbolics2022/ref/\
+FindDiscreteConservedQuantityOperator.html}, note=\"[version 12.1]\"}", 
+                 TextForm]}, "ClickToCopy", BaseStyle -> "CitationText"], 
+              ShowStringCharacters -> True], "CitationText"]]]}]], 
+       "\[SpanFromLeft]"}}]}, "ShowCitation" -> False, "RootCaptions" -> "", 
+  "Metadata" -> {
+   "built" -> "{2023, 1, 11, 10, 34, 21.340004}", 
+    "history" -> {"0.0", "", "", ""}, "context" -> "PDESymbolics2022`", 
+    "keywords" -> {}, "specialkeywords" -> {}, 
+    "tutorialcollectionlinks" -> {}, "index" -> True, "label" -> 
+    "PDE Symbolics2022 Symbol", "language" -> "en", "paclet" -> 
+    "PDESymbolics2022", "status" -> "None", "summary" -> 
+    "FindDiscreteConservedQuantityOperator[variables][monomial_properties] \
+finds a generic conserved quantity with undetermined coefficients out of \
+monomials with the monomial_properties for the time-explicit scheme specified \
+by a rhs in the variables.", "synonyms" -> {}, "tabletags" -> {}, "title" -> 
+    "FindDiscreteConservedQuantityOperator", "titlemodifier" -> "", 
+    "windowtitle" -> "FindDiscreteConservedQuantityOperator", "type" -> 
+    "Symbol", "uri" -> 
+    "PDESymbolics2022/ref/FindDiscreteConservedQuantityOperator"}},
+CellContext->"Global`",
+FrontEndVersion->"12.3 for Mac OS X x86 (64-bit) (July 9, 2021)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[
+    StyleDefinitions -> FrontEnd`FileName[{"Wolfram"}, "Reference.nb"]]], 
+   Cell[
+    StyleData["Input"], CellContext -> "Global`"], 
+   Cell[
+    StyleData["Output"], CellContext -> "Global`"]}, Visible -> False, 
+  FrontEndVersion -> "12.3 for Mac OS X x86 (64-bit) (July 9, 2021)", 
+  StyleDefinitions -> "Default.nb"],
+ExpressionUUID->"cba41c82-eb2a-4a87-8e11-71d3d5608c48"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "PrimaryExamplesSection"->{
+  Cell[9097, 236, 1388, 37, 36, "PrimaryExamplesSection",ExpressionUUID->"605317d8-d815-4f57-a8c7-b39c7453fb5c",
+   CellTags->"PrimaryExamplesSection",
+   CellID->65980621]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"PrimaryExamplesSection", 27689, 747}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[609, 21, 4802, 115, 57, "AnchorBarGrid",ExpressionUUID->"22df804e-1771-4c6f-803a-e49fb3c54712",
+ CellID->1],
+Cell[5414, 138, 99, 0, 23, "ContextNameCell",ExpressionUUID->"cb8e6e0a-a8b8-42f3-b67a-8ac6f2584cfd"],
+Cell[CellGroupData[{
+Cell[5538, 142, 580, 14, 60, "ObjectNameGrid",ExpressionUUID->"5d7885a0-1fda-458b-b336-cfa06e04db35"],
+Cell[6121, 158, 675, 14, 112, "Usage",ExpressionUUID->"e40518be-a797-47a8-8e31-fb89203251a9",
+ CellID->982511436]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6833, 177, 1898, 47, 37, "NotesSection",ExpressionUUID->"8c8a56aa-091a-4ac6-9224-6a551dc85f9e",
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->455259726],
+Cell[8734, 226, 236, 4, 57, "Notes",ExpressionUUID->"3b616143-a4d7-45a6-804e-1bb9e66864df",
+ CellID->1067943069]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, Closed]]]],
+Cell[CellGroupData[{
+Cell[9097, 236, 1388, 37, 36, "PrimaryExamplesSection",ExpressionUUID->"605317d8-d815-4f57-a8c7-b39c7453fb5c",
+ CellTags->"PrimaryExamplesSection",
+ CellID->65980621],
+Cell[CellGroupData[{
+Cell[10510, 277, 1367, 36, 31, "ExampleSection",ExpressionUUID->"b99ed1fe-a759-40de-8deb-b8a36aaa4da6",
+ CellID->834735295],
+Cell[11880, 315, 181, 3, 52, "Code",ExpressionUUID->"f4778414-52aa-4025-9596-8f7e63c8c621",
+ CellID->2100804530],
+Cell[12064, 320, 212, 4, 38, "ExampleText",ExpressionUUID->"6dde9ae6-082b-435e-b0cc-9e1769ae6076",
+ CellID->581677927],
+Cell[CellGroupData[{
+Cell[12301, 328, 938, 28, 87, "Code",ExpressionUUID->"2f52d8b5-7e71-4d86-a143-2e3a040586a3",
+ CellID->249013130],
+Cell[13242, 358, 464, 14, 39, "Output",ExpressionUUID->"accfb539-7ee4-4f1f-bd6a-db966c28e21a",
+ CellID->1492367788]
+}, Open  ]],
+Cell[13721, 375, 135, 1, 38, "ExampleText",ExpressionUUID->"f3b3f29c-c613-41f4-b0a3-69c691c8aa26",
+ CellID->1763899603],
+Cell[CellGroupData[{
+Cell[13881, 380, 1040, 30, 87, "Code",ExpressionUUID->"7a8d0aa2-2d3b-41cd-b3c9-59137a81873b",
+ CellID->364341761],
+Cell[14924, 412, 3377, 100, 119, "Output",ExpressionUUID->"c3901ad5-f987-498d-bc3f-bb7caba74432",
+ CellID->1328340568]
+}, Open  ]]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "0"}, Closed]]]]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, Closed]]]],
+Cell[CellGroupData[{
+Cell[18565, 523, 1527, 39, 114, "SeeAlsoSection",ExpressionUUID->"46249c2e-be7d-48f3-b8a9-6ea4e6606d8f"],
+Cell[20095, 564, 1383, 37, 70, "CitationContainerCell",ExpressionUUID->"377589a0-c838-47da-9950-b7ced366d018"]
+}, Open  ]],
+Cell[21493, 604, 78, 0, 70, "FooterCell",ExpressionUUID->"05aaa700-1e54-4995-aa92-13edf411396e"]
+}
+]
+*)
+
+(* End of internal cache information *)
+

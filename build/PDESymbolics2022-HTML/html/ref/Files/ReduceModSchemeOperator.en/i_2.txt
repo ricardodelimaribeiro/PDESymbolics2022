@@ -1,0 +1,10 @@
+variables = <|"indVars" -> {n, m}, "depVars" -> {u, v}, 
+   "pars" -> {a},
+   "scheme" -> {u[n + 1, m] - u[n, m], v[n + 1, m] - u[n, m], 
+     v[n, m + 1] - v[n, m]}|>;
+expression = 
+  u[n + 1, m] - 2 u[n - 1, m + 2] - 
+   v[n - 1, 
+    m - 2] + (a + u[n, m + 4] - v[n - 1, m - 2])^2 (1 + 
+       u[n + 3, m - 4] - v[n - 1, m + 2])^2;
+ReduceModSchemeOperator[variables][expression]

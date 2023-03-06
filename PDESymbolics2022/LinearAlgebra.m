@@ -64,7 +64,9 @@ ExtractCoefficient::usage =
 "ExtractCoefficient[monomial, parameters] Extracts the coefficient form a given monomial";
 
 RecursiveRowBranchingGaussianElimination::usage = 
-"";
+"RecursiveRowBranchingGaussianElimination[matrix, vector, generators, parameters] returns...
+RecursiveRowBranchingGaussianElimination[matrix, vector, generators, parameters, conditions] returns...
+RecursiveRowBranchingGaussianElimination[matrix, vector, generators, parameters, conditions, row, column] returns ...";
 
 BranchingGaussianElimination::usage = 
 "";
@@ -101,8 +103,12 @@ RegroupParametersOperator::usage =
 "RegroupParametersOperator[variables][] Groups an expression, tries to write expressions with parameters as coefficients."; 
 
 removemultiples::usage = 
-"internal function, here for debugging purposes."
+"internal function, here for debugging purposes.
+removemultiples[??] returns..."
 
+logicalcleaner::usage =  
+"internal function, here for debugging purposes.
+logicalcleaner[list] returns a simplified list where the (n+1)-th condition includes the negation of the n-th condition.";
 Begin["`Private`"]
 (* ######## mini-Function: Numerizer ########## *)
 (**********************************************************************)
@@ -634,6 +640,24 @@ EqualToZeroOperator[variables_Association][XP_] :=
     True, EqualToZeroOperator[variables][{XP}]
     ]
 
+(*EqualToZero[variables_][XP_] := 
+If[Head[XP]===List,
+        If[ And @@ ((# === 0)||(#===0.) & /@ XP),
+            True,
+            If[ Cases[XP, _?(MemberQ[Lookup[variables, "pars", {}], #] &), {0, Infinity}] == {},
+                False,(*is there an expression without parameters that is a non-trivial representation of zero?*)
+                With[ {sol = ImprovedHomogeneousSolveAlwaysOperator[variables][#==0 & /@ XP]},
+                    If[ sol === {{{}, False}},
+                        False,
+                        sol
+                    ]
+                ]
+            ]
+        ],
+        EqualToZero[variables][{XP}]
+];
+   
+EqualToZeroOperator = Kleisli[EqualToZero];*)
 (**** SolveAlwaysOperator *****)
 
 
@@ -661,18 +685,26 @@ SolveAlwaysOperator[variables_Association][xp_] :=
 (* this function attempts to remove logical overlaps in branching *)
 (*************************************************************)
 
-logicalcleaner = Function[lst, Simplify/@MapThread[And[!#1,#2]&, {FoldList[Or,False, lst][[;;-2]], lst}]]
+(*logicalcleaner = Function[lst, Simplify/@MapThread[And[!#1,#2]&, {FoldList[Or,False, lst][[;;-2]], lst}]]*)
+logicalcleaner[lst_List] := Simplify/@MapThread[And[!#1,#2]&, {Most@FoldList[Or,False, lst], lst}];
 
 (* ######mini-Function: CompareRows ######## *)
 (*************************************************************)
+CompareRows::usage =
+"CompareRows[r1, r2] takes r1 is {r1[[1]], Integer, Matrix, Vector}, where r1[[1]] is either Boolean {Rule, Equation}, (same for r2). 
+r1[[1]] = False implies that the pivot (from Gaussian Elimination) is never (as a function of parameters) zero,
+r1[[1]] = {Rule, Equation} implies that the pivot is zero when Equation is satisfied.
+r1[[1]] = True implies that the pivot is zero.
+Returns True if r1 < r2 and False otherwise."
 CompareRows[r1_, r2_] :=
+(*TODO remove SimplifyCount from RecursiveRowBranchingGaussianElimination and put it here, compute only when needed*)
     Which[
      (*first is never zero, second can be zero *)
      
      r1[[1]] === False && r2[[1]] =!= False, 
      True, 
      
-     (*first and second are never zerobut first is simpler *)
+     (*first and second are never zero, but first is simpler *)
      
      r1[[1]] === False && r2[[1]] === False,
      If[ r1[[2]] < r2[[2]],
@@ -765,8 +797,9 @@ RecursiveRowBranchingGaussianElimination[ matrix_, vector_, generators_, paramet
 
             (* case 1 - all elements of the column are zero - 
             do nothing *)
-            If[ And @@ ( # === True & /@ Transpose[aux][[1]]), 
-             
+            If[ (*And @@ ( # === True & /@ Transpose[aux][[1]]), 
+*) And @@ ( # === True & /@ First /@ aux), 
+            
              (* All entries are zero, no elimination is possible, 
              hence we increment column by one but not the row *)
                 RecursiveRowBranchingGaussianElimination[matrix, vector, 

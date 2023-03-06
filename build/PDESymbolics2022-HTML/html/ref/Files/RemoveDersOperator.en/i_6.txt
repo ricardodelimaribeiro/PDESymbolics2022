@@ -1,0 +1,4 @@
+variables = <|"depVars" -> {u}, "indVars" -> {x, y, z}|>
+AdjointOperator[variables][exp_] := 
+ RemoveDersOperator[Append[variables, "rdvVars" -> WWW]][
+  WWW[Sequence @@ variables["indVars"]]*exp]

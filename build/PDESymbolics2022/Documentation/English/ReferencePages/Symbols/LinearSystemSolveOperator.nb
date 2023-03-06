@@ -1,0 +1,1789 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     62596,       1779]
+NotebookOptionsPosition[     50882,       1516]
+NotebookOutlinePosition[     57005,       1665]
+CellTagsIndexPosition[     56919,       1660]
+WindowTitle->LinearSystemSolveOperator
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[GridBox[{
+   {GridBox[{
+      {
+       ItemBox[Cell[BoxData[
+         RowBox[{
+          TemplateBox[{12},
+           "Spacer1"], Cell["PDE SYMBOLICS2022 SYMBOL", "PacletNameCell",
+           TextAlignment->Center,ExpressionUUID->
+           "9ff8d094-2aef-4118-be5d-bd146d70d9df"], 
+          TemplateBox[{8},
+           "Spacer1"]}]],
+         TextAlignment->Center,ExpressionUUID->
+         "5b5f4b05-4a1d-42b5-913d-daf61ab5e65f"],
+        Background->RGBColor[0.490196, 0.576471, 0.690196],
+        ItemSize->Full], ""}
+     },
+     GridBoxAlignment->{"Rows" -> {{Center}}},
+     GridBoxItemSize->{"Columns" -> {Full, 
+         Scaled[0.02]}, "Rows" -> {{2.5}}}], Cell[TextData[{
+     Cell[BoxData[
+      TagBox[
+       ActionMenuBox[
+        FrameBox[Cell[TextData[{
+          "Related Guides",
+          " ",
+          Cell[BoxData[
+           GraphicsBox[
+            {GrayLevel[0.66667], Thickness[0.13], 
+             LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+            AspectRatio->1,
+            ImageSize->20,
+            PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+           "16db1818-41d4-4d78-99be-5aa94baa2043"]
+         }],ExpressionUUID->"3df7d9e6-a04a-411a-b0b0-9e7c53865746"],
+         StripOnInput->False], {"\<\"PDESymbolics\"\>":>
+        Documentation`HelpLookup[
+        "paclet:PDESymbolics2022/guide/PDESymbolics"]},
+        Appearance->None,
+        MenuAppearance->Automatic,
+        MenuStyle->"MoreAbout"],
+       MouseAppearanceTag["LinkHand"]]],
+      LineSpacing->{1.4, 0},ExpressionUUID->
+      "051c573c-534b-4478-8b00-20ea09d30639"],
+     "\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\[ThickSpace]\
+\[ThickSpace]",
+     Cell[BoxData[
+      TagBox[
+       ActionMenuBox[
+        FrameBox[Cell[TextData[{
+          "URL",
+          " ",
+          Cell[BoxData[
+           GraphicsBox[
+            {GrayLevel[0.66667], Thickness[0.13], 
+             LineBox[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]},
+            AspectRatio->1,
+            ImageSize->20,
+            PlotRange->{{-3, 4}, {-1, 1}}]],ExpressionUUID->
+           "4f862a73-6b99-4fd7-a415-7e9310406724"]
+         }],ExpressionUUID->"b4d0cd81-6bbc-40f5-a81c-9597014f54ba"],
+         StripOnInput->
+          False], {"\<\"PDESymbolics2022/ref/LinearSystemSolveOperator\"\>":>
+        None, "\<\"Copy Wolfram Documentation Center URL\"\>":>
+        Module[{DocumentationSearch`Private`nb$}, 
+         DocumentationSearch`Private`nb$ = NotebookPut[
+            Notebook[{
+              Cell["PDESymbolics2022/ref/LinearSystemSolveOperator"]}, 
+             Visible -> False]]; 
+         SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+         FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+         NotebookClose[DocumentationSearch`Private`nb$]; Null], 
+        Delimiter, "\<\"Copy web URL\"\>":>
+        Module[{DocumentationSearch`Private`nb$}, 
+         DocumentationSearch`Private`nb$ = NotebookPut[
+            Notebook[{
+              Cell[
+               BoxData[
+                MakeBoxes[
+                 Hyperlink[
+                 "http://reference.wolfram.com/language/PDESymbolics2022/ref/\
+LinearSystemSolveOperator.html"], StandardForm]], "Input", TextClipboardType -> 
+               "PlainText"]}, Visible -> False]]; 
+         SelectionMove[DocumentationSearch`Private`nb$, All, Notebook]; 
+         FrontEndTokenExecute[DocumentationSearch`Private`nb$, "Copy"]; 
+         NotebookClose[DocumentationSearch`Private`nb$]; 
+         Null], "\<\"Go to web URL\"\>":>FrontEndExecute[{
+          NotebookLocate[{
+            URL[
+             StringJoin[
+              If[
+               TrueQ[DocumentationBuild`Make`Private`wsmlinkQ$123210], 
+               "http://reference.wolfram.com/system-modeler/", 
+               "http://reference.wolfram.com/language/"], 
+              "PDESymbolics2022/ref/LinearSystemSolveOperator", ".html"]], 
+            None}]}]},
+        Appearance->None,
+        MenuAppearance->Automatic,
+        MenuStyle->"URLMenu"],
+       MouseAppearanceTag["LinkHand"]]],
+      LineSpacing->{1.4, 0},ExpressionUUID->
+      "94f6b0ba-5113-4de7-a05d-4b52d79881be"]
+    }], "AnchorBar",
+     CacheGraphics->False,ExpressionUUID->
+     "90c3c79a-1aac-4c04-af38-06b555a954c8"]}
+  }]], "AnchorBarGrid",
+ GridBoxOptions->{GridBoxItemSize->{"Columns" -> {
+     Scaled[0.65], {
+      Scaled[0.34]}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+   "RowsIndexed" -> {}}},
+ CellID->1,ExpressionUUID->"e45a8d8e-bf24-43b0-9862-029dddb0c972"],
+
+Cell["PDESymbolics2022`", "ContextNameCell",ExpressionUUID->"8a2d4895-4726-4f54-9333-52c3d8b7bca1"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[GridBox[{
+   {Cell[TextData[{
+     Cell[
+     "LinearSystemSolveOperator", "ObjectName",ExpressionUUID->
+      "e5618db5-cfeb-4f87-a34e-b90463433269"],
+     Cell[BoxData[
+      TemplateBox[{8},
+       "Spacer1"]],ExpressionUUID->"b89f6f75-a6d3-44e9-8887-0542349e2c6c"],
+     Cell[BoxData[
+     ""], "ObjectNameTranslation",ExpressionUUID->
+      "52d09a56-d845-4713-976a-3096912f7333"]
+    }],ExpressionUUID->"fccde458-1d2e-482b-b43a-9440deef98b2"], 
+    "\[SpanFromLeft]"}
+  }]], "ObjectNameGrid",ExpressionUUID->"78e9745b-c99a-4062-a2d5-\
+950f0ad3d48c"],
+
+Cell[BoxData[GridBox[{
+   {"", Cell[TextData[{
+     Cell[BoxData[
+      RowBox[{
+       RowBox[{"LinearSystemSolveOperator", "[", 
+        RowBox[{"<|", "|>"}], "]"}], "[", 
+       RowBox[{"<|", 
+        RowBox[{"\"\<matrix\>\"", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", "...", "}"}], ",", 
+           RowBox[{"{", "...", "}"}]}], "}"}]}], "|>"}], "]"}]], 
+      "InlineFormula",
+      FontFamily->"Source Sans Pro",ExpressionUUID->
+      "c1c7d222-c3b5-4044-8146-23b05267d0d8"],
+     " \[LineSeparator]solves the system Ax=b for x. If the system has \
+multiple solutions, solves the solvable variables in terms of the remaining \
+ones. "
+    }],ExpressionUUID->"6d841399-92e2-4bc0-b8f5-edb99eb5c134"]}
+  }]], "Usage",
+ CellID->982511436,ExpressionUUID->"2869b8e2-be7d-436b-86ed-26a9f89d860a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[Cell[BoxData[
+ ButtonBox[Cell[TextData[{
+   Cell[BoxData[
+    DynamicBox[ToBoxes[
+      If[
+       MatchQ[
+        CurrentValue[
+         EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, 
+         Closed], 
+        Alternatives[Open, True]], 
+       Style[
+        Graphics[{
+          Thickness[0.18], 
+          RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+          Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+         PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+        0.68 Inherited], 
+       Rotate[
+        Style[
+         Graphics[{
+           Thickness[0.18], 
+           RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+           Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+          PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+         0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+     ImageSizeCache->{14., {0.45000000000000107`, 13.549999999999999`}}]],
+    ExpressionUUID->"437c363c-f486-43ed-9003-fb2e576331f6"],
+   Cell[BoxData[
+    TemplateBox[{1},
+     "Spacer1"]],ExpressionUUID->"e3f195c6-e595-45aa-984b-f1e2dede5438"],
+   "Details and Options"
+  }], "NotesFrameText",ExpressionUUID->"1f1f5242-1d04-40ae-bfc8-e93a9302ffac"],
+  Appearance->{Automatic, None, "Normal", Automatic},
+  BaseStyle->None,
+  ButtonFunction:>(FrontEndExecute[{
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], All, ButtonCell], 
+     FrontEndToken["OpenCloseGroup"], 
+     FrontEnd`SelectionMove[
+      FrontEnd`SelectedNotebook[], After, CellContents]}]& ),
+  Evaluator->None,
+  Method->
+   "Preemptive"]],ExpressionUUID->"de3449d8-1e77-490d-8382-dc8988a42c12"]], \
+"NotesSection",
+ WholeCellGroupOpener->True,
+ CellGroupingRules->{"SectionGrouping", 50},
+ CacheGraphics->False,
+ CellID->1396269821,ExpressionUUID->"36fac4ed-0f3f-4f29-9f0b-c018123d87ae"],
+
+Cell["\<\
+To use LinearSystemSolveOperator, you first need to load the PDESymbolics \
+Package using Needs[\"PDESymbolics2022`\"].\
+\>", "Notes",
+ CellID->1745462342,ExpressionUUID->"41d5572e-00e2-4fa4-88aa-f3955d637f17"]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, Closed]]]],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {
+       TaggingRules, "Openers", "PrimaryExamplesSection"}, Open], 
+      Alternatives[True, Open]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{14., {5., 9.}}]],ExpressionUUID->
+  "9d133fe1-b774-4209-bb56-c37da25fb736"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"483bd226-d3e2-4412-b7c0-c9ec81a73167"],
+ "Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(1)", "ExampleCount",ExpressionUUID->
+  "cfc09be3-24a9-4659-866e-1225b47e1ef3"]
+}], "PrimaryExamplesSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellTags->"PrimaryExamplesSection",
+ CellID->1553070778,ExpressionUUID->"332d6a3e-8851-41c9-9891-051bea957e4f"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[ToBoxes[
+    If[
+     MatchQ[
+      CurrentValue[
+       EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "0"},
+        Closed], 
+      Alternatives[Open, True]], 
+     Style[
+      Graphics[{
+        Thickness[0.18], 
+        RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+        Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+       PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+      0.68 Inherited], 
+     Rotate[
+      Style[
+       Graphics[{
+         Thickness[0.18], 
+         RGBColor[0.8509803921568627, 0.396078431372549, 0], 
+         Line[{{-1.8, 0.5}, {0, 0}, {1.8, 0.5}}]}, AspectRatio -> 1, 
+        PlotRange -> {{-3, 4}, {-1, 1}}, ImageSize -> 20], Magnification -> 
+       0.68 Inherited], Rational[1, 2] Pi, {-1.65, -1}]]],
+   ImageSizeCache->{14., {5., 9.}}]],ExpressionUUID->
+  "92abb5a5-97fd-4de1-82c7-13e02a02dcea"],
+ Cell[BoxData[
+  TemplateBox[{1},
+   "Spacer1"]],ExpressionUUID->"068855d3-f3a2-47a7-9bb0-c0b08acbeb00"],
+ "Basic Examples",
+ "\[NonBreakingSpace]\[NonBreakingSpace]",
+ Cell["(1)", "ExampleCount",ExpressionUUID->
+  "c8b83b3e-b282-4edc-999c-2e2ca0ffc9e7"]
+}], "ExampleSection", "ExampleSection",
+ WholeCellGroupOpener->True,
+ CacheGraphics->False,
+ CellID->1944320208,ExpressionUUID->"0cfae24e-7452-4927-92ab-9d8e65828525"],
+
+Cell[BoxData[
+ RowBox[{"Needs", "[", "\"\<PDESymbolics2022`\>\"", "]"}]], "Input",
+ CellLabel->"In[1]:=",
+ CellID->1083141256,ExpressionUUID->"52e85db3-252f-45f6-bb83-9d2ef3089e5d"],
+
+Cell["\"coefficients\" vs \"unknowns\" ", "ExampleText",
+ CellID->175372343,ExpressionUUID->"13a9a1a4-66cf-41df-9729-ebfb8f5fc34c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"LinearSystemSolveOperator", "[", 
+   RowBox[{"Association", "[", 
+    RowBox[{"{", "}"}], "]"}], "]"}], "[", 
+  RowBox[{"Association", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\"\<matrix\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"1", ",", "0"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"\"\<vector\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+     RowBox[{"\"\<unknowns\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"w", ",", "z"}], "}"}]}]}], "}"}], "]"}], "]"}]], "Input",
+ CellLabel->"In[2]:=",
+ CellID->177238719,ExpressionUUID->"9b320b9d-e860-4bf1-8371-2d369e21e20d"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"w", "\[Rule]", "0"}], ",", 
+   RowBox[{"z", "\[Rule]", "0"}]}], "}"}]], "Output",
+ CellLabel->"Out[2]=",
+ CellID->1700889818,ExpressionUUID->"535836d9-432b-4382-a1e3-d25eeda87b37"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"LinearSystemSolveOperator", "[", 
+   RowBox[{"Association", "[", 
+    RowBox[{"{", "}"}], "]"}], "]"}], "[", 
+  RowBox[{"Association", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\"\<matrix\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "0"}], "}"}], "}"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"\"\<vector\>\"", "\[Rule]", 
+      RowBox[{"{", "0", "}"}]}], ",", 
+     RowBox[{"\"\<unknowns\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"w", ",", "z"}], "}"}]}]}], "}"}], "]"}], "]"}]], "Input",
+ CellLabel->"In[3]:=",
+ CellID->2107766663,ExpressionUUID->"7d30b7ad-d974-4010-b51a-cf1a9367262e"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"w", "\[Rule]", "0"}], "}"}]], "Output",
+ CellLabel->"Out[3]=",
+ CellID->561006484,ExpressionUUID->"a84d3c67-f309-4d85-abb6-5dda3ab2ccaa"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"LinearSystemSolveOperator", "[", 
+   RowBox[{"Association", "[", 
+    RowBox[{"{", "}"}], "]"}], "]"}], "[", 
+  RowBox[{"Association", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\"\<matrix\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "1"}], "}"}], "}"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"\"\<vector\>\"", "\[Rule]", 
+      RowBox[{"{", "0", "}"}]}], ",", 
+     RowBox[{"\"\<unknowns\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"w", ",", "z"}], "}"}]}]}], "}"}], "]"}], "]"}]], "Input",
+ CellLabel->"In[4]:=",
+ CellID->1657562817,ExpressionUUID->"4f7691ff-ddff-4bae-ac37-f32828577044"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"w", "\[Rule]", 
+   RowBox[{"-", "z"}]}], "}"}]], "Output",
+ CellLabel->"Out[4]=",
+ CellID->1112675203,ExpressionUUID->"518c375a-34c5-49a5-b3fd-d22f9a13c0fb"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"LinearSystemSolveOperator", "[", 
+   RowBox[{"Association", "[", 
+    RowBox[{"{", "}"}], "]"}], "]"}], "[", 
+  RowBox[{"Association", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\"\<matrix\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"1", ",", "0"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"\"\<vector\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"2", ",", "3"}], "}"}]}], ",", 
+     RowBox[{"\"\<unknowns\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"w", ",", "z"}], "}"}]}]}], "}"}], "]"}], "]"}]], "Input",
+ CellLabel->"In[5]:=",
+ CellID->118194805,ExpressionUUID->"0272420f-af57-42b2-8953-a187a4a57515"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"w", "\[Rule]", "2"}], ",", 
+   RowBox[{"z", "\[Rule]", "3"}]}], "}"}]], "Output",
+ CellLabel->"Out[5]=",
+ CellID->97728871,ExpressionUUID->"18df1330-d4eb-4ad7-9230-d9227c82339e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"LinearSystemSolveOperator", "[", 
+   RowBox[{"Association", "[", 
+    RowBox[{"{", 
+     RowBox[{"\"\<sign\>\"", "\[Rule]", 
+      RowBox[{"-", "1"}]}], "}"}], "]"}], "]"}], "[", 
+  RowBox[{"Association", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\"\<matrix\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"1", ",", "0"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "1"}], "}"}]}], "}"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"\"\<vector\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"2", ",", "3"}], "}"}]}], ",", 
+     RowBox[{"\"\<unknowns\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"w", ",", "z"}], "}"}]}]}], "}"}], "]"}], "]"}]], "Input",
+ CellLabel->"In[6]:=",
+ CellID->148608318,ExpressionUUID->"5b38491e-4cc0-49ed-9445-85ea2d8d56b5"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"w", "\[Rule]", 
+    RowBox[{"-", "2"}]}], ",", 
+   RowBox[{"z", "\[Rule]", 
+    RowBox[{"-", "3"}]}]}], "}"}]], "Output",
+ CellLabel->"Out[6]=",
+ CellID->826135881,ExpressionUUID->"7f6592e6-fc5a-4696-821f-baa04a9814cd"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"LinearSystemSolveOperator", "[", 
+   RowBox[{"Association", "[", 
+    RowBox[{"{", "}"}], "]"}], "]"}], "[", 
+  RowBox[{"Association", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\"\<matrix\>\"", "\[Rule]", 
+      RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"\"\<vector\>\"", "\[Rule]", 
+      RowBox[{"{", "}"}]}], ",", 
+     RowBox[{"\"\<unknowns\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"w", ",", "z"}], "}"}]}]}], "}"}], "]"}], "]"}]], "Input",
+ CellLabel->"In[7]:=",
+ CellID->544586149,ExpressionUUID->"933b9715-aadb-4723-bb69-42f6c5c2a431"],
+
+Cell[BoxData[
+ RowBox[{"{", "}"}]], "Output",
+ CellLabel->"Out[7]=",
+ CellID->1745043112,ExpressionUUID->"9b843829-ef2e-41dc-9d40-0f1c9c27dc05"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"LinearSystemSolveOperator", "[", 
+   RowBox[{"Association", "[", 
+    RowBox[{"{", "}"}], "]"}], "]"}], "[", 
+  RowBox[{"Association", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\"\<matrix\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "0"}], "}"}], "}"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"\"\<vector\>\"", "\[Rule]", 
+      RowBox[{"{", "0", "}"}]}], ",", 
+     RowBox[{"\"\<unknowns\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"w", ",", "z"}], "}"}]}]}], "}"}], "]"}], "]"}]], "Input",
+ CellLabel->"In[8]:=",
+ CellID->1136166646,ExpressionUUID->"319983c6-6c54-4901-8d8a-d8885f8fb498"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"w", "\[Rule]", "0"}], "}"}]], "Output",
+ CellLabel->"Out[8]=",
+ CellID->492353625,ExpressionUUID->"d32a9c2b-98cf-46fe-b6a7-56c697b9e117"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"LinearSystemSolveOperator", "[", 
+   RowBox[{"Association", "[", 
+    RowBox[{"{", 
+     RowBox[{"\"\<pars\>\"", "\[Rule]", 
+      RowBox[{"{", "a", "}"}]}], "}"}], "]"}], "]"}], "[", 
+  RowBox[{"Association", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\"\<matrix\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"1", ",", "0"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "a"}], "}"}]}], "}"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"\"\<vector\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+     RowBox[{"\"\<unknowns\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"w", ",", "z"}], "}"}]}]}], "}"}], "]"}], "]"}]], "Input",
+ CellLabel->"In[9]:=",
+ CellID->755416305,ExpressionUUID->"0bc7419c-61ba-4126-b743-0fd982194cbe"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"w", "\[Rule]", "0"}], ",", 
+          RowBox[{"z", "\[Rule]", "0"}]}], "}"}], 
+        RowBox[{"a", "\[NotEqual]", "0"}]},
+       {
+        RowBox[{"{", 
+         RowBox[{"w", "\[Rule]", "0"}], "}"}], 
+        RowBox[{"a", "\[Equal]", "0"}]},
+       {"$Failed", 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Output",
+ CellLabel->"Out[9]=",
+ CellID->1956268771,ExpressionUUID->"4d648f62-7429-448b-b7ef-e1489dba3345"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"LinearSystemSolveOperator", "[", 
+   RowBox[{"Association", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"\"\<pars\>\"", "\[Rule]", 
+       RowBox[{"{", "a", "}"}]}], ",", 
+      RowBox[{"\"\<facts\>\"", "\[Rule]", 
+       RowBox[{"a", ">", "0"}]}]}], "}"}], "]"}], "]"}], "[", 
+  RowBox[{"Association", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\"\<matrix\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"1", ",", "0"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "a"}], "}"}]}], "}"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"\"\<vector\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "0"}], "}"}]}], ",", 
+     RowBox[{"\"\<unknowns\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"w", ",", "z"}], "}"}]}]}], "}"}], "]"}], "]"}]], "Input",
+ CellLabel->"In[10]:=",
+ CellID->1034598627,ExpressionUUID->"100f3f24-408f-45a4-9b0e-7eaec7b4abea"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"w", "\[Rule]", "0"}], ",", 
+          RowBox[{"z", "\[Rule]", "0"}]}], "}"}], 
+        RowBox[{"a", ">", "0"}]},
+       {"$Failed", 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Output",
+ CellLabel->"Out[10]=",
+ CellID->568563005,ExpressionUUID->"7513dcf6-6198-4c4a-929a-d231303faaa6"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"LinearSystemSolveOperator", "[", 
+   RowBox[{"Association", "[", 
+    RowBox[{"{", 
+     RowBox[{"\"\<pars\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"a", ",", "b"}], "}"}]}], "}"}], "]"}], "]"}], "[", 
+  RowBox[{"Association", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\"\<matrix\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"1", ",", "0"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "a"}], "}"}]}], "}"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"\"\<vector\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"b", ",", "b"}], "}"}]}], ",", 
+     RowBox[{"\"\<unknowns\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"w", ",", "z"}], "}"}]}]}], "}"}], "]"}], "]"}]], "Input",
+ CellLabel->"In[11]:=",
+ CellID->1683679532,ExpressionUUID->"6ba76ae0-11f5-4f65-bb53-025db957f32c"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"w", "\[Rule]", "b"}], ",", 
+          RowBox[{"z", "\[Rule]", 
+           FractionBox["b", "a"]}]}], "}"}], 
+        RowBox[{"a", "\[NotEqual]", "0"}]},
+       {
+        RowBox[{"{", 
+         RowBox[{"w", "\[Rule]", "0"}], "}"}], 
+        RowBox[{
+         RowBox[{"a", "\[Equal]", "0"}], "&&", 
+         RowBox[{"b", "\[Equal]", "0"}]}]},
+       {"$Failed", 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Output",
+ CellLabel->"Out[11]=",
+ CellID->2042372836,ExpressionUUID->"8be0a6b2-76e5-4624-a352-a4eb2e7bcc28"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"LinearSystemSolveOperator", "[", 
+   RowBox[{"Association", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"\"\<pars\>\"", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"a", ",", "b"}], "}"}]}], ",", " ", 
+      RowBox[{"\"\<generators\>\"", "\[Rule]", 
+       RowBox[{"{", "x", "}"}]}]}], "}"}], "]"}], "]"}], "[", 
+  RowBox[{"Association", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\"\<matrix\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"x", "+", 
+           RowBox[{"a", " ", "x"}]}], ",", "0"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "a"}], "}"}]}], "}"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"\"\<vector\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"b", ",", "b"}], "}"}]}], ",", 
+     RowBox[{"\"\<unknowns\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"w", ",", "z"}], "}"}]}]}], "}"}], "]"}], "]"}]], "Input",
+ CellLabel->"In[12]:=",
+ CellID->882885529,ExpressionUUID->"7102e298-a37f-44c0-adbf-7b1790c685b9"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"w", "\[Rule]", 
+           FractionBox["b", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"1", "+", "a"}], ")"}], " ", "x"}]]}], ",", 
+          RowBox[{"z", "\[Rule]", 
+           FractionBox["b", "a"]}]}], "}"}], 
+        RowBox[{
+         RowBox[{"a", "\[NotEqual]", 
+          RowBox[{"-", "1"}]}], "&&", 
+         RowBox[{"a", "\[NotEqual]", "0"}]}]},
+       {
+        RowBox[{"{", 
+         RowBox[{"w", "\[Rule]", "0"}], "}"}], 
+        RowBox[{
+         RowBox[{"a", "\[Equal]", "0"}], "&&", 
+         RowBox[{"b", "\[Equal]", "0"}]}]},
+       {
+        RowBox[{"{", 
+         RowBox[{"z", "\[Rule]", "0"}], "}"}], 
+        RowBox[{
+         RowBox[{"a", "\[Equal]", 
+          RowBox[{"-", "1"}]}], "&&", 
+         RowBox[{"b", "\[Equal]", "0"}]}]},
+       {"$Failed", 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Output",
+ CellLabel->"Out[12]=",
+ CellID->605933380,ExpressionUUID->"6212092f-f397-4ea5-88e1-d164d75c19a3"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"LinearSystemSolveOperator", "[", 
+   RowBox[{"Association", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"\"\<pars\>\"", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"a", ",", "b"}], "}"}]}], ",", " ", 
+      RowBox[{"\"\<generators\>\"", "\[Rule]", 
+       RowBox[{"{", "x", "}"}]}]}], "}"}], "]"}], "]"}], "[", 
+  RowBox[{"Association", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\"\<matrix\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"x", "+", 
+           RowBox[{"a", " ", 
+            RowBox[{"x", "^", "2"}]}]}], ",", "a"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "a"}], "}"}]}], "}"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"\"\<vector\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"b", "+", "b"}], ",", "b"}], "}"}]}], ",", 
+     RowBox[{"\"\<unknowns\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"w", ",", "z"}], "}"}]}]}], "}"}], "]"}], "]"}]], "Input",
+ CellLabel->"In[13]:=",
+ CellID->1320393265,ExpressionUUID->"0bd2a087-6ef9-45cc-9627-f9ac55a6de89"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"w", "\[Rule]", 
+           FractionBox["b", 
+            RowBox[{"x", " ", 
+             RowBox[{"(", 
+              RowBox[{"1", "+", 
+               RowBox[{"a", " ", "x"}]}], ")"}]}]]}], ",", 
+          RowBox[{"z", "\[Rule]", 
+           FractionBox["b", "a"]}]}], "}"}], 
+        RowBox[{"a", "\[NotEqual]", "0"}]},
+       {
+        RowBox[{"{", 
+         RowBox[{"w", "\[Rule]", "0"}], "}"}], 
+        RowBox[{
+         RowBox[{"a", "\[Equal]", "0"}], "&&", 
+         RowBox[{"b", "\[Equal]", "0"}]}]},
+       {"$Failed", 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Output",
+ CellLabel->"Out[13]=",
+ CellID->1768722298,ExpressionUUID->"072e19e2-50af-4b39-bad7-3f0947a4f494"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"LinearSystemSolveOperator", "[", 
+    RowBox[{"Association", "[", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"\"\<pars\>\"", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{"a", ",", " ", "b"}], "}"}]}], ",", " ", 
+       RowBox[{"\"\<generators\>\"", "\[Rule]", 
+        RowBox[{"{", "x", "}"}]}]}], "}"}], "]"}], "]"}], "[", 
+   RowBox[{"Association", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"\"\<matrix\>\"", "\[Rule]", 
+       RowBox[{"Piecewise", "[", 
+        RowBox[{
+         RowBox[{"{", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{
+                    RowBox[{"a", "^", "2"}], "-", "1"}], ")"}], "x"}], ",", 
+                 "0"}], "}"}], ",", 
+               RowBox[{"{", 
+                RowBox[{"0", ",", 
+                 RowBox[{"a", "+", 
+                  RowBox[{"b", " ", "x"}]}]}], "}"}]}], "}"}], ",", 
+             RowBox[{
+              RowBox[{"a", "+", "b"}], ">", "0"}]}], "}"}], ",", 
+           "\[IndentingNewLine]", " ", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{"a", "^", "2"}], ")"}], "x"}], ",", "0"}], "}"}], 
+               ",", 
+               RowBox[{"{", 
+                RowBox[{"0", ",", 
+                 RowBox[{"a", "+", 
+                  RowBox[{"b", " ", "x"}]}]}], "}"}]}], "}"}], ",", 
+             RowBox[{
+              RowBox[{"a", "+", "b"}], "<=", "0"}]}], "}"}]}], 
+          "\[IndentingNewLine]", "}"}], ",", "$Failed"}], "]"}]}], ",", " ", 
+      "\[IndentingNewLine]", 
+      RowBox[{"\"\<vector\>\"", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"b", ",", "b"}], "}"}]}], ",", " ", 
+      RowBox[{"\"\<unknowns\>\"", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"w", ",", "z"}], "}"}]}]}], "\[IndentingNewLine]", "}"}], 
+    "]"}], "]"}], "//", "PiecewiseFullSimplify"}]], "Input",
+ CellLabel->"In[14]:=",
+ CellID->1447020712,ExpressionUUID->"6068c0cb-6fca-4650-adea-c9d6ca0961d9"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"w", "\[Rule]", 
+           FractionBox["b", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"-", "1"}], "+", 
+               SuperscriptBox["a", "2"]}], ")"}], " ", "x"}]]}], ",", 
+          RowBox[{"z", "\[Rule]", 
+           FractionBox["b", 
+            RowBox[{"a", "+", 
+             RowBox[{"b", " ", "x"}]}]]}]}], "}"}], 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"-", "1"}], "<", "a", "<", "1"}], "&&", 
+           RowBox[{
+            RowBox[{"a", "+", "b"}], ">", "0"}]}], ")"}], "||", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"a", ">", "1"}], "&&", 
+           RowBox[{
+            RowBox[{"a", "+", "b"}], ">", "0"}]}], ")"}], "||", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"a", "<", 
+            RowBox[{"-", "1"}]}], "&&", 
+           RowBox[{
+            RowBox[{"a", "+", "b"}], ">", "0"}]}], ")"}]}]},
+       {
+        RowBox[{"{", 
+         RowBox[{"z", "\[Rule]", "0"}], "}"}], 
+        RowBox[{
+         RowBox[{"b", "\[Equal]", "0"}], "&&", 
+         RowBox[{"a", "\[Equal]", "1"}]}]},
+       {"$Failed", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"a", "\[Equal]", 
+            RowBox[{"-", "1"}]}], "&&", 
+           RowBox[{"b", ">", "1"}]}], ")"}], "||", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"a", "\[Equal]", "0"}], "&&", 
+           RowBox[{"b", "\[NotEqual]", "0"}]}], ")"}], "||", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"a", "\[Equal]", "1"}], "&&", 
+           RowBox[{
+            RowBox[{"-", "1"}], "<", "b", "<", "0"}]}], ")"}], "||", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"a", "\[Equal]", "1"}], "&&", 
+           RowBox[{"b", ">", "0"}]}], ")"}], "||", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"a", "\[NotEqual]", "0"}], "&&", 
+           RowBox[{
+            RowBox[{"a", "+", "b"}], ">", "0"}]}], ")"}]}]},
+       {
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"w", "\[Rule]", 
+           FractionBox["b", 
+            RowBox[{
+             SuperscriptBox["a", "2"], " ", "x"}]]}], ",", 
+          RowBox[{"z", "\[Rule]", 
+           FractionBox["b", 
+            RowBox[{"a", "+", 
+             RowBox[{"b", " ", "x"}]}]]}]}], "}"}], 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"a", ">", "0"}], "&&", 
+           RowBox[{
+            RowBox[{"a", "+", "b"}], "\[LessEqual]", "0"}]}], ")"}], "||", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"a", "<", "0"}], "&&", 
+           RowBox[{
+            RowBox[{"a", "+", "b"}], "\[LessEqual]", "0"}]}], ")"}]}]},
+       {
+        RowBox[{"{", "}"}], 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Output",
+ CellLabel->"Out[14]=",
+ CellID->25828303,ExpressionUUID->"fe4abe75-b299-4bc5-9ba1-332733243dff"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"LinearSystemSolveOperator", "[", 
+   RowBox[{"Association", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"\"\<pars\>\"", "\[Rule]", 
+       RowBox[{"{", 
+        RowBox[{"a", ",", " ", "b"}], "}"}]}], ",", " ", 
+      RowBox[{"\"\<generators\>\"", "\[Rule]", 
+       RowBox[{"{", "x", "}"}]}], ",", 
+      RowBox[{"\"\<dom\>\"", "\[Rule]", "Reals"}]}], "}"}], "]"}], "]"}], "[", 
+  RowBox[{"Association", "[", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\"\<matrix\>\"", "\[Rule]", 
+      RowBox[{"Piecewise", "[", 
+       RowBox[{
+        RowBox[{"{", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{
+                   RowBox[{"a", "^", "2"}], "-", "1"}], ")"}], "x"}], ",", 
+                "0"}], "}"}], ",", 
+              RowBox[{"{", 
+               RowBox[{"0", ",", 
+                RowBox[{"a", "+", 
+                 RowBox[{"b", " ", "x"}]}]}], "}"}]}], "}"}], ",", 
+            RowBox[{
+             RowBox[{"a", "+", "b"}], ">", "0"}]}], "}"}], ",", 
+          "\[IndentingNewLine]", " ", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{"a", "^", "2"}], ")"}], "x"}], ",", "0"}], "}"}], 
+              ",", 
+              RowBox[{"{", 
+               RowBox[{"0", ",", 
+                RowBox[{"a", "+", 
+                 RowBox[{"b", " ", "x"}]}]}], "}"}]}], "}"}], ",", 
+            RowBox[{
+             RowBox[{"a", "+", "b"}], "<=", "0"}]}], "}"}]}], 
+         "\[IndentingNewLine]", "}"}], ",", "$Failed"}], "]"}]}], ",", " ", 
+     "\[IndentingNewLine]", 
+     RowBox[{"\"\<vector\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"b", ",", "b"}], "}"}]}], ",", " ", 
+     RowBox[{"\"\<unknowns\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"w", ",", "z"}], "}"}]}]}], "\[IndentingNewLine]", "}"}], 
+   "]"}], "]"}]], "Input",
+ CellLabel->"In[15]:=",
+ CellID->2049715801,ExpressionUUID->"b8d3bb1b-c71f-4eac-a962-d41e9f191f05"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"w", "\[Rule]", 
+           FractionBox["b", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"-", "1"}], "+", 
+               SuperscriptBox["a", "2"]}], ")"}], " ", "x"}]]}], ",", 
+          RowBox[{"z", "\[Rule]", 
+           FractionBox["b", 
+            RowBox[{"a", "+", 
+             RowBox[{"b", " ", "x"}]}]]}]}], "}"}], 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"a", "\[NotEqual]", 
+            RowBox[{"-", "1"}]}], "&&", 
+           RowBox[{
+            RowBox[{"Re", "[", "a", "]"}], "\[NotEqual]", "1"}], "&&", 
+           RowBox[{
+            RowBox[{"a", "+", "b"}], ">", "0"}]}], ")"}], "||", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"a", "\[NotEqual]", "1"}], "&&", 
+           RowBox[{
+            RowBox[{"Re", "[", "a", "]"}], "\[NotEqual]", 
+            RowBox[{"-", "1"}]}], "&&", 
+           RowBox[{
+            RowBox[{"a", "+", "b"}], ">", "0"}]}], ")"}], "||", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"a", "\[NotEqual]", "1"}], "&&", 
+           RowBox[{
+            RowBox[{"a", "+", "b"}], ">", "0"}], "&&", 
+           RowBox[{
+            RowBox[{"Re", "[", "b", "]"}], "\[LessEqual]", "1"}]}], ")"}], "||", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"Re", "[", "a", "]"}], "\[NotEqual]", 
+            RowBox[{"-", "1"}]}], "&&", 
+           RowBox[{
+            RowBox[{"Re", "[", "a", "]"}], "\[NotEqual]", "1"}], "&&", 
+           RowBox[{
+            RowBox[{"a", "+", "b"}], ">", "0"}]}], ")"}], "||", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"Re", "[", "a", "]"}], "\[NotEqual]", 
+            RowBox[{"-", "1"}]}], "&&", 
+           RowBox[{
+            RowBox[{"a", "+", "b"}], ">", "0"}], "&&", 
+           RowBox[{"b", "\[LessEqual]", 
+            RowBox[{"-", "1"}]}]}], ")"}], "||", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"Re", "[", "a", "]"}], "\[NotEqual]", "1"}], "&&", 
+           RowBox[{
+            RowBox[{"a", "+", "b"}], ">", "0"}], "&&", 
+           RowBox[{
+            RowBox[{"Re", "[", "b", "]"}], "\[LessEqual]", "1"}]}], ")"}], "||", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"Re", "[", "a", "]"}], "\[NotEqual]", "1"}], "&&", 
+           RowBox[{
+            RowBox[{"a", "+", "b"}], ">", "0"}], "&&", 
+           RowBox[{"b", "\[LessEqual]", "1"}]}], ")"}], "||", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"a", "+", "b"}], ">", "0"}], "&&", 
+           RowBox[{
+            RowBox[{"Re", "[", "b", "]"}], "\[LessEqual]", 
+            RowBox[{"-", "1"}]}]}], ")"}], "||", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"a", "+", "b"}], ">", "0"}], "&&", 
+           RowBox[{
+            RowBox[{"Re", "[", "b", "]"}], "\[LessEqual]", "1"}], "&&", 
+           RowBox[{"b", "\[LessEqual]", 
+            RowBox[{"-", "1"}]}]}], ")"}], "||", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"a", "+", "b"}], ">", "0"}], "&&", 
+           RowBox[{
+            RowBox[{"Im", "[", "a", "]"}], "\[NotEqual]", "0"}]}], ")"}], "||", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"a", "+", "b"}], ">", "0"}], "&&", 
+           RowBox[{
+            RowBox[{"Im", "[", "b", "]"}], "\[NotEqual]", "0"}]}], ")"}]}]},
+       {
+        RowBox[{"{", 
+         RowBox[{"z", "\[Rule]", "0"}], "}"}], 
+        RowBox[{
+         RowBox[{"a", "\[Equal]", "1"}], "&&", 
+         RowBox[{"b", "\[Equal]", "0"}], "&&", 
+         RowBox[{
+          RowBox[{"Im", "[", "a", "]"}], "\[Equal]", "0"}], "&&", 
+         RowBox[{
+          RowBox[{"Im", "[", "b", "]"}], "\[Equal]", "0"}], "&&", 
+         RowBox[{
+          RowBox[{"Re", "[", "a", "]"}], "\[Equal]", "1"}], "&&", 
+         RowBox[{
+          RowBox[{"a", "+", "b"}], ">", "0"}], "&&", 
+         RowBox[{
+          RowBox[{"Re", "[", "b", "]"}], ">", 
+          RowBox[{"-", "1"}]}]}]},
+       {"$Failed", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"a", "\[Equal]", "0"}], "&&", 
+           RowBox[{"b", "\[NotEqual]", "0"}], "&&", 
+           RowBox[{
+            RowBox[{"Im", "[", "b", "]"}], "\[Equal]", "0"}], "&&", 
+           RowBox[{
+            RowBox[{"Re", "[", "b", "]"}], "\[LessEqual]", "0"}]}], ")"}], "||", 
+         RowBox[{
+          RowBox[{"a", "+", "b"}], ">", "0"}]}]},
+       {
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"w", "\[Rule]", 
+           FractionBox["b", 
+            RowBox[{
+             SuperscriptBox["a", "2"], " ", "x"}]]}], ",", 
+          RowBox[{"z", "\[Rule]", 
+           FractionBox["b", 
+            RowBox[{"a", "+", 
+             RowBox[{"b", " ", "x"}]}]]}]}], "}"}], 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"a", "\[NotEqual]", "0"}], "&&", 
+           RowBox[{
+            RowBox[{"a", "+", "b"}], "\[LessEqual]", "0"}]}], ")"}], "||", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"a", "+", "b"}], "\[LessEqual]", "0"}], "&&", 
+           RowBox[{
+            RowBox[{"Im", "[", "b", "]"}], "\[NotEqual]", "0"}]}], ")"}], "||", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"a", "+", "b"}], "\[LessEqual]", "0"}], "&&", 
+           RowBox[{
+            RowBox[{"Re", "[", "b", "]"}], ">", "0"}]}], ")"}]}]},
+       {
+        RowBox[{"{", "}"}], 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+      GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False,
+  StripWrapperBoxes->True]], "Output",
+ CellLabel->"Out[15]=",
+ CellID->1164041797,ExpressionUUID->"fe4f0957-589a-401e-90a1-4aeb5c122561"]
+}, Open  ]]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "0"}, 
+  Closed]]]]
+}, Dynamic[CurrentValue[
+ EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, 
+  Closed]]]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[GridBox[{
+   {
+    DynamicBox[FEPrivate`ImportImage[
+      FrontEnd`FileName[{"Documentation", "FooterIcons"}, "RelatedGuide.png"]],
+     ImageSizeCache->{50., {27., 33.}}], GridBox[{
+      {
+       StyleBox[
+        RowBox[{"Related", " ", "Guides"}], "MoreAboutSection"]},
+      {
+       RowBox[{"\[FilledVerySmallSquare]", Cell[BoxData[
+         TemplateBox[{
+           Cell[
+            TextData["PDESymbolics"]], 
+           "paclet:PDESymbolics2022/guide/PDESymbolics"},
+          "RefLinkPlain",
+          BaseStyle->{"MoreAbout"}]], "MoreAbout",ExpressionUUID->
+         "bef77c45-d7d3-4882-abe6-f193800307e8"]}]}
+     }]}
+  }]], "MoreAboutSection",ExpressionUUID->"83778587-c8fe-4db7-b28c-\
+2421250acc9e"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  DynamicBox[If[CurrentValue[
+      EvaluationNotebook[], {TaggingRules, "ShowCitation"}] === False, 
+    TagBox[
+     ButtonBox[
+      FrameBox[
+       RowBox[{
+         DynamicBox[
+          FEPrivate`FrontEndResource[
+          "DocumentationExpressions", "CitationArrow"]], 
+         StyleBox[
+          DynamicBox[
+           FEPrivate`FrontEndResource["DocumentationStrings", "CiteThisAs"]], 
+          "CitationButtonText"]}]], BaseStyle -> "CiteThisAsButton"], 
+     MouseAppearanceTag["LinkHand"]], 
+    StyleBox[
+     TemplateBox[{86, 22}, "Spacer2"]]],
+   ImageSizeCache->{91., {7., 17.}}]], "CitationCell",ExpressionUUID->
+  "efb69345-a9cd-4c9b-9b18-268f62ffca5d"],
+ Cell[BoxData[
+  TemplateBox[{8},
+   "Spacer1"]],ExpressionUUID->"7adb68f9-5731-49f0-a180-30bc2ba3572e"],
+ Cell[BoxData[
+  DynamicBox[If[CurrentValue[
+      EvaluationNotebook[], {TaggingRules, "ShowCitation"}] === False, 
+    StyleBox[
+     TemplateBox[{
+       Part[
+        CurrentValue[
+         EvaluationNotebook[], {TaggingRules, "CitationPopupData"}], 1]}, 
+      "ClickToCopy", BaseStyle -> "CitationText"], "CitationText"], 
+    StyleBox[
+     TemplateBox[{86, 22}, "Spacer2"]]],
+   ImageSizeCache->{562., {24., 15.}}]],ExpressionUUID->
+  "4503b161-0aa6-46ee-8c2d-a3b55d759ae2"]
+}], "CitationContainerCell",ExpressionUUID->"f2bc0b72-893c-416b-9cd6-\
+b6d574026539"]
+}, Open  ]],
+
+Cell[" ", "FooterCell",ExpressionUUID->"52382138-2fb4-4344-9f78-f5be5cb0bcce"]
+},
+Saveable->False,
+ScreenStyleEnvironment->"Working",
+WindowSize->{900, 830},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowTitle->"LinearSystemSolveOperator",
+TaggingRules->{
+ "ModificationHighlight" -> False, "ColorType" -> "", "LinkTrails" -> "", 
+  "HasOptions" -> True, "ExampleCounter" -> 1, 
+  "Openers" -> {
+   "PrimaryExamplesSection" -> Open, "ExampleSection" -> {"0" -> Open}, 
+    "NotesSection" -> Closed}, "NewStyles" -> True, 
+  "CitationPopupData" -> {
+   "Wolfram Research (0), LinearSystemSolveOperator, Wolfram Language \
+function, \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/\
+LinearSystemSolveOperator.html.", 
+    GridBox[{{
+       ItemBox["", ItemSize -> "Fit"], 
+       ItemBox[
+        TagBox[
+         ButtonBox[
+          DynamicBox[
+           FEPrivate`FrontEndResource[
+           "DocumentationExpressions", "CitationCloseButton"]], BaseStyle -> 
+          "CitationPopupCloseButton", Appearance -> None], 
+         MouseAppearanceTag["LinkHand"]], Alignment -> Right]}, {
+       Cell[
+        TextData[{
+          StyleBox["Text", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "Wolfram Research (0), LinearSystemSolveOperator, Wolfram \
+Language function, \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/\
+LinearSystemSolveOperator.html.", TextForm]}, "ClickToCopy", BaseStyle -> 
+               "CitationText"], ShowStringCharacters -> True], 
+             "CitationText"]]]}]], "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["CMS", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "Wolfram Language. 0. \"LinearSystemSolveOperator.\" Wolfram \
+Language & System Documentation Center. Wolfram Research. \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/\
+LinearSystemSolveOperator.html.", TextForm]}, "ClickToCopy", BaseStyle -> 
+               "CitationText"], ShowStringCharacters -> True], 
+             "CitationText"]]]}]], "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["APA", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "Wolfram Language. (0). LinearSystemSolveOperator. Wolfram \
+Language & System Documentation Center. Retrieved from \
+https://reference.wolfram.com/language/PDESymbolics2022/ref/\
+LinearSystemSolveOperator.html", TextForm]}, "ClickToCopy", BaseStyle -> 
+               "CitationText"], ShowStringCharacters -> True], 
+             "CitationText"]]]}]], "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["BibTeX", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "@misc{reference.wolfram_2023_linearsystemsolveoperator, \
+author=\"Wolfram Research\", title=\"{LinearSystemSolveOperator}\", \
+year=\"0\", \
+howpublished=\"\\url{https://reference.wolfram.com/language/PDESymbolics2022/\
+ref/LinearSystemSolveOperator.html}\", note=\"[version 12.1]\"}", TextForm]}, 
+               "ClickToCopy", BaseStyle -> "CitationText"], 
+              ShowStringCharacters -> True], "CitationText"]]]}]], 
+       "\[SpanFromLeft]"}, {
+       Cell[
+        TextData[{
+          StyleBox["BibLaTeX", "CitationFormatsLabel"], "\[LineSeparator]", 
+          Cell[
+           BoxData[
+            StyleBox[
+             StyleBox[
+              TemplateBox[{
+                FormBox[
+                "@online{reference.wolfram_2023_linearsystemsolveoperator, \
+organization={Wolfram Research}, title={LinearSystemSolveOperator}, year={0}, \
+url={https://reference.wolfram.com/language/PDESymbolics2022/ref/\
+LinearSystemSolveOperator.html}, note=\"[version 12.1]\"}", TextForm]}, 
+               "ClickToCopy", BaseStyle -> "CitationText"], 
+              ShowStringCharacters -> True], "CitationText"]]]}]], 
+       "\[SpanFromLeft]"}}]}, "ShowCitation" -> False, "RootCaptions" -> "", 
+  "Metadata" -> {
+   "built" -> "{2023, 1, 11, 10, 34, 28.413701}", 
+    "history" -> {"0.0", "", "", ""}, "context" -> "PDESymbolics2022`", 
+    "keywords" -> {}, "specialkeywords" -> {}, 
+    "tutorialcollectionlinks" -> {}, "index" -> True, "label" -> 
+    "PDE Symbolics2022 Symbol", "language" -> "en", "paclet" -> 
+    "PDESymbolics2022", "status" -> "None", "summary" -> 
+    "LinearSystemSolveOperator[<||>][<|\"matrix\" -> {{ ...}, { ...}}|>] \
+solves the system Ax=b for x. If the system has multiple solutions, solves \
+the solvable variables in terms of the remaining ones. ", "synonyms" -> {}, 
+    "tabletags" -> {}, "title" -> "LinearSystemSolveOperator", 
+    "titlemodifier" -> "", "windowtitle" -> "LinearSystemSolveOperator", 
+    "type" -> "Symbol", "uri" -> 
+    "PDESymbolics2022/ref/LinearSystemSolveOperator"}},
+CellContext->"Global`",
+FrontEndVersion->"12.3 for Mac OS X x86 (64-bit) (July 9, 2021)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[
+    StyleDefinitions -> FrontEnd`FileName[{"Wolfram"}, "Reference.nb"]]], 
+   Cell[
+    StyleData["Input"], CellContext -> "Global`"], 
+   Cell[
+    StyleData["Output"], CellContext -> "Global`"]}, Visible -> False, 
+  FrontEndVersion -> "12.3 for Mac OS X x86 (64-bit) (July 9, 2021)", 
+  StyleDefinitions -> "Default.nb"],
+ExpressionUUID->"387569f9-754c-483a-bf41-a6f584a8f362"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "PrimaryExamplesSection"->{
+  Cell[8936, 236, 1390, 37, 36, "PrimaryExamplesSection",ExpressionUUID->"332d6a3e-8851-41c9-9891-051bea957e4f",
+   CellTags->"PrimaryExamplesSection",
+   CellID->1553070778]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"PrimaryExamplesSection", 56719, 1653}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[597, 21, 4525, 109, 57, "AnchorBarGrid",ExpressionUUID->"e45a8d8e-bf24-43b0-9862-029dddb0c972",
+ CellID->1],
+Cell[5125, 132, 99, 0, 23, "ContextNameCell",ExpressionUUID->"8a2d4895-4726-4f54-9333-52c3d8b7bca1"],
+Cell[CellGroupData[{
+Cell[5249, 136, 568, 14, 60, "ObjectNameGrid",ExpressionUUID->"78e9745b-c99a-4062-a2d5-950f0ad3d48c"],
+Cell[5820, 152, 830, 20, 112, "Usage",ExpressionUUID->"2869b8e2-be7d-436b-86ed-26a9f89d860a",
+ CellID->982511436]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6687, 177, 1899, 47, 37, "NotesSection",ExpressionUUID->"36fac4ed-0f3f-4f29-9f0b-c018123d87ae",
+ CellGroupingRules->{"SectionGrouping", 50},
+ CellID->1396269821],
+Cell[8589, 226, 220, 4, 36, "Notes",ExpressionUUID->"41d5572e-00e2-4fa4-88aa-f3955d637f17",
+ CellID->1745462342]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "NotesSection"}, Closed]]]],
+Cell[CellGroupData[{
+Cell[8936, 236, 1390, 37, 36, "PrimaryExamplesSection",ExpressionUUID->"332d6a3e-8851-41c9-9891-051bea957e4f",
+ CellTags->"PrimaryExamplesSection",
+ CellID->1553070778],
+Cell[CellGroupData[{
+Cell[10351, 277, 1368, 36, 31, "ExampleSection",ExpressionUUID->"0cfae24e-7452-4927-92ab-9d8e65828525",
+ CellID->1944320208],
+Cell[11722, 315, 181, 3, 29, "Input",ExpressionUUID->"52e85db3-252f-45f6-bb83-9d2ef3089e5d",
+ CellID->1083141256],
+Cell[11906, 320, 131, 1, 38, "ExampleText",ExpressionUUID->"13a9a1a4-66cf-41df-9729-ebfb8f5fc34c",
+ CellID->175372343],
+Cell[CellGroupData[{
+Cell[12062, 325, 809, 23, 48, "Input",ExpressionUUID->"9b320b9d-e860-4bf1-8371-2d369e21e20d",
+ CellID->177238719],
+Cell[12874, 350, 232, 6, 37, "Output",ExpressionUUID->"535836d9-432b-4382-a1e3-d25eeda87b37",
+ CellID->1700889818]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13143, 361, 687, 18, 48, "Input",ExpressionUUID->"7d30b7ad-d974-4010-b51a-cf1a9367262e",
+ CellID->2107766663],
+Cell[13833, 381, 177, 4, 37, "Output",ExpressionUUID->"a84d3c67-f309-4d85-abb6-5dda3ab2ccaa",
+ CellID->561006484]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14047, 390, 687, 18, 48, "Input",ExpressionUUID->"4f7691ff-ddff-4bae-ac37-f32828577044",
+ CellID->1657562817],
+Cell[14737, 410, 197, 5, 37, "Output",ExpressionUUID->"518c375a-34c5-49a5-b3fd-d22f9a13c0fb",
+ CellID->1112675203]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14971, 420, 809, 23, 48, "Input",ExpressionUUID->"0272420f-af57-42b2-8953-a187a4a57515",
+ CellID->118194805],
+Cell[15783, 445, 230, 6, 37, "Output",ExpressionUUID->"18df1330-d4eb-4ad7-9230-d9227c82339e",
+ CellID->97728871]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16050, 456, 879, 25, 48, "Input",ExpressionUUID->"5b38491e-4cc0-49ed-9445-85ea2d8d56b5",
+ CellID->148608318],
+Cell[16932, 483, 271, 8, 37, "Output",ExpressionUUID->"7f6592e6-fc5a-4696-821f-baa04a9814cd",
+ CellID->826135881]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17240, 496, 619, 16, 48, "Input",ExpressionUUID->"933b9715-aadb-4723-bb69-42f6c5c2a431",
+ CellID->544586149],
+Cell[17862, 514, 144, 3, 37, "Output",ExpressionUUID->"9b843829-ef2e-41dc-9d40-0f1c9c27dc05",
+ CellID->1745043112]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18043, 522, 687, 18, 70, "Input",ExpressionUUID->"319983c6-6c54-4901-8d8a-d8885f8fb498",
+ CellID->1136166646],
+Cell[18733, 542, 177, 4, 37, "Output",ExpressionUUID->"d32a9c2b-98cf-46fe-b6a7-56c697b9e117",
+ CellID->492353625]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18947, 551, 884, 25, 70, "Input",ExpressionUUID->"0bc7419c-61ba-4126-b743-0fd982194cbe",
+ CellID->755416305],
+Cell[19834, 578, 1561, 47, 71, "Output",ExpressionUUID->"4d648f62-7429-448b-b7ef-e1489dba3345",
+ CellID->1956268771]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[21432, 630, 987, 28, 70, "Input",ExpressionUUID->"100f3f24-408f-45a4-9b0e-7eaec7b4abea",
+ CellID->1034598627],
+Cell[22422, 660, 1431, 43, 53, "Output",ExpressionUUID->"7513dcf6-6198-4c4a-929a-d231303faaa6",
+ CellID->568563005]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[23890, 708, 914, 26, 70, "Input",ExpressionUUID->"6ba76ae0-11f5-4f65-bb53-025db957f32c",
+ CellID->1683679532],
+Cell[24807, 736, 1660, 50, 79, "Output",ExpressionUUID->"8be0a6b2-76e5-4624-a352-a4eb2e7bcc28",
+ CellID->2042372836]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[26504, 791, 1088, 31, 70, "Input",ExpressionUUID->"7102e298-a37f-44c0-adbf-7b1790c685b9",
+ CellID->882885529],
+Cell[27595, 824, 2102, 64, 99, "Output",ExpressionUUID->"6212092f-f397-4ea5-88e1-d164d75c19a3",
+ CellID->605933380]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[29734, 893, 1151, 33, 70, "Input",ExpressionUUID->"0bd2a087-6ef9-45cc-9627-f9ac55a6de89",
+ CellID->1320393265],
+Cell[30888, 928, 1828, 55, 81, "Output",ExpressionUUID->"072e19e2-50af-4b39-bad7-3f0947a4f494",
+ CellID->1768722298]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[32753, 988, 2346, 64, 70, "Input",ExpressionUUID->"6068c0cb-6fca-4650-adea-c9d6ca0961d9",
+ CellID->1447020712],
+Cell[35102, 1054, 4070, 123, 151, "Output",ExpressionUUID->"fe4abe75-b299-4bc5-9ba1-332733243dff",
+ CellID->25828303]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[39209, 1182, 2299, 64, 70, "Input",ExpressionUUID->"b8d3bb1b-c71f-4eac-a962-d41e9f191f05",
+ CellID->2049715801],
+Cell[41511, 1248, 6896, 194, 187, "Output",ExpressionUUID->"fe4f0957-589a-401e-90a1-4aeb5c122561",
+ CellID->1164041797]
+}, Open  ]]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "ExampleSection", "0"}, Closed]]]]
+}, Dynamic[CurrentValue[EvaluationNotebook[], {TaggingRules, "Openers", "PrimaryExamplesSection"}, Closed]]]],
+Cell[CellGroupData[{
+Cell[48671, 1453, 728, 19, 70, "MoreAboutSection",ExpressionUUID->"83778587-c8fe-4db7-b28c-2421250acc9e"],
+Cell[49402, 1474, 1383, 37, 70, "CitationContainerCell",ExpressionUUID->"f2bc0b72-893c-416b-9cd6-b6d574026539"]
+}, Open  ]],
+Cell[50800, 1514, 78, 0, 70, "FooterCell",ExpressionUUID->"52382138-2fb4-4344-9f78-f5be5cb0bcce"]
+}
+]
+*)
+
+(* End of internal cache information *)
+
