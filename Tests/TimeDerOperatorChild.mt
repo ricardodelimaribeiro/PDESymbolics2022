@@ -9,7 +9,7 @@ Test[
     		PiecewiseEqualOperator[variables][result, computation]===True,
     		True,
     		True,
-    		(*Print["Expected output:\n",result, "Actual output\n",computation];*)
+    		Print["Expected output:\n",result, "Actual output\n",computation];
     		False
     	]
 		]
