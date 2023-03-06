@@ -97,6 +97,8 @@ RightComposition[Sequence @@ (IntegrateByParts[#]& /@ {indVars})];
 (*          list of independent variables                              *)
 (* Output:  expression containing no derivatives of depVars            *)
 (***********************************************************************)
+RemoveDersOperator[variables_][expression_] := Kleisli[RemoveDers][variables][expression];
+
 RemoveDersStep[exp_, depVar_, indVar_, OptionsPattern[]] :=
 Module[ {print = DebugPrint[False, "[rm-ders]"], expr = Expand @ exp, depVarExpr, params}, 
 	Which[
@@ -143,9 +145,9 @@ RightComposition[Sequence @@ (RemoveDers[#, indVars]& /@ depVars)];
 
 (* Function form *)
 RemoveDers[exp_, depVars_List, indVars_List, OptionsPattern[]] :=
-RemoveDers[depVars, indVars][exp]
+RemoveDers[depVars, indVars][exp];
 
-RemoveDersOperator[variables_Association][expression_] :=
+(*RemoveDersOperator[variables_Association][expression_] :=
 	Which[
 		expression === $Failed, 
 			$Failed, 
@@ -153,10 +155,13 @@ RemoveDersOperator[variables_Association][expression_] :=
 			PiecewiseOperatorMap[RemoveDersOperator,variables, expression], 
 		True, 
 			RemoveDers[expression, Lookup[variables, "rdVars", {}], Lookup[variables, "indVars", keyAbsentMessage[RemoveDersOperator]["\"rdVars\" or \"indVars\""][{}]]]
-	]
+	]*)
+RemoveDers[variables_Association][expression_] :=
+RemoveDers[expression, Lookup[variables, "rdVars", {}], Lookup[variables, "indVars", keyAbsentMessage[RemoveDersOperator]["\"rdVars\" or \"indVars\""][{}]]];
 
 
-BeautifyOperator[variables_Association][expression_] :=
+
+(*BeautifyOperator[variables_Association][expression_] :=
 Which[
 	expression === $Failed, 
 		$Failed,
@@ -171,7 +176,16 @@ Which[
 	   IntegralEquivalenceClassOperator[KeyDrop["basis"] @ variables][expression]
     	]
      ]
-]
+]*)
+BeautifyOperator[variables_][expression_]:= KleisliListable[Beautify][variables][expression];
+
+Beautify[variables_Association][expression_] :=
+Module[ {},
+    	If[Lookup[variables, "VarDOperator", keyAbsentMessage[BeautifyOperator]["\"VarDOperator\""][VarDOperator]]===VarDOperator, 
+	   IntegralEquivalenceClassOperator[KeyDrop["basis"] @ variables][BeautifyOperator[variables][expression]],
+	   IntegralEquivalenceClassOperator[KeyDrop["basis"] @ variables][expression]
+    	]
+     ];
 End[] (* End Private Context *)
 
 (*EndPackage[]*)
