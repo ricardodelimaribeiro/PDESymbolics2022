@@ -24,12 +24,12 @@ TimeDerOperator[variables_Association][expression_Association] :=
     TimeDerOperator[
         Append[variables, 
             {
-            "timederivativeorder"->Lookup[expression, "timederivativeorder", Lookup[variables,"timederivativeorder",1]],
-            "eqRhs"->Lookup[expression, "eqRhs", Lookup[variables,"eqRhs",1]]
+            "timederivativeorder"->Lookup[expression, "timederivativeorder", Lookup[variables,"timederivativeorder", keyAbsentMessage[TimeDerOperator]["timederivativeorder"][1]]],
+            "eqRhs"->Lookup[expression, "eqRhs", Lookup[variables,"eqRhs",keyAbsentMessage[TimeDerOperator]["eqRhs"][1]]]
             }]
-        ][Lookup[expression, "expression",0]];
+        ][Lookup[expression, "expression",keyAbsentMessage[TimeDerOperator]["expression"][0]]];
             
-TimeDerOperator[variables_Association][expression_] :=
+(*TimeDerOperator[variables_Association][expression_] :=
     Which[ 
         expression === $Failed, $Failed,
         Head[expression] === Piecewise, PiecewiseOperatorMap[TimeDerOperator, variables, expression],
@@ -48,7 +48,24 @@ TimeDerOperator[variables_Association][expression_] :=
               ],
               Nest[(Lookup[variables, "VarDOperator", VarDOperator][Append[variables,"order" -> 1]][#] . Lookup[variables, "eqRhs", {}])&, expression, Lookup[variables, "timederivativeorder", 1] ]
           ]
-    ];
+    ];*)
+TimeDerOperator[variables_][expression_] := KleisliListable[TimeDer][variables][expression];
+
+TimeDer[variables_Association][expression_] :=
+    If[ Lookup[variables, "Beautify", keyAbsentMessage[TimeDerOperator]["Beautify"][False]],
+            
+              With[ {bo = 
+                  If[ Lookup[variables, "VarDOperator", keyAbsentMessage[TimeDerOperator]["VarDOperator"][VarDOperator]] === VarDOperator,
+                      BeautifyOperator[variables][#]&, (*integrate by parts, then represent without predefined basis*)
+                      RepresentModNullLagrangiansOperator[KeyDrop["basis"][variables]][#]&
+                  (*just represent without predefined basis*)
+                          ]
+              },
+                  Nest[(bo[Lookup[variables, "VarDOperator", VarDOperator][Append[variables,"order" -> 1]][#] . Lookup[variables, "eqRhs", {}]])&, expression, Lookup[variables, "timederivativeorder", 1] ]
+              ],
+              Nest[(Lookup[variables, "VarDOperator", VarDOperator][Append[variables,"order" -> 1]][#] . Lookup[variables, "eqRhs", {}])&, expression, Lookup[variables, "timederivativeorder", 1] ]
+          ];
+    
 
 expand :=
     Expand[#] /. Power[x_, y_] :> Power[Expand[Power[x, -y]], -1] &;
