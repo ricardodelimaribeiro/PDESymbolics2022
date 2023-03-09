@@ -112,12 +112,14 @@ PiecewiseSPolynomialOperator[variables_][f_, g_] :=
    SPolynomialOperator[variables][f, g]] // Expand;
 
 AutoReduceOperator[variables_][opolylist_] := 
- With[{generators = Lookup[variables, "generators", {}]},
-  DeleteDuplicates@FixedPoint[
+ With[{generators = Lookup[variables, "generators", {}],facts = Lookup[variables,"facts",True]},
+  Assuming[facts,DeleteDuplicates@FixedPoint[
    Function[polylist, 
     Select[
      Function[
        poly, (Last@
          PolynomialReduce[poly, Select[polylist, # =!= poly &], 
-          generators])] /@ polylist, # =!= 0 &]], opolylist]] 
+          generators])] /@ polylist, # =!= 0 &]], opolylist]]
+          ]; 
+         
 End[]
