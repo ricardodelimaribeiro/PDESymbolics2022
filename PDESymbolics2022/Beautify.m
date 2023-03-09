@@ -26,17 +26,10 @@ IntegrateByPartsStep::usage = "IntegrateByPartsStep[x][expresssion] does an inte
 (* Output:  A transformed expression                                  *)
 (**********************************************************************)
 (*TODO use Kreisli and KeyAbsent = "Key `1` is missing. Trying to go on with `2`";*)
-IntegrateByPartsOperator[variables_Association][expression_] :=
-Which[
-	expression === $Failed, 
-		$Failed,
-	Head[expression] === List, 
-		Map[IntegrateByPartsOperator[variables], expression]//PiecewiseExpand//PiecewiseListClean,
-	Head[expression] === Piecewise, 
-		PiecewiseOperatorMap[IntegrateByPartsOperator,variables, expression],
-	True, 
-		(IntegrateByParts@@Lookup[variables, "intVars", Lookup[variables, "indVars", keyAbsentMessage[IntegrateByPartsOperator]["\"intVars\" or \"indVars\""] [{}]]])[expression]
-]
+Clear[IntegrateByPartsOperator];
+IntegrateByPartsOperator[variables_][expression_]:=KleisliListable[IntegrateByPartsO][variables][expression];
+
+IntegrateByPartsO[variables_][expression_]:=(IntegrateByParts@@Lookup[variables, "intVars", (*keyAbsentMessage[IntegrateByPartsOperator]["\"intVars\""]*)Lookup[variables, "indVars", {}]])[expression];
 
 IntegrateByPartsStep[exp_, indVar_Symbol, OptionsPattern[]] :=
 Module[{print = DebugPrint[False, "[IBP]"], expr = Expand @ exp, maxDer, maxDerVar, Ders, varsToDers},
@@ -86,7 +79,6 @@ FixedPoint[IntegrateByPartsStep[indVar], #]&;
 
 IntegrateByParts[indVars___, OptionsPattern[]] :=
 RightComposition[Sequence @@ (IntegrateByParts[#]& /@ {indVars})];
-
 
 (* ##########            Function: RemoveDers              ########### *)
 (***********************************************************************)
@@ -145,44 +137,23 @@ RightComposition[Sequence @@ (RemoveDers[#, indVars]& /@ depVars)];
 
 (* Function form *)
 RemoveDers[exp_, depVars_List, indVars_List, OptionsPattern[]] :=
+
 RemoveDers[depVars, indVars][exp];
 
-(*RemoveDersOperator[variables_Association][expression_] :=
-	Which[
-		expression === $Failed, 
-			$Failed, 
-		Head[expression] === Piecewise, 
-			PiecewiseOperatorMap[RemoveDersOperator,variables, expression], 
-		True, 
-			RemoveDers[expression, Lookup[variables, "rdVars", {}], Lookup[variables, "indVars", keyAbsentMessage[RemoveDersOperator]["\"rdVars\" or \"indVars\""][{}]]]
-	]*)
 RemoveDers[variables_Association][expression_] :=
+
 RemoveDers[expression, Lookup[variables, "rdVars", {}], Lookup[variables, "indVars", keyAbsentMessage[RemoveDersOperator]["\"rdVars\" or \"indVars\""][{}]]];
 
 
 
-(*BeautifyOperator[variables_Association][expression_] :=
-Which[
-	expression === $Failed, 
-		$Failed,
-	Head[expression] === List, 
-		Map[BeautifyOperator[variables], expression]//PiecewiseExpand//PiecewiseListClean,
-	Head[expression] === Piecewise, 
-		PiecewiseOperatorMap[BeautifyOperator,variables, expression],
-	True, 
-    Module[ {},
-    	If[Lookup[variables, "VarDOperator", keyAbsentMessage[IntegrateByPartsOperator]["\"VarDOperator\""] [VarDOperator]]===VarDOperator, 
-	   IntegralEquivalenceClassOperator[KeyDrop["basis"] @ variables][IntegrateByPartsOperator[variables][expression]],
-	   IntegralEquivalenceClassOperator[KeyDrop["basis"] @ variables][expression]
-    	]
-     ]
-]*)
+Clear[BeautifyOperator];
 BeautifyOperator[variables_][expression_]:= KleisliListable[Beautify][variables][expression];
 
 Beautify[variables_Association][expression_] :=
 Module[ {},
-    	If[Lookup[variables, "VarDOperator", keyAbsentMessage[BeautifyOperator]["\"VarDOperator\""][VarDOperator]]===VarDOperator, 
-	   IntegralEquivalenceClassOperator[KeyDrop["basis"] @ variables][BeautifyOperator[variables][expression]],
+    	If[Lookup[variables, "VarDOperator", (*keyAbsentMessage[BeautifyOperator]["\"VarDOperator\""]@*)VarDOperator]===VarDOperator, 
+	   IntegralEquivalenceClassOperator[KeyDrop["basis"] @ variables][
+	   	IntegrateByPartsOperator[variables][expression]],
 	   IntegralEquivalenceClassOperator[KeyDrop["basis"] @ variables][expression]
     	]
      ];
