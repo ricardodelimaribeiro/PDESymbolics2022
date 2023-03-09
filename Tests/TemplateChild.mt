@@ -6,7 +6,7 @@ Test[
 			Which[
     		result === computation,
     			result,
-    		PiecewiseEqualOperator[variables][result, computation] === True,
+    		PiecewiseEqualOperator[template["variables"]][result, computation] === True,
     			result,
     		True,
     			computation
