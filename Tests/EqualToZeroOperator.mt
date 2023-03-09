@@ -25,7 +25,8 @@ Get[ test ]
         "depVars" -> {u},
         "indVars" -> {n},
         "expression" -> (u[n+1]-u[n])^2 + u[n]^2,
-        "result" -> False
+        "result" -> False,
+        "pars"->{}
     }];
     label = "Mechanics"    
     Get[ test ]

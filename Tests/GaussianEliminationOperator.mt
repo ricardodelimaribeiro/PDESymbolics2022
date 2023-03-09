@@ -17,6 +17,7 @@ Get[ test ]
     }];
     field = Association[{
         "generators" -> {},
+        "facts"->True,
         "pars" -> {}
     }];
     Get[ test ]
@@ -31,6 +32,7 @@ Get[ test ]
     field =
   	Association[{
     	"generators" -> {},
+    	"facts"->True,
     	"pars" -> {}
     }];
     Get[ test ]
@@ -40,11 +42,15 @@ Get[ test ]
   	Association[{
     	"matrix" -> {{x, x^2}, {a x + a, a x}},
     	"vector" -> {1, a^2},
+    	"depVars"->{},
+    	"indVars"->{},
     	"result" -> Piecewise[{{<|"matrix" -> {{1, 0}, {0, 1}}, "vector" -> {x^(-1) - (1 + x - a*x)/x^2, (1 + x - a*x)/x^3}|>, a != 0}, {<|"matrix" -> {{1, x}}, "vector" -> {x^(-1)}|>, a == 0}}, $Failed]
     }];
     field =
   	Association[{
     	"generators" -> {x},
+    	"depVars"->{},
+    	"indVars"->{},
     	"pars" -> {a}
     }];
     Get[ test ]

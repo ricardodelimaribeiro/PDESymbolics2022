@@ -16,6 +16,7 @@ variables = Association[
 	"indVars" -> {x},
 	"pars" -> {a},
 	"expression" -> u[x]^a + u[x]^2 + a,
+	"generators"->{},
 	"result" -> Piecewise[{{1 + u[x]^2, a == 0}, {2*(1 + u[x]^2), a == 2}, {a + u[x]^2 + u[x]^a, -2*a + a^2 != 0}}, $Failed]
 ];
 Get[test]
@@ -26,6 +27,7 @@ variables = Association[
 	"indVars" -> {x},
 	"pars" -> {a,b},
 	"expression" -> u[x]^a + u[x]^b + a + b,
+	"generators"->{},
 	"result" -> 
 	Piecewise[{{2, a == 0 && b == 0}, {1 + a + u[x]^a, a != 0 && b == 0}, {2*(b + u[x]^b), a - b == 0 && b != 0}, {1 + b + u[x]^b, a == 0 && b != 0}, {a + b + u[x]^a + u[x]^b, a^2*b - a*b^2 != 0}}, $Failed]
 	(*Piecewise[{{2, b == 0 && a == 0}, {1 + b + u[x]^b, a == 0 && b != 0}, {1 + a + u[x]^a, b == 0 && a != 0}, {2*(b + u[x]^b), a - b == 0 && b != 0}, {a + b + u[x]^a + u[x]^b, a^2*b - a*b^2 != 0}}, $Failed]*)
@@ -62,7 +64,7 @@ variables = Association[
 	"indVars" -> {x},
 	"pars" -> {a,b},
 	"expression" -> {u[x] + u[x]^a, u[x]^2 + 7 u[x]^(2 - a),  1},
-	"result" -> Piecewise[{{{2*u[x], u[x]*(7 + u[x]), 1}, a == 1}, {{1 + u[x], 8*u[x]^2, 1}, a == 0}, {{u[x] + u[x]^a, u[x]^(2 - a)*(7 + u[x]^a), 1}, -a+a^2 != 0}}, $Failed],
+	"generators"->{},
 	"result" -> Piecewise[{{{2*u[x], u[x]^(2 - a)*(7 + u[x]^a), 1}, a == 1}, 
   {{u[x] + u[x]^a, 8*u[x]^2, 1}, a == 0}, 
   {{u[x] + u[x]^a, u[x]^(2 - a)*(7 + u[x]^a), 1}, a != 0 && a != 1}}, $Failed]
@@ -76,6 +78,7 @@ variables = Association[
 	"pars" -> {a,b},
 	"expression" -> u'[x]^2 +  u'[x]^a + u'[x]^(b - a),
 	"refine"-> True,
+	"generators"->{},
 	"result" -> 
 	Piecewise[{{3*Derivative[1][u][x]^2, a == 2 && b == 4}, {2*Derivative[1][u][x]^2 + Derivative[1][u][x]^a, a - b == -2 && b != 4}, {Derivative[1][u][x]^2 + 2*Derivative[1][u][x]^a, 2*a - b == 0 && b != 4}, {2*Derivative[1][u][x]^2 + Derivative[1][u][x]^(-2 + b), a == 2 && b != 4}, {Derivative[1][u][x]^2 + Derivative[1][u][x]^a + Derivative[1][u][x]^(-a + b), (a != 2 && b == 4) || -8*a + 2*a^3 + 4*b + 4*a*b - 3*a^2*b - 2*b^2 + a*b^2 != 0}}, $Failed]
 	(*Piecewise[{{3*Derivative[1][u][x]^2, b == 4 && a == 2}, {2*Derivative[1][u][x]^2 + Derivative[1][u][x]^(-2 + b), a == 2 && b != 4}, {2*Derivative[1][u][x]^2 + Derivative[1][u][x]^a, a - b == -2 && b != 4}, {Derivative[1][u][x]^2 + 2*Derivative[1][u][x]^a, 2*a - b == 0 && b != 4}, {Derivative[1][u][x]^2 + Derivative[1][u][x]^a + Derivative[1][u][x]^(-a + b), -8*a + 2*a^3 + 4*b + 4*a*b - 3*a^2*b - 2*b^2 + a*b^2 != 0}}, $Failed]*)
@@ -90,6 +93,7 @@ variables = Association[
 	"pars" -> {a},
 	"expression" -> V'[u[x]] u'[x] - V'[u[x]] u'[x]^a,
 	"refine"-> True,
+	"generators"->{},
 	"result" -> Piecewise[{{0, a == 1}, {-((-Derivative[1][u][x] + Derivative[1][u][x]^a)*Derivative[1][V][u[x]]), a != 1}}, $Failed]
 ];
 Get[test]

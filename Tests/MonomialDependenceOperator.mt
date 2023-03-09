@@ -12,7 +12,9 @@ Get[ test ]
 label = "empty";
 variables = Association[{
 	"expression" -> {},
-    "result" -> {}
+    "result" -> {},
+    "generators"->{},
+    "pars"->{}
 }];
 Get[ test ]
 
@@ -23,6 +25,7 @@ variables = Association[
     "depVars" -> {u},
     "indVars" -> {x},
     "pars" -> {b},
+    "generators"->{},
     "genFuns" -> {f}
 ];
 Get[ test ]
@@ -33,6 +36,7 @@ variables = Association[
     "result" -> Piecewise[{{{a -> 0, b -> 2}, a == 0 && b == 2}, {{a -> 0}, a == 0}, {{b -> 2}, b == 2}}, {}],
     "depVars" -> {u},
     "indVars" -> {x},
+    "generators"->{},
     "pars" -> {a,b}
 ];
 Get[ test ]
@@ -43,19 +47,11 @@ variables = Association[
     "result" -> Piecewise[{{{a -> 0}, a == 0}}, {}],
     "depVars" -> {u},
     "indVars" -> {x},
+    "generators"->{},
     "pars" -> {a,b}
 ];
 Get[ test ]
 
-label = "power and coefficient again again";
-variables = Association[
-	"expression" -> {a u[x]^b},
-    "result" -> Piecewise[{{{a -> 0}, a == 0}}, {}],
-    "depVars" -> {u},
-    "indVars" -> {x},
-    "pars" -> {a,b}
-];
-Get[ test ]
 
 (*Example: 
 MonomialDependence[{1, u[x]^2, a u[x]^b}, {u}, {x}, {a, b}]

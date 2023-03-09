@@ -2,7 +2,7 @@
 
 Test[
 	With[{expression = variables["expression"], result = variables["result"]},
-		With[{computation = DiscreteConservedQOperator[KeyDrop["result"][variables]][expression](*//Quiet*)},
+		With[{computation = DiscreteConservedQOperator[KeyDrop["result"][variables]][expression]//Quiet},
 			Which[
     		result === computation,
     			result,

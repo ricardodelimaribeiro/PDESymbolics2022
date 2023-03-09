@@ -33,6 +33,7 @@ variables = Association[{
 	"depVars" -> {u},
 	"indVars" -> {x},
 	"depth" -> 1,
+	"pars"->{},
 	"expression" ->  E^u[x] u[x] Derivative[1][u][x]^2,
 	"result" -> {-(E^u[x]*u[x]*Derivative[1][u][x]^2), -(E^u[x]*u[x]^2*Derivative[1][u][x]^2), -(E^u[x]*u[x]^2*Derivative[2][u][x]), 2*E^u[x]*u[x]^2*Derivative[1][u][x]^2 + E^u[x]*u[x]^3*Derivative[1][u][x]^2 + E^u[x]*u[x]^3*Derivative[2][u][x]} 
 }];
