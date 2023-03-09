@@ -5,7 +5,7 @@ $TestFunctions =
  StringDrop[#, StringLength["Test"]] & /@ 
   Complement[Names["TestsPDESymbolics`Test*"], {"Test"}]
 *)
-$TestFunctions = {MatrixKernelOperator, FindIntegratingFactorOperator, EqualToZeroOperator,
+$TestFunctions = {"MatrixKernelOperator", FindIntegratingFactorOperator, EqualToZeroOperator,
 	"PiecewiseEliminateEqualitiesOperator",PiecewiseFullSimplifyOperator,"PiecewiseSimplifyOperator",
 	"RegroupParametersOperator", FindConservedQuantityOperator, VarDOperator, DisintegrateOperator, 
 	IntegrateByPartsOperator, BeautifyOperator, BasisModNullLagrangiansOperator, "BasisOperator"};
