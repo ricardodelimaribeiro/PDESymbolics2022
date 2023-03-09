@@ -5,8 +5,11 @@ InferGeneratorsOperator::usage =
 PiecewisePolynomialLCM::usage =
 "PiecewisePolynomialLCM[f, g] gives the polynomial Least Common Multiple of f and g.";
 
-LeadingTermOperator::usage = 
+LeadingTermOperator::usage =
 "LeadingTermOperator[variables][xp] returns a Piecewise expression with the leading term depending on the parameters. ";
+
+LeadingCoefficientOperator::usage = 
+"LeadingCoefficientOperator[variables][xp] returns a Piecewise expression with the leading term depending on the parameters. ";
 
 PiecewiseSPolynomialOperator::usage =
 "PiecewiseSPolynomialOperator[variables][f, g] returns the S-polynomial for f and g. If one of them is a Piecewise expression, it takes care of the cases.";
@@ -17,9 +20,10 @@ PiecewiseDivision::usage =
 AutoReduceOperator::usage =
 "AutoReduceOperator[variables][polylist] returns the reduced polylist.";
 
+(*Debuging*)
+SPolynomialOperator::usage="";
 Begin["`Private`"]
 InferGeneratorsOperator[variables_][xplist_List] :=
-  
   With[{glc = First@GenericLinearCombinationOperator[variables][xplist]},
    InferGeneratorsOperator[variables][glc]
    ];
@@ -47,7 +51,7 @@ PiecewisePolynomialLCM[f_, g_] :=
    
 NotPiecewise[xp_] := Head[xp] =!= Piecewise;
 
-LeadingTermOperator[variables_Association][xp_?NotPiecewise] := 
+LeadingTerm[variables_Association][xp_?NotPiecewise] := 
   Module[{order, generators, MonList, rules}, 
    order = Lookup[variables, "ordering", "Lexicographic"];
    generators = 
@@ -60,7 +64,22 @@ LeadingTermOperator[variables_Association][xp_?NotPiecewise] :=
    ];
 
 LeadingTermOperator[vars_][xp_] := 
- KleisliListable[LeadingTermOperator][vars][xp] // PiecewiseBeautify
+ KleisliListable[LeadingTerm][vars][xp] // PiecewiseBeautify;
+ 
+Clear[LeadingCoefficientOperator];
+LeadingCoefficient[variables_Association][xp_?NotPiecewise] := 
+  Module[{order, generators, MonList, rules}, 
+   order = Lookup[variables, "ordering", "Lexicographic"];
+   generators = 
+    Lookup[variables, "generators", 
+     InferGeneratorsOperator[variables][xp]];
+   rules = # -> 1 & /@ generators;
+   MonList = MonomialList[xp, generators, order];
+   Piecewise[({(# /. rules), (# /. rules) != 0} & /@ MonList),1]//PiecewiseBeautify
+   ];
+
+LeadingCoefficientOperator[vars_][xp_] := 
+ KleisliListable[LeadingCoefficient][vars][xp] // PiecewiseBeautify
 
 Division[a_?NotPiecewise,b_?NotPiecewise]:=
 Which[a === $Failed|| b === $Failed,
