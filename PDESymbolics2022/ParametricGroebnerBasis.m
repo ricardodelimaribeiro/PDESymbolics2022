@@ -1,3 +1,5 @@
+(* ::Package:: *)
+
 (* Wolfram Language package *)
 InferGeneratorsOperator::usage =
 "InferGeneratorsOperator[variables][xplist] infers the generators of xplist.";
@@ -52,19 +54,20 @@ PiecewisePolynomialLCM[f_, g_] :=
 NotPiecewise[xp_] := Head[xp] =!= Piecewise;
 
 LeadingTerm[variables_Association][xp_?NotPiecewise] := 
-  Module[{order, generators, MonList, rules}, 
+  Module[{order, generators, MonList, rules,facts},
+  	facts = Lookup[variables,"facts",True]; 
    order = Lookup[variables, "ordering", "Lexicographic"];
    generators = 
     Lookup[variables, "generators", 
      InferGeneratorsOperator[variables][xp]];
    rules = # -> 1 & /@ generators;
-   MonList = MonomialList[xp, generators, order];
+   MonList = Assuming[facts,MonomialList[xp, generators, order]];
    (*Print[MonList,rules];*)
-   Piecewise[({#, (# /. rules) != 0} & /@ MonList)]//PiecewiseBeautify
+   Piecewise[({#, (# /. rules) != 0} & /@ MonList)](*//PiecewiseBeautify*)
    ];
 
 LeadingTermOperator[vars_][xp_] := 
- KleisliListable[LeadingTerm][vars][xp] // PiecewiseBeautify;
+ KleisliListable[LeadingTerm][vars][xp] (*// PiecewiseBeautify*);
  
 Clear[LeadingCoefficientOperator];
 LeadingCoefficient[variables_Association][xp_?NotPiecewise] := 
@@ -75,11 +78,12 @@ LeadingCoefficient[variables_Association][xp_?NotPiecewise] :=
      InferGeneratorsOperator[variables][xp]];
    rules = # -> 1 & /@ generators;
    MonList = MonomialList[xp, generators, order];
-   Piecewise[({(# /. rules), (# /. rules) != 0} & /@ MonList),1]//PiecewiseBeautify
+   MonList = Simplify/@(MonList /.rules); 
+   Piecewise[({#, # != 0} & /@ MonList),1](*//PiecewiseBeautify this was giving problems for a parametric leading coefficient (constant in the generators)*)
    ];
 
 LeadingCoefficientOperator[vars_][xp_] := 
- KleisliListable[LeadingCoefficient][vars][xp] // PiecewiseBeautify
+ KleisliListable[LeadingCoefficient][vars][xp] (*// PiecewiseBeautify*)
 
 Division[a_?NotPiecewise,b_?NotPiecewise]:=
 Which[a === $Failed|| b === $Failed,
@@ -102,7 +106,7 @@ SPolynomialOperator[variables_][f_?NotPiecewise,
 		With[{lf = LeadingTermOperator[variables][f],
 			lg = LeadingTermOperator[variables][g]},
 			
-			Expand@PiecewiseEliminateEqualitiesOperator[variables]@PiecewiseExpand[PiecewisePolynomialLCM[lf,lg](PiecewiseDivision[f,lf] - PiecewiseDivision[g,lg])]//PiecewiseBeautify
+			Expand@PiecewiseEliminateEqualitiesOperator[variables]@PiecewiseExpand[PiecewisePolynomialLCM[lf,lg](PiecewiseDivision[f,lf] - PiecewiseDivision[g,lg])](*//PiecewiseBeautify*)
 			(*	PolynomialLCM[lf, lg] (f/lf - g/lg)*)
 			]
 		];
