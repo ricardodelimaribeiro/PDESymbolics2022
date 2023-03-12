@@ -2,7 +2,7 @@
 
 Test[
 	With[{expression = variables["expression"], result = variables["result"]},
-		With[{computation = FindDiscreteConservedQuantityBasisOperator[KeyDrop[{"result","expression"}][variables]][expression](*//Quiet*)},
+		With[{computation = FindDiscreteConservedQuantityBasisOperator[KeyDrop[{"result","expression"}][variables]][expression]//Quiet},
 			Which[
     		result === computation,
     			result,

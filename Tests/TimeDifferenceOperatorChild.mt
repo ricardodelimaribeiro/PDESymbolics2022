@@ -2,7 +2,7 @@
 
 Test[
 	With[{expression = variables["expression"], result = variables["result"]},
-		With[{computation = TimeDifferenceOperator[variables][expression]},
+		With[{computation = TimeDifferenceOperator[variables][expression]//Quiet},
 			Which[
     		result === computation,
     			result,
