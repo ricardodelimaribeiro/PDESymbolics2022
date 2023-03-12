@@ -142,14 +142,16 @@ Which[
         ] // PiecewiseExpand//PiecewiseBeautify
 ]
 
+Clear[PiecewiseBeautify];
+Options[PiecewiseBeautify]={"domain"->Complex};
 
 
-PiecewiseBeautify[P_] :=
+PiecewiseBeautify[P_,OptionsPattern[]] :=
     Which[
         Head[P] === Piecewise,
         With[ {pp = PiecewiseLastCaseClean[P]},
             Module[ {qq},
-                qq = Reduce/@MapThread[Simplify[!#1&&#2]&, {FoldList[Or,False, pp[[All,2]]][[;;-2]],pp[[All,2]]}];
+                qq = Reduce[#,OptionValue["domain"]]&/@MapThread[Simplify[!#1&&#2]&, {FoldList[Or,False, pp[[All,2]]][[;;-2]],pp[[All,2]]}];
                 Piecewise[Select[Transpose[{pp[[All,1]], qq}], #[[1]]=!=$Failed &], $Failed]
             ]
         ],
@@ -164,9 +166,9 @@ PiecewiseEliminateEqualitiesOperator[variables_Association][xp_] :=
   If[Head[xp] =!= Piecewise,
    xp,
    Module[{xpb, xpbl, xpblbc, xpblbcand, xpblbcandeq, facts, domain},
-    xpb = PiecewiseBeautify[xp];
     facts = Lookup[variables, "facts", True];
     domain = Lookup[variables, "domain", Reals];
+    xpb = PiecewiseBeautify[xp(*,"domain"->(*domain*)(*Complex*)*)];
     If[Head[xpb] =!= Piecewise,
      xpb,
      xpbl = Select[ Append[{xpb[[2]], Not[Or @@ ( xpb[[1, All, 2]])]}][First[xpb]], #[[1]] =!= $Failed &];
