@@ -159,7 +159,7 @@ PiecewiseBeautify[P_,OptionsPattern[]] :=
         P
     ]
 
-PiecewiseBeautifyOperator[<||>] := PiecewiseBeautify
+PiecewiseBeautifyOperator[variables_][xp_] := PiecewiseBeautify[xp,"domain"->Lookup[variables,"domain",Complex]];
 
 PiecewiseEliminateEqualitiesOperator[variables_Association][xp_] :=
  If[Lookup[variables, "eliminateequalities", True],
