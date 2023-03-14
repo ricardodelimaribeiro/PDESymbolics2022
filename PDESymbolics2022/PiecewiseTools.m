@@ -143,7 +143,7 @@ Which[
 ]
 
 Clear[PiecewiseBeautify];
-Options[PiecewiseBeautify]={"domain"->Complex};
+Options[PiecewiseBeautify]={"domain"->Reals};
 
 
 PiecewiseBeautify[P_,OptionsPattern[]] :=
