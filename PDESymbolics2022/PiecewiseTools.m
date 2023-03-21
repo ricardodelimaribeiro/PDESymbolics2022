@@ -108,7 +108,7 @@ PiecewiseOperatorMap[Operator_, variables_, XPO_] :=
    $Failed,
    Head[XP] === Piecewise,
    With[{G = PiecewiseLastCaseClean[XP]},
-    With[{qq = Reduce /@ MapThread[Simplify[! #1 && #2] &,
+    With[{qq = Reduce[#,Lookup[variables,"domain",Complex]]& /@ MapThread[Simplify[! #1 && #2] &,
           {FoldList[Or, False, G[[All, 2]]][[;; -2]], G[[All, 2]]}]},
       Module[{gg},
        gg = Transpose[{G[[All, 1]], qq}];
@@ -151,7 +151,7 @@ PiecewiseBeautify[P_,OptionsPattern[]] :=
         Head[P] === Piecewise,
         With[ {pp = PiecewiseLastCaseClean[P]},
             Module[ {qq},
-                qq = Reduce[#,OptionValue["domain"]]&/@MapThread[Simplify[!#1&&#2]&, {FoldList[Or,False, pp[[All,2]]][[;;-2]],pp[[All,2]]}];
+                qq = MapThread[Reduce[Simplify@#,OptionValue["domain"]]&[!#1&&#2]&, {FoldList[Or,False, pp[[All,2]]][[;;-2]],pp[[All,2]]}];
                 Piecewise[Select[Transpose[{pp[[All,1]], qq}], #[[1]]=!=$Failed &], $Failed]
             ]
         ],
@@ -159,7 +159,10 @@ PiecewiseBeautify[P_,OptionsPattern[]] :=
         P
     ]
 
-PiecewiseBeautifyOperator[variables_][xp_] := PiecewiseBeautify[xp,"domain"->Lookup[variables,"domain",Complex]];
+PiecewiseBeautifyOperator[variables_][xp_] := 
+((*Print["piecewiseBeautifyOperator domain: ", Lookup[variables,"domain",Complex]]*)
+PiecewiseBeautify[xp,"domain"->Lookup[variables,"domain",Complex]]
+);
 
 PiecewiseEliminateEqualitiesOperator[variables_Association][xp_] :=
  If[Lookup[variables, "eliminateequalities", True],
@@ -168,7 +171,7 @@ PiecewiseEliminateEqualitiesOperator[variables_Association][xp_] :=
    Module[{xpb, xpbl, xpblbc, xpblbcand, xpblbcandeq, facts, domain},
     facts = Lookup[variables, "facts", True];
     domain = Lookup[variables, "domain", Reals];
-    xpb = PiecewiseBeautify[xp(*,"domain"->(*domain*)(*Complex*)*)];
+    xpb = PiecewiseBeautify[xp,"domain"->domain(*Complex*)];
     If[Head[xpb] =!= Piecewise,
      xpb,
      xpbl = Select[ Append[{xpb[[2]], Not[Or @@ ( xpb[[1, All, 2]])]}][First[xpb]], #[[1]] =!= $Failed &];
