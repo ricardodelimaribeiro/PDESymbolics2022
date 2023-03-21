@@ -96,9 +96,7 @@ LeadingCoefficient[variables_Association][xp_?NotPiecewise] :=
    MonList = MonomialList[xp, generators, order];
    MonList = Simplify/@(MonList /.rules); 
    (*Print["coeff list: ", MonList, " facts: ", facts];*)
-    order=Simplify@Piecewise[({#, (*Reduce[*)facts&&(Numerator@Together@# != 0)(*]*)} & /@ MonList),1]; (*this was giving problems for a parametric leading coefficient (constant in the generators)*)
-    (*Print[order];*)
-    order
+    PiecewiseBeautify@(*Simplify@*)Piecewise[({#, (*Reduce[*)facts&&(# != 0)(*]*)} & /@ MonList),1] (*this was giving problems for a parametric leading coefficient (constant in the generators)*)
    ]
    ]
    ];
