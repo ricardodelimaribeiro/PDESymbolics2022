@@ -78,7 +78,7 @@ PiecewiseReplace[xp_, rules_] :=
 (*Inputs the the default value in the Piecewise list: Piecewise[{{val1,cond1},{val2,cond2}},val] -> {{val1,cond1},{val2,cond2},{val, "no conditions"}}
 If no value is given, the default value is 0.*)
 PiecewiseLastCaseClean[xp_Piecewise] :=
-	Module[{pxp = PiecewiseExpand @ xp}, 
+	Module[{pxp = xp},		 
 		Append[pxp[[1]], {pxp[[2]], True}]
 	];
 
@@ -96,9 +96,12 @@ Which[
 				], #[[2]]} & /@ G, 
 				$Failed 
 			]
-		] // PiecewiseExpand,
-	True, 
-		F[XP]
+
+		] (*why do we need this? // PiecewiseExpand*),
+	(*Head[XP] === List,
+	F/@XP,*)
+	True,
+	F[XP]
 ]];
 
 PiecewiseOperatorMap[Operator_, variables_, XPO_] := 
@@ -151,7 +154,7 @@ PiecewiseBeautify[P_,OptionsPattern[]] :=
         Head[P] === Piecewise,
         With[ {pp = PiecewiseLastCaseClean[P]},
             Module[ {qq},
-                qq = MapThread[Reduce[Simplify@#,OptionValue["domain"]]&[!#1&&#2]&, {FoldList[Or,False, pp[[All,2]]][[;;-2]],pp[[All,2]]}];
+                qq = MapThread[BooleanConvert@Reduce[Simplify@#,OptionValue["domain"]]&[!#1&&#2]&, {FoldList[Or,False, pp[[All,2]]][[;;-2]],pp[[All,2]]}];
                 Piecewise[Select[Transpose[{pp[[All,1]], qq}], #[[1]]=!=$Failed &], $Failed]
             ]
         ],
