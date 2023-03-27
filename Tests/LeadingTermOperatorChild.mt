@@ -2,7 +2,7 @@
 
 Test[
 	With[{expression = template["expression"], result = template["result"]},
-		With[{computation = template["operator"][template["variables"]][expression]//Quiet},
+		With[{computation = template["operator"][template["variables"]][expression]},
 			Which[
     		result === computation,
     			result,
@@ -18,5 +18,5 @@ Test[
     	result
     ]
     ,
-    TestID -> "InferGeneratorsOperator-20230309-9D8PMC_" <> label
+    TestID -> "LeadingTermOperator-20230311-9D8PMC_" <> label
 ]

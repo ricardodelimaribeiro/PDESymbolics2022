@@ -18,5 +18,5 @@ Test[
     	result
     ]
     ,
-    TestID -> "InferGeneratorsOperator-20230309-9D8PMC_" <> label
+    TestID -> "AutoReduceOperator-20210316-8DX9MA_" <> label
 ]
