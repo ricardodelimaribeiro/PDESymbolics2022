@@ -165,7 +165,7 @@ PiecewiseExtractGeneratorsOperator[variables_Association][expression_] :=
    Module[
     {xp},
     xp = (List @@ expression)[[1]];
-    xp = #[[1]] & /@ xp // Flatten;
+    xp = First /@ xp // Flatten;
     PiecewiseExtractGeneratorsOperator[variables][xp]
     ],
    True,
