@@ -44,13 +44,11 @@ InferGeneratorsOperator[variables_Association][xp_] := Kleisli[InferGenerators][
 InferGenerators[variables_Association][xp_] := 
   With[{indvars = Lookup[variables, "indVars", {}], 
     depvars = LexicographicSort[Lookup[variables, "depVars", {}]]},
-    Reverse@
+    
     DeleteDuplicates@
      Flatten[
-      Join[ 
-         Cases[xp, # @@ indvars, {0, Infinity}],(*I don't know why, 
-         but the code didn't work without the levelspec*)
-         (*{# @@ indvars},*)
+      Reverse@Join[ 
+         Cases[xp, # @@ indvars, {0, Infinity}],
          Cases[xp, Derivative[__][#] @@ indvars, {0, Infinity}]] & /@ 
        depvars]
    ];
