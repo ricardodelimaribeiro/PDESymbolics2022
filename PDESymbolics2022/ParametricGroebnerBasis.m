@@ -104,13 +104,19 @@ LeadingCoefficient[variables_Association][xp_?NotPiecewise] :=
 LeadingCoefficientOperator[vars_][xp_] := 
  KleisliListable[LeadingCoefficient][vars][xp](*//PiecewiseBeautify*)
 
-Division[a_?NotPiecewise,b_?NotPiecewise]:=
+Division[variables_][a_?NotPiecewise,b_?NotPiecewise]:=
 If[a === $Failed|| b === $Failed,
 	$Failed,
-	a/b
+	If[Head[a]===List,
+		MapThread[Division[variables],{a,b}],
+		Module[{pars=Lookup[variables,"pars",{}],except=Variables[b],q,r},
+			{{q},r}=PolynomialReduce[a,{b},Complement[pars,except]];
+			q+r/b
+		]
+	]
 ];
 
-PiecewiseDivisionOperator[variables_][a_,b_]:= PiecewiseMap[Expand,PiecewiseExpand@Division[a,b]]//PiecewiseBeautifyOperator[variables];
+PiecewiseDivisionOperator[variables_][a_,b_]:= PiecewiseMap[Expand,PiecewiseExpand@Division[variables][a,b]]//PiecewiseBeautifyOperator[variables];
 
 Clear[SPolynomialOperator];
 SPolynomialOperator[variables_][f_?NotPiecewise,
@@ -302,7 +308,7 @@ GrobOp[variables_][preGrobner_List, sPolynomials_List] :=
     fstSPoly = MonicOperator[variables][fstSPoly];
     (*Print["fst monic sp: ",fstSPoly];*)
    	reduced = PiecewisePolynomialReduceRemainderOperator[variables][fstSPoly, newPreGrobner];
-   	Print["main reduced : ",reduced];
+   	(*Print["main reduced : ",reduced];*)
 	reduced = MonicOperator[variables][reduced];
     (*Print["main monic reduced: ",reduced];*)
     
@@ -375,29 +381,35 @@ Module[{generators,MonList,lt},
 	generators=Lookup[variables,"generators",InferGeneratorsOperator[variables][xp]];
 	MonList=MonomialList[xp,generators];
 	(*Print["facto: ", Lookup[variables,"facts",True]];*)
-	Print["monolisto: ", MonList];
+	(*Print["monolisto: ", MonList];*)
 	lt=LeadingTermOperator[variables] /@ MonList;
 	(*Print["lt: ",lt];*)
   	PiecewiseExpand@Total[lt]
 ];
 
+MonicOperator[variables_][0] = 0;
+
 MonicOperator[variables_][xp_]:=
 Module[{allCases,lc, divided,generators},
 	generators=Lookup[variables,"generators",InferGeneratorsOperator[variables][xp]];
-	(*Print["xp: ", xp];*)
+	Print["xp: ", xp];
 	allCases = AllCasesOperator[variables][xp];
-	(*Print["ac: ",allCases];*)
+	Print["ac: ",allCases];
 	lc = LeadingCoefficientOperator[variables][allCases];
-	(*Print["lc: ", lc];*)
+	Print["lc: ", lc];
 	divided = PiecewiseDivisionOperator[variables][allCases,lc]//PiecewiseApplyConditionOperator[variables];
-	(*Print["divided: ",divided, " generators: ", generators, " variables: ", variables];*)
-	divided=PiecewiseMap[Simplify@MonomialList[#, generators] &,divided];
-	(*Print["divided: simplified: ",divided];*)
-	If[Head[divided]===Piecewise,
-		divided = PiecewiseMap[Total/@ # &,divided],
-		(*Print["last chance: ", divided];*)
-		divided = Total/@divided
-	];
+	Print["divided: ",divided, " generators: ", generators, " variables: ", variables];
+	(*divided=PiecewiseMap[Simplify@MonomialList[#, generators] &,divided];
+	Print["divided: simplified: ",divided];*)
+	(*Which[Head[divided]===Piecewise,
+		divided = PiecewiseMap[Total/@ # &,divided];
+		Print["piecewise divided: ", divided],
+		DeleteDuplicates[Head /@ divided]==={List},
+		divided = Total/@ divided;
+		Print["list of lists: ", divided],
+		True,
+		divided = Total@divided
+	];*)
 	(*Print["divided: simplified again: ",divided];*)
 	divided
 ];
