@@ -111,7 +111,7 @@ PiecewiseOperatorMap[Operator_, variables_, XPO_] :=
    $Failed,
    Head[XP] === Piecewise,
    With[{G = PiecewiseLastCaseClean[XP]},
-    With[{qq = Reduce[#,Lookup[variables,"domain",Complex]]& /@ MapThread[Simplify[! #1 && #2] &,
+    With[{qq = Reduce(*Resolve*)[#, Lookup[variables,"domain",Complex]]& /@ MapThread[Simplify[! #1 && #2] &,
           {FoldList[Or, False, G[[All, 2]]][[;; -2]], G[[All, 2]]}]},
       Module[{gg},
        gg = Transpose[{G[[All, 1]], qq}];
@@ -149,12 +149,26 @@ Clear[PiecewiseBeautify];
 Options[PiecewiseBeautify]={"domain"->Complex};
 
 
+(*keeping to check one alteration
 PiecewiseBeautify[P_,OptionsPattern[]] :=
     Which[
         Head[P] === Piecewise,
         With[ {pp = PiecewiseLastCaseClean[P]},
             Module[ {qq},
                 qq = MapThread[BooleanConvert@Reduce[Simplify@#,OptionValue["domain"]]&[!#1&&#2]&, {FoldList[Or,False, pp[[All,2]]][[;;-2]],pp[[All,2]]}];
+                Piecewise[Select[Transpose[{pp[[All,1]], qq}], #[[1]]=!=$Failed &], $Failed]
+            ]
+        ],
+        True,
+        P
+    ]*)
+
+PiecewiseBeautify[P_,OptionsPattern[]] :=
+    Which[
+        Head[P] === Piecewise,
+        With[ {pp = PiecewiseLastCaseClean[P]},
+            Module[ {qq},
+                qq = MapThread[BooleanConvert@Simplify[!#1&&#2]&, {FoldList[Or,False, pp[[All,2]]][[;;-2]],pp[[All,2]]}];
                 Piecewise[Select[Transpose[{pp[[All,1]], qq}], #[[1]]=!=$Failed &], $Failed]
             ]
         ],

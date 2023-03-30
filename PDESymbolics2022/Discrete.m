@@ -126,7 +126,7 @@ Header[Op_][variables_Association][schemeexpression_] :=
     If[
      Lookup[var, "listop", True] && Head[schexp["exp"]] === List,
      Op[var][Append[schexp, "exp" -> #]] & /@ schexp["exp"] // 
-       PiecewiseExpand // PiecewiseListClean//PiecewiseBeautify,
+       PiecewiseExpand // PiecewiseListClean//PiecewiseBeautifyOperator[variables],
      Op[var][schexp]
      ]
     ]
