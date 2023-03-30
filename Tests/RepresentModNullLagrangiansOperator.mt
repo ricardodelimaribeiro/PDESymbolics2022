@@ -53,7 +53,12 @@ Get[ test ]
         "pars" -> {a},
         "generators"->{},
         "expression" -> u[x]^2 + 9 u[x] u'[x] - 7u'[x]^a + 3 u[x] u''[x] + 7 u[x] u'''[x],
-  		"result" -> Piecewise[{{u[x]^2 - 10*Derivative[1][u][x]^2, a == 2}, {u[x]^2 - 7*Derivative[1][u][x]^a + 3*u[x]*Derivative[2][u][x], 2*a - 3*a^2 + a^3 != 0}, {u[x]*(u[x] + 3*Derivative[2][u][x]), a == 0 || a == 1}}, $Failed]
+  		"result" -> Piecewise[{{u[x]^2 - 10*Derivative[1][u][x]^2, 
+   a == 2}, {u[x]^2 + 3*u[x]*Derivative[2][u][x], 
+   a == 0 || a == 1}, {u[x]^2 - 7*Derivative[1][u][x]^a + 
+    3*u[x]*Derivative[2][u][x], 
+   a != 0 && a != 1 && a != 2 && 2*a - 3*a^2 + a^3 != 0}}, $Failed]
+   (*Piecewise[{{u[x]^2 - 10*Derivative[1][u][x]^2, a == 2}, {u[x]^2 - 7*Derivative[1][u][x]^a + 3*u[x]*Derivative[2][u][x], 2*a - 3*a^2 + a^3 != 0}, {u[x]*(u[x] + 3*Derivative[2][u][x]), a == 0 || a == 1}}, $Failed]*)
    }];
    label = "works on official notebook"
    Get[ test ]

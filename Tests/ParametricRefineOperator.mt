@@ -80,7 +80,19 @@ variables = Association[
 	"refine"-> True,
 	"generators"->{},
 	"result" -> 
-	Piecewise[{{3*Derivative[1][u][x]^2, a == 2 && b == 4}, {2*Derivative[1][u][x]^2 + Derivative[1][u][x]^a, a - b == -2 && b != 4}, {Derivative[1][u][x]^2 + 2*Derivative[1][u][x]^a, 2*a - b == 0 && b != 4}, {2*Derivative[1][u][x]^2 + Derivative[1][u][x]^(-2 + b), a == 2 && b != 4}, {Derivative[1][u][x]^2 + Derivative[1][u][x]^a + Derivative[1][u][x]^(-a + b), (a != 2 && b == 4) || -8*a + 2*a^3 + 4*b + 4*a*b - 3*a^2*b - 2*b^2 + a*b^2 != 0}}, $Failed]
+	Piecewise[{{3*Derivative[1][u][x]^2, 
+   a == 2 && b == 4}, {2*Derivative[1][u][x]^2 + 
+    Derivative[1][u][x]^a, 
+   2 + a == b && b != 4}, {Derivative[1][u][x]^2 + 
+    2*Derivative[1][u][x]^a, 
+   2*a == b && 2 + a != b && b != 4}, {2*Derivative[1][u][x]^2 + 
+    Derivative[1][u][x]^(-2 + b), 
+   a == 2 && 2*a != b && 2 + a != b && 
+    b != 4}, {Derivative[1][u][x]^2 + Derivative[1][u][x]^a + 
+    Derivative[1][u][x]^(-a + b), (a != 2 && 2*a != b && 
+      2 + a != b && (-2 + a)*(2 + a - b)*(2*a - b) != 0) || (a != 
+       2 && (-2 + a)*(2 + a - b)*(2*a - b) != 0 && b == 4)}}, $Failed]
+	(*Piecewise[{{3*Derivative[1][u][x]^2, a == 2 && b == 4}, {2*Derivative[1][u][x]^2 + Derivative[1][u][x]^a, a - b == -2 && b != 4}, {Derivative[1][u][x]^2 + 2*Derivative[1][u][x]^a, 2*a - b == 0 && b != 4}, {2*Derivative[1][u][x]^2 + Derivative[1][u][x]^(-2 + b), a == 2 && b != 4}, {Derivative[1][u][x]^2 + Derivative[1][u][x]^a + Derivative[1][u][x]^(-a + b), (a != 2 && b == 4) || -8*a + 2*a^3 + 4*b + 4*a*b - 3*a^2*b - 2*b^2 + a*b^2 != 0}}, $Failed]*)
 	(*Piecewise[{{3*Derivative[1][u][x]^2, b == 4 && a == 2}, {2*Derivative[1][u][x]^2 + Derivative[1][u][x]^(-2 + b), a == 2 && b != 4}, {2*Derivative[1][u][x]^2 + Derivative[1][u][x]^a, a - b == -2 && b != 4}, {Derivative[1][u][x]^2 + 2*Derivative[1][u][x]^a, 2*a - b == 0 && b != 4}, {Derivative[1][u][x]^2 + Derivative[1][u][x]^a + Derivative[1][u][x]^(-a + b), -8*a + 2*a^3 + 4*b + 4*a*b - 3*a^2*b - 2*b^2 + a*b^2 != 0}}, $Failed]*)
 ];
 Get[test]

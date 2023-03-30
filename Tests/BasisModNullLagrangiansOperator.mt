@@ -16,10 +16,7 @@ variables = Association[{
 	"indVars" -> {x},
 	"pars" -> {a},
 	"MonList" -> {u[x]^a, u[x]^2},
-	"result" -> Piecewise[{
-	{{u[x]^2}, a == 0 || a == 2}, 
-	{{u[x]^2, u[x]^a}, (-2 + a) a != 0}},
-	$Failed],
+	"result" -> Piecewise[{{{u[x]^2}, a == 0 || a == 2}, {{u[x]^2, u[x]^a}, a != 0 && a != 2}}, $Failed],
 	"genFuns"->{},
 	"refineconstantmonomials"-> False,
 	
@@ -38,7 +35,7 @@ variables = Association[{
 	"pars" -> {b},
 	"facts" -> b<7,
 	"MonList" -> {u[x],u'[x]^2, u[x]^b, u[x] u'[x]},
-	"result" -> Piecewise[{{{u[x], Derivative[1][u][x]^2}, b == 0 || b == 1}, {{u[x], u[x]^b, Derivative[1][u][x]^2}, b < 0 || Inequality[0, Less, b, Less, 1] || Inequality[1, Less, b, Less, 7]}}, $Failed],
+	"result" -> Piecewise[{{{u[x], Derivative[1][u][x]^2}, b == 0 || b == 1}, {{u[x], u[x]^b, Derivative[1][u][x]^2}, b != 0 && b != 1 && b < 7}}, $Failed],
 	"genFuns"->{},
 	"refineconstantmonomials"-> False,
 	"messages"->{MonomialDependenceOperator::KeyAbsent, "genFuns", {}, 
@@ -57,7 +54,7 @@ variables=Association[{
 	"facts" -> b<7,
 	"refine" -> False,
 	"MonList" -> {u[x],u'[x]^2, u[x]^b, u[x] u'[x]},
-	"result" -> Piecewise[{{{u[x], Derivative[1][u][x]^2}, b == 0 || b == 1}, {{u[x], u[x]^b, Derivative[1][u][x]^2}, b < 0 || Inequality[0, Less, b, Less, 1] || Inequality[1, Less, b, Less, 7]}}, $Failed],
+	"result" -> Piecewise[{{{u[x], Derivative[1][u][x]^2}, b == 0 || b == 1}, {{u[x], u[x]^b, Derivative[1][u][x]^2}, b != 0 && b != 1 && b < 7}}, $Failed],
 	"genFuns"->{},
 	"refineconstantmonomials"-> False
 }];
@@ -121,11 +118,12 @@ variables = Association[{
   		u[x] u'''[x]},
   		"genFuns"->{},
 	"refineconstantmonomials"-> False,
-  	"result" -> Piecewise[{{{u[x]^2, Derivative[1][u][x]^a}, a == 2}, 
+  	"result" -> Piecewise[{{{u[x]^2, Derivative[1][u][x]^a}, a == 2}, {{u[x]^2, Derivative[1][u][x]^a, u[x]*Derivative[2][u][x]}, a != 0 && a != 1 && a != 2}, {{u[x]^2, u[x]*Derivative[2][u][x]}, a == 0 || a == 1}}, $Failed]
+  	(*Piecewise[{{{u[x]^2, Derivative[1][u][x]^a}, a == 2}, 
   		{{u[x]^2, Derivative[1][u][x]^a, u[x]*Derivative[2][u][x]}, 
   		(-2 + a)*(-1 + a)*a != 0}, 
   		{{u[x]^2, u[x]*Derivative[2][u][x]}, a == 0 || a == 1}}, 
-  		$Failed]
+  		$Failed]*)
 }];
 Get[ test ]
 
@@ -207,7 +205,8 @@ variables = Association[{
 	"MonList" -> {u[n], u[n + 1]^a},
 	"genFuns"->{},
 	"refineconstantmonomials"-> False,
-	"result" -> Piecewise[{{{u[n]}, a == 0 || a == 1}, {{u[n], u[1 + n]^a}, (-1 + a)*a != 0}}, $Failed]
+	"result" -> Piecewise[{{{u[n]}, a == 0 || a == 1}, {{u[n], u[1 + n]^a}, a != 0 && a != 1}}, $Failed]
+	(*Piecewise[{{{u[n]}, a == 0 || a == 1}, {{u[n], u[1 + n]^a}, (-1 + a)*a != 0}}, $Failed]*)
 }];
 Get[ test ]
 
@@ -221,7 +220,8 @@ variables = Association[{
 	"MonList" -> {u[n], u[n + 1]^a - b  u[n]^a},
 	"genFuns"->{},
 	"refineconstantmonomials"-> False,
-	"result" -> Piecewise[{{{u[n]}, a == 0 || a == 1 || b == 1}, {{u[n], -(b*u[n]^a) + u[1 + n]^a}, (-1 + a)*a != 0 && -1 + b != 0}}, $Failed]
+	"result" -> Piecewise[{{{u[n]}, a == 0 || a == 1 || b == 1}, {{u[n], -(b*u[n]^a) + u[1 + n]^a}, a != 0 && a != 1 && b != 1}}, $Failed]
+	(*Piecewise[{{{u[n]}, a == 0 || a == 1 || b == 1}, {{u[n], -(b*u[n]^a) + u[1 + n]^a}, a != 0 && a != 1 && b != 1}}, $Failed]*)
 }];
 Get[ test ]
 

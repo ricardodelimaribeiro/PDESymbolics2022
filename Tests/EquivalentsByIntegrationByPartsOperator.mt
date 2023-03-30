@@ -95,7 +95,8 @@ variables = Association[{
 	"pars" -> {a},
 	"depth" -> 0,
 	"expression" ->  u[x] u'[x]^a,
-	"result" -> Piecewise[{{{u[x]*Derivative[1][u][x]^a, -(u[x]*Derivative[1][u][x]^a) + u[x]^2*Derivative[1][u][x]^(-2 + a)*Derivative[2][u][x] - a*u[x]^2*Derivative[1][u][x]^(-2 + a)*Derivative[2][u][x]}, -1 + a != 0}, {{u[x]*Derivative[1][u][x]^a}, a == 1}}, $Failed]
+	"result" -> Piecewise[{{{u[x]*Derivative[1][u][x]^a, -(u[x]*Derivative[1][u][x]^a) + u[x]^2*Derivative[1][u][x]^(-2 + a)*Derivative[2][u][x] - a*u[x]^2*Derivative[1][u][x]^(-2 + a)*Derivative[2][u][x]}, a != 1}, {{u[x]*Derivative[1][u][x]^a}, a == 1}}, $Failed]
+	(*Piecewise[{{{u[x]*Derivative[1][u][x]^a, -(u[x]*Derivative[1][u][x]^a) + u[x]^2*Derivative[1][u][x]^(-2 + a)*Derivative[2][u][x] - a*u[x]^2*Derivative[1][u][x]^(-2 + a)*Derivative[2][u][x]}, -1 + a != 0}, {{u[x]*Derivative[1][u][x]^a}, a == 1}}, $Failed]*)
 	}];
 Get[ test ]
 

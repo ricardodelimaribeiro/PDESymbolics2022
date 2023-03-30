@@ -22,7 +22,7 @@ Test[
     		PiecewiseEqualOperator[variables][result, computation]===True,
     		True,
     		True,
-    		False
+    		{computation, variables}
     	]
 		]
     	

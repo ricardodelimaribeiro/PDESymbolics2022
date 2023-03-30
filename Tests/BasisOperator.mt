@@ -16,7 +16,8 @@ variables = Association[{
 	"indVars" -> {x},
 	"pars" -> {a},
 	"MonList" -> {u[x]^a, u[x]^2},
-	"result" -> Piecewise[{{{u[x]^2}, a == 2}, {{u[x]^2, u[x]^a}, -2 + a != 0}}, $Failed]
+	"result" -> Piecewise[{{{u[x]^2}, a == 2}, {{u[x]^2, u[x]^a}, a != 2}}, $Failed]
+	(*Piecewise[{{{u[x]^2}, a == 2}, {{u[x]^2, u[x]^a}, -2 + a != 0}}, $Failed]*)
 }];
 Get[ test ]
 
@@ -28,7 +29,8 @@ variables = Association[{
 	"pars" -> {b},
 	"facts" -> b<7,
 	"MonList" -> {u[x],u'[x]^2, u[x]^b, u[x] u'[x]},
-	"result" -> Piecewise[{{{u[x], u[x]*Derivative[1][u][x], Derivative[1][u][x]^2}, b == 1}, {{u[x], u[x]^b, u[x]*Derivative[1][u][x], Derivative[1][u][x]^2}, b < 1 || Inequality[1, Less, b, Less, 7]}}, $Failed]
+	"result" -> Piecewise[{{{u[x], u[x]*Derivative[1][u][x], Derivative[1][u][x]^2}, b == 1}, {{u[x], u[x]^b, u[x]*Derivative[1][u][x], Derivative[1][u][x]^2}, b != 1 && b < 7}}, $Failed]
+	(*Piecewise[{{{u[x], u[x]*Derivative[1][u][x], Derivative[1][u][x]^2}, b == 1}, {{u[x], u[x]^b, u[x]*Derivative[1][u][x], Derivative[1][u][x]^2}, b < 1 || Inequality[1, Less, b, Less, 7]}}, $Failed]*)
 }];
 Get[ test ]
 
@@ -41,7 +43,8 @@ variables=Association[{
 	"facts" -> b<7,
 	"refine" -> False,
 	"MonList" -> {u[x],u'[x]^2, u[x]^b, u[x] u'[x]},
-	"result" -> Piecewise[{{{u[x], u[x]*Derivative[1][u][x], Derivative[1][u][x]^2}, b == 1}, {{u[x], u[x]^b, u[x]*Derivative[1][u][x], Derivative[1][u][x]^2}, b < 1 || Inequality[1, Less, b, Less, 7]}}, $Failed]
+	"result" -> Piecewise[{{{u[x], u[x]*Derivative[1][u][x], Derivative[1][u][x]^2}, b == 1}, {{u[x], u[x]^b, u[x]*Derivative[1][u][x], Derivative[1][u][x]^2}, b != 1 && b < 7}}, $Failed]
+	(*Piecewise[{{{u[x], u[x]*Derivative[1][u][x], Derivative[1][u][x]^2}, b == 1}, {{u[x], u[x]^b, u[x]*Derivative[1][u][x], Derivative[1][u][x]^2}, b < 1 || Inequality[1, Less, b, Less, 7]}}, $Failed]*)
 }];
 Get[ test ]
 
@@ -171,7 +174,7 @@ variables = Association[{
 	"pars" -> {a, b},
 	"VarDOperator" -> DVarDOperator,
 	"MonList" -> {u[n], u[n + 1]^a - b  u[n]^a},
-	"result" -> Piecewise[{{{u[n], -(b*u[n]^a) + u[1 + n]^a}, (a == 0 && -1 + b != 0) || a == 1 || a != 0}, {{u[n]}, a == 0 && b == 1}}, $Failed]
+	"result" -> Piecewise[{{{u[n], -(b*u[n]^a) + u[1 + n]^a}, a != 0 || b != 1}, {{u[n]}, a == 0 && b == 1}}, $Failed]
 	(*Piecewise[{{{u[n], -(b*u[n]^a) + u[1 + n]^a}, a != 0 || -1 + b != 0}, {{u[n]}, a == 0 && b == 1}}, $Failed]*)
 }];
 Get[ test ]
