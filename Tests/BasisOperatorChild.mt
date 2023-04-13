@@ -2,7 +2,16 @@
 
 Test[
 	With[{MonList = variables["MonList"]},
-    	BasisOperator[variables][MonList]
+		With[{result = variables["result"],computation = BasisOperator[variables][MonList]},
+			Which[
+				result === computation,
+				result,
+				PiecewiseEqualOperator[variables][result,computation]===True,
+				result,
+				True,
+				computation
+			]
+		]
 	]
     ,
     With[{result = variables["result"]},

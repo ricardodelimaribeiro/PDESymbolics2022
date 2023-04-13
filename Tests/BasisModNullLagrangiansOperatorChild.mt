@@ -1,8 +1,17 @@
 (* Wolfram Language Test file *)
 
 Test[
-	With[{MonList = variables["MonList"]},
-    	BasisModNullLagrangiansOperator[variables][MonList]
+	With[{MonList = variables["MonList"],result = variables["result"]},
+		With[{computation = BasisModNullLagrangiansOperator[variables][MonList]},
+			Which[
+				result === computation,
+				result,
+				PiecewiseEqualOperator[variables][result, computation] ===True,
+				result,
+				True,
+				computation
+			]
+		]
 	]
     ,
     With[{result = variables["result"]},
