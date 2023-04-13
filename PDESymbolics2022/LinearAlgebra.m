@@ -201,13 +201,13 @@ Module[ {sortedList = Lookup[variables, "sortoperator", (*keyAbsentMesage[BasisO
         "refine" -> True, 
         "facts" -> Lookup[localvariables, "facts", True], 
         "generators" -> {}}];
-        matrix = UndeterminedCoefficientsOperator[localvariables][coeffList.sortedList];
-        reducedmatrix = GaussianEliminationOperator[localvariables][matrix];
+        matrix = EchoLabel["Basis: matrix"]@UndeterminedCoefficientsOperator[localvariables][coeffList.sortedList];
+        reducedmatrix = EchoLabel["Basis: reduced matrix"]@GaussianEliminationOperator[localvariables][matrix];
         faux = (If[ # =!= $Failed,
                     sortedList[[#]],
                     $Failed
                 ]) &;
-        PiecewiseMap[faux,PiecewiseMap[Pivots[#["matrix"]] &, reducedmatrix] // PiecewiseExpand] // PiecewiseExpand // PiecewiseBeautify
+        EchoLabel["Basis: fAux?"]@PiecewiseMap[faux,EchoLabel["Basis: pivots?"]@PiecewiseMap[Pivots[#["matrix"]] &, reducedmatrix] // PiecewiseExpand] // PiecewiseExpand // PiecewiseBeautify
     ];
 
 (* ######## mini-Function: ExtractCoefficient########## *)
