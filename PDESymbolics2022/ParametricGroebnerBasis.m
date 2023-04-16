@@ -2,7 +2,10 @@
 
 (* Wolfram Language package *)
 InferGeneratorsOperator::usage =
-"InferGeneratorsOperator[variables][xplist] infers the generators of xplist.";
+"InferGeneratorsOperator[variables][xplist] infers the generators of xplist. It works with \"continuous\" expressions.";
+
+DiscreteInferGeneratorsOperator::usage= 
+"DiscreteInferGeneratorsOperator[vars][xp] infers the generators of xp. It works with discrete expressions.";
 
 PiecewisePolynomialLCM::usage =
 "PiecewisePolynomialLCM[f, g] gives the polynomial Least Common Multiple of f and g.";
@@ -56,7 +59,26 @@ InferGenerators[variables_Association][xp_] :=
              Cases[xp, Derivative[__][#] @@ indvars, {0, Infinity}]] & /@ 
            depvars]
     ];
+    
+DiscreteInferGeneratorsOperator[vars_][xp_] := 
+Module[{generators, indvars, depvars},
+ generators = PiecewiseExtractGeneratorsOperator[vars][xp];
+ indvars = Lookup[variables, "indVars", {}]; 
+     depvars = LexicographicSort[Lookup[variables, "depVars", {}]];
 
+ SortBy[
+  generators, {-Abs[#[[2]] /. indvars[[2]] -> 0], 
+    Sign[#[[2]] /. 
+      indvars[[2]] -> 0], -Abs[#[[1]] /.  indvars[[1]] -> 0], 
+    Sign[#[[1]] /.  indvars[[1]] -> 0]} &]
+ ]
+ 
+ DiscreteInferGeneratorsOperator[variables_][xplist_List] :=
+   With[{glc = 
+    First@GenericLinearCombinationOperator[variables][xplist]},
+     DiscreteInferGeneratorsOperator[variables][glc]
+     ];
+     
 (*TODO how is this behaving with the parameters?*)
 PiecewisePolynomialLCM[f_, g_] :=
     Module[ {PLCM},
