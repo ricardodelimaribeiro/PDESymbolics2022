@@ -232,6 +232,7 @@ PiecewiseApplyConditionOperator[variables_][px_List] :=
     PiecewiseApplyConditionOperator[variables] /@ px;
 
 PiecewiseApplyConditionOperator[variables_][px_Piecewise] :=
+(*<<<<<<< Updated upstream*)
     Module[ {facts, cleanList, newPx=EchoLabel["PACO: input"]@px, generators},
         facts = Lookup[variables, "facts", True];
         If[ Reduce[facts] === False,
@@ -250,6 +251,30 @@ PiecewiseApplyConditionOperator[variables_][px_Piecewise] :=
             EchoLabel["PACO: output"][EchoLabel["PACO: before second beautify"]@(Piecewise[cleanList])//PiecewiseBeautifyOperator[variables]]
         ]
     ];
+(*=======
+  Module[{facts, cleanList, newPx},
+   facts = Lookup[variables, "facts", True];
+   If[EchoLabel["PieceApplyOp: reduce facts"]@Reduce[facts] === False,
+    $Failed,
+    newPx = 
+     SplitOr @@@ 
+      PiecewiseLastCaseClean[
+       PiecewiseBeautifyOperator[variables]@px];
+       generators=Lookup[variables, "generators", InferGeneratorsOperator[variables][px]];
+       (*Print[px," and new ",newPx];*)
+    If[AnyTrue[First@newPx,Head[#]===List&],
+    	cleanList = Function[dd,
+    	(*Print["list: ",dd, facts];*)
+    	Assuming[dd[[2]], {Simplify[dd[[1]]], dd[[2]]}]] /@ newPx,
+       cleanList = Function[dd,
+    	(*Print["just piece: ",dd, facts];*)
+    	Assuming[dd[[2]], {Total@Simplify@MonomialList[dd[[1]],generators], dd[[2]]}]] /@ newPx
+   ];
+   (*Print["Cleaned list: ",cleanList];*)
+    Piecewise[cleanList]//PiecewiseBeautifyOperator[variables]
+    ]
+   ];
+>>>>>>> Stashed changes*)
    
 Clear[GrobOp];
 
