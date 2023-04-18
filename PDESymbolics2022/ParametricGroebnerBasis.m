@@ -2,7 +2,10 @@
 
 (* Wolfram Language package *)
 InferGeneratorsOperator::usage =
-"InferGeneratorsOperator[variables][xplist] infers the generators of xplist.";
+"InferGeneratorsOperator[variables][xplist] infers the generators of xplist. It works with \"continuous\" expressions.";
+
+DiscreteInferGeneratorsOperator::usage= 
+"DiscreteInferGeneratorsOperator[vars][xp] infers the generators of xp. It works with discrete expressions.";
 
 PiecewisePolynomialLCM::usage =
 "PiecewisePolynomialLCM[f, g] gives the polynomial Least Common Multiple of f and g.";
@@ -56,7 +59,26 @@ InferGenerators[variables_Association][xp_] :=
              Cases[xp, Derivative[__][#] @@ indvars, {0, Infinity}]] & /@ 
            depvars]
     ];
+    
+DiscreteInferGeneratorsOperator[vars_][xp_] := 
+Module[{generators, indvars, depvars},
+ generators = PiecewiseExtractGeneratorsOperator[vars][xp];
+ indvars = Lookup[variables, "indVars", {}]; 
+     depvars = LexicographicSort[Lookup[variables, "depVars", {}]];
 
+ SortBy[
+  generators, {-Abs[#[[2]] /. indvars[[2]] -> 0], 
+    Sign[#[[2]] /. 
+      indvars[[2]] -> 0], -Abs[#[[1]] /.  indvars[[1]] -> 0], 
+    Sign[#[[1]] /.  indvars[[1]] -> 0]} &]
+ ]
+ 
+ DiscreteInferGeneratorsOperator[variables_][xplist_List] :=
+   With[{glc = 
+    First@GenericLinearCombinationOperator[variables][xplist]},
+     DiscreteInferGeneratorsOperator[variables][glc]
+     ];
+     
 (*TODO how is this behaving with the parameters?*)
 PiecewisePolynomialLCM[f_, g_] :=
     Module[ {PLCM},
@@ -232,6 +254,7 @@ PiecewiseApplyConditionOperator[variables_][px_List] :=
     PiecewiseApplyConditionOperator[variables] /@ px;
 
 PiecewiseApplyConditionOperator[variables_][px_Piecewise] :=
+(*<<<<<<< Updated upstream*)
     Module[ {facts, cleanList, newPx=EchoLabel["PACO: input"]@px, generators},
         facts = Lookup[variables, "facts", True];
         If[ Reduce[facts] === False,
@@ -250,6 +273,30 @@ PiecewiseApplyConditionOperator[variables_][px_Piecewise] :=
             EchoLabel["PACO: output"][EchoLabel["PACO: before second beautify"]@(Piecewise[cleanList])//PiecewiseBeautifyOperator[variables]]
         ]
     ];
+(*=======
+  Module[{facts, cleanList, newPx},
+   facts = Lookup[variables, "facts", True];
+   If[EchoLabel["PieceApplyOp: reduce facts"]@Reduce[facts] === False,
+    $Failed,
+    newPx = 
+     SplitOr @@@ 
+      PiecewiseLastCaseClean[
+       PiecewiseBeautifyOperator[variables]@px];
+       generators=Lookup[variables, "generators", InferGeneratorsOperator[variables][px]];
+       (*Print[px," and new ",newPx];*)
+    If[AnyTrue[First@newPx,Head[#]===List&],
+    	cleanList = Function[dd,
+    	(*Print["list: ",dd, facts];*)
+    	Assuming[dd[[2]], {Simplify[dd[[1]]], dd[[2]]}]] /@ newPx,
+       cleanList = Function[dd,
+    	(*Print["just piece: ",dd, facts];*)
+    	Assuming[dd[[2]], {Total@Simplify@MonomialList[dd[[1]],generators], dd[[2]]}]] /@ newPx
+   ];
+   (*Print["Cleaned list: ",cleanList];*)
+    Piecewise[cleanList]//PiecewiseBeautifyOperator[variables]
+    ]
+   ];
+>>>>>>> Stashed changes*)
    
 Clear[GrobOp];
 

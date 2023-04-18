@@ -105,13 +105,13 @@ Which[
 ]];
 
 PiecewiseOperatorMap[Operator_, variables_, XPO_] := 
- With[{XP = PiecewiseExpand[XPO]},
+ With[{XP = PiecewiseExpand[XPO],reduce = Lookup[variables,"reduce",Reduce]},
   Which[
    XP === $Failed,
    $Failed,
    Head[XP] === Piecewise,
    With[{G = PiecewiseLastCaseClean[XP]},
-    With[{qq = Reduce(*Resolve*)[#, Lookup[variables,"domain",Complex]]& /@ MapThread[Simplify[! #1 && #2] &,
+    With[{qq = reduce(*Resolve*)[#, Lookup[variables,"domain",Complex]]& /@ MapThread[Simplify[! #1 && #2] &,
           {FoldList[Or, False, G[[All, 2]]][[;; -2]], G[[All, 2]]}]},
       Module[{gg},
        gg = Transpose[{G[[All, 1]], qq}];
