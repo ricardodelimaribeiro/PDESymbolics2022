@@ -164,6 +164,7 @@ PiecewiseExtractGeneratorsOperator[variables_Association][expression_] :=
    Head[expression] === Piecewise,
    Module[
     {xp},
+    (*TODO iuse PiecewiseLastCaseClean and not [[1]]. Later, DeleteCases[$Failed].*)
     xp = (List @@ expression)[[1]];
     xp = First /@ xp // Flatten;
     PiecewiseExtractGeneratorsOperator[variables][xp]
@@ -175,6 +176,7 @@ PiecewiseExtractGeneratorsOperator[variables_Association][expression_] :=
       Lookup[variables, "pars", {}]];
     If[
      list === {},
+     (*Why do we need a non-empty list of generators?*)
      list = {variables["depVars"][[1]] @@ variables["indVars"]},
      list
      ]
