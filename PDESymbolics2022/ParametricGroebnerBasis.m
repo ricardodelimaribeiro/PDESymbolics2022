@@ -65,7 +65,7 @@ Module[{generators, indvars, depvars},
  generators = PiecewiseExtractGeneratorsOperator[vars][xp];
  indvars = Lookup[variables, "indVars", {}]; 
      depvars = LexicographicSort[Lookup[variables, "depVars", {}]];
-
+(*TODO make this work for any number of independent variables, not just 2.*)
  SortBy[
   generators, {-Abs[#[[2]] /. indvars[[2]] -> 0], 
     Sign[#[[2]] /. 
@@ -363,7 +363,7 @@ GrobOp[variables_][grobner_List, {}] :=
     ];
 
 
-GrobO[variables_][preGrobner_List, sPolynomials_List] :=
+GrobOp[variables_][preGrobner_List, sPolynomials_List] :=
     Module[ {facts, fstSPoly, lc, newPreGrobner = preGrobner, reduced, newArgs, 
       newSPolynomials, generators(*,depVars,indVars,vars*)},
         facts = Simplify@Lookup[variables, "facts", True];
@@ -415,14 +415,20 @@ GrobO[variables_][preGrobner_List, sPolynomials_List] :=
     ];
 
 GrobOp[variables_][preGrobner_List] :=
-    Module[ {newPreGrobner, sPolynomials, newArgs, facts},
+    Module[ {newPreGrobner, sPolynomials, newArgs, facts ,newVariables, generators},
         facts = Lookup[variables, "facts", True];
+        If[Lookup[variables,"VarDOperator",VarDOperator] === VarDOperator,
+        generators = Lookup[variables, "generators", InferGeneratorsOperator[variables][preGrobner]],
+        (*if "VarDOperator" is DVarDOperator*)
+        generators = Lookup[variables, "generators", DiscreteInferGeneratorsOperator[variables][preGrobner]]
+        ];
+        newVariables = Append["generators"->generators]@variables;
         If[ facts === False,
             $Failed,
-            newPreGrobner = (*EchoLabel["monic preGrobner"]@*) MonicOperator[variables][preGrobner];
-            sPolynomials = PiecewiseSPolynomialOperator[variables][newPreGrobner];
-            newArgs = {newPreGrobner, sPolynomials} // PiecewiseExpand // PiecewiseApplyConditionOperator[variables];
-            PiecewiseOperatorMap[GrobOp, variables, newArgs] //PiecewiseExpand// PiecewiseBeautifyOperator[variables]
+            newPreGrobner = (*EchoLabel["monic preGrobner"]@*) MonicOperator[newVariables][preGrobner];
+            sPolynomials = PiecewiseSPolynomialOperator[newVariables][newPreGrobner];
+            newArgs = {newPreGrobner, sPolynomials} // PiecewiseExpand // PiecewiseApplyConditionOperator[newVariables];
+            PiecewiseOperatorMap[GrobOp, newVariables, newArgs] //PiecewiseExpand// PiecewiseBeautifyOperator[newVariables]
         ]
     ];
 
