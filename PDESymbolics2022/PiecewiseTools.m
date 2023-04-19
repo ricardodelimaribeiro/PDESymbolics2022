@@ -168,7 +168,7 @@ PiecewiseBeautify[P_,OptionsPattern[]] :=
         Head[P] === Piecewise,
         With[ {pp = PiecewiseLastCaseClean[P]},
             Module[ {qq},
-                qq = MapThread[BooleanConvert@Simplify[!#1&&#2]&, {FoldList[Or,False, pp[[All,2]]][[;;-2]],pp[[All,2]]}];
+                qq = Simplify@EchoLabel["PiecewiseBeautify:  qq"]@MapThread[BooleanConvert@(*Reduce*)Resolve[!#1&&#2,OptionValue["domain"]]&, {FoldList[Or,False, pp[[All,2]]][[;;-2]],pp[[All,2]]}];
                 Piecewise[Select[Transpose[{pp[[All,1]], qq}], #[[1]]=!=$Failed &], $Failed]
             ]
         ],
@@ -177,9 +177,12 @@ PiecewiseBeautify[P_,OptionsPattern[]] :=
     ]
 
 PiecewiseBeautifyOperator[variables_][xp_] := 
-((*Print["piecewiseBeautifyOperator domain: ", Lookup[variables,"domain",Complex]]*)
-PiecewiseBeautify[xp,"domain"->Lookup[variables,"domain",Complex]]
-);
+Module[{facts = Lookup[variables, "facts", True]}, 
+	(*Print["piecewiseBeautifyOperator domain: ", Lookup[variables,"domain",Complex]]*)
+	Assuming[facts,
+		PiecewiseBeautify[xp,"domain"->Lookup[variables,"domain",Complex]]
+	]
+];
 
 PiecewiseEliminateEqualitiesOperator[variables_Association][xp_] :=
  If[Lookup[variables, "eliminateequalities", True],
