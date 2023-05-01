@@ -225,6 +225,9 @@ AutoReduceOperator[variables_][polylist_] :=
 
 
 PPRRO[$Failed, _] = $Failed;
+PiecewisePolynomialReduceRemainderOperator[variables_][f_, g_Piecewise] :=
+	PiecewiseMap[PiecewisePolynomialReduceRemainderOperator[variables][f, #]&,g]
+
 PiecewisePolynomialReduceRemainderOperator[variables_][f_, g_List] :=
     Module[ {preliminary, generators},
         generators = 
