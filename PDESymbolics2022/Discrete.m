@@ -362,6 +362,9 @@ Reduction[variables_Association][schemeexpression_Association] :=
       schexp["exp"] // Variables // Flatten] // Flatten, 
     Lookup[var, "pars", {}]];
  polyvars = Sort[polyvars, TimeOrderedQOperator[Append[variables,"elimOrder"->"explicit"]]];
+ 
+ (*from here *)
+ 
   scheme = 
    GroebnerBasis[polylist, polyvars, 
     CoefficientDomain -> RationalFunctions];
@@ -373,12 +376,16 @@ Reduction[variables_Association][schemeexpression_Association] :=
   order of variables in which they are eliminated , 
   default is permutations, 
   specify function that does that by function name*)
+ 
   eliminationlist = 
    Lookup[var, "EliminationListOperator", EliminationListOperator][
      Append[var, "scheme" -> polylist]][
     schexp["exp"]]; (*list of lists*)
   reducelist = VariableEliminationOperator[Append[var,"elimOrder"->Lookup[var,"elimOrder","explicit"]]][#, schexp] & /@ eliminationlist;
    Append[reducelist, normalred] // PiecewiseExpand // PiecewiseListClean
+   
+   (* to here there are some picewise objects *)
+   
 	];
 
 drlMatrix[n_] := 
@@ -423,6 +430,9 @@ VariableEliminationOperator[variables_Association][
       	n1 = Position[polyvars,elem]//First//First;
       	n2 = Length[polyvars];
       	ordermatrix = elimMatrix[n1,n2];
+      	
+      (* from here *)	
+      	
       Gbasis = GroebnerBasis[schexp["scheme"], polyvars, CoefficientDomain -> RationalFunctions, MonomialOrder -> ordermatrix];
       schexp["exp"] = 
        PolynomialReduce[schexp["exp"], Gbasis, polyvars, CoefficientDomain -> RationalFunctions, MonomialOrder -> ordermatrix] // Last;
@@ -432,9 +442,12 @@ VariableEliminationOperator[variables_Association][
        ];
       ];
       VariableEliminationOperator[var][Drop[elimlist, 1],schexp],
-      schexp
+      schexp      
       ]
      ]
+     
+     (* up to here there are some picewise objects *)
+     
     ]
    ];
 
