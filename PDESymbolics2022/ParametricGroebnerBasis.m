@@ -108,7 +108,7 @@ LeadingTermOperator[vars_][xp_] :=
 Clear[LeadingCoefficientOperator];
 LeadingCoefficient[variables_Association][xp_?NotPiecewise] :=
     Module[ {order, generators, MonList, rules, facts},
-        facts = Simplify[EchoLabel["LeadingCoeff: facts"]@Lookup[variables, "facts", True]];
+        facts = FullSimplify[EchoLabel["LeadingCoeff: facts"]@Lookup[variables, "facts", True]];
         If[ EchoLabel["LeadingCoeff: simplified facts"]@facts===False,
             $Failed,
             Assuming[facts,
@@ -144,7 +144,7 @@ Division[variables_][a_?NotPiecewise,b_?NotPiecewise] :=
     ];
 
 PiecewiseDivisionOperator[variables_][a_,b_] :=
-    (*EchoLabel["PDO: division b4 beautify"]@*)EchoLabel["PDO: division expanded"][PiecewiseExpand@EchoLabel["PDO: unexpanded division"]@Division[variables][a,b]]//PiecewiseBeautifyOperator[variables];
+    (*EchoLabel["PDO: division b4 beautify"]@*)EchoLabel["PDO: division expanded"][PiecewiseExpand@(*EchoLabel["PDO: unexpanded division"]@*)Division[variables][a,b]]//PiecewiseBeautifyOperator[variables];
 
 Clear[SPolynomialOperator];
 SPolynomialOperator[variables_][f_?NotPiecewise,
@@ -176,13 +176,16 @@ Clear[PiecewiseSPolynomialOperator];
 PiecewiseSPolynomialOperator[variables_][f_, g_] :=
     FixedPoint[PiecewiseExpand, 
       SPolynomialOperator[variables][f, g]] // Expand;
+      
+PiecewiseSPolynomialOperator[_][$Failed]=$Failed;
 
 PiecewiseSPolynomialOperator[variables_][f_Piecewise] :=
     ((*Print[piecewise];*)
     PiecewiseOperatorMap[PiecewiseSPolynomialOperator,variables, f]);
 
 PiecewiseSPolynomialOperator[variables_][f_List] :=
-    Which[Length[f]===2,
+    Which[
+    	Length[f]===2,
         (*Print[2];*)
         {PiecewiseSPolynomialOperator[variables]@@f},
         Length[f]>2,
@@ -401,7 +404,7 @@ GrobOp[variables_][preGrobner_List] :=
         newVariables = Append["generators"->generators]@variables;
         If[ facts === False,
             $Failed,
-            newPreGrobner = (*EchoLabel["monic preGrobner"]@*) MonicOperator[newVariables][preGrobner];
+            newPreGrobner = EchoLabel["monic preGrobner"]@ MonicOperator[newVariables][preGrobner];
             sPolynomials = PiecewiseSPolynomialOperator[newVariables][newPreGrobner];
             newArgs = {newPreGrobner, sPolynomials} // PiecewiseExpand // PiecewiseApplyConditionOperator[newVariables];
             PiecewiseOperatorMap[GrobOp, newVariables, newArgs] //PiecewiseExpand// PiecewiseBeautifyOperator[newVariables]
@@ -414,9 +417,9 @@ AllCasesOperator[variables_][xp_] :=
 AllCases[variables_][xp_] :=
     Module[ {generators,MonList,lt},
         generators = Lookup[variables,"generators",InferGeneratorsOperator[variables][xp]];
-        MonList = EchoLabel["AllCases: MonList"]@MonomialList[xp,generators];
+        MonList = (*EchoLabel["AllCases: MonList"]@*)MonomialList[xp,generators];
         lt = (*EchoLabel["AllCases: leading terms"]@*)(LeadingTermOperator[variables] /@ MonList);
-        PiecewiseExpand@Total[lt]
+        EchoLabel["AllCases: output"]@PiecewiseExpand@Total[lt]
     ];
 
 MonicOperator[variables_][0] = 0;
@@ -424,8 +427,8 @@ MonicOperator[variables_][0] = 0;
 MonicOperator[variables_][xp_] :=
     Module[ {allCases,lc, divided,generators},
         generators = Lookup[variables,"generators",InferGeneratorsOperator[variables][xp]];
-        allCases = EchoLabel["Monic: ac"]@AllCasesOperator[variables][xp];
-        lc = EchoLabel["Monic: lc"]@LeadingCoefficientOperator[variables][allCases];
+        allCases = (*EchoLabel["Monic: ac"]@*)AllCasesOperator[variables][xp];
+        lc = (*EchoLabel["Monic: lc"]@*)LeadingCoefficientOperator[variables][allCases];
         divided = (*EchoLabel["Monic: divided"]@*)PiecewiseDivisionOperator[variables][allCases,lc]//PiecewiseApplyConditionOperator[variables];
         (*divided=PiecewiseMap[Simplify@MonomialList[#, generators] &,divided];
         Print["divided: simplified: ",divided];*)
@@ -439,7 +442,7 @@ MonicOperator[variables_][xp_] :=
             divided = Total@divided
         ];*)
         (*Print["divided: simplified again: ",divided];*)
-        divided
-    ];
+        EchoLabel["Monic: output"]@divided
+    ]//QuietEcho;
            
 End[]
