@@ -1,0 +1,10 @@
+\begin{mmaCell}[moredefined={variables, DiscreteConservedQ}]{Input}
+  variables=<|"indVars"\(\pmb{\to}\)\{n,t\},"depVars"\(\pmb{\to}\)\{m,v\},
+  "elimOrder"\(\pmb{\to}\)"explicitimplicit",
+  "scheme"\(\pmb{\to}\)\{-(v[n,t+1]-v[n,t])
+  +(\mmaSup{v[n+1,t+1]}{2}-\mmaSup{m[n+1,t+1]}{2})/2
+  -(\mmaSup{v[n,t+1]}{2}-\mmaSup{m[n,t+1]}{2})/2,
+  m[n,t+1]-m[n,t]-m[n+1,t]v[n+1,t]+m[n,t]v[n,t]\}|>
+  DiscreteConservedQ[variables][\{v[n,t],m[n,t]\}]
+  
+\end{mmaCell}

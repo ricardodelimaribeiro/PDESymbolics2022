@@ -1,0 +1,12 @@
+variables = Association[
+		"indVars" -> {n, t},
+		"depVars" -> {v, m},
+		"VarDOperator"->PartialDVarDOperator,
+		"timeVars"->{t},
+		"eqRhs" -> { 
+			(v[n + 1, t]^2/2 - m[n + 1, t]^2/2) - (v[n, t]^2/2 - 
+			m[n, t]^2/2), 
+			(m[n + 1, t]*v[n + 1, t]) - (m[n, t]*v[n, t])}
+		];
+		FindConservedQuantityBasisOperator[variables][Association["degree"->4,"generators"->{v[n,t],m[n,t]}]]
+		

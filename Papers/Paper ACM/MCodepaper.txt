@@ -1,0 +1,235 @@
+(********************
+
+ Preamble
+
+********************)
+
+ (********************
+
+ Auxiliary Results
+
+********************)
+
+ (********************
+
+ Formulas
+
+********************)
+
+ 
+
+(********************
+
+ Images
+
+********************)
+
+
+
+(********************
+
+ Movies
+
+********************)
+
+
+
+(********************
+
+ Tables 
+
+********************)
+
+
+
+(********************
+
+ Listing 
+
+********************)
+
+
+
+(********************
+
+ Executables 
+
+********************)
+
+
+		LABEL="dpvd1"
+		(*CODE*)
+		variables = Association["indVars"->{n,t},"depVars"->{u},"timeVars"->{t}]
+		expression = u[n,t+1] - u[n,t]
+		PartialDVarDOperator[variables][expression]
+		(*CODE*)
+		PUNCT={,.}
+	
+
+ (******)
+
+
+		LABEL="rhs1"
+		(*CODE*)
+		variables = Association["indVars"->{n},"depVars"->{u},"rhs"->{u[n]+(u[n+1]-2*u[n]+u[n-1])}]
+		expression = u[n]
+		DiscreteConservedQOperator[variables][expression]
+		(*CODE*)
+		PUNCT={,.}
+	
+
+ (******)
+
+
+			LABEL="heateq2"
+			(*CODE*)
+			variables = <|"indVars"->{n,t},"depVars"->{u}|>
+			expression = u[n,t]
+			TimeDifferenceOperator[variables][expression]
+			(*CODE*)
+			PUNCT={,.}
+		
+
+ (******)
+
+
+		LABEL="heateq10"
+		(*CODE*)
+		variables = Association["indVars"->{n,t},"depVars"->{u},"scheme"->{u[n,t+1]-u[n,t]-(u[n+1,t]-2*u[n,t]+u[n-1,t])}]
+		expression = u[n,t]
+		DiscreteConservedQOperator[variables][expression]
+		(*CODE*)
+		PUNCT={,.}
+		
+
+ (******)
+
+
+		LABEL="heateq11"
+		(*CODE*)
+		variables = <|"indVars"->{n},"depVars"->{u},"rhs"->{u[n]+u[n+1]-2*u[n]+u[n-1]}|>
+		FindDiscreteConservedQuantityBasisOperator[variables][<|"degree"->3,"generators"->{u[n],n}|>]
+		(*CODE*)
+		PUNCT={,.}
+	
+
+ (******)
+
+
+		LABEL="burgers1"
+		(*CODE*)
+		variables = Association["indVars"->{n,t},"depVars"->{u},"scheme"->{u[n,t+1]-u[n,t]-u[n,t]*(u[n+1,t]-u[n,t])}];
+		expression = u[n,t];
+		DiscreteConservedQOperator[variables][expression]
+		(*CODE*)
+		PUNCT={,.}
+	
+
+ (******)
+
+
+		LABEL="burgers2"
+		(*CODE*)
+		variables = Association["indVars"->{n,t}, "depVars"->{u}, "pars"->{a}, "scheme"->{u[n,t+1]-u[n,t]-u[n,t]*(a*(u[n+1,t]-u[n,t])+(1-a)*(u[n,t]-u[n-1,t]))}];
+		expression = u[n,t];
+		DiscreteConservedQOperator[variables][expression]
+		(*CODE*)
+		PUNCT={,.}
+	
+
+ (******)
+
+
+		LABEL="burgers3"
+		(*CODE*)
+		variables = Association["indVars"->{n,t}, "depVars"->{u}, "pars"->{a},"elimOrder"->"implicit", "scheme"->{u[n,t+1]-u[n,t]-u[n,t+1]*(a*(u[n+1,t+1]-u[n,t+1])+(1-a)*(u[n,t+1]-u[n-1,t+1]))}]
+		DiscreteConservedQOperator[variables][u[n,t]]
+		(*CODE*)
+		PUNCT={,.}
+	
+
+ (******)
+
+
+		LABEL="mfg1"
+		(*CODE*)
+		variables = Association[
+		"indVars" -> {n, t},
+		"depVars" -> {v, m},
+		"display result" -> True,
+		"scheme" -> {v[n, t + 1] - 
+			v[n, 
+			t] + (v[n + 1, t]^2/2 - m[n + 1, t]^2/2) - (v[n, t]^2/2 - 
+			m[n, t]^2/2), 
+			m[n, t + 1] - 
+			m[n, t] - (m[n + 1, t]*v[n + 1, t]) + (m[n, t]*v[n, t])}
+		];
+		DiscreteConservedQOperator[variables][{v[n, t], m[n, t]}]
+		(*CODE*)
+		PUNCT={,.}
+	
+
+ (******)
+
+
+		LABEL="mfg2"
+		(*CODE*)
+		variables = Association[
+		"indVars" -> {n},
+		"depVars" -> {v, m},
+		"rhs" -> { 
+			v[n] -(v[n + 1]^2/2 - m[n + 1]^2/2) + (v[n]^2/2 - 
+			m[n]^2/2), 
+			m[n] + (m[n + 1]*v[n + 1]) - (m[n]*v[n])}
+		];
+		DiscreteConservedQOperator[variables][{v[n], m[n]}]
+		(*CODE*)
+		PUNCT={,.}
+	
+
+ (******)
+
+
+		LABEL="mfg3"
+		(*CODE*)
+		variables = Association[
+		"indVars" -> {n, t},
+		"depVars" -> {v, m},
+		"VarDOperator"->PartialDVarDOperator,
+		"timeVars"->{t},
+		"eqRhs" -> { 
+			(v[n + 1, t]^2/2 - m[n + 1, t]^2/2) - (v[n, t]^2/2 - 
+			m[n, t]^2/2), 
+			(m[n + 1, t]*v[n + 1, t]) - (m[n, t]*v[n, t])}
+		];
+		FindConservedQuantityBasisOperator[variables][Association["degree"->4,"generators"->{v[n,t],m[n,t]}]]
+		(*CODE*)
+		PUNCT={,.}
+	
+
+ (******)
+
+
+		LABEL="mfg4"
+		(*CODE*)
+		variables = Association[
+		"indVars" -> {n, t},
+		"depVars" -> {m, v},
+		"elimOrder" -> "explicitimplicit",
+		"scheme" -> {-(v[n, t + 1] - 
+			v[n, t]) + (v[n + 1, t+1]^2/2 - m[n + 1, t+1]^2/2) - (v[n, t+1]^2/2 - 
+			m[n, t+1]^2/2), 
+			m[n, t + 1] - 
+			m[n, t] - (m[n + 1, t]*v[n + 1, t]) + (m[n, t]*v[n, t])}
+		];
+		DiscreteConservedQOperator[variables][{v[n, t], m[n, t]}]
+		(*CODE*)
+		PUNCT={,.}
+	
+
+(********************
+
+ PExecutables 
+
+********************)
+

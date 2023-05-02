@@ -1,0 +1,13 @@
+variables = Association[
+		"indVars" -> {n, t},
+		"depVars" -> {v, m},
+		"display result" -> True,
+		"scheme" -> {v[n, t + 1] - 
+			v[n, 
+			t] + (v[n + 1, t]^2/2 - m[n + 1, t]^2/2) - (v[n, t]^2/2 - 
+			m[n, t]^2/2), 
+			m[n, t + 1] - 
+			m[n, t] - (m[n + 1, t]*v[n + 1, t]) + (m[n, t]*v[n, t])}
+		];
+		DiscreteConservedQOperator[variables][{v[n, t], m[n, t]}]
+		

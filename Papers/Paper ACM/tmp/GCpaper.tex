@@ -1,0 +1,579 @@
+\documentclass{article}
+\begin{document}
+
+
+
+[Detection of conserved quantities for PDE schemes]{Algorithmic detection of conserved quantities of finite-difference schemes for partial differential equations}
+
+{Diogo A. Gomes}
+{
+	{King Abdullah University of Science and Technology (KAUST)}
+	[0]{CEMSE Division}
+	[1]{AMCS Program}
+	{Thuwal}
+	{23955-6900}
+	{Saudi Arabia}}
+{diogo.gomekaust.edu.sa}
+{Friedemann Krannich}
+{
+	{King Abdullah University of Science and Technology (KAUST)}
+	[0]{CEMSE Division}
+	[1]{AMCS Program}
+	{Thuwal}
+	{23955-6900}
+	{Saudi Arabia}}
+{friedemann.krannickaust.edu.sa}
+{Ricardo de Lima Ribeiro}
+{
+	{King Abdullah University of Science and Technology (KAUST)}
+	[0]{CEMSE Division}
+	[1]{AMCS Program}
+	{Thuwal}
+	{23955-6900}
+	{Saudi Arabia}}
+{ricardo.ribeirkaust.edu.sa}
+
+
+{Symbolic computations; Finite-difference schemes; Discrete variational derivative; Discrete partial variational derivative; Conserved quantities; Implicit schemes; Explicit schemes.}
+
+
+	<ccs2012>
+	<concept>
+	<concept_id>10002950.10003714.10003727.10003729</concept_id>
+	<concept_desc>Mathematics of computing~Partial differential equations</concept_desc>
+	<concept_significance>500</concept_significance>
+	</concept>
+	<concept>
+	<concept_id>10002950.10003714.10003715.10003750</concept_id>
+	<concept_desc>Mathematics of computing~Discretization</concept_desc>
+	<concept_significance>500</concept_significance>
+	</concept>
+	<concept>
+	<concept_id>10002950.10003714.10003715.10003720.10003747</concept_id>
+	<concept_desc>Mathematics of computing~Gr{}bner bases and other special bases</concept_desc>
+	<concept_significance>500</concept_significance>
+	</concept>
+	<concept>
+	<concept_id>10010147.10010148.10010149.10010152</concept_id>
+	<concept_desc>Computing methodologies~Symbolic calculus algorithms</concept_desc>
+	<concept_significance>500</concept_significance>
+	</concept>
+	<concept>
+	<concept_id>10010147.10010148.10010149.10010155</concept_id>
+	<concept_desc>Computing methodologies~Discrete calculus algorithms</concept_desc>
+	<concept_significance>500</concept_significance>
+	</concept>
+	</ccs2012>
+
+
+[500]{Mathematics of computing~Partial differential equations}
+[500]{Mathematics of computing~Discretization}
+[500]{Mathematics of computing~Gr{}bner bases and other special bases}
+[500]{Computing methodologies~Symbolic calculus algorithms}
+[500]{Computing methodologies~Discrete calculus algorithms}
+
+{}
+
+
+Many partial differential equations (PDEs) admit conserved quantities like mass or energy. Those quantities are often essential to establish well-posed results. When approximating a PDE by a finite-difference scheme, it is natural to ask whether related discretized quantities remain conserved under the scheme. Such conservation may establish the stability of the numerical scheme. We present an algorithm for checking the preservation of a polynomial quantity under a polynomial finite-difference scheme. In our algorithm, schemes can be explicit or implicit, have higher-order time and space derivatives, and an arbitrary number of variables. 
+Additionally, we present an algorithm for, given a scheme, finding conserved quantities. 
+We illustrate our algorithm by studying several finite-difference schemes.
+
+
+
+
+
+
+	The authors were supported by {GN01}{King Abdullah University of Science and Technology (KAUST) baseline funds}{} and 
+	{GN02}{KAUST OSR-CRG2021-4674}{}.
+
+
+Introduction.
+
+
+Many partial differential equations (PDEs) admit integral quantities, that are conserved in time. 
+For example, the advection equation preserves energy and the heat equation conserves mass. 
+When approximating PDEs by a finite-difference scheme, the question arises whether such quantities are conserved by the scheme. 
+Such information can be crucial to estimate whether a scheme approximates a PDE accurately and to determine its stability.
+While computations for determining conservation are often easy in simple cases, they get rather tedious for more complicated schemes or quantities. 
+Hence, automating such computations 
+in computer algebra systems is desirable.
+An algorithm for finding conserved quantities for (continuous) differential equations was developed and implemented  in {Maple} by Cheviakov (see [1] and [1]).
+Hereman et al. (see for example [1] and [1]), proposed an algorithm to compute conserved densities for semi-discretized schemes for PDEs with first-order time derivative. 
+Their algorithm, which is implemented in a {Mathematica} package, uses the scaling symmetries of the scheme to construct conserved quantities and calculates their coefficients by using the discrete variational derivative.
+Gao et al. extended this algorithm to first-order time-explicit schemes [1] and to first-order time-implicit schemes [1]. 
+They also implemented it in the computer algebra system {Reduce}.
+In this paper, we propose an algorithm that checks if a quantity is conserved in time under a scheme.
+Conserved quantities usually involve integral expressions or their discrete analog, sums.
+Gomes et al. proposed algorithms for the simplification of sums in [1].
+They also developed and implemented algorithms for detecting quantities conserved by PDEs and semi-discretized schemes. 
+We revise these techniques in Section [1]. 
+To generalize those methods to situations where we do not sum over all arguments of the functions involved, we introduce the discrete partial variational derivative (Section [1]).
+The main contribution of this paper is an algorithm for checking the conservation of a quantity under a numerical scheme.
+Gerdt showed in [1], that if the discrete time derivative of the quantity belongs to the difference ideal generated by the scheme, the quantity is conserved. However, some quantities may add to a constant (e.g. telescopic sums) and thus be trivially preserved without belonging to the difference ideal. Moreover, Gerdt's algorithm may not terminate, as the Gr{}bner basis for the difference ideal may not be finite.
+We overcome this issues by combining the discrete partial variational derivative with a polynomial ideal (instead of a difference ideal) with finite Gr{}bner basis (Section [1]). 
+Our algorithm works for schemes that are explicit and implicit in time and can treat schemes with several and higher-order time  and space derivatives and with several space dimensions.
+Additionally, we can handle systems of equations and schemes with parameters. 
+We have implemented this algorithm as part of a package in {Mathematica} [1].
+In the examples, we show that our code finds conserved quantities and proper schemes for the time-implicit and time-explicit discretization of the Burgers equation and a system of PDEs arising in the study of mean-field games (Section [1]).
+
+Preliminaries.
+
+
+
+Throughout this section, we follow the ideas and computations in [1].
+Here, subscripts denote indices related to coordinates or tuples while superscripts denote indices related to sequences and families.
+To avoid dealing with boundary terms, we work with periodic functions in [1].
+
+	Let [1], [1] and [1] be natural numbers. The {discrete torus} is [1]. Define the space
+	[1],
+	extended to [1] by periodicity.
+
+
+	The space of functionals [1] (not necessarily linear) on [1] is
+[1].
+
+In the previous definition, the [1] are not necessarily unit vectors and can vary between functionals. Here, we allow for smooth [1]. However, later we require [1] to be a polynomial function.
+
+	
+	Let [1], [1] and define
+	[1].
+
+To simplify sums, the discrete variational derivative is a useful tool.
+Let [1], [1] and [1]. Define
+	[1].
+	In [1], we shift the indices due to periodicity of [1] and [1],
+	[1].
+
+[1] is the discrete variational derivative of [1].
+
+Because we assume all related functions to be smooth, the discrete variational derivative always exists.
+
+	Let us return to Example [1] and compute
+	[1]
+	and hence [1].
+
+
+Fundamental theorem.
+
+
+The algorithms for the simplification of sums presented in [1] rely on the following result:
+
+	Let [1]. If [1] for all [1] and if there exists [1] such that [1], then
+	[1]
+	for all [1].
+	Conversely,
+	[1]
+	for all [1], if [1].
+
+
+	[1]
+	and hence [1].
+
+We use Theorem [1] to examine if different sums represent the same quantity.
+
+	Let [1] and consider the functionals
+	[1].
+	It is clear, that [1] and [1] represent the same quantity (by shifting [1]). We confirm this, using the discrete variational derivative:
+	[1].
+	Hence, [1] and [1]. Therefore, both functionals sum to the same quantity.
+
+
+
+	Let [1]. It may not be obvious, that
+	[1].
+	We confirm this, by computing the discrete variational derivative and noticing that the expression is [1] for [1].
+
+The discrete partial variational derivative.
+
+
+
+Here, we generalize the discrete variational derivative for situations where we keep one (or several) of the arguments of [1] constant.
+Let [1] be the variables for the functions in [1]. We call [1] the space variables. Let [1] and call [1] the time variables. Later in this paper, we only consider the case [1].
+
+	Let [1], extended to [1] by periodicity in the space variables and let [1].
+
+When considering sums, we only sum over the space variables and not over the time variables.
+
+	
+	The space of functions [1] is
+	[1].
+Here, [1].
+
+Throughout this paper, all quantities, whose conservation in time we check, are functions [1]. 
+Define [1]. Using the Kronecker delta [1], we rewrite
+[1].
+	Let [1] and compute
+	
+	[1].
+	
+	
+	We define [1] as the discrete partial variational derivative of [1].
+	Note that [1].
+
+
+	
+	The discrete partial variational derivative of 
+	[1]
+	equals [1], because
+	
+	[1].
+	
+
+
+	In our {Mathematica} implementation, Example [1] is computed by
+		
+	
+		
+		
+	
+
+We have a result similar to Theorem [1] for the discrete partial variational derivative:
+
+	Let [1]. If [1] for all [1] and if there exists [1] such that [1], then
+	[1]
+	for all [1].
+	Conversely,
+	[1]
+	for all [1], if [1].
+
+The proof is similar to the proof of Theorem [1].
+Difference schemes and algebra.
+
+
+
+In this section, we define numerical schemes formally and introduce the tools from difference algebra, that we need for our algorithm.
+During the remainder of this paper, we assume that there is only one time variable [1] ([1]).
+
+	The space of schemes is
+	[1].
+	A scheme is a set of functions
+	[1]
+	that represent the equations [1] for [1], holding pointwise for all points in [1].
+
+If a scheme contains a single function [1], we call [1] the scheme. Sometimes, we also call the expression [1] the scheme.
+In this work, we only consider finite-difference schemes with fixed step size [1], but one can generalize our results and algorithms to other step sizes.
+
+	A scheme [1] given by
+	[1]
+	is in time-explicit form if we can rewrite the previous equation (eventually translating the scheme) as
+	[1]
+	for [1] and [1]
+	with [1]. We call [1] the right-hand side of [1].
+
+
+	Consider the forward-difference scheme for the heat equation [1]
+	[1].
+	This scheme is in time-explicit form with right-hand side
+	[1].
+
+Difference ideals.
+
+
+Following Gerdt [1], we now introduce difference ideals and how we use them in our algorithm.
+
+	Let [1]. The shift in the [1]-th coordinate for [1] by [1] is
+	[1]
+	understanding that [1] shifts the time variable.
+
+
+	The set of all possible shifts [1] is
+	[1].
+
+Now we construct the difference ideal containing the scheme:
+
+	
+	Let [1] be the field generated by [1] and the variables [1]. Let [1] be the polynomial ring over the field [1] and the variables [1] for [1] and [1].
+	A set [1] is a difference ideal if
+	
+		 [1] implies [1],
+		 [1] implies [1],
+		 [1] implies [1].
+	
+
+
+	[1] is the smallest difference ideal containing the scheme [1].
+
+A solution of a numerical scheme is a function [1], that makes all translations of the scheme vanish. Hence, every element of the difference ideal generated by the scheme vanishes under [1].
+In particular, Algorithm [1] seeks to determine if the discrete time derivative [1] belongs to the ideal [1]. To examine, if [1], Gerdt proposes the notion of a standard (Gr{}bner) basis for the ideal [1]. This standard basis may not be finite. We overcome this problem by considering polynomial instead of difference algebra and using a smaller polynomial ideal, that is contained in the difference ideal and admits a finite standard basis.
+However, there may be functions [1], whose sums add to zero, even though they may fail to belong to the difference ideal. Hence, we combine the discrete partial variational derivative with polynomial ideals.
+The time-explicit case.
+
+
+
+In this section, we present Algorithm [1]  for checking the conservation of a quantity under the right-hand side of a scheme in time-explicit form. Our algorithm for general schemes can be found in the subsequent section.
+
+Note, that the result of step 2 exists only at time [1] because all instances of [1] have been replaced. Thus, we do not need any computations of difference ideals or Gr{}bner basis.
+
+	
+	We check for conservation of [1] under the scheme from Example [1].
+	The discrete time derivative (step 1) is
+	[1].
+	Replacing [1] by the right-hand side of the scheme (step 2) gives
+	[1].
+	Then, we compute the discrete partial variational derivative (step 3), which equals zero. Hence (step 4), we have conservation.
+
+
+	
+	We verify the result from Example [1], using our implementation in {Mathematica} of Algorithm [1].
+	
+	
+		
+		
+	
+
+The general case.
+
+
+In this section, we present Algorithm [1] that deals with general, not necessarily time-explicit, schemes. We explain its steps in detail below and demonstrate the algorithm in Example [1].
+
+Step 1: Build the discrete time derivative.
+
+
+We build the discrete time derivative by subtracting [1] from [1]. This task is done in our code by the {TimeDifference}.
+	
+		The discrete time derivative for [1] is
+		
+		
+		
+			
+			
+		
+	
+Step 2: Translate the scheme.
+
+
+To make the step from difference to polynomial algebra to guarantee termination of the algorithm, we use a standard idea in symbolic computations and consider every instance of [1] as a variable of a multivariate polynomial.
+Hence, we compute all translations of the scheme, such that all variables in the polynomial associated with [1] appear in the polynomials associated with the translated scheme.
+
+	The algorithm treats the discrete time derivative [1]
+	as the polynomial equation [1].
+
+	
+		Let [1] and
+		[1]
+	
+	with [1].
+	The {stencil} of [1] is the [1]-tuple of sets of vectors
+	[1].
+	The {range} of the stencil of [1] is
+		[1],
+	where [1], [1],
+	and [1]. Here, [1] denotes the discrete interval in [1], i.e. [1].
+	
+We calculate the minimal necessary translations of the scheme, such that all instances of [1], that appear in the discrete time derivative, also appear in the translated scheme. This is done by elementwise subtracting the range of the stencil of the scheme from the range of the stencil of the discrete time derivative. We denote the resulting translated system by [1].
+If for any [1] involved [1], we write [1] with the convention that [1].  Further, [1] in the translations results in the use of the respective entry of the original scheme without translations.
+	
+		Consider the discrete time derivative
+		[1]
+		and the scheme
+		[1].
+		Then, the stencil of the discrete time derivative equals 
+		[1]
+		with range
+		[1].
+		The stencil of the scheme equals the set of stencils of the equations in the scheme, i.e.
+		[1]
+		with range
+		[1].
+		Hence, we get the translations for the first equation of the scheme by
+		
+		[1]
+		
+		and for the second equation of the scheme by
+		
+		[1].
+		
+		Therefore, we translate the first equation of the scheme by [1] and [1] and the second one by [1] to get the translated scheme
+		[1].
+	
+Step 3 and 4: Compute the Gr{}bner basis and reduce the discrete time derivative.
+
+
+	Polynomial ideals and Gr{}bner bases.
+
+
+	We found a finite set of polynomials (the translated scheme and the discrete time derivative) with a finite number of instances of [1] in the previous step. Now we reduce [1], using the translated scheme. Here, we adapt the definitions and theorems from [1] to our setting.
+	
+		Let [1] be as in Definition [1]. Let [1] be the polynomial ring generated by [1] and all instances of [1] that occur in [1].
+		We call a set [1] a (polynomial) ideal if
+		
+			 [1] implies [1],
+			 [1] implies [1].
+		
+	
+	
+		We denote by [1] the smallest (polynomial) ideal containing [1].
+	
+	Given the ideal [1] and the discrete time derivative [1], we want to determine if [1] or if we can write [1] in a simpler form, using [1].
+	Hence, using multivariate polynomial division, we search for [1] such that
+	[1].
+	Unfortunately, the resulting remainder [1] may not be unique [page 14, Example 1.2.3]{hibi13}, i.e. non-zero, although [1] belongs to [1]. 
+	Replacing [1] by a Gr{}bner basis for the ideal [1] guarantees the uniqueness of the remainder of the polynomial division. 
+	Contrary to the standard basis for the difference ideal that Gerdt's algorithm computes, the Gr{}bner basis for the polynomial ideal always exists and is finite.
+	A Gr{}bner basis is defined up to the order of the monomials involved, so, depending on the order, we get different remainders of the polynomial division.
+	Polynomial reduction.
+
+
+	In Algorithm [1], we consider two monomial orders: (a) lexicographic and (b) explicit.
+	To reduce [1], we compute the Gr{}bner basis of [1] with respect to the monomial order and then calculate the remainder of the polynomial division of [1] with respect to this Gr{}bner basis.
+	The explicit monomial order (b) results in the Gr{}bner basis that eliminates the instances of [1] at the latest time (with the largest [1]). This elimination might not always be possible, hence the reduction may leave the discrete time derivative unchanged. Then we repeat this process for the instance at the second latest time and continue until all instances of [1] have been eliminated.
+	Out of the two remainders from (a) and (b), we choose the result with the least number of different instances of time. Our code also supports other elimination orders, including user-defined ones.
+Step 5 to 7: Compute the discrete partial variational derivative and reduce again.
+
+
+	In the next step, we take the resulting expression and compute its discrete partial variational derivative. Then, we repeat Step 2 to Step 4 applied to the discrete partial variational derivative.
+	
+		
+		To demonstrate Algorithm [1], we use the setting from Example [1].
+		We compute the discrete time derivative (step 1)
+		[1].
+		For the translations (step 2), the stencil of the scheme is
+		[1]
+	with range [1].
+	The discrete time derivative has stencil [1]
+	and range [1].
+	The translations are
+	
+	[1]
+	
+	which results in no translations, as the range of the stencil of the scheme is greater than the range of the stencil of the discrete time derivative.
+	Hence, the Gr{}bner basis (step 3) coincides with the original scheme for both monomial orders.
+	The reduction using the lexicographic monomial order yields as remainder
+	[1].
+	For the reduction using the elimination order, we first eliminate [1] and then the remaining instances of [1].
+	The elimination order yields the same remainder as the lexicographic order. Hence, we do not need to check for the number of instances of time (step 4).
+	We calculate the discrete partial variational derivative (step 5) of
+	[1]
+	that equals [1].
+	Hence, repeating the above procedure (step 6) becomes unnecessary.
+	Therefore, (step 7) we see that the scheme conserves the quantity.
+	
+	
+		We verify our result from Example [1], using {DiscreteConservedQ}, which detects automatically if we are in the time-explicit or the general setting.
+		
+		
+		
+		
+		
+	
+
+	The algorithm can only detect conservation, but can not check if something is not conserved for sure. So a resulting {False} should be understood as our algorithm not detecting conservation, not as there being no conservation at all.
+
+A basis for conserved quantities.
+
+
+
+So far, we have discussed how to check if a quantity is preserved in time under a scheme. But it is also desirable to have a systematic way to find conserved quantities, given a scheme.
+Algorithm [1] finds, for a time-explicit scheme, a basis for conserved quantities that are generated by monomials up to a (total) degree. 
+
+We have implemented this algorithm in the {FindDiscreteConservedQuantityBasis}.
+
+	We find a basis for conserved quantities that are generated by [1] and [1] and that have at most degree 3, admitted by the scheme for the heat equation from Example [1].
+	
+	
+		
+		
+	
+
+Examples and applications.
+
+
+
+We illustrate our code with the Burgers equation and a system of mean-field games.
+Burgers equation.
+
+
+The Burgers equation is the PDE [1] [1] in one space dimension. Any function of [1] is a conserved quantity. We are interested in discretizations that preserve mass [1].
+
+	We check for conservation of mass using a forward-difference discretization:
+	
+	
+		
+		
+	
+
+We want to find a scheme that preserves this quantity. Therefore we check for conservation under a class of schemes with a parameter, to find an appropriate choice for this parameter.
+
+	We discretize [1] using a three-point stencil with a parameter [1].
+	
+	
+		
+		
+	
+	We have conservation if we choose [1], corresponding to the standard central difference.
+
+So far, we have only seen schemes that are in time-explicit form, but our algorithm allows also for general schemes:
+
+	We consider the scheme from the previous example but in the time-implicit version.
+	
+	
+		
+		
+	
+
+Conserved quantities for a mean-field game.
+
+
+As a second application, we use our code to study conserved quantities admitted by the discretization of a system of PDEs.
+
+	In [1], Gomes et al. derived the following system of PDEs
+	[1].
+	This system admits the conserved quantities [1] and [1].
+	Because this system was derived from a forward-forward mean-field game, we discretize it forward in time. We check with our code if the scheme admits the same preserved quantities as the continuous system:
+	
+	
+		
+		
+	
+	We reproduce this result by noticing, that the scheme is in time-explicit form:
+	
+	
+		
+		
+	
+	Those are the only conserved quantities for this scheme, that are polynomials up to degree 4 in [1] and [1].
+	
+	
+		
+		
+	
+
+
+	The related backward-forward system reads
+	[1].
+	This system admits the same conserved quantities as the forward-forward system, but we approximate it explicitly (forward) in time for [1] and implicitly (backward) for [1]. Our code can handle this setting, if we specify an order for the elimination of the variables, telling the code to use an explicit monomial order for [1] and an implicit one for [1]:
+	
+	
+		
+		
+	
+
+Possible extensions and concluding remarks.
+
+
+Polynomial treatment of non-polynomial expressions.
+
+
+It may be possible to extend our methods to non-polynomial PDEs and schemes. In this case, non-polynomial expressions can be handled by writing them in polynomial form. For example, treat the expression [1]
+as the polynomial [1].
+Translate the scheme more accurately.
+
+
+In our elimination procedure, we work with a specific polynomial ideal that is a subset of the difference ideal generated by the scheme. However, it could be necessary to translate the scheme more than we did in our algorithm to get cancellation. Therefore, flexible methods to determine the translations of the scheme are desirable.
+Discrete conserved quantities that are not conserved by the PDE.
+
+
+It may arise the question if we can find conserved quantities, that are not preserved by the original PDE. Gerdt et al. ([1],[1]) define the notion of s-consistency, which guarantees that all discrete quantities are also preserved in the continuous setting. One possible extension of our code would be to check automatically if s-consistency holds for the translated scheme.
+Concluding remarks.
+
+
+We present an algorithm for checking the conservation of a quantity under a finite-difference scheme. Our algorithm allows for systems of equations, arbitrary time and space derivatives, and both explicit and implicit schemes. Also, we implemented a function for finding conserved quantities admitted by a scheme. We use our implementation of the algorithm to analyze the conservation properties of several schemes for PDEs that arise in applications.
+
+{ACM-Reference-Format}
+{references}
+
+
+
+
+\end{document}

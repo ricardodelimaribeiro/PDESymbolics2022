@@ -1,0 +1,92 @@
+% % % % M-LATEX package draft % % % % %
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{MLaTex}
+
+\RequirePackage{color}
+\RequirePackage{fancyvrb}
+\RequirePackage{environ}
+\RequirePackage{comment}
+\RequirePackage{ifthen}
+
+%\newcommand{\bc}{}
+%\newcommand{\ec}{}
+
+
+
+
+\newif\if@invisible\@invisiblefalse
+\DeclareOption{invisible}{
+	\@invisibletrue
+}
+
+%\ExecuteOptions{visible}
+
+\ProcessOptions\relax
+
+
+
+\if@invisible
+\newenvironment{mathequation}{\begin{equation}}{\end{equation}}
+\newenvironment{SKIP}{}{}
+\NewEnviron{LMA}{}
+\NewEnviron{ASP}{}
+\NewEnviron{CLM}{}
+\NewEnviron{THM}{}
+\NewEnviron{ART}{}
+\NewEnviron{FUN}{}
+\NewEnviron{FRM}{}
+\NewEnviron{FRM*}{}
+\NewEnviron{FRMI}{}
+\NewEnviron{IMG}{}
+\NewEnviron{TBL}{}
+\NewEnviron{MOV}{}
+\NewEnviron{PRE}{}
+\NewEnviron{LST}{}
+\NewEnviron{EXE}{}
+\NewEnviron{PEX}{}
+\else
+\definecolor{mygreen}{rgb}{0,0.4,0}
+\definecolor{myblue}{rgb}{0.2,0.0,0.4}
+\definecolor{mybrown}{rgb}{0.4,0.4,0.0}
+\definecolor{mycolor}{rgb}{0.4,0.4,0.6}
+\definecolor{mycolor2}{rgb}{0.5,0.2,0.6}
+\definecolor{mycolor3}{rgb}{0.2,0.0,0.8}
+\newenvironment{SKIP}{\noindent\textcolor{red}{BEGIN SKIP:}}{\textcolor{red}{END SKIP:}}
+\newenvironment{mathequation}{\begin{equation}}{\end{equation}}
+\newenvironment{LMA}{\noindent\textcolor{blue}{LEMMA:}\Verbatim}{\endVerbatim}
+\newenvironment{ASP}{\noindent\textcolor{red}{ASSUMPTION:}\Verbatim}{\endVerbatim}
+\newenvironment{CLM}{\noindent\textcolor{mygreen}{CLAIM:}\Verbatim}{\endVerbatim}
+\newenvironment{THM}{\noindent\textcolor{myblue}{THEOREM:}\Verbatim}{\endVerbatim}
+\newenvironment{ART}{\noindent\textcolor{mybrown}{AUXILIARY RESULT:}\Verbatim}{\endVerbatim}
+\newenvironment{FUN}{\noindent\textcolor{mybrown}{FUNCTION ANALYSIS:}\Verbatim}{\endVerbatim}
+\newenvironment{FRM}{\noindent\textcolor{cyan}{FORMULA:}\Verbatim}{\endVerbatim}
+\newenvironment{FRM*}{\noindent\textcolor{cyan}{FORMULA*:}\Verbatim}{\endVerbatim}
+\newenvironment{FRMI}{\noindent\textcolor{cyan}{FORMULAI:}\Verbatim}{\endVerbatim}
+\newenvironment{IMG}{\noindent\textcolor{mycolor}{IMAGE:}\Verbatim}{\endVerbatim}
+\newenvironment{TBL}{\noindent\textcolor{mycolor2}{TABLE:}\Verbatim}{\endVerbatim}
+\newenvironment{MOV}{\noindent\textcolor{mycolor3}{MOVIE:}\Verbatim}{\endVerbatim}
+\newenvironment{PRE}{\noindent\textcolor{mycolor3}{PREAMBLE:}\Verbatim}{\endVerbatim}
+\newenvironment{LST}{\noindent\textcolor{mycolor3}{LISTINGS:}\Verbatim}{\endVerbatim}
+\newenvironment{EXE}{\noindent\textcolor{mycolor3}{EXECUTABLE:}\Verbatim}{\endVerbatim}
+\newenvironment{PEX}{\noindent\textcolor{mycolor3}{PREAMPLE EXECUTABLE:}\Verbatim}{\endVerbatim}
+\fi
+
+
+\endinput
+
+% ALTERNATIVE DEFINITION WITH MARGIN NOTES
+%\NewEnviron{ASP}{
+%	\marginpar{
+%		\textcolor{red}{\BODY}
+%	}
+%}
+%
+%\NewEnviron{CLM}{
+%	\marginpar{
+%		\textcolor{mygreen}{ \BODY }
+%	}
+%}
+
+
+
+% % % % % % % % % % % % % % % % % % % %
