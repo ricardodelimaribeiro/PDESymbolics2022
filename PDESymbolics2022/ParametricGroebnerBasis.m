@@ -31,6 +31,9 @@ PiecewisePolynomialReduceRemainderOperator::usage =
 PiecewiseApplyConditionOperator::usage =
 "PiecewiseApplyConditionOperator[variables][px] Simplifies the expressions with conditions as Assumptions";
 
+ComprehensiveGroebnerSystemOperator::usage =
+"ComprehensiveGroebnerSystemOperator[variables][preGrobner] returns a piecewise expression with groebner basis for each set of conditions.";
+
 GrobOp::usage =
 "GrobOp[variables][preGrobner] returns a piecewise expression with groebner basis for each set of conditions.";
 
@@ -281,6 +284,9 @@ PiecewiseApplyConditionOperator[variables_][px_Piecewise] :=
    
 Clear[GrobOp];
 
+ComprehensiveGroebnerSystemOperator[variables_][ideal_]:=
+Kleisli[GrobOp][variables][ideal];
+
 hasFailed[x_] :=
     MemberQ[$Failed][x];
 
@@ -394,14 +400,15 @@ GrobOp[variables_][preGrobner_List, sPolynomials_List] :=
     ];
 
 GrobOp[variables_][preGrobner_List] :=
-    Module[ {newPreGrobner, sPolynomials, newArgs, facts ,newVariables, generators},
+    Module[ {newPreGrobner, sPolynomials, newArgs, facts ,newVariables, generators,reduce},
         facts = Lookup[variables, "facts", True];
+        reduce = Lookup[variables, "reduce", Resolve];
         If[Lookup[variables,"VarDOperator",VarDOperator] === VarDOperator,
         generators = Lookup[variables, "generators", InferGeneratorsOperator[variables][preGrobner]],
         (*if "VarDOperator" is DVarDOperator*)
         generators = Lookup[variables, "generators", DiscreteInferGeneratorsOperator[variables][preGrobner]]
         ];
-        newVariables = Append["generators"->generators]@variables;
+        newVariables = Append["reduce"->reduce]@Append["generators"->generators]@variables;
         If[ facts === False,
             $Failed,
             newPreGrobner = EchoLabel["monic preGrobner"]@ MonicOperator[newVariables][preGrobner];
