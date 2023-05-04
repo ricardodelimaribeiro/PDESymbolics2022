@@ -9,4 +9,6 @@ TestSuite[
 		"LeadingCoefficientOperator.mt"
 		,
 		"LeadingTermOperator.mt"
+		,
+		"GrobOp.mt"
 	}]
