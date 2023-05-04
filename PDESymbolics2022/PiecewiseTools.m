@@ -158,7 +158,7 @@ ConditionalPiecewiseMap[F_,XP_] :=
     ]
 
 Clear[PiecewiseBeautify];
-Options[PiecewiseBeautify] = {"domain"->Complex};
+Options[PiecewiseBeautify] = {"domain"->Complex, "reduce"->Resolve};
 
 
 (*keeping to check one alteration
@@ -178,9 +178,9 @@ PiecewiseBeautify[P_,OptionsPattern[]] :=
 PiecewiseBeautify[P_,OptionsPattern[]] :=
     Which[
         Head[P] === Piecewise,
-        With[ {pp = PiecewiseLastCaseClean[P]},
+        With[ {pp = PiecewiseLastCaseClean[P],reduce = OptionValue["reduce"]},
             Module[ {qq},
-                qq = Simplify@EchoLabel["PiecewiseBeautify:  qq"]@MapThread[BooleanConvert@(*Reduce*)Resolve[!#1&&#2,OptionValue["domain"]]&, {FoldList[Or,False, pp[[All,2]]][[;;-2]],pp[[All,2]]}];
+                qq = Simplify@EchoLabel["PiecewiseBeautify:  qq"]@MapThread[BooleanConvert@reduce[!#1&&#2,OptionValue["domain"]]&, {FoldList[Or,False, pp[[All,2]]][[;;-2]],pp[[All,2]]}];
                 Piecewise[Select[Transpose[{pp[[All,1]], qq}], #[[1]]=!=$Failed &], $Failed]
             ]
         ],
@@ -192,7 +192,7 @@ PiecewiseBeautifyOperator[variables_][xp_] :=
     Module[ {facts = Lookup[variables, "facts", True]}, 
         (*Print["piecewiseBeautifyOperator domain: ", Lookup[variables,"domain",Complex]]*)
         Assuming[facts,
-            PiecewiseBeautify[xp,"domain"->Lookup[variables,"domain",Complex]]
+            PiecewiseBeautify[xp,"domain"->Lookup[variables,"domain",Complex], "reduce"->Lookup[variables, "reduce", Reduce]]
         ]
     ];
 
