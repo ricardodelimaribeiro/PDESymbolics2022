@@ -26,7 +26,7 @@ AutoReduceOperator::usage =
 "AutoReduceOperator[variables][polylist] returns the reduced (smallest set generating the same ideal) polylist.";
 
 PiecewisePolynomialReduceRemainderOperator::usage =
-"PiecewisePolynomialReduceRemainderOperator[variables][p, polylist] returns a Piecewise remainder for the redeuctions.";
+"PiecewisePolynomialReduceRemainderOperator[variables][p, polylist] returns a Piecewise remainder for the reductions.";
 
 PiecewiseApplyConditionOperator::usage =
 "PiecewiseApplyConditionOperator[variables][px] Simplifies the expressions with conditions as Assumptions";
@@ -44,7 +44,7 @@ Begin["`Private`"]
 InferGeneratorsOperator[variables_][xplist_List] :=
     With[ {glc = First@EchoLabel["InferGenerators: gLc"]@GenericLinearCombinationOperator[variables][EchoLabel["InferGenerators: input"]@xplist]},
         InferGeneratorsOperator[variables][glc]
-    ];
+    ]//QuietEcho;
 
 InferGeneratorsOperator[variables_Association][xp_] :=
     Kleisli[InferGenerators][variables][xp];
@@ -206,16 +206,16 @@ AutoReduceStepOperator[variables_][polylist_] :=
 AutoReduceStep[variables_][polylist_List] :=
     Module[ {generators},
         generators = 
-         Lookup[variables, "generators", 
-          InferGeneratorsOperator[variables][polylist]];
+         EchoLabel["AutoReduceStep: generators"]@Lookup[variables, "generators", 
+          InferGeneratorsOperator[variables][EchoLabel["AutoReduceStep: input"]@polylist]];
         With[ {ps = 
-           ReverseSortBy[First[MonomialList[#, generators]] &]@polylist},
+           EchoLabel["AutoReduceStep: ps"]@ReverseSortBy[First[MonomialList[#, generators]] &]@polylist},
             Module[ {unrefined},
                 unrefined = 
-                 DeleteCases[0]@
                   Table[
-                   PiecewisePolynomialReduceRemainderOperator[variables][ps[[i]],
+                   PiecewisePolynomialReduceRemainderOperator[Append["generators"->generators]@variables][ps[[i]],
                      ps[[i + 1 ;;]]], {i, 1, Length@ps}];
+                unrefined = DeleteCases[0]@EchoLabel["AutoReduceStep: unrefined"]@unrefined;
                 PiecewiseDivisionOperator[variables][unrefined, 
                  LeadingCoefficientOperator[variables]@unrefined]
             ]
@@ -224,7 +224,7 @@ AutoReduceStep[variables_][polylist_List] :=
    
 Clear[AutoReduceOperator];
 AutoReduceOperator[variables_][polylist_] :=
-    FixedPoint[AutoReduceStepOperator[variables], polylist] //PiecewiseApplyConditionOperator[variables];
+    FixedPoint[AutoReduceStepOperator[variables], AllCasesOperator[variables]@polylist] //PiecewiseApplyConditionOperator[variables];
 
 
 PPRRO[$Failed, _] = $Failed;
