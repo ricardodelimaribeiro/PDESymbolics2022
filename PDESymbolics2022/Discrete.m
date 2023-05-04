@@ -707,7 +707,7 @@ FindDiscreteConservedQuantityBasisOperator[variables_Association][problem_] := W
           Cases[#, Subscript[\[FormalA], _], {0, Infinity}]]},
        Map[Function[coeff, conservationlaws /. coeff -> 1], 
          coefficients] /. (Function[c, Rule[c, 0]] /@ 
-          coefficients)] &, conservationlaws] // PiecewiseBeautify]; 
+          coefficients)] &, conservationlaws] //PiecewiseExpand// PiecewiseBeautifyOperator[variables]]; 
           
 End[] (* End Private Context *)
 (*EndPackage[]*)
