@@ -7,7 +7,7 @@ Test[
     	Which[
     		result === computation,
     		True,
-    		PiecewiseEqualOperator[variables][result,computation] === True,
+    		PiecewiseEqualOperator[variables][result,PiecewiseBeautifyOperator[variables]@computation] === True,
     		True,
     		True,
     		Print["Expected output:\n",result, "Actual output\n",computation];

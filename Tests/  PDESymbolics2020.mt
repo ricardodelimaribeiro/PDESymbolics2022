@@ -11,4 +11,6 @@ TestSuite[
 		" SuitTimeDependentPDEs.mt"
 		,
 		" SuitDiscrete.mt"
+		,
+		" SuitCGS.mt"
 	}]
