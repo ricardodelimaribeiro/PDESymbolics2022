@@ -37,6 +37,14 @@ FindDiscreteConservedQuantityOperator::usage =
 FindDiscreteConservedQuantityBasisOperator::usage =
 	"FindDiscreteConservedQuantityBasisOperator[variables][<|\"degree\"->degree,\"generators\"->generators|>] finds a monomial basis for conserved quantities made from the generators up to the total degree";
 
+
+(* debug *)
+
+VariableEliminationOperator::usaga ="";
+
+
+
+
 Begin["`Private`"] (* Begin Private Context *) 
 
 RangeSchemeTranslationsOperator[variables_Association][masterstencil_,stencil_] :=
@@ -365,12 +373,48 @@ Reduction[variables_Association][schemeexpression_Association] :=
  
  (*from here *)
  
+ (* Friedmann code *)
+ (*
   scheme = 
    GroebnerBasis[polylist, polyvars, 
     CoefficientDomain -> RationalFunctions];
+    
+    *)
+    
+  (* DG code *)  
+    (*
+    Print["original scheme = ", schexp["scheme"]];
+    Print["polylist = ",polylist];
+    Print["polyvars = ",polyvars];
+    *)
+  scheme=GrobOp[Append[variables, "generators"->polyvars]][polylist];  
+    
+   (*
+    Print["polyscheme = ", scheme]; 
+    *)
+    
+  (* Friedmann code *)
+ (*  
   normalred = 
    PolynomialReduce[schexp["exp"], scheme, polyvars, 
      CoefficientDomain -> RationalFunctions] // Last;
+     
+      *)
+    
+  (* DG code *)  
+    
+    
+    normalred= PiecewisePolynomialReduceRemainderOperator[Append[variables, "generators"->polyvars]][schexp["exp"],scheme];
+     
+     (*
+    Print["original scheme = ", schexp["scheme"]];
+    Print["polylist = ",polylist];
+    Print["polyvars = ",polyvars];
+    Print["polyscheme = ", scheme]; 
+    Print["normalred = ", normalred]; 
+     *)
+     
+     
    normalred = Association["exp"->normalred,"scheme"->scheme]//PiecewiseExpandAssociation;
    (* set up list of lists with elimination order, i.e. 
   order of variables in which they are eliminated , 
@@ -432,10 +476,18 @@ VariableEliminationOperator[variables_Association][
       	ordermatrix = elimMatrix[n1,n2];
       	
       (* from here *)	
-      	
-      Gbasis = GroebnerBasis[schexp["scheme"], polyvars, CoefficientDomain -> RationalFunctions, MonomialOrder -> ordermatrix];
-      schexp["exp"] = 
-       PolynomialReduce[schexp["exp"], Gbasis, polyvars, CoefficientDomain -> RationalFunctions, MonomialOrder -> ordermatrix] // Last;
+      	(* Friedmann code *)
+      (*Gbasis = GroebnerBasis[schexp["scheme"], polyvars, CoefficientDomain -> RationalFunctions, MonomialOrder -> ordermatrix];*)
+      (*schexp["exp"] = 
+       PolynomialReduce[schexp["exp"], Gbasis, polyvars, CoefficientDomain -> RationalFunctions, MonomialOrder -> ordermatrix] // Last;*)
+       
+       
+        Gbasis=GrobOp[Append[variables, "generators"->polyvars]][schexp["scheme"]];  
+        schexp["exp"] = PiecewisePolynomialReduceRemainderOperator[Append[variables, "generators"->polyvars]][schexp["exp"], Gbasis];
+  
+  
+       
+       
       If[
        Lookup[var, "reduce Beautify", True],
        schexp = PiecewiseAssociationOperator[IntegralEquivalenceClassOperator][var, "exp", schexp]
