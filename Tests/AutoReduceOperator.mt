@@ -24,7 +24,7 @@ template = Association[
   	], 
   	"operator" -> AutoReduceOperator, 
   	"expression" -> {0},
-  	"result" -> {0}
+  	"result" -> {}
 ]
 Get[test]
 
@@ -48,7 +48,7 @@ template = Association[
   	], 
   	"operator" -> AutoReduceOperator, 
   	"expression" -> {a},
-  	"result" -> (*{1}*)Piecewise[{{{1}, a != 0}, {{0}, a == 0}}, $Failed]
+  	"result" -> (*{1}*)Piecewise[{{{1}, a != 0}, {{}, a == 0}}, $Failed]
 ]
 Get[test]
 
@@ -111,6 +111,6 @@ template = Association[
   	], 
   	"operator" -> AutoReduceOperator, 
   	"expression" -> {a u[x]^2, v[x]},
-  	"result" -> (*{a u[x]^2, v[x]}*)Piecewise[{{{v[x], u[x]^2}, a != 0}, {{v[x], 0}, a == 0}}, $Failed]
+  	"result" -> (*{a u[x]^2, v[x]}*)Piecewise[{{{v[x], u[x]^2}, a != 0}, {{v[x]}, a == 0}}, $Failed]
 ]
 Get[test]

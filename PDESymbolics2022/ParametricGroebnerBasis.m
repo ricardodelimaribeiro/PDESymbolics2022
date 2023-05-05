@@ -26,10 +26,13 @@ AutoReduceOperator::usage =
 "AutoReduceOperator[variables][polylist] returns the reduced (smallest set generating the same ideal) polylist.";
 
 PiecewisePolynomialReduceRemainderOperator::usage =
-"PiecewisePolynomialReduceRemainderOperator[variables][p, polylist] returns a Piecewise remainder for the redeuctions.";
+"PiecewisePolynomialReduceRemainderOperator[variables][p, polylist] returns a Piecewise remainder for the reductions.";
 
 PiecewiseApplyConditionOperator::usage =
 "PiecewiseApplyConditionOperator[variables][px] Simplifies the expressions with conditions as Assumptions";
+
+ComprehensiveGroebnerSystemOperator::usage =
+"ComprehensiveGroebnerSystemOperator[variables][preGrobner] returns a piecewise expression with groebner basis for each set of conditions.";
 
 GrobOp::usage =
 "GrobOp[variables][preGrobner] returns a piecewise expression with groebner basis for each set of conditions.";
@@ -44,7 +47,7 @@ Begin["`Private`"]
 InferGeneratorsOperator[variables_][xplist_List] :=
     With[ {glc = First@EchoLabel["InferGenerators: gLc"]@GenericLinearCombinationOperator[variables][EchoLabel["InferGenerators: input"]@xplist]},
         InferGeneratorsOperator[variables][glc]
-    ];
+    ]//QuietEcho;
 
 InferGeneratorsOperator[variables_Association][xp_] :=
     Kleisli[InferGenerators][variables][xp];
@@ -206,16 +209,16 @@ AutoReduceStepOperator[variables_][polylist_] :=
 AutoReduceStep[variables_][polylist_List] :=
     Module[ {generators},
         generators = 
-         Lookup[variables, "generators", 
-          InferGeneratorsOperator[variables][polylist]];
+         EchoLabel["AutoReduceStep: generators"]@Lookup[variables, "generators", 
+          InferGeneratorsOperator[variables][EchoLabel["AutoReduceStep: input"]@polylist]];
         With[ {ps = 
-           ReverseSortBy[First[MonomialList[#, generators]] &]@polylist},
+           EchoLabel["AutoReduceStep: ps"]@ReverseSortBy[First[MonomialList[#, generators]] &]@polylist},
             Module[ {unrefined},
                 unrefined = 
-                 DeleteCases[0]@
                   Table[
-                   PiecewisePolynomialReduceRemainderOperator[variables][ps[[i]],
+                   PiecewisePolynomialReduceRemainderOperator[Append["generators"->generators]@variables][ps[[i]],
                      ps[[i + 1 ;;]]], {i, 1, Length@ps}];
+                unrefined = DeleteCases[0]@EchoLabel["AutoReduceStep: unrefined"]@unrefined;
                 PiecewiseDivisionOperator[variables][unrefined, 
                  LeadingCoefficientOperator[variables]@unrefined]
             ]
@@ -224,7 +227,7 @@ AutoReduceStep[variables_][polylist_List] :=
    
 Clear[AutoReduceOperator];
 AutoReduceOperator[variables_][polylist_] :=
-    FixedPoint[AutoReduceStepOperator[variables], polylist] //PiecewiseApplyConditionOperator[variables];
+    FixedPoint[AutoReduceStepOperator[variables], AllCasesOperator[variables]@polylist] //PiecewiseApplyConditionOperator[variables];
 
 
 PPRRO[$Failed, _] = $Failed;
@@ -280,6 +283,9 @@ PiecewiseApplyConditionOperator[variables_][px_Piecewise] :=
     ];
    
 Clear[GrobOp];
+
+ComprehensiveGroebnerSystemOperator[variables_][ideal_]:=
+Kleisli[GrobOp][variables][ideal];
 
 hasFailed[x_] :=
     MemberQ[$Failed][x];
@@ -394,14 +400,15 @@ GrobOp[variables_][preGrobner_List, sPolynomials_List] :=
     ];
 
 GrobOp[variables_][preGrobner_List] :=
-    Module[ {newPreGrobner, sPolynomials, newArgs, facts ,newVariables, generators},
+    Module[ {newPreGrobner, sPolynomials, newArgs, facts ,newVariables, generators,reduce},
         facts = Lookup[variables, "facts", True];
+        reduce = Lookup[variables, "reduce", Resolve];
         If[Lookup[variables,"VarDOperator",VarDOperator] === VarDOperator,
         generators = Lookup[variables, "generators", InferGeneratorsOperator[variables][preGrobner]],
         (*if "VarDOperator" is DVarDOperator*)
         generators = Lookup[variables, "generators", DiscreteInferGeneratorsOperator[variables][preGrobner]]
         ];
-        newVariables = Append["generators"->generators]@variables;
+        newVariables = Append["reduce"->reduce]@Append["generators"->generators]@variables;
         If[ facts === False,
             $Failed,
             newPreGrobner = EchoLabel["monic preGrobner"]@ MonicOperator[newVariables][preGrobner];
