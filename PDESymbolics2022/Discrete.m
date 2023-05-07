@@ -150,13 +150,14 @@ DiscreteConservedQ[variables_Association][schemeexpression_] :=
     res = 
      DiscreteConservedQ[variables][Append[schexp, "exp" -> #]] & /@ 
         schexp["exp"] // PiecewiseExpand // PiecewiseListClean;
-    PiecewiseMap[And @@ # &, res]
+    PiecewiseMap[And @@ # &, EchoLabel["DiscreteConservedQ: res"]@res]
     ],
    Module[
     {var = variables, schexp = schemeexpression, generators},
     schexp = 
-     VariationalTimeDifferenceOperator[KeyDrop[var, "listop"]][schexp];
-    schexp = PiecewiseMap[Lookup["exp"] /@ # &, schexp];
+     EchoLabel["DiscreteConservedQ: schexp"]@VariationalTimeDifferenceOperator[KeyDrop[var, "listop"]][
+     	EchoLabel["DiscreteConservedQ: schexp: input to VariationalTimeDifferenceOperator"]@schexp];
+    schexp = PiecewiseMap[Lookup["exp"] (*/@ # &*), schexp];
     generators = PiecewiseExtractGeneratorsOperator[var][schexp];
     var = Append[var, "generators" -> generators];
     If[Lookup[var, "display result", False], Print[schexp]];
@@ -235,8 +236,10 @@ ExplicitVariationalTimeDifference[variables_Association][
    rhsexp = 
     PiecewiseAssociationOperator[var["VarDOperator"]][var, "exp", rhsexp];
    rhsexp = 
-    PiecewiseAssociationOperator[ParametricRefineOperator][var, "exp", rhsexp];
-   rhsexp = Append[rhsexp, "exp" -> #] & /@ rhsexp["exp"]
+    EchoLabel["ExplicitVariationalDifference: rhsexp"]@PiecewiseAssociationOperator[ParametricRefineOperator][var, "exp", rhsexp];
+   rhsexp = EchoLabel["ExplicitVariationalDifference: rhsexp Append"]@(
+   	PiecewiseMap[Append["exp" -> #] & @
+   	EchoLabel["ExplicitVariationalDifference: rhsexp[exp]"]@PiecewiseMap[Part[Key["exp"]],rhsexp],rhsexp])
    ];
 
 ImplicitVariationalTimeDifferenceOperator[variables_Association][schemeexpression_] := 
