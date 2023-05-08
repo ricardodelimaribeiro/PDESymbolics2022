@@ -78,6 +78,8 @@
 \newcommand{\Vv}{\mathcal{V}}
 \newcommand{\Ww}{\mathcal{W}}
 \newcommand{\Mm}{\mathcal{M}}
+\newcommand{\Kk}{\mathcal{K}}
+
 
 \newcommand{\eef}{\quad\blacktriangleleft}
 \newcommand{\bx}{\boldsymbol{x}}
@@ -134,6 +136,9 @@
 
 \section{Introduction}
 %\label{intro}
+{\color{blue} add 
+Comprehensive Gr{\"o}bner Systems 
+}
 In many partial differential equations (PDEs), conserved integral quantities play a crucial role, as they often represent properties of physical significance, such as energy or mass. For example, the advection equation preserves energy and the heat equation conserves mass. 
 Since closed-form solutions for these PDEs are often unavailable, finite-difference schemes serve as a practical numerical alternative. Hence, it becomes imperative to determine whether the chosen scheme preserves these conserved quantities. This information is not only valuable for gauging the accuracy of the approximation, but also vital for evaluating its stability. Automating conservation computations in computer algebra systems streamlines the process, saves time, enhances accuracy, and may create new research opportunities.
 
@@ -481,11 +486,180 @@ belongs to the ideal $\langle H^1,\ldots,H^i\rangle$, the corresponding function
  However, ideal membership is not  a necessary condition for conservation. Some functions, $\mathcal{J}$,
  may have sums that add to zero even if they do not belong to the difference ideal. Thus, we combine the discrete partial variational derivative with polynomial ideals. This idea is implemented in Algorithm \ref{alg: discreteconservedqimplicit} in Section \ref{secgen}.
 
-\section{Parametric Groebner basis}
-\label{pgb}
 
-TBD
 
+
+
+
+
+
+
+
+
+
+ \newpage 
+%just for now 
+\section{Parametric Groebner Systems}
+\label{pgs}
+
+% This section covers key concepts for studying parametric 
+% polynomial ideals, including parametric rings and specialization 
+% ideals and comprehensive Gr{\"o}bner systems for parametric polynomials that generalize 
+% Gr{\'o}bner basis in section \ref{4sec1}. Section 2 explains why comprehensive Gr{\"o}bner systems are advantageous 
+% and some problems that arise without CGS. Section 3 
+% extends the ideal membership problem to parametric ideals.
+In this section, we delve into essential concepts for 
+parametric polynomial ideals. These include parametric rings, 
+specialized ideals, and comprehensive Gr{\"o}bner systems, which are built upon 
+Gr{\"o}bner basis theory. 
+We discuss the benefits of using comprehensive Gr{\"o}bner systems 
+and how they help address problems that occur when not using them. 
+Furthermore, we expand on the ideal membership problem to encompass parametric ideals.
+
+% \subsection{Parametric Polynomials and Comprehensive Groebner Systems}
+% \label{4sec1}
+
+% This section introduces the general setting of parametric polynomial rings and a ring homomorphism that 
+% represents the choice of parameters. Moreover, we define comprehensive Gr{\"o}bner systems (CGS),
+% and show some examples of (CGS) using our implementation of a parametric Buchberger's algorithm.
+
+\begin{definition}
+    Let $\mathcal{K}$ be a field. The ring of parametric polynomials
+    $\mathcal{K}[a_1,..,a_s][x_1,...,x_n]$ is a ring of polynomials in the variables $x_1,...,x_n$ with coefficients that are polynomials
+    in the ring $\mathcal{K}[a_1,..,a_s]$. 
+    For simplicity we denote this ring by $\mathcal{K}[A][X]$.
+\end{definition}
+
+\begin{definition}
+    Let $L$ be an algebraically closed field extension of $\mathcal{K}$ and let $\sigma:\mathcal{K}[A][X]\rightarrow L[X]$ be a ring homomorphism. $\sigma$ is a specialization given by a polynomial evaluation on the parameters and an identity on the variables, i.e., 
+    for $P\in \mathcal{K}[A][X]$
+    $\sigma$ is given by $P\rightarrow P(a_{1_0},..,a_{s_0})$, for some $(a_{1_0},..,a_{s_0})\in L^s$.
+    
+\end{definition}
+% For example let $P=a x+by \in \Rr[a,b][x,y]$. 
+% a specialization $\sigma$ is defined by $P\rightarrow P(2,5)$ so that $$\sigma (P)=\sigma(a x+by)$$
+% and since $\sigma $ is a ring homomorphism we have,
+% $$\sigma(a x+by)= \sigma(a) \sigma(x)+\sigma(b)\sigma(y)$$
+% $$= 2x+5y.$$
+It is easier to think about specializations as a choice of parameters. \\
+
+Comprehensive Gr{\"o}bner systems extend Gr{\"o}bner basis to 
+parametric polynomials and have diverse practical applications in 
+algebraic geometry, combinatorics, coding theory, computer-aided design, and robotics.
+\begin{definition}
+    Let $\Ii$ be a finitely generated, nonzero ideal in the ring $\mathcal{K}[A][X]$ with a fixed monomial order $\prec$ on the variables. 
+    Let $\{A_1,\dots,A_k\}$ be a family of locally closed sets that forms a partition of $L^m$ 
+    , such that the disjoint union $\bigcup\limits_{i=1}^k A_i=L^m$, and $\{G_1,\dots,G_k\}$ 
+    be a family of subsets in $\mathcal{K}[A][X]$.
+    The system, 
+    \[   \left\{
+    \begin{array}{ll}
+        G_1 & A_1 \\
+        G_2  & A_2\\
+        \vdots  & \vdots \\
+        G_k & A_k \\
+    \end{array} 
+    \right. \]
+
+    is called a comprehensive Gr{\"o}bner system (CGS) of $I$
+     if for all specializations $\sigma_i \in A_i, \sigma_i (G_i)$ 
+     is a Gr{\"o}bner basis of the specialized ideal $\sigma_i (I)\subset \mathcal{K}[X]$.
+     Where each pair $\{G_i,A_i\}$ is called a branch. 
+\end{definition}
+Here, the notation $\sigma_i (\Ff)$, with $\Ff=\{f_1,f_2,\dots ,f_k\}$, is the specialization $\sigma_i$
+of each $f_j$ such that  $\sigma_i (\Ff)=\{\sigma_i(f_j)~|~ f_j\in \Ff\}$
+and  $"\sigma_i \in A_i"$ stands for a specialization given by $P\rightarrow P(a_{1_0},\dots,a_{m_0})$ 
+for $(a_{1_0},\dots,a_{m_0})\in A_i$.\\
+
+In this paper, we choose $A_i$ to be of the form 
+$$V(p_1,\dots,p_s)\backslash V(q_1,\dots,q_t) \subset L^m.$$
+Where $p_1,\dots,p_s,q_1,\dots,q_t\in \mathcal{K}[A]$ and $V(p_1,\dots,p_s)$ is a Variety.
+
+A proof of existence and the first algorithm to compute the (CGS) were introduced by Volker Weispfenning.
+\begin{theorem}
+    Let $\mathcal{I}\subseteq\mathcal{K}[A][X].$ The corresponding comprehensive Gr{\"o}bner system exists.\cite{weispfenning}
+\end{theorem}
+We use our implementation of a parametric Buchberger's algorithm to compute (CGS). 
+This is illustrated in the following examples.
+\begin{example}
+    Let $\Ii\subset \Rr[a,b][x,y]$ be the ideal generated by 
+    $$\Ff=\left\{a x^2+\left(a^2-2 a b\right) x y, b^2 y^2-x\right\}.$$
+    The comprehensive Gr{\"o}bner system of $\Ii$ with a Lexicographic order $y\prec x$ is:
+    {\color{red} we use our code here}
+	% $$
+    % % \begin{cases}\left\{a^2 b^2 y^3+a b^4 y^4-2 a b^3 y^3,x-b^2
+    % %     y^2\right\} &  a b \neq 0 \\
+    % % \{x\} &  b=0 \\
+    % % \left\{b^2 y^2-x\right\} &  a=0 \land b \neq 0.
+    % % \end{cases}
+    % $$
+\end{example}
+The idea of a comprehensive Gr{\"o}bner system is to provide a "parameter sensitive Gr{\"o}bner basis".
+It branches the cases of the parameters that affect leading terms. For instance, in the previous
+example if $a=0$ then the leading term $a x^2$ vanishes which leads to a different Gr{\"o}bner basis. Therefore,
+the (CGS) considers cases of the leading coefficients parameters Vanishing.
+
+\begin{example}
+    Let $\mathcal{I}\subset \Rr[a,b][x,y]$ be the ideal generated by 
+    $$\Ff=\left\{a^2 x-y,-a+b^2 x
+    y-y^2\right\}.$$
+    The comprehensive Gr{\"o}bner system of $\mathcal{I}$ with a Lexicographic order $y\prec x$ is:
+    
+    {\color{red} we use our code here}
+\end{example}
+
+\begin{remark}
+    If a polynomial ideal contains a nonzero constant polynomial, then it is called a unit ideal $\langle 1\rangle$.
+   Unit ideals can generate all polynomials in the ring, so $\langle 1\rangle=\mathcal{K}[A][X]$.
+    As a convention the Gr{\"o}bner basis of such ideals is $\{1\}$.
+\end{remark}
+   
+Issues arise when computing the Gr{\"o}bner basis of $\Ff$ without considering the parameters.
+In practice, to compute the Gr{\"o}bner basis, we assume non-zero parameters by default.
+This assumption guarantees a Gr{\"o}bner basis only for one set of specializations $\Rr^2\backslash V(a,b)$. i.e., 
+$\sigma(\Gg)$ is a Gr{\"o}bner basis of the specialization ideal $\sigma(\Ii)$ only for $\sigma \in \Rr^2\backslash V(a,b)$.
+ The impact of this assumption is seen in (i) and (ii):
+\begin{enumerate}
+    \item In general $\sigma\left(\Gg\right)$ is not necessarily a Gr{\"o}bner basis.
+    \begin{example}
+        \label{ex431}
+        Let $\Ii=\langle 
+           {a x^2 - y, -2 + b x y} \rangle$. The corresponding Gr{\"o}bner basis 
+           is $\Gg=\left\{b^2 y^3-4 a,2 a x-b y^2,b x y-2\right\}$. Consider 
+           the specialization $\sigma \in \Rr^2$ given by $P\rightarrow P(0,1)$.
+           Now, We claim that the set $\sigma(\Gg)=\left\{y^3,-y^2,x y-2\right\}$ is not a Gr{\"o}bner basis.
+           To show that we find the S-polynomials of each pair in the set and we find that: $S(-y^2, -2 + x y)=-2 y$.
+           We divide $S(-y^2, -2 + x y)$ by $\sigma(\Gg)$ and find that the remainder is $-2y$. 
+           Therefore by the Buchberger Criterion, $\sigma(\Gg)$ is not a Gr{\"o}bner basis.
+    \end{example}
+    \item Consequently, the algorithm utilized to resolve the ideal membership 
+    problem in \ref{sec2.1} can not be used for all specializations. 
+    
+    \begin{example}
+        \label{ex433}
+        Consider the ideal $\Ii$ in the above example. The corresponding Gr{\"o}bner basis computed under the assumption of non-zero parameters
+        is $$\sigma_0(\Gg)=\left\{b^2 y^3-4 a,2 a x-b y^2,b x y-2\right\}$$ where $\sigma_0 \in \Rr^2\backslash V(a,b)$. 
+        Now, it is possible to check if a polynomial $f\in \Rr[x,y]$ belongs to $\sigma(\Ii)$ only for $\sigma_0 $     
+        because we know that $\sigma_0(\Gg)$ is a Gr{\"o}bner basis. For other specializations such as 
+        the specialization $\sigma$ given by $P\rightarrow P(0,1)$, $\sigma(\Gg)$ is not a Gr{\"o}bner basis as shown in the above example. 
+        Therefore, we can not proceed with the division algorithm as we can not guarantee unique remainder if we used $\sigma(\Gg)$.  
+        
+    \end{example}
+
+
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+\newpage
 \section{The time-explicit case}
 \label{time-exp}
 In this section, we introduce Algorithm \ref{alg: discreteconservedqexplicit}  for checking the conservation of a quantity for time-explicit schemes. We discuss the algorithm for general schemes in the next section.
