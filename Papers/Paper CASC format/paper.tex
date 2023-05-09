@@ -609,23 +609,27 @@ the (CGS) considers cases of the leading coefficients parameters Vanishing.
     {\color{red} we use our code here}
 \end{example}
 
+
 \begin{remark}
     If a polynomial ideal contains a non-zero constant polynomial, then it is called a unit ideal $\langle 1\rangle$.
    Unit ideals can generate all polynomials in the ring, so $\langle 1\rangle=\mathcal{K}[A][X]$.
     As a convention, the Gr{\"o}bner basis of such ideals is $\{1\}$.
 \end{remark}
-   
+
+{\color{blue} Just include the parameters in the variables in a way that they are less expensive then the original variables. Consider $\mathcal{K}[X,A]$.}   
+
+
 Issues arise when computing the Gr{\"o}bner basis of $\Ff$ without considering the parameters.
-In practice, to compute the Gr{\"o}bner basis without considering the parameters, we assume non-zero parameters by default.
-This assumption guarantees a Gr{\"o}bner basis only for one set of specializations $\Rr^2\backslash V(a,b)$. i.e., 
+In practice, not considering the parameters means they are assumed non-zero by default.
+With this assumption, only for one set of specializations  $\Rr^2\backslash V(a,b)$ do we get a Gr{\"o}bner basis, i.e. 
 $\sigma(\Gg)$ is a Gr{\"o}bner basis of the specialized ideal $\sigma(\Ii)$ only for $\sigma \in \Rr^2\backslash V(a,b)$.
-Next, we show the impact of this assumption.
+Next, we discuss the impact of such an assumption:
 \begin{enumerate}
     \item In general $\sigma\left(\Gg\right)$ is not necessarily a Gr{\"o}bner basis.
     \begin{example}
         \label{ex431}
         Let $\Ii=\langle 
-           {a x^2 - y, -2 + b x y} \rangle$. The corresponding Gr{\"o}bner basis 
+           {a x^2 - y, -2 + b x y} \rangle$. The corresponding Gr{\"o}bner basis, with the variables $x>y>a>b$ with the Lexicographic monomial ordering, 
            is $\Gg=\left\{b^2 y^3-4 a,2 a x-b y^2,b x y-2\right\}$. Consider 
            the specialization $\sigma$ given by $P\rightarrow P(0,1)$.
            The set $\sigma(\Gg)=\left\{y^3,-y^2,x y-2\right\}$ is not a Gr{\"o}bner basis.
@@ -635,7 +639,7 @@ Next, we show the impact of this assumption.
         %    We divide $S(-y^2, -2 + x y)$ by $\sigma(\Gg)$ and find that the remainder is $-2y$. 
         %    Therefore by the Buchberger Criterion, $\sigma(\Gg)$ is not a Gr{\"o}bner basis.
     \end{example}
-    \item Consequently, the algorithm utilized to resolve the ideal membership 
+    \item The algorithm utilized to resolve the ideal membership 
     problem in chapter 2 of \cite{Cox} can not be used for all specializations. 
     
     \begin{example}
@@ -644,16 +648,18 @@ Next, we show the impact of this assumption.
         is $$\sigma_0(\Gg)=\left\{b^2 y^3-4 a,2 a x-b y^2,b x y-2\right\}$$ where $\sigma_0 \in \Rr^2\backslash V(a,b)$. 
         Now, it is possible to check if a polynomial $f\in \Rr[x,y]$ belongs to $\sigma(\Ii)$ only for $\sigma_0 $     
         because we know that $\sigma_0(\Gg)$ is a Gr{\"o}bner basis. For other specializations such as 
-        the specialization $\sigma$ given by $P\rightarrow P(0,1)$, $\sigma(\Gg)$ is not a Gr{\"o}bner basis as shown in the above example. 
+        the specialization $\sigma$ given by $P\rightarrow P(0,1)$, $\sigma(\Gg)$ is not a Gr{\"o}bner basis as discussed in the above example. 
         Therefore, we can not proceed with the division algorithm as we can not guarantee a unique remainder if we use $\sigma(\Gg)$.  
     \end{example}
+
+	{\color{blue} For this specialization (0,1), we have that the GB is \{1\}. But pseudo-division of 1 by the "not"-GB obtained does not have 0 remainder.}
 
 
 \end{enumerate}
 
-Using CGS can resolve these problems. Problem 1 is fixed by the definition of (CGS), as we have $\sigma_i(G_i)$ a 
- Gr{\"o}bner basis for any specialization $\sigma_i$. Moreover, 
- to discuss problem 2, we need to look at the parametric ideal membership first.
+Using CGS resolves these problems. Problem 1 is {\color{red}fixed} by the definition of (CGS), as $\sigma_i(G_i)$ is a 
+ Gr{\"o}bner basis for any specialization $\sigma_i\in A_i$. Moreover, 
+ to discuss problem 2, we need to look/define at the parametric ideal membership first.
 
 {\color{red} Is this a definition?}
  Consider, $f\in \Kk[A][X]$ we say that $f\in\Ii$ under $\sigma$, if there exists a specialization 
