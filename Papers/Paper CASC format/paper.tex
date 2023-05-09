@@ -137,7 +137,7 @@
 \section{Introduction}
 %\label{intro}
 {\color{blue} add 
-Comprehensive Gr{\"o}bner Systems 
+Comprehensive Gr{\"o}bner Systems 2222
 }
 In many partial differential equations (PDEs), conserved integral quantities play a crucial role, as they often represent properties of physical significance, such as energy or mass. For example, the advection equation preserves energy and the heat equation conserves mass. 
 Since closed-form solutions for these PDEs are often unavailable, finite-difference schemes serve as a practical numerical alternative. Hence, it becomes imperative to determine whether the chosen scheme preserves these conserved quantities. This information is not only valuable for gauging the accuracy of the approximation, but also vital for evaluating its stability. Automating conservation computations in computer algebra systems streamlines the process, saves time, enhances accuracy, and may create new research opportunities.
@@ -527,7 +527,7 @@ Furthermore, we expand on the ideal membership problem to encompass parametric i
     Let $\mathcal{K}$ be a field. The ring of parametric polynomials
     $\mathcal{K}[a_1,..,a_s][x_1,...,x_n]$ is a ring of polynomials in the variables $x_1,...,x_n$ with coefficients that are polynomials
     in the ring $\mathcal{K}[a_1,..,a_s]$. 
-    For simplicity we denote this ring by $\mathcal{K}[A][X]$.
+    For simplicity, we denote this ring by $\mathcal{K}[A][X]$.
 \end{definition}
 
 \begin{definition}
@@ -547,24 +547,25 @@ Comprehensive Gr{\"o}bner systems extend Gr{\"o}bner basis to
 parametric polynomials and have diverse practical applications in 
 algebraic geometry, combinatorics, coding theory, computer-aided design, and robotics.
 \begin{definition}
-    Let $\Ii$ be a finitely generated, nonzero ideal in the ring $\mathcal{K}[A][X]$ with a fixed monomial order $\prec$ on the variables. 
+    Let $\Ii$ be a finitely generated, non-zero ideal in the ring $\mathcal{K}[A][X]$ with a fixed monomial order $\prec$ on the variables. 
     Let $\{A_1,\dots,A_k\}$ be a family of locally closed sets that forms a partition of $L^m$ 
     , such that the disjoint union $\bigcup\limits_{i=1}^k A_i=L^m$, and $\{G_1,\dots,G_k\}$ 
     be a family of subsets in $\mathcal{K}[A][X]$.
     The system, 
-    \[   \left\{
-    \begin{array}{ll}
-        G_1 & A_1 \\
-        G_2  & A_2\\
-        \vdots  & \vdots \\
-        G_k & A_k \\
-    \end{array} 
-    \right. \]
+	\begin{equation}\label{CGS}
+	\left\{
+		\begin{array}{ll}
+			G_1 & A_1 \\
+			\vdots  & \vdots \\ 
+			G_k & A_k \\
+		\end{array}
+		\right. 
+	\end{equation}
 
     is called a comprehensive Gr{\"o}bner system (CGS) of $I$
      if for all specializations $\sigma_i \in A_i, \sigma_i (G_i)$ 
      is a Gr{\"o}bner basis of the specialized ideal $\sigma_i (I)\subset \mathcal{K}[X]$.
-     Where each pair $\{G_i,A_i\}$ is called a branch. 
+     Where each pair $\{G_i,A_i\}$ is called a branch. \cite{Kapur}
 \end{definition}
 Here, the notation $\sigma_i (\Ff)$, with $\Ff=\{f_1,f_2,\dots ,f_k\}$, is the specialization $\sigma_i$
 of each $f_j$ such that  $\sigma_i (\Ff)=\{\sigma_i(f_j)~|~ f_j\in \Ff\}$
@@ -596,7 +597,7 @@ This is illustrated in the following examples.
 \end{example}
 The idea of a comprehensive Gr{\"o}bner system is to provide a "parameter sensitive Gr{\"o}bner basis".
 It branches the cases of the parameters that affect leading terms. For instance, in the previous
-example if $a=0$ then the leading term $a x^2$ vanishes which leads to a different Gr{\"o}bner basis. Therefore,
+example, if $a=0$, then the leading term $a x^2$ vanishes which leads to a different Gr{\"o}bner basis. Therefore,
 the (CGS) considers cases of the leading coefficients parameters Vanishing.
 
 \begin{example}
@@ -609,16 +610,16 @@ the (CGS) considers cases of the leading coefficients parameters Vanishing.
 \end{example}
 
 \begin{remark}
-    If a polynomial ideal contains a nonzero constant polynomial, then it is called a unit ideal $\langle 1\rangle$.
+    If a polynomial ideal contains a non-zero constant polynomial, then it is called a unit ideal $\langle 1\rangle$.
    Unit ideals can generate all polynomials in the ring, so $\langle 1\rangle=\mathcal{K}[A][X]$.
-    As a convention the Gr{\"o}bner basis of such ideals is $\{1\}$.
+    As a convention, the Gr{\"o}bner basis of such ideals is $\{1\}$.
 \end{remark}
    
 Issues arise when computing the Gr{\"o}bner basis of $\Ff$ without considering the parameters.
-In practice, to compute the Gr{\"o}bner basis, we assume non-zero parameters by default.
+In practice, to compute the Gr{\"o}bner basis without considering the parameters, we assume non-zero parameters by default.
 This assumption guarantees a Gr{\"o}bner basis only for one set of specializations $\Rr^2\backslash V(a,b)$. i.e., 
-$\sigma(\Gg)$ is a Gr{\"o}bner basis of the specialization ideal $\sigma(\Ii)$ only for $\sigma \in \Rr^2\backslash V(a,b)$.
- The impact of this assumption is seen in (i) and (ii):
+$\sigma(\Gg)$ is a Gr{\"o}bner basis of the specialized ideal $\sigma(\Ii)$ only for $\sigma \in \Rr^2\backslash V(a,b)$.
+Next, we show the impact of this assumption.
 \begin{enumerate}
     \item In general $\sigma\left(\Gg\right)$ is not necessarily a Gr{\"o}bner basis.
     \begin{example}
@@ -626,14 +627,16 @@ $\sigma(\Gg)$ is a Gr{\"o}bner basis of the specialization ideal $\sigma(\Ii)$ o
         Let $\Ii=\langle 
            {a x^2 - y, -2 + b x y} \rangle$. The corresponding Gr{\"o}bner basis 
            is $\Gg=\left\{b^2 y^3-4 a,2 a x-b y^2,b x y-2\right\}$. Consider 
-           the specialization $\sigma \in \Rr^2$ given by $P\rightarrow P(0,1)$.
-           Now, We claim that the set $\sigma(\Gg)=\left\{y^3,-y^2,x y-2\right\}$ is not a Gr{\"o}bner basis.
-           To show that we find the S-polynomials of each pair in the set and we find that: $S(-y^2, -2 + x y)=-2 y$.
-           We divide $S(-y^2, -2 + x y)$ by $\sigma(\Gg)$ and find that the remainder is $-2y$. 
-           Therefore by the Buchberger Criterion, $\sigma(\Gg)$ is not a Gr{\"o}bner basis.
+           the specialization $\sigma$ given by $P\rightarrow P(0,1)$.
+           The set $\sigma(\Gg)=\left\{y^3,-y^2,x y-2\right\}$ is not a Gr{\"o}bner basis.
+		   This can be shown by the Buchberger Criterion (see Chapter 2 in\cite{Cox}).
+
+        %    To show that we find the S-polynomials of each pair in the set and we find that: $S(-y^2, -2 + x y)=-2 y$.
+        %    We divide $S(-y^2, -2 + x y)$ by $\sigma(\Gg)$ and find that the remainder is $-2y$. 
+        %    Therefore by the Buchberger Criterion, $\sigma(\Gg)$ is not a Gr{\"o}bner basis.
     \end{example}
     \item Consequently, the algorithm utilized to resolve the ideal membership 
-    problem in \ref{sec2.1} can not be used for all specializations. 
+    problem in chapter 2 of \cite{Cox} can not be used for all specializations. 
     
     \begin{example}
         \label{ex433}
@@ -642,16 +645,39 @@ $\sigma(\Gg)$ is a Gr{\"o}bner basis of the specialization ideal $\sigma(\Ii)$ o
         Now, it is possible to check if a polynomial $f\in \Rr[x,y]$ belongs to $\sigma(\Ii)$ only for $\sigma_0 $     
         because we know that $\sigma_0(\Gg)$ is a Gr{\"o}bner basis. For other specializations such as 
         the specialization $\sigma$ given by $P\rightarrow P(0,1)$, $\sigma(\Gg)$ is not a Gr{\"o}bner basis as shown in the above example. 
-        Therefore, we can not proceed with the division algorithm as we can not guarantee unique remainder if we used $\sigma(\Gg)$.  
-        
+        Therefore, we can not proceed with the division algorithm as we can not guarantee a unique remainder if we use $\sigma(\Gg)$.  
     \end{example}
 
 
 \end{enumerate}
 
+Using CGS can resolve these problems. Problem 1 is fixed by the definition of (CGS), as we have $\sigma_i(G_i)$ a 
+ Gr{\"o}bner basis for any specialization $\sigma_i$. Moreover, 
+ to discuss problem 2, we need to look at the parametric ideal membership first.
 
+{\color{red} Is this a definition?}
+ Consider, $f\in \Kk[A][X]$ we say that $f\in\Ii$ under $\sigma$, if there exists a specialization 
+ $\sigma\in L^m$ such that $\sigma(f)\in\sigma(\Ii)$.\\
 
+To determine if $f\in\Ii$ we consider the (CGS) of $\Ii$ given \ref{CGS}. 
+We check if $f\in\sigma_i(\Ii)$ for each $i\in\{1,..,k\}$ and $\sigma_i\in A_i$.
+For each $\sigma_i(\Ii)$ we have the corresponding Gr{\"o}bner basis $\sigma_i(G_i)$
+so we divide $f$ by the $\sigma_i(G_i)$ if the remainder is zero for some $i\in\{1,..,k\}$,
+then $f\in\sigma_i(\Ii)$. Therefore, $f\in\Ii$. However, if the remainder is non-zero for all $i$ we conclude that 
+$f\notin\Ii$.
 
+\begin{example}
+	Let $\mathcal{I}\subset \Rr[a,b][x,y]$ be the ideal generated by 
+    $$\Ff=\{a^2 x - y, -b^2 x y^2 - x\}.$$
+	We will determine if $f(x,y)=-x+y^2\in\mathcal{I}$.
+	We compute the corresponding (CGS)
+	{\color{red} add example 3}\\
+	First let $A_1=\{(a,b)~|~ a\ne 0, b\ne 0\}$ and $A_2=\{(a,b)~|~ ab=0\}$. 
+	We divide $f$ by $\{\frac{y}{b^2}+y^3,x-\frac{y}{a^2}\}$ and we obtain the remainder $-\frac{y}{a^2}+y^2$ and 
+	since the exists no specialization in $A_1$ such that this remainder is zero we conclude that $f\notin \sigma_1(\Ii)$ for
+	$\sigma_1\in A_1$. Now we repeat the reduction of $f$ but with the second Gr{\"o}bner basis $\{x,y\}$. We obtain a zero remainder, which implies that 
+	$f\in \sigma_2(\Ii)$ for $\sigma_2\in A_2$. Therefore, $f\in\Ii$ under a specialization $\sigma_2\in A_2$.
+\end{example}
 
 
 
