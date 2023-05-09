@@ -116,7 +116,7 @@
 %\titlerunning{Abbreviated paper title}
 %
 \author{Diogo A. Gomes\inst{1}\orcidID{0000-0002-3129-3956} \and
-	Friedemann Krannich\inst{1}\orcidID{1111-2222-3333-4444} \and
+	Friedemann Krannich\inst{1}\orcidID{0000-0002-8642-4319} \and
 	Bashayer Majrashi\inst{1}\orcidID{0009-0008-3677-8064 } \and
 	Ricardo de Lima Ribeiro\inst{1}\orcidID{0000-0002-2707-2210}}
 %
@@ -128,10 +128,10 @@
 \maketitle
 %
 \begin{abstract}
-	Many partial differential equations (PDEs) admit conserved quantities like mass or energy. These quantities are often essential for establishing well-posedness results. When approximating a PDE with a finite-difference scheme, it is crucial to determine whether related discretized quantities remain conserved over time by the scheme. Such conservation may ensure the stability of the numerical scheme. We present an algorithm for verifying the preservation of a polynomial quantity under a polynomial finite-difference scheme. Our schemes can be explicit or implicit, have higher-order time and space derivatives, and an arbitrary number of variables. Additionally, we introduce an algorithm for finding conserved quantities, given a scheme. We illustrate our algorithm with several finite-difference schemes. Our approach incorporates parametric G\"obner bases to handle parameters, ensuring accurate computation of conserved quantities.
+	Many partial differential equations (PDEs) admit conserved quantities like mass or energy. These are often essential for establishing well-posedness results. When approximating a PDE with a finite-difference scheme, it is crucial to determine whether related discretized quantities remain conserved by the scheme. Such conservation may ensure the stability of the numerical scheme. We present an algorithm for verifying the preservation of a polynomial quantity under a polynomial finite-difference scheme. Our schemes can be explicit or implicit, have higher-order time and space derivatives, and  arbitrary number of variables. Additionally, we introduce an algorithm for finding conserved quantities. We illustrate our algorithm in several finite-difference schemes. Our approach incorporates parametric G\"obner bases to handle parameters, ensuring accurate computation of conserved quantities.
 	
 	
-	\keywords{Symbolic computations \and Finite-difference schemes \and Discrete variational derivative \and Discrete partial variational derivative \and Conserved quantities \and Implicit schemes \and Explicit schemes \and Parametric Groebner basis.}
+	\keywords{Finite-difference schemes \and Discrete variational derivative \and Discrete partial variational derivative \and Conserved quantities \and Implicit schemes \and Explicit schemes \and Parametric Groebner systems.}
 \end{abstract}
 
 \section{Introduction}
@@ -140,19 +140,19 @@
 Comprehensive Gr{\"o}bner Systems 2222
 }
 In many partial differential equations (PDEs), conserved integral quantities play a crucial role, as they often represent properties of physical significance, such as energy or mass. For example, the advection equation preserves energy and the heat equation conserves mass. 
-Since closed-form solutions for these PDEs are often unavailable, finite-difference schemes serve as a practical numerical alternative. Hence, it becomes imperative to determine whether the chosen scheme preserves these conserved quantities. This information is not only valuable for gauging the accuracy of the approximation, but also vital for evaluating its stability. Automating conservation computations in computer algebra systems streamlines the process, saves time, enhances accuracy, and may create new research opportunities.
+Since closed-form solutions for these PDEs are often unavailable, finite-difference schemes serve as a practical numerical alternative. Hence, it becomes imperative to determine whether the chosen scheme preserves these conserved quantities. This information is not only valuable for gauging the accuracy of the approximation, but also vital for evaluating its stability. Automating conservation computations in computer algebra systems streamlines the process, saves time and enhances accuracy.
 
 {\color{red} $\Phi$ and $\Psi$ need domains and ranges, also explain that divergence is only in $x$}
 
 Conserved quantities correspond to conservation laws, admitted by the PDE. A conservation law \cite{cheviakov20} is an equation of the form
-\begin{gather*}
+$
 	\frac{\partial }{\partial t}\Phi[u]+\div \Psi[u]=0
-\end{gather*}
+$
 holding for all solutions $u$ of the considered PDE,
 that induces the conserved quantity $\int \Phi[u]\ dx$ as
-\begin{gather*}
+$
 	\frac{d}{dt}\int \Phi[u]\ dx=\int D_t\Phi[u]\ dx=-\int D_x\Psi[u]\ dx=0
-\end{gather*}
+$
 assuming periodic boundary conditions in $x$.
 
 There is a similar formulation for
@@ -166,7 +166,7 @@ Bihlo et al. \cite{bihlo12} used another approach and derived finite-difference 
 In this paper, we present an algorithm that verifies if a quantity is conserved over time under a given scheme. Our approach diverges from previous methods, as we do not attempt to construct discrete $\Phi$ and $\Psi$ using the scheme, but rather check if a given discrete $\Phi$ is conserved over time under the scheme. Typically, conserved quantities involve integral expressions or their discrete analogs, such as sums. Gomes et al. proposed algorithms for simplifying sums \cite{gomes20} and developed algorithms for detecting conserved quantities in PDEs and semi-discretized schemes \cite{gomes20}. We review these techniques in Section \ref{assp}.
 To generalize these methods for cases without summing over all arguments of the involved functions, we introduce the discrete partial variational derivative (Section \ref{pvard}). Our main contribution is an algorithm for verifying the conservation of a quantity under a numerical scheme. Gerdt \cite{gerdt12} demonstrated that the quantity is conserved if its discrete time derivative belongs to the difference ideal generated by the scheme. However, some quantities may add only to a constant and be trivially preserved without being part of the difference ideal. Furthermore, Gerdt's algorithm may not always terminate, as the Gr{\"o}bner basis for the difference ideal might be infinite.
 We address these issues by combining the discrete partial variational derivative with a polynomial ideal (instead of a difference ideal) having a finite Gr{\"o}bner basis (Section \ref{algodetec}). Our algorithm is applicable to schemes that are explicit and implicit in time, can handle schemes with multiple higher-order time and space derivatives, multiple space dimensions, systems of equations, and schemes with parameters.
-As the process of finding conserved quantities involves polynomial division, special care must be taken to ensure that the division is performed correctly with respect to the parameters. We employ parametric Gr{\"o}bner  bases, which are crucial for the proper treatment of parameters in our algorithm, see Section \ref{pgb}
+As the process of finding conserved quantities involves polynomial division, special care must be taken to ensure that the division is performed correctly with respect to the parameters. We employ parametric Gr{\"o}bner  bases, which are crucial for the proper treatment of parameters in our algorithm, see Section \ref{pgs}.
  We have implemented this algorithm as a part of a {\sc Mathematica} package \cite{wolfram21}\footnote{The code is available upon request. For access, contact ricardo.ribeiro@kaust.edu.sa.}. Our examples include Burgers equation and a PDE system related to mean-field games (Section \ref{eaa}). In these examples, 
  we show that our code detects conserved quantities and can be used to select suitable schemes for time-implicit and time-explicit discretizations. 
 
@@ -184,10 +184,10 @@ To avoid boundary terms, we work with periodic functions in $\Zz^d$.
 When discretizing PDEs using finite difference schemes, we need to work with functions defined on discrete sets. For instance, periodic functions in $\Rr^d$ can be replaced by functions defined on the discrete torus, which will be introduced in the following discussion.
 \begin{definition}
 	\label{d1}
-	Let $N$, $d$ and $m$ be positive integers. The \emph{discrete torus} is the set $\Ii:=\{0,\ldots,N-1\}^d\subset \Zz^d$. Define the space
-	\begin{gather*}
+	Let $N$, $d$ and $m$ be positive integers. The \emph{discrete torus} is the set $\Ii:=\{0,\ldots,N-1\}^d\subset \Zz^d$. Let
+$
 		\mathcal{P}(\Ii,\Rr^m):=\{u\ |\ u:\Ii\rightarrow\Rr^m\}.
-	\end{gather*}
+$
 Functions in $\mathcal{P}(\Ii,\Rr^m)$ extend periodically to $\Zz^d$.
 \end{definition}
 We introduce discrete functionals in the previous function space. These functionals are the analog of integral functionals for discrete approximations of functions.
@@ -195,14 +195,13 @@ We introduce discrete functionals in the previous function space. These function
 	\label{d2}
 	The space of functionals $\mathcal{F}(\mathcal{P}(\Ii,\Rr^m))$ (not necessarily linear) on $\mathcal{P}(\Ii,\Rr^m)$ is
 	\begin{gather*}
-		\mathcal{F}(\mathcal{P}(\Ii,\Rr^m)):= \Bigg\{\mathcal{J}:\mathcal{P}(\Ii,\Rr^m)\to \Rr\ \Bigg|\ \mathcal{J}[u]=\sum_{n\in\Ii}F_n[u],\\
-		\text{ where }
-		F_n[u]=G(u(n+e^1),u(n+e^2),\ldots,u(n+e^k))\\
-		\text{ and }\{e^1,\ldots,e^k\}\subset\Zz^d,\ \text{G is smooth}
-		\Bigg\}.
+		\mathcal{F}(\mathcal{P}(\Ii,\Rr^m)):= \Bigg\{\mathcal{J}:\mathcal{P}(\Ii,\Rr^m)\to \Rr\ \Bigg|\ \mathcal{J}[u]=\sum_{n\in\Ii}F_n[u],\text{ where for} G \ \text{ smooth} \\
+		F_n[u]=G(u(n+e^1),u(n+e^2),\ldots,u(n+e^k))
+		\text{ and }\{e^1,\ldots,e^k\}\subset\Zz^d
+		\Bigg\}, 
 	\end{gather*}
+where $e^1,\ldots,e^k$ are may not be unit vectors and may vary between functionals.
 \end{definition}
-In the previous definition, $e^1,\ldots,e^k$ are not necessarily unit vectors and may vary between functionals.
 \begin{example}
 	\label{functional1}
 	Let $d=m=1$ and
@@ -211,43 +210,43 @@ In the previous definition, $e^1,\ldots,e^k$ are not necessarily unit vectors an
 The discrete variational derivative is a useful tool for simplifying sums.
 Let $u,v\in\mathcal{P}(\Ii,\Rr^m)$, $\epsilon 
 \in\Rr$ and $\mathcal{J}\in\mathcal{F}(\mathcal{P}(\Ii,\Rr^m))$. Define
-\begin{gather*}
+$
 	D\mathcal{J}[u](v):=\frac{d}{d\epsilon}\mathcal{J}[u+\epsilon v]\bigg|_{\epsilon=0}.
-\end{gather*}
+$
 In \eqref{periodicity}, we shift the indices because of the periodicity of $u$ and $v$,
 \begin{gather}
 	\notag	D\mathcal{J}[u](v)=\frac{d}{d\epsilon}\mathcal{J}[u+\epsilon v]\bigg|_{\epsilon=0}=\frac{d}{d\epsilon}\sum_{n\in\Ii}F_n[u+\epsilon v]\bigg|_{\epsilon=0}\\
 	\notag	=\sum_{n\in\Ii}\frac{d}{d\epsilon}G(u(n+e^1)+\epsilon v(n+e^1),\ldots,u(n+e^k)+\epsilon v(n+e^k))\bigg|_{\epsilon=0}\\
-	\notag	=\sum_{n\in\Ii}D_1G(u(n+e^1),\ldots,u(n+e^k))v(n+e^1)\\
-	\notag	+\ldots+D_kG(u(n+e^1),\ldots,u(n+e^k))v(n+e^k)\\
-	\label{periodicity}	=\sum_{n\in\Ii}D_1G(u(n),u(n+e^2-e^1),\ldots,u(n+e^k-e^1))v(n)\\
-	\notag	+D_2G(u(n+e^1-e^2),u(n),\ldots,u(n+e^k-e^2))v(n)\\
-	\notag	+\ldots+D_kG(u(n+e^1-e^k),u(n+e^2-e^k),\ldots,u(n))v(n)\\
+%	\notag	=\sum_{n\in\Ii}D_1G(u(n+e^1),\ldots,u(n+e^k))v(n+e^1)\\
+%	\notag	+\ldots+D_kG(u(n+e^1),\ldots,u(n+e^k))v(n+e^k)\\
+	\label{periodicity}	%=\sum_{n\in\Ii}D_1G(u(n),u(n+e^2-e^1),\ldots,u(n+e^k-e^1))v(n)\\
+%	\notag	+D_2G(u(n+e^1-e^2),u(n),\ldots,u(n+e^k-e^2))v(n)\\
+	%\notag	+\ldots+D_kG(u(n+e^1-e^k),u(n+e^2-e^k),\ldots,u(n))v(n)\\
 	\notag	=\sum_{n\in\Ii}\Big(D_1G(u(n),u(n+e^2-e^1),\ldots,u(n+e^k-e^1))\\
-	\notag	+D_2G(u(n+e^1-e^2),u(n),\ldots,u(n+e^k-e^2))\\
-	\notag	+\ldots+D_kG(u(n+e^1-e^k),u(n+e^2-e^k),\ldots,u(n))\Big)v(n)\\
-	\notag	=:\sum_{n\in\Ii}\mathcal{V}(\mathcal{J})[u](n)v(n).	
+%	\notag	+D_2G(u(n+e^1-e^2),u(n),\ldots,u(n+e^k-e^2))\\
+	\notag	\ldots+D_kG(u(n+e^1-e^k),\ldots,u(n))\Big)v(n)
+=:\sum_{n\in\Ii}\mathcal{V}(\mathcal{J})[u](n)v(n).	
 \end{gather}
-The operator $\mathcal{V}(\mathcal{J})$ can be viewed as a representation of the derivative $D\mathcal{J}u$ with respect to the $L^2$ inner product $\langle w, v\rangle=\sum_{n\in \Ii} w_n v_n$, leading to the following definition.
+The operator $\mathcal{V}(\mathcal{J})$ represents the derivative $D\mathcal{J}u$ with respect to the $L^2$ inner product $\langle w, v\rangle=\sum_{n\in \Ii} w_n v_n$, leading to the following definition.
 \begin{definition}
 	$\mathcal{V}(\mathcal{J})$ is the \emph{discrete variational derivative} of $\mathcal{J}$.
 \end{definition}
-Because we assume all related functions are smooth, the discrete variational derivative always exists.
+Because here all functions are smooth, the discrete variational derivative exists.
 \begin{example}
 Now, we return to Example \ref{functional1} and compute
 	\begin{gather*}
 		D\mathcal{J}[u](v)=\frac{d}{d\epsilon}\mathcal{J}[u+\epsilon v]\bigg|_{\epsilon=0}=\frac{d}{d\epsilon}\sum_{n\in\Ii}F_n[u+\epsilon v]\bigg|_{\epsilon=0}\\
-		=\sum_{n\in\Ii}\frac{d}{d\epsilon}G[u(n+1)+\epsilon v(n+1),u(n)+\epsilon v(n)]\bigg|_{\epsilon=0}\\
+	%	=\sum_{n\in\Ii}\frac{d}{d\epsilon}G[u(n+1)+\epsilon v(n+1),u(n)+\epsilon v(n)]\bigg|_{\epsilon=0}\\
 		=\sum_{n\in\Ii}2(u(n+1)-u(n))v(n+1)+(-2)(u(n+1)-u(n))v(n)\\
-		=\sum_{n\in\Ii}2(u(n)-u(n-1))v(n)+(-2)(u(n+1)-u(n))v(n)\\
-		=\sum_{n\in\Ii}\Big(2(u(n)-u(n-1))+(-2)(u(n+1)-u(n))\Big)v(n)\\
-		=\sum_{n\in\Ii}\Big(-2u(n+1)+4u(n)-2u(n-1)\Big)v(n)\\
+	%	=\sum_{n\in\Ii}2(u(n)-u(n-1))v(n)+(-2)(u(n+1)-u(n))v(n)\\
+	%	=\sum_{n\in\Ii}\Big(2(u(n)-u(n-1))+(-2)(u(n+1)-u(n))\Big)v(n)\\
+	%	=\sum_{n\in\Ii}\Big(-2u(n+1)+4u(n)-2u(n-1)\Big)v(n)
 		=\sum_{n\in\Ii}\mathcal{V}(\mathcal{J})[u](n)v(n).
 	\end{gather*}
 Thus, $\mathcal{V}(\mathcal{J})[u](n)=-2u(n+1)+4u(n)-2u(n-1)$.
 \end{example}
-The algorithms for the simplification of sums presented in \cite{gomes20} relies on the following result, which 
-provides a criterion to compare functionals and evaluate if they represent the same quantity.
+The algorithms for simplification of sums in \cite{gomes20} rely on the following result, which 
+gives a criterion to decide if two functionals represent the same quantity.
 
 \begin{theorem}\label{theo1}
 	Let $\mathcal{J},\tilde{\mathcal{J}}\in \mathcal{F}(\mathcal{P}(\Ii,\Rr^m))$. If $\mathcal{V}(\mathcal{J}-\tilde{\mathcal{J}})[v]=0$ for all $v\in\mathcal{P}(\Ii,\Rr^m)$ and if there exists $u_0\in\mathcal{P}(\Ii,\Rr^m)$ such that $\mathcal{J}[u_0]=\tilde{\mathcal{J}}[u_0]$, then
@@ -260,8 +259,8 @@ provides a criterion to compare functionals and evaluate if they represent the s
 \begin{proof}
 	We have
 	\begin{gather*}
-		(\mathcal{J}-\tilde{\mathcal{J}})[u]=(\mathcal{J}-\tilde{\mathcal{J}})[u]-(\mathcal{J}-\tilde{\mathcal{J}})[u_0]\\
-		=\int_{0}^{1}\frac{d}{d\lambda}(\mathcal{J}-\tilde{\mathcal{J}})[u_0+\lambda(u-u_0)]\ d\lambda\\
+		(\mathcal{J}-\tilde{\mathcal{J}})[u]=(\mathcal{J}-\tilde{\mathcal{J}})[u]-(\mathcal{J}-\tilde{\mathcal{J}})[u_0]=
+		\int_{0}^{1}\frac{d}{d\lambda}(\mathcal{J}-\tilde{\mathcal{J}})[u_0+\lambda(u-u_0)]\ d\lambda\\
 		=\int_{0}^{1}\mathcal{V}(\mathcal{J}-\tilde{\mathcal{J}})[u_0+\lambda(u-u_0)](u-u_0)\ d\lambda=0
 	\end{gather*}
 	and hence $\mathcal{J}[u]=\tilde{\mathcal{J}}[u]$.
@@ -269,16 +268,18 @@ provides a criterion to compare functionals and evaluate if they represent the s
 We use Theorem \ref{theo1} to determine whether different sums represent the same quantity.
 \begin{example}
 	Let $d=m=1$ and consider the functionals
-	\begin{gather*}
-		\mathcal{J}[u]:=\sum_{n\in\Ii}u(n)u(n+1)\text{ and }
+$
+		\mathcal{J}[u]:=\sum_{n\in\Ii}u(n)u(n+1)$ and $
 		\tilde{\mathcal{J}}[u]:=\sum_{n\in\Ii}u(n-2)u(n-1).
-	\end{gather*}
-	It is clear that $\mathcal{J}$ and $\tilde{\mathcal{J}}$ represent the same quantity (by shifting $n$). We confirm this, using the discrete variational derivative:
+$
+By shifting $n$, we see that	$\mathcal{J}$ and $\tilde{\mathcal{J}}$ represent the same quantity . Accordingly, $\mathcal{J}[0]=0=\tilde{\mathcal{J}}[0]$, and the discrete variational derivative must vanish
 	\begin{gather*}
 		D(\mathcal{J}-\tilde{\mathcal{J}})[u](v)=\\
 		=\sum_{n\in\Ii}(u(n+1)+u(n-1)-u(n+1)-u(n-1))v(n)=0.
 	\end{gather*}
-	Hence, $\mathcal{V}(\mathcal{J}-\tilde{\mathcal{J}})=0$ and $\mathcal{J}[0]=0=\tilde{\mathcal{J}}[0]$. Therefore, both functionals represent the same quantity.
+%	Hence, $\mathcal{V}(\mathcal{J}-\tilde{\mathcal{J}})=0$
+%	and $\mathcal{J}[0]=0=\tilde{\mathcal{J}}[0]$. Thus, the functionals agree.
+	%	both functionals represent the same quantity.
 \end{example}
 
 \begin{example}
@@ -300,7 +301,7 @@ We use Theorem \ref{theo1} to determine whether different sums represent the sam
 
 In this section, we introduce the concept of the discrete partial variational derivative, a generalization of the discrete variational derivative for cases where one or several arguments of the indices are kept constant. This generalization provides a more flexible approach to handling various problems in conservation laws for finite-difference schemes, addressing challenges and limitations of the traditional discrete variational derivative. The main result of this section is Theorem \ref{theo2}, which gives a criterion for equality of two functionals based on their discrete partial variational derivatives."
 
-Let $n=(n_1,\ldots,n_d)$ be the variables for the functions in $\mathcal{P}(\Ii,\Rr^m)$. We call $n$ the space variables. Let $l\in\Nn$ and call $t:=(t_1,\ldots,t_l)\in\Nn^l$ the time variables. For generality, we consider the vectorial time case, while later in this paper, we focus specifically on the case when $l=1$.
+Let $n=(n_1,\ldots,n_d)$, the space variables, be the variables for the functions in $\mathcal{P}(\Ii,\Rr^m)$. Let $l\in\Nn$ and call $t:=(t_1,\ldots,t_l)\in\Nn^l$ the time variables. For generality, we consider the vectorial time case, while later in this paper, we focus on the case when $l=1$.
 The analog to Definition \ref{d1} is the following. 
 \begin{definition}
 	Let $\mathcal{P}(\Ii\times\Nn^l,\Rr^m):=\{u\ |\ u(\cdot,t)\in\mathcal{P}(\Ii,\Rr^m)\ \forall t\in\Nn^l \}$.
@@ -312,9 +313,9 @@ We can regard $\mathcal{P}(\Ii\times\Nn^l,\Rr^m)$ as the set of functions depend
 Next, we examine functions that involve summation only over spatial variables, extending the concept presented in Definition \ref{d2}.
 \begin{definition}
 	\label{quantityfunc2}
-	The space of functions $\mathcal{F}(\mathcal{P}(\Ii\times\Nn^l,\Rr^m),\mathcal{D}(\Nn^l))$ is
+	The space of functions $\mathcal{F}(\mathcal{P}(\Ii\times\Nn^l,\Rr^m),\mathcal{D}(\Nn^l))$ is the set
 	\begin{gather*}
-		\mathcal{F}(\mathcal{P}(\Ii\times\Nn^l,\Rr^m),\mathcal{D}(\Nn^l)):=\\	
+	%	\mathcal{F}(\mathcal{P}(\Ii\times\Nn^l,\Rr^m),\mathcal{D}(\Nn^l)):=\\	
 		\Bigg\{\mathcal{J}:\mathcal{P}(\Ii\times\Nn^l)\rightarrow\mathcal{D}(\Nn^l) \Bigg|\ \mathcal{J}[u](t)=\sum_{n\in\Ii}F_{(n,t)}[u],\\
 		\text{where } F_{(n,t)}[u]=G(u((n,t)+e^1),u((n,t)+e^2),\ldots,u((n,t)+e^k)),\\
 		\text{and }
@@ -335,13 +336,14 @@ Let $u,v\in\mathcal{P}(\Ii\times\Nn^l,\Rr^m)$, then
 \begin{gather*}
 	D^l\mathcal{J}[u](v)(t_1,\ldots,t_{l}):=\frac{d}{d\epsilon}\mathcal{J}[u+\epsilon v]\Big|_{\epsilon=0}(t_1,\ldots,t_{l})\\
 	=\sum_{\tilde{n}}D_1G(u(\tilde{n}+e^1),\ldots,u(\tilde{n}+e^k))\delta_{(t_1,\ldots,t_{l})}(s_1,\ldots,s_l)v(\tilde{n}+e^1)\\
-	+D_2G(u(\tilde{n}+e^1),\ldots,u(\tilde{n}+e^k))\delta_{(t_1,\ldots,t_{l})}(s_1,\ldots,s_l)v(\tilde{n}+e^2)\\+\ldots
+%	+D_2G(u(\tilde{n}+e^1),\ldots,u(\tilde{n}+e^k))\delta_{(t_1,\ldots,t_{l})}(s_1,\ldots,s_l)v(\tilde{n}+e^2)\\
++\ldots
 	+D_kG(u(\tilde{n}+e^1),\ldots,u(\tilde{n}+e^k))\delta_{(t_1,\ldots,t_{l})}(s_1,\ldots,s_l)v(\tilde{n}+e^k)\\
-	=\sum_{\tilde{n}}D_1G(u(\tilde{n}),\ldots,u(\tilde{n}+e^k-e^1))\delta_{(t_1,\ldots,t_{l})}(s_1-e^1_{d+1},\ldots,s_l-e^1_{d+l})v(\tilde{n})\\
-	+D_2G(u(\tilde{n}+e^1-e^2),\ldots,u(\tilde{n}+e^k-e^2))\delta_{(t_1,\ldots,t_{l})}(s_1-e^2_{d+1},\ldots,s_l-e^2_{d+l})v(\tilde{n})\\+\ldots
-	+D_kG(u(\tilde{n}+e^1-e^k),\ldots,u(\tilde{n}))\delta_{(t_1,\ldots,t_{l})}(s_1-e^k_{d+1},\ldots,s_l-e^k_{d+l})v(\tilde{n})\\
+%	=\sum_{\tilde{n}}D_1G(u(\tilde{n}),\ldots,u(\tilde{n}+e^k-e^1))\delta_{(t_1,\ldots,t_{l})}(s_1-e^1_{d+1},\ldots,s_l-e^1_{d+l})v(\tilde{n})\\
+%	+D_2G(u(\tilde{n}+e^1-e^2),\ldots,u(\tilde{n}+e^k-e^2))\delta_{(t_1,\ldots,t_{l})}(s_1-e^2_{d+1},\ldots,s_l-e^2_{d+l})v(\tilde{n})\\+\ldots
+%	+D_kG(u(\tilde{n}+e^1-e^k),\ldots,u(\tilde{n}))\delta_{(t_1,\ldots,t_{l})}(s_1-e^k_{d+1},\ldots,s_l-e^k_{d+l})v(\tilde{n})\\
 	=\sum_{\tilde{n}}\Big(D_1G(u(\tilde{n}),\ldots,u(\tilde{n}+e^k-e^1))\delta_{(t_1+e^1_{d+1},\ldots,t_{l}+e^1_{d+l})}(s_1,\ldots,s_l)\\
-	+D_2G(u(\tilde{n}+e^1-e^2),\ldots,u(\tilde{n}+e^k-e^2))\delta_{(t_1+e^2_{d+1},\ldots,t_{l}+e^2_{d+l})}(s_1,\ldots,s_l)\\+\ldots
+%	+D_2G(u(\tilde{n}+e^1-e^2),\ldots,u(\tilde{n}+e^k-e^2))\delta_{(t_1+e^2_{d+1},\ldots,t_{l}+e^2_{d+l})}(s_1,\ldots,s_l)\\+\ldots
 	+D_kG(u(\tilde{n}+e^1-e^k),\ldots,u(\tilde{n}))\delta_{(t_1+e^k_{d+1},\ldots,t_{l}+e^k_{d+l})}(s_1,\ldots,s_l)\Big)v(\tilde{n})\\
 	=:\sum_{\tilde{n}}\mathcal{V}^l(\mathcal{J})[u](\tilde{n},t)v(\tilde{n}).
 \end{gather*}
@@ -359,10 +361,10 @@ $\mathcal{V}^l(\mathcal{J})$ is the \emph{discrete partial variational derivativ
 	is $\delta_{t+1}(s)-\delta_t(s)$, because
 	\small
 	\begin{gather*}
-		D^1(\mathcal{J})[u](v)(t)\\
-		=\frac{d}{d\epsilon} \sum_{n,s}((u(n,s+1)+\epsilon v(n,s+1))-(u(n,s)+\epsilon v(n,s)))\delta_t(s)\\
-		=\sum_{n,s}v(n,s+1)\delta_t(s)-v(n,s)\delta_t(s)=\sum_{n,s}v(n,s)\delta_t(s-1)-v(n,s)\delta_t(s)\\
-		=\sum_{n,s}(\delta_{t+1}(s)-\delta_t(s))v(n,s)=\sum_{n,s}\mathcal{V}^1(\mathcal{J})(n,s,t)v(n,s).
+		D^1(\mathcal{J})[u](v)(t)
+		=\frac{d}{d\epsilon} \sum_{n,s}((u(n,s+1)+\epsilon v(n,s+1))-(u(n,s)+\epsilon v(n,s)))\delta_t(s)=\\
+		\sum_{n,s}v(n,s+1)\delta_t(s)-v(n,s)\delta_t(s)%=\sum_{n,s}v(n,s)\delta_t(s-1)-v(n,s)\delta_t(s)\\
+		=\sum_{n,s}(\delta_{t+1}(s)-\delta_t(s))v(n,s).%=\sum_{n,s}\mathcal{V}^1(\mathcal{J})(n,s,t)v(n,s).
 	\end{gather*}
 	\normalsize
 \end{example}
@@ -382,7 +384,7 @@ $\mathcal{V}^l(\mathcal{J})$ is the \emph{discrete partial variational derivativ
 		\input{executables/dpvd1ctt.result.ed.tex}
 	\end{small}
 \end{example}
-We have a result similar to Theorem \ref{theo1} for the discrete partial variational derivative:
+The analog to Theorem \ref{theo1} for the discrete partial variational derivative is:
 \begin{theorem}\label{theo2}
 	Let $\mathcal{J},\tilde{\mathcal{J}}\in \mathcal{F}(\mathcal{P}(\Ii\times\Nn^l,\Rr^m),\mathcal{D}(\Nn^l))$. If $\mathcal{V}^l(\mathcal{J}-\tilde{\mathcal{J}})[v]=0$ for all $v\in\mathcal{P}(\Ii\times\Nn^l,\Rr^m)$ and if there exists $u_0\in\mathcal{P}(\Ii\times\Nn^l,\Rr^m)$ such that $\mathcal{J}[u_0]=\tilde{\mathcal{J}}[u_0]$, then
 	$\mathcal{J}[u]=\tilde{\mathcal{J}}[u]$
@@ -395,75 +397,74 @@ The proof is similar to the proof of Theorem \ref{theo1}.
 
 \section{Difference schemes and algebra}
 \label{algodetec}
-In this section, we formally define numerical schemes and introduce the necessary tools from difference algebra for our algorithm.
+In this section, we formally define numerical schemes and introduce the tools from difference algebra for our algorithm.
 Throughout this paper, we assume that there is only one time variable $t$ ($l=1$).
 \begin{definition}
-	The \emph{space of schemes} is
+	The \emph{space of schemes}, $	\mathcal{S}(\mathcal{P}(\Ii\times\Nn,\Rr^m),\mathcal{P}(\Ii\times\Nn,\Rr))$ is the set
 	\begin{gather*}
-		\mathcal{S}(\mathcal{P}(\Ii\times\Nn,\Rr^m),\mathcal{P}(\Ii\times\Nn,\Rr)):=\\
 		\Bigg\{H:\mathcal{P}(\Ii\times\Nn,\Rr^m)\rightarrow\mathcal{P}(\Ii\times\Nn,\Rr)\ \Bigg|\\
 		H[u](n,t)=H(u(n+\tilde{e}^1,t+\tilde{l}^1),\ldots,u(n+\tilde{e}^r,t+\tilde{l}^r)),\\
 		\text{where }
-		\{\tilde{e}^1,\ldots,\tilde{e}^r\}\subset\Zz^d,\ \{\tilde{l}^1,\ldots,\tilde{l}^r\}\subset\Zz,\\
-		\text{H is a polynomial in r variables}
+		\{\tilde{e}^1,\ldots,\tilde{e}^r\}\subset\Zz^d,\ \{\tilde{l}^1,\ldots,\tilde{l}^r\}\subset\Zz,
+		\text{H is polynomial}
 		\Bigg\}.
 	\end{gather*}
 	A \emph{scheme} is a set of functions
-	\begin{gather*}
+$
 		\{H^1,\ldots,H^i\}\subset\mathcal{S}(\mathcal{P}(\Ii\times\Nn,\Rr^m),\mathcal{P}(\Ii\times\Nn,\Rr))
-	\end{gather*}
+$
 	that represent the equations $\{H^1[u]=0,\ldots,H^i[u]=0\}$ for $u\in\mathcal{P}(\Ii\times\Nn,\Rr^m)$, holding pointwise for all points in $\Ii\times\Nn$.
 \end{definition}
 If a scheme contains a single function $H$, we call $H$ the scheme. Sometimes, we also call the expression $H[u]$ the scheme.
-\begin{remark}
+%\begin{remark}
 	In our examples, we only consider finite-difference schemes with fixed step sizes $\Delta x=\Delta t=1$. However, our algorithms and our code handle parameters. Hence, our results can be generalized to schemes with other step sizes.
-\end{remark}
+%\end{remark}
 \begin{example}
 	\label{ee}
 Consider the heat equation	$u_t-u_{xx}=0$ \cite{smoller94}.  A possible scheme is
-\[	
+$
 		u(n,t+1)-u(n,t)-(u(n+1,t)-2u(n,t)+u(n-1,t)).
-\]
+$
 A solution of the corresponding numerical approximation is a function $u\in \mathcal{P}(\Ii\times\Nn,\Rr),$ that satisfies
-\[
+$
 		u(n,t+1)-u(n,t)-(u(n+1,t)-2u(n,t)+u(n-1,t))=0
-\]
+$
 for all $n\in \Ii$ and $t\in \Nn$. 
 \end{example}
 
 \begin{definition}
 	A scheme $\{H^1,\ldots,H^m\}\subset\mathcal{S}(\mathcal{P}(\Ii\times\Nn,\Rr^m),\mathcal{P}(\Ii\times\Nn,\Rr))$ given by
-	\begin{equation*}
+	$
 		H^j(u(n+\tilde{e}_j^1,t+\tilde{l}_j^1),\ldots,u(n+\tilde{e}_j^r,t+\tilde{l}_j^r))
-	\end{equation*}
+	$
 	is in \emph{time-explicit form} if we can rewrite the previous equation (eventually translating the scheme) as
-	\begin{equation*}
+$
 		u_j(n,t+1)-\tilde{H}^j(u(n+\tilde{\tilde{e}}_j^1,t),u(n+\tilde{\tilde{e}}_j^2,t),\ldots,u(n+\tilde{\tilde{e}}_j^r,t))
-	\end{equation*}
+$
 	for $1\leq j\leq m$
 	with $\tilde{H}^j\in\mathcal{S}(\mathcal{P}(\Ii\times\Nn,\Rr^m),\mathcal{P}(\Ii\times\Nn,\Rr))$. We call $\{\tilde{H}^1,\ldots,\tilde{H}^m\}$ the right-hand side of $\{H^1,\ldots,H^m\}$.
 \end{definition}
 \begin{example}\label{timeexplicitheateq}
 	Consider the forward-difference scheme for the heat equation in Example \ref{ee}. 
 	This scheme is in time-explicit form with right-hand side
-	\begin{equation*}
+	$
 		u(n,t)+(u(n+1,t)-2u(n,t)+u(n-1,t)).
-	\end{equation*}
+$
 \end{example}
 {\bf Difference ideals.}\label{diffid}
 Following Gerdt \cite{gerdt12}, we now introduce difference ideals and how we use them in our algorithm.
 \begin{definition}
 	Let $u=(u_1,\dots,u_m)\in\mathcal{P}(\Ii\times\Nn,\Rr^m)$. The \emph{shift} in the $i$-th coordinate for $1\leq i\leq d+1$ by $k\in\Zz$ is
-	\begin{gather*}
+$
 		\sigma_i^k\circ u_j(n,t):=u_j(n_1,\ldots,n_{i-1},n_i+k,n_{i+1},\ldots,t)
-	\end{gather*}
+$
 	understanding that $\sigma_{d+1}^k$ shifts the time variable.
 \end{definition}
 \begin{definition}
 	The \emph{set of all possible shifts} $\Theta$ is
-	\begin{gather*}
+$
 		\Theta:=\{\sigma_1^{k_1}\circ\cdots\circ\sigma_{d+1}^{k_{d+1}}\ |\ k_1,\ldots,k_{d+1}\in\Zz\}.
-	\end{gather*}
+$
 \end{definition}
 We now construct the difference ideal containing the scheme.
 \begin{definition}
@@ -497,7 +498,7 @@ belongs to the ideal $\langle H^1,\ldots,H^i\rangle$, the corresponding function
 
 
 
- \newpage 
+ %\newpage 
 %just for now 
 \section{Parametric Groebner Systems}
 \label{pgs}
@@ -508,26 +509,19 @@ belongs to the ideal $\langle H^1,\ldots,H^i\rangle$, the corresponding function
 % Gr{\'o}bner basis in section \ref{4sec1}. Section 2 explains why comprehensive Gr{\"o}bner systems are advantageous 
 % and some problems that arise without CGS. Section 3 
 % extends the ideal membership problem to parametric ideals.
-In this section, we delve into essential concepts for 
+Here, we review essential concepts for 
 parametric polynomial ideals. These include parametric rings, 
 specialized ideals, and comprehensive Gr{\"o}bner systems, which are built upon 
 Gr{\"o}bner basis theory. 
-We discuss the benefits of using comprehensive Gr{\"o}bner systems 
-and how they help address problems that occur when not using them. 
+We discuss the advantages of comprehensive Gr{\"o}bner systems 
+compared with standard Gr\"obner basis. 
 Furthermore, we expand on the ideal membership problem to encompass parametric ideals.
 
-% \subsection{Parametric Polynomials and Comprehensive Groebner Systems}
-% \label{4sec1}
-
-% This section introduces the general setting of parametric polynomial rings and a ring homomorphism that 
-% represents the choice of parameters. Moreover, we define comprehensive Gr{\"o}bner systems (CGS),
-% and show some examples of (CGS) using our implementation of a parametric Buchberger's algorithm.
-
 \begin{definition}
-    Let $\mathcal{K}$ be a field. The ring of parametric polynomials
-    $\mathcal{K}[a_1,..,a_s][x_1,...,x_n]$ is a ring of polynomials in the variables $x_1,...,x_n$ with coefficients that are polynomials
+The ring of parametric polynomials
+    $\mathcal{K}[a_1,..,a_s][x_1,...,x_n]$ in a field $\mathcal{K}$ is a ring of polynomials in the variables $x_1,...,x_n$ with coefficients that are polynomials
     in the ring $\mathcal{K}[a_1,..,a_s]$. 
-    For simplicity, we denote this ring by $\mathcal{K}[A][X]$.
+    To simplify, we denote this ring by $\mathcal{K}[A][X]$.
 \end{definition}
 
 \begin{definition}
@@ -536,16 +530,11 @@ Furthermore, we expand on the ideal membership problem to encompass parametric i
     $\sigma$ is given by $P\rightarrow P(a_{1_0},..,a_{s_0})$, for some $(a_{1_0},..,a_{s_0})\in L^s$.
     
 \end{definition}
-% For example let $P=a x+by \in \Rr[a,b][x,y]$. 
-% a specialization $\sigma$ is defined by $P\rightarrow P(2,5)$ so that $$\sigma (P)=\sigma(a x+by)$$
-% and since $\sigma $ is a ring homomorphism we have,
-% $$\sigma(a x+by)= \sigma(a) \sigma(x)+\sigma(b)\sigma(y)$$
-% $$= 2x+5y.$$
-It is easier to think about specializations as a choice of parameters. \\
-
+It is easier to think about specializations as a choice of parameters. 
 Comprehensive Gr{\"o}bner systems extend Gr{\"o}bner basis to 
-parametric polynomials and have diverse practical applications in 
-algebraic geometry, combinatorics, coding theory, computer-aided design, and robotics.
+parametric polynomials.
+% and have diverse applications in 
+%algebraic geometry, combinatorics, coding theory, computer-aided design, and robotics.
 \begin{definition}
     Let $\Ii$ be a finitely generated, non-zero ideal in the ring $\mathcal{K}[A][X]$ with a fixed monomial order $\prec$ on the variables. 
     Let $\{A_1,\dots,A_k\}$ be a family of locally closed sets that forms a partition of $L^m$ 
@@ -554,15 +543,14 @@ algebraic geometry, combinatorics, coding theory, computer-aided design, and rob
     The system, 
 	\begin{equation}\label{CGS}
 	\left\{
-		\begin{array}{ll}
-			G_1 & A_1 \\
-			\vdots  & \vdots \\ 
-			G_k & A_k \\
+		\begin{array}{lll}
+			G_1 &\quad& A_1 \\
+			\vdots  &\quad& \vdots \\ 
+			G_k &\quad & A_k \\
 		\end{array}
 		\right. 
 	\end{equation}
-
-    is called a comprehensive Gr{\"o}bner system (CGS) of $I$
+    is a {\it comprehensive Gr{\"o}bner system} (CGS) of $I$
      if for all specializations $\sigma_i \in A_i, \sigma_i (G_i)$ 
      is a Gr{\"o}bner basis of the specialized ideal $\sigma_i (I)\subset \mathcal{K}[X]$.
      Where each pair $\{G_i,A_i\}$ is called a branch. \cite{Kapur}
@@ -570,23 +558,30 @@ algebraic geometry, combinatorics, coding theory, computer-aided design, and rob
 Here, the notation $\sigma_i (\Ff)$, with $\Ff=\{f_1,f_2,\dots ,f_k\}$, is the specialization $\sigma_i$
 of each $f_j$ such that  $\sigma_i (\Ff)=\{\sigma_i(f_j)~|~ f_j\in \Ff\}$
 and  $"\sigma_i \in A_i"$ stands for a specialization given by $P\rightarrow P(a_{1_0},\dots,a_{m_0})$ 
-for $(a_{1_0},\dots,a_{m_0})\in A_i$.\\
+for $(a_{1_0},\dots,a_{m_0})\in A_i$.
+In this paper, $A_i$ is of the form 
+$V(p_1,\dots,p_s)\backslash V(q_1,\dots,q_t) \subset L^m$.
+Where $p_1,\dots,p_s,q_1,\dots,q_t\in \mathcal{K}[A]$ and $V(p_1,\dots,p_s)$ is a variety.
 
-In this paper, we choose $A_i$ to be of the form 
-$$V(p_1,\dots,p_s)\backslash V(q_1,\dots,q_t) \subset L^m.$$
-Where $p_1,\dots,p_s,q_1,\dots,q_t\in \mathcal{K}[A]$ and $V(p_1,\dots,p_s)$ is a Variety.
-
-A proof of existence and the first algorithm to compute the (CGS) were introduced by Volker Weispfenning.
-\begin{theorem}
-    Let $\mathcal{I}\subseteq\mathcal{K}[A][X].$ The corresponding comprehensive Gr{\"o}bner system exists.\cite{weispfenning}
+A proof of existence and an algorithm to compute CGS appeared first in \cite{weispfenning}.
+\begin{theorem}[\cite{weispfenning}]
+    Let $\mathcal{I}\subseteq\mathcal{K}[A][X]$. Then, there exists a CGS . 
 \end{theorem}
-We use our implementation of a parametric Buchberger's algorithm to compute (CGS). 
-This is illustrated in the following examples.
+Here, to compute CGS, we use a parametric implementation of 
+Buchberger's algorithm which is illustrated in the following examples.
+
+{\color{red} I think we need to explain briefly the parametric implementation. 
+Basically we use Buchberger algorithm but branch every time we divide by a coefficient of a polynomial, considering the cases where this coefficient vanishes and when it does not. }
+
 \begin{example}
-    Let $\Ii\subset \Rr[a,b][x,y]$ be the ideal generated by 
-    $$\Ff=\left\{a x^2+\left(a^2-2 a b\right) x y, b^2 y^2-x\right\}.$$
+    Let  $\Ff=\left\{a x^2+\left(a^2-2 a b\right) x y, b^2 y^2-x\right\}$, 
+    and     
+    $\Ii\subset \Rr[a,b][x,y]$ be the ideal generated by $\Ff$. 
     The comprehensive Gr{\"o}bner system of $\Ii$ with a Lexicographic order $y\prec x$ is:
     {\color{red} we use our code here}
+    
+    {\color{blue} I had issues running the code, will check again once online}
+    
 	% $$
     % % \begin{cases}\left\{a^2 b^2 y^3+a b^4 y^4-2 a b^3 y^3,x-b^2
     % %     y^2\right\} &  a b \neq 0 \\
@@ -598,12 +593,12 @@ This is illustrated in the following examples.
 The idea of a comprehensive Gr{\"o}bner system is to provide a "parameter sensitive Gr{\"o}bner basis".
 It branches the cases of the parameters that affect leading terms. For instance, in the previous
 example, if $a=0$, then the leading term $a x^2$ vanishes which leads to a different Gr{\"o}bner basis. Therefore,
-the (CGS) considers cases of the leading coefficients parameters Vanishing.
+the (CGS) considers cases of the leading coefficients parameters vanishing.
 
 \begin{example}
-    Let $\mathcal{I}\subset \Rr[a,b][x,y]$ be the ideal generated by 
-    $$\Ff=\left\{a^2 x-y,-a+b^2 x
-    y-y^2\right\}.$$
+	Let $\Ff=\left\{a^2 x-y,-a+b^2 x
+	y-y^2\right\}$, and 
+ $\mathcal{I}\subset \Rr[a,b][x,y]$ be the ideal generated by $\Ff$.
     The comprehensive Gr{\"o}bner system of $\mathcal{I}$ with a Lexicographic order $y\prec x$ is:
     
     {\color{red} we use our code here}
@@ -615,13 +610,12 @@ the (CGS) considers cases of the leading coefficients parameters Vanishing.
     As a convention, the Gr{\"o}bner basis of such ideals is $\{1\}$.
 \end{remark}
    
-Issues arise when computing the Gr{\"o}bner basis of $\Ff$ without considering the parameters.
-In practice, to compute the Gr{\"o}bner basis without considering the parameters, we assume non-zero parameters by default.
-This assumption guarantees a Gr{\"o}bner basis only for one set of specializations $\Rr^2\backslash V(a,b)$. i.e., 
+Issues arise when computing the Gr{\"o}bner basis of $\Ff$ without considering the parameters; that is, 
+computing Gr{\"o}bner basis assuming the non-zero coefficients.
+This assumption guarantees a Gr{\"o}bner basis only for one set of specializations $\Rr^2\backslash V(a,b)$, i.e., 
 $\sigma(\Gg)$ is a Gr{\"o}bner basis of the specialized ideal $\sigma(\Ii)$ only for $\sigma \in \Rr^2\backslash V(a,b)$.
-Next, we show the impact of this assumption.
-\begin{enumerate}
-    \item In general $\sigma\left(\Gg\right)$ is not necessarily a Gr{\"o}bner basis.
+%Next, we show the impact of this assumption.
+In general $\sigma\left(\Gg\right)$ is not necessarily a Gr{\"o}bner basis.
     \begin{example}
         \label{ex431}
         Let $\Ii=\langle 
@@ -635,40 +629,39 @@ Next, we show the impact of this assumption.
         %    We divide $S(-y^2, -2 + x y)$ by $\sigma(\Gg)$ and find that the remainder is $-2y$. 
         %    Therefore by the Buchberger Criterion, $\sigma(\Gg)$ is not a Gr{\"o}bner basis.
     \end{example}
-    \item Consequently, the algorithm utilized to resolve the ideal membership 
-    problem in chapter 2 of \cite{Cox} can not be used for all specializations. 
+
+Consequently, the algorithm utilized to resolve the ideal membership 
+    problem in Chapter 2 of \cite{Cox} can not be used for all specializations. 
     
     \begin{example}
         \label{ex433}
-        Consider the ideal $\Ii$ in the above example. The corresponding Gr{\"o}bner basis computed under the assumption of non-zero parameters
+        Consider the ideal $\Ii$ in the above example. The corresponding Gr{\"o}bner basis computed under the assumption of non-zero coefficients
         is $$\sigma_0(\Gg)=\left\{b^2 y^3-4 a,2 a x-b y^2,b x y-2\right\}$$ where $\sigma_0 \in \Rr^2\backslash V(a,b)$. 
         Now, it is possible to check if a polynomial $f\in \Rr[x,y]$ belongs to $\sigma(\Ii)$ only for $\sigma_0 $     
         because we know that $\sigma_0(\Gg)$ is a Gr{\"o}bner basis. For other specializations such as 
         the specialization $\sigma$ given by $P\rightarrow P(0,1)$, $\sigma(\Gg)$ is not a Gr{\"o}bner basis as shown in the above example. 
-        Therefore, we can not proceed with the division algorithm as we can not guarantee a unique remainder if we use $\sigma(\Gg)$.  
+        Therefore, we can not proceed with the division algorithm as we can not guarantee a unique remainder.% if we use $\sigma(\Gg)$.  
     \end{example}
 
-
-\end{enumerate}
 
 Using CGS can resolve these problems. Problem 1 is fixed by the definition of (CGS), as we have $\sigma_i(G_i)$ a 
  Gr{\"o}bner basis for any specialization $\sigma_i$. Moreover, 
  to discuss problem 2, we need to look at the parametric ideal membership first.
 
-{\color{red} Is this a definition?}
- Consider, $f\in \Kk[A][X]$ we say that $f\in\Ii$ under $\sigma$, if there exists a specialization 
- $\sigma\in L^m$ such that $\sigma(f)\in\sigma(\Ii)$.\\
+{\color{red} Is this a definition? DG: I think now it is better }
+Let $f\in \Kk[A][X]$. We say that $f\in\Ii$ under 
+ $\sigma\in L^m$ if  $\sigma(f)\in\sigma(\Ii)$.\\
 
-To determine if $f\in\Ii$ we consider the (CGS) of $\Ii$ given \ref{CGS}. 
+To determine  $f\in\Ii$, we consider the (CGS) of $\Ii$ given \ref{CGS}. 
 We check if $f\in\sigma_i(\Ii)$ for each $i\in\{1,..,k\}$ and $\sigma_i\in A_i$.
-For each $\sigma_i(\Ii)$ we have the corresponding Gr{\"o}bner basis $\sigma_i(G_i)$
-so we divide $f$ by the $\sigma_i(G_i)$ if the remainder is zero for some $i\in\{1,..,k\}$,
-then $f\in\sigma_i(\Ii)$. Therefore, $f\in\Ii$. However, if the remainder is non-zero for all $i$ we conclude that 
+For each $\sigma_i(\Ii)$, we have the corresponding Gr{\"o}bner basis $\sigma_i(G_i)$. Thus, 
+we divide $f$ by the $\sigma_i(G_i)$. If the remainder is zero for some $i\in\{1,..,k\}$,
+then $f\in\sigma_i(\Ii)$. Therefore, $f\in\Ii$. However, if the remainder is non-zero for all $i$, we conclude that 
 $f\notin\Ii$.
 
 \begin{example}
-	Let $\mathcal{I}\subset \Rr[a,b][x,y]$ be the ideal generated by 
-    $$\Ff=\{a^2 x - y, -b^2 x y^2 - x\}.$$
+	Let $\Ff=\{a^2 x - y, -b^2 x y^2 - x\}$ and let $\mathcal{I}\subset \Rr[a,b][x,y]$ be the ideal generated by 
+    $\Ff$.
 	We will determine if $f(x,y)=-x+y^2\in\mathcal{I}$.
 	We compute the corresponding (CGS)
 	{\color{red} add example 3}\\
@@ -682,10 +675,6 @@ $f\notin\Ii$.
 
 
 
-
-
-
-\newpage
 \section{The time-explicit case}
 \label{time-exp}
 In this section, we introduce Algorithm \ref{alg: discreteconservedqexplicit}  for checking the conservation of a quantity for time-explicit schemes. We discuss the algorithm for general schemes in the next section.
@@ -709,17 +698,17 @@ The result of Step 2 exists only at time $t$ because all instances of $t+1$ have
 \begin{example}
 	\label{timeexplicitheateqalgo}
 	We examine the conservation of $\sum_nu(n,t)$ under the following scheme.
-	\begin{equation*}
+	$
 		u(n,t+1)-u(n,t)-(u(n+1,t)-2u(n,t)+u(n-1,t)).
-	\end{equation*}
+	$
 	The discrete time derivative (Step 1) is
-	\begin{gather*}
+	$
 		\sum_{n\in\Ii}u(n,t+1)-u(n,t).
-	\end{gather*}
+$
 	Replace $u(n,t+1)$ by the right-hand side (Step 2) to get
-	\begin{gather*}
+	$
 		\sum_{n\in\Ii}u(n,t)+(u(n+1,t)-2u(n,t)+u(n-1,t))-u(n,t).
-	\end{gather*}
+	$
 	Then, we compute the discrete partial variational derivative (Step 3), which equals zero. Hence (Step 4), we have conservation.
 \end{example}
 \begin{example}
@@ -795,21 +784,21 @@ We build the discrete time derivative by subtracting $\mathcal{J}[u](t)$ from $\
 \noindent{\bf Step 2: Translate the scheme.}
 Now, we transition from difference algebra with infinite independent variables to polynomial algebra with finite variables to ensure the finiteness of the Gr{\"o}bner basis. 
 Hence, we need to compute a finite number of translations of the scheme and consider every instance of $u_j(n+e,t+l)$ that appears in either the translated scheme or the discrete time derivative as an independent polynomial variable.
-\begin{example}
-	The algorithm treats the discrete time derivative $\sum_{n\in\Ii}u(n+1,t+1)-u(n+1,t)$
-	as the polynomial $z_1-z_2$.
-\end{example}
+%\begin{example}
+%	The algorithm treats the discrete time derivative $\sum_{n\in\Ii}u(n+1,t+1)-u(n+1,t)$
+%	as the polynomial $z_1-z_2$.
+%\end{example}
 There are several possiblities which translations of the scheme to take as basis for the polynomial ideal. However, an obvious idea is to compute the minimal number of translations of the scheme, such that all instances of $u_j(n+e,t+l)$, that appear in the range of the stencil of the discrete time derivative, also appear in the translated scheme.
 This is done by elementwise subtracting the range of the stencil of the scheme from the range of the stencil of the discrete time derivative. Before we define the above translations formally, we give a simple example to illustrate the idea of computing the translations:
 \begin{example}
 	Consider the expression
-	\begin{gather*}
+$
 		u(n+3)-u(n-2)
-	\end{gather*}
+$
 	which we want to reduce by the scheme $u(n+1)-u(n)=0$. We compute the translations as described above as
-	\begin{gather*}
+	$
 		\{u(n+3)-u(n+2),\dots,u(n-1)-u(n-2)\}.
-	\end{gather*}
+$
 	and see, that the expression indeed reduces to $0$ under the scheme.
 \end{example}
 \begin{definition}
@@ -826,12 +815,12 @@ This is done by elementwise subtracting the range of the stencil of the scheme f
 	\normalsize
 	with $\{x^1,\ldots,x^{k_1},\ldots,x^{k_m}\}\subset\Zz^{d+1}$.
 	The \emph{stencil} of $F$ is the $m$-tuple of sets of vectors
-	\begin{gather*}
+$
 		\Big(\big\{x^1,\ldots,x^{k_1}\big\},
 		\big\{x^{k_1+1},\ldots,x^{k_2}\big\},
 		\ldots,
 		\big\{x^{k_{m-1}+1},\ldots,x^{k_m}\big\}\Big).
-	\end{gather*}
+$
 	The \emph{range} of the stencil of $F$ is
 	\begin{gather*}
 		\Big([x_1^{k_1 -},x_1^{k_1 +}]\times\cdots\times[x_{d+1}^{k_1 -},x_{d+1}^{k_1 +}],
@@ -846,62 +835,44 @@ This is done by elementwise subtracting the range of the stencil of the scheme f
 If for any $[a,b]$ involved we have $b<a$, we write $[a,b]=\emptyset$ with the convention that $\emptyset-\emptyset=\emptyset$.  Further, $\emptyset$ in the translations results in the use of the respective entry of the original scheme without translations.
 \begin{example}
 	Consider the discrete time derivative
-	\footnotesize
-	\begin{equation*}
+$
 		u_1(n+2,t+1)+u_1(n,t+1)+u_2(n,t+1)-u_1(n+2,t)-u_1(n,t)-u_2(n,t)
-	\end{equation*}
-	\normalsize
+$
 	and the scheme
-	\footnotesize
 	$
 	\{u_1(n+1,t+1)-u_1(n,t),u_2(n,t+1)-u_2(n,t)\}.
 	$
-	\normalsize
 	Then, the stencil of the discrete time derivative equals
-	\footnotesize
-	\begin{equation*}
+$
 		\Big( \big\{ (2,1),(0,1),(2,0),(0,0) \big\},\big\{(0,1),(0,0)\big\} \Big)
-	\end{equation*}
-	\normalsize
+$
 	with range
-	\footnotesize
 	$
 	\Big([0,2]\times[0,1],[0,0]\times [0,1]\Big).
 	$
-	\normalsize
 	The stencil of the scheme equals the set of stencils of the equations in the scheme, i.e.
-	\footnotesize
-	\begin{equation*}
+$
 		\Big\{\Big(\big\{(1,1),(0,0)\big\},\emptyset\Big),\Big(\emptyset,\big\{(0,1),(0,0)\big\}\Big)\Big\}
-	\end{equation*}
-	\normalsize
+$
 	with range
-	\footnotesize
 	$
 	\Big\{\Big([0,1]\times[0,1],\emptyset\Big),\Big(\emptyset,[0,0]\times [0,1]\Big)\Big\}.
 	$
-	\normalsize
 	Hence, we get the translations for the first equation of the scheme by
-	\footnotesize
-	\begin{gather*}
+$
 		\Big([0,2]\times[0,1],[0,0]\times [0,1]\Big)-\Big([0,1]\times[0,1],\emptyset\Big)=\Big([0,1]\times[0,0],\emptyset\Big)
-	\end{gather*}
-	\normalsize
+$
 	and for the second equation of the scheme by
-	\footnotesize
-	\begin{gather*}
+$
 		\Big([0,2]\times[0,1],[0,0]\times [0,1]\Big)-\Big(\emptyset,[0,0]\times [0,1]\Big)=\Big(\emptyset,[0,0]\times [0,0]\Big).
-	\end{gather*}
-	\normalsize
+$
 	Therefore, we translate the first equation of the scheme by $(0,0)$ and $(1,0)$ and the second one by $(0,0)$ to get the translated scheme
-	\footnotesize
-	\begin{gather*}
+$
 		\{u_1(n+1,t+1)-u_1(n,t),
 		u_1(n+2,t+1)-u_1(n+1,t),
 		u_2(n,t+1)-u_2(n,t)
 		\}.
-	\end{gather*}
-	\normalsize
+$
 \end{example}
 
 \noindent{\bf Step 3 and 4: Compute Gr{\"o}bner basis and reduce the discrete time derivative.}\\
@@ -918,9 +889,9 @@ In the previous step, we identified a finite set of polynomials comprising the t
 \end{definition}
 Given the ideal $\langle H^1,\ldots,H^r\rangle$ and the discrete time derivative $\mathcal{T}\in\mathcal{R}$, we want to determine if $\mathcal{T}\in\langle H^1,\ldots,H^r\rangle$ or if we can write $\mathcal{T}$ in a simpler form, using $\{H^1,\ldots,H^r\}$.
 Hence, using multivariate polynomial division, we search for $p^1,\ldots,p^r,p^{r+1}\in\mathcal{R}$ such that
-\begin{gather*}
+$
 	\mathcal{T}=p^1H^1+\ldots+p^rH^r+p^{r+1}.
-\end{gather*}
+$
 Unfortunately, the resulting remainder $p^{r+1}$ may not be unique \cite[page 14, Example 1.2.3]{hibi13}, i.e. non-zero, although $\mathcal{T}$ belongs to $\langle H^1,\ldots,H^r \rangle$. 
 Replacing $\{H^1,\ldots,H^r\}$ by a Gr{\"o}bner basis for the ideal $\langle H^1,\ldots,H^r \rangle$ guarantees the uniqueness of the remainder of the polynomial division. 
 Contrary to the standard basis for the difference ideal that Gerdt's algorithm computes, a Gr{\"o}bner basis for the polynomial ideal always exists and is finite.
@@ -939,47 +910,42 @@ In the next step, we take the resulting expression and compute its discrete part
 	\label{heateqalgoimplicit}
 	To illustrate Algorithm \ref{alg: discreteconservedqimplicit}, we use the setting of Example \ref{timeexplicitheateqalgo}.
 	We compute the discrete time derivative (Step 1)
-	\begin{gather*}
+$
 		\mathcal{T}=\sum_{n\in\Ii} u(n,t+1)-u(n,t).
-	\end{gather*}
+$
 	For the translations (Step 2), the stencil of the scheme
-	\begin{equation*}
+$
 		u(n,t+1)-u(n,t)-(u(n+1,t)-2u(n,t)+u(n-1,t))
-	\end{equation*}
-	\small
+$
 	is
 	$
 	\Big(\big\{(0,1),(0,0),(1,0),(-1,0)\big\}\Big)
 	$
-	\normalsize
 	with range \small$\Big([-1,1]\times[0,1]\Big)$\normalsize.
 	The discrete time derivative has stencil \small$\Big(\big\{(0,1),(0,0)\big\}\Big)$\normalsize 
 	and range \small$\Big([0,0]\times[0,1]\Big)$\normalsize.
 	The translations are
-	\small
-	\begin{gather*}
+$
 		\Big([0,0]\times[0,1]\Big)-\Big([-1,1]\times[0,1]\Big)=\Big([1,-1]\times[0,0]\Big)=\Big(\emptyset\times[0,0]\Big)
-	\end{gather*}
-	\normalsize
+$
 	which results in no translations, as the range of the stencil of the scheme is greater than the range of the stencil of the discrete time derivative.
 	Hence, the Gr{\"o}bner basis (Step 3) coincides with the original scheme for both monomial orders.
 	The reduction using the lexicographic monomial order yields as remainder
-	\begin{gather*}
+$
 		u(n-1,t)-2u(n,t)+u(n+1,t).
-	\end{gather*}
+$
 	For the reduction using the elimination order, we first eliminate $u(n,t+1)$ and then the remaining instances of $u$.
 	The elimination order yields the same remainder as the lexicographic order. Hence, we do not check for the number of instances of time (Step 4).
 	We calculate the discrete partial variational derivative (Step 5) of
-	\begin{gather*}
+$
 		\sum_{n\in\Ii}u(n-1,t)-2u(n,t)+u(n+1,t)
-	\end{gather*}
+$
 	that equals $0$.
 	Hence, repeating the above procedure (Step 6) becomes unnecessary.
 	Therefore, (Step 7) we see that the scheme conserves the quantity.
 \end{example}
 \begin{example}
-	We verify our result from Example \ref{heateqalgoimplicit}, using {\sc DiscreteConservedQ}, which detects automatically if the scheme is time-explicit or if
-	 the general setting should be applied.
+	We verify our result from Example \ref{heateqalgoimplicit}, using {\sc DiscreteConservedQ}, which detects automatically if the scheme is time-explicit or not.
 	\begin{EXE}
 		LABEL="heateq10"
 		(*CODE*)
@@ -1025,7 +991,7 @@ Algorithm \ref{alg: findconservedquantitybasis} finds, for a time-explicit schem
 \end{algorithm}
 We have implemented this algorithm in {\sc FindDiscreteConservedQuantityBasis}.
 \begin{example}
-In the context of the heat equation from Example \ref{heatex1}, we aim to find a basis for conserved quantities generated by $u(n,t)$ and $n$ with a maximum degree of 3.
+In the context of the heat equation from Example \ref{heatex1}, we aim to find a basis for conserved quantities generated by $u$ and $n$ with degree up to 3.
 	\begin{EXE}
 		LABEL="heateq11"
 		(*CODE*)
@@ -1053,7 +1019,7 @@ Our first example demonstrates how the code verifies mass conservation by a forw
 Next, we demonstrate the algorithm's ability to find a mass-preserving scheme by investigating conservation properties under a class of schemes involving a parameter.
 Finally, we explore time-implicit versions of the schemes and their conservation properties.
 
-The inviscid Burgers equation is the PDE $u_t+uu_x=0$ \cite{smoller94} in one space dimension. Any function of $u$ is a conserved quantity. We search for discretizations preserving $\int u\ dx$.
+The inviscid Burgers equation is $u_t+uu_x=0$ \cite{smoller94}. Any function of $u$ is a conserved quantity. We search for discretizations preserving $\int u\ dx$.
 \begin{example}
 	We check for conservation of mass using a forward-difference discretization:
 	\begin{EXE}
@@ -1086,7 +1052,7 @@ For finding a scheme that preserves mass, we check for conservation under a clas
 		\input{executables/burgers2ctt.ed.tex}
 		\input{executables/burgers2ctt.result.ed.tex}
 	\end{small}
-The conservation property holds when $a=\frac{1}{2}$, which corresponds to the central difference case.
+The conservation property holds when $a=\frac{1}{2}$, the central difference case.
 \end{example}
 So far, we have only seen schemes that are in time-explicit form, but our algorithm allows also for general schemes:
 \begin{example}
@@ -1111,10 +1077,10 @@ We analyze the conserved quantities preserved by the discretization of a PDE sys
 The examples showcase our algorithm's effectiveness in identifying conserved quantities for various discretization schemes, including time-explicit, time-implicit, and mixed schemes.
 \begin{example}
 	In \cite{gomes18}, Gomes et al. derived the following system
-	\begin{gather*}
-		v_t+\Big(\frac{v^2}{2}-\frac{m^2}{2}\Big)_x=0,\quad
+$
+		v_t+\Big(\frac{v^2}{2}-\frac{m^2}{2}\Big)_x=0,$ and $
 		m_t-(vm)_x=0.
-	\end{gather*}
+$
 	This system admits the conserved quantities $\int v\ dx$ and $\int m\ dx$.
 	Because this system was derived from a forward-forward mean-field game, we discretize it forward in time. We check with our code if the scheme admits the same preserved quantities as the continuous system:
 	\begin{EXE}
@@ -1183,11 +1149,11 @@ We replicate this result, observing that the scheme used here is time-explicit:
 	\end{small}
 \end{example}
 \begin{example}
-	The related backward-forward system reads
-	\begin{gather*}
-		-v_t+\Big(\frac{v^2}{2}-\frac{m^2}{2}\Big)_x=0,\quad
+	The related backward-forward system is
+$
+		-v_t+\Big(\frac{v^2}{2}-\frac{m^2}{2}\Big)_x=0$ and $
 		m_t-(vm)_x=0.
-	\end{gather*}
+$
 	This system admits the same conserved quantities as the forward-forward system, but we approximate it explicitly in time for $m$ and implicitly for $v$.
 	Our code can handle this setting by specifying an order for variable elimination, using an explicit monomial order for $m$ and an implicit order for $v$:
 	\begin{EXE}
@@ -1212,6 +1178,7 @@ We replicate this result, observing that the scheme used here is time-explicit:
 		\input{executables/mfg4ctt.result.ed.tex}
 	\end{small}
 \end{example}
+\begin{comment}
 \section{Possible extensions and concluding remarks}
 \subsection{ Polynomial treatment of non-polynomial expressions}
 It may be possible to extend our methods to non-polynomial PDEs and schemes. In this case, non-polynomial expressions can be handled by writing them in polynomial form.\\
@@ -1223,7 +1190,8 @@ We fix $d$ and $N$. Then, we generate experimental initial data by randomly samp
 If the discrete time derivative is zero for several different samples of initial data, we might have conservation on the discrete level. Otherwise, if we find initial data such that the discrete time derivative is not zero, we can refute conservation.\\
 \subsection{Discrete conserved quantities that are not conserved by the PDE}
 It may arise the question if we can find conserved quantities, that are not preserved by the original PDE. Gerdt et al. \cite{gerdt10,gerdt12} define the notion of s-consistency, which guarantees that all discrete quantities are also preserved in the continuous setting. One possible extension of the code would be to check if s-consistency holds for the translated scheme.\\
-\subsection{Concluding remarks}
+\end{comment}
+\section{Concluding remarks}
 We present an algorithm for checking the conservation of a quantity under a finite-difference scheme. Our algorithm allows for systems of equations, arbitrary time and space derivatives, and both explicit and implicit schemes. Also, we implemented a function for finding conserved quantities admitted by a scheme. We use our implementation of the algorithm to analyze the conservation properties of several schemes for PDEs that arise in applications. {\color{red} add remark on parametric groebner basis}
 
 
