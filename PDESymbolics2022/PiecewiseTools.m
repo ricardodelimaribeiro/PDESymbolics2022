@@ -92,7 +92,7 @@ PiecewiseLastCaseClean[xp_Piecewise] :=
     ];
 
 PiecewiseMap[F_, XPO_] :=
-    With[ {XP = PiecewiseExpand[XPO]},
+    With[ {XP = PiecewiseExpand[EchoLabel["PiecewiseMap: input"]@XPO]},
         Which[
             XP === $Failed, 
             $Failed,
@@ -111,7 +111,7 @@ PiecewiseMap[F_, XPO_] :=
             True,
             F[XP]
         ]
-    ];
+    ]//QuietEcho;
 
 PiecewiseOperatorMap[Operator_, variables_, XPO_] :=
     With[ {XP = PiecewiseExpand[XPO],reduce = Lookup[variables,"reduce",Reduce]},
@@ -158,7 +158,7 @@ ConditionalPiecewiseMap[F_,XP_] :=
     ]
 
 Clear[PiecewiseBeautify];
-Options[PiecewiseBeautify] = {"domain"->Complex, "reduce"->Resolve};
+Options[PiecewiseBeautify] = {"domain"->Complex, "reduce"->Reduce};
 
 
 (*keeping to check one alteration
@@ -180,7 +180,7 @@ PiecewiseBeautify[P_,OptionsPattern[]] :=
         Head[P] === Piecewise,
         With[ {pp = PiecewiseLastCaseClean[P],reduce = OptionValue["reduce"]},
             Module[ {qq},
-                qq = Simplify@EchoLabel["PiecewiseBeautify:  qq"]@MapThread[BooleanConvert@reduce[!#1&&#2,OptionValue["domain"]]&, {FoldList[Or,False, pp[[All,2]]][[;;-2]],pp[[All,2]]}];
+                qq = Simplify@(*EchoLabel["PiecewiseBeautify:  qq"]@*)MapThread[BooleanConvert@reduce[!#1&&#2,OptionValue["domain"]]&, {FoldList[Or,False, pp[[All,2]]][[;;-2]],pp[[All,2]]}];
                 Piecewise[Select[Transpose[{pp[[All,1]], qq}], #[[1]]=!=$Failed &], $Failed]
             ]
         ],

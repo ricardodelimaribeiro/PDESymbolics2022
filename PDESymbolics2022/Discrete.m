@@ -157,7 +157,7 @@ DiscreteConservedQ[variables_Association][schemeexpression_] :=
     schexp = 
      EchoLabel["DiscreteConservedQ: schexp"]@VariationalTimeDifferenceOperator[KeyDrop[var, "listop"]][
      	EchoLabel["DiscreteConservedQ: schexp: input to VariationalTimeDifferenceOperator"]@schexp];
-    schexp = PiecewiseMap[Lookup["exp"] (*/@ # &*), schexp];
+    schexp = EchoLabel["DiscreteConservedQ: schexp[exp]"]@PiecewiseMap[Lookup["exp"] (*/@ # &*), schexp];
     generators = PiecewiseExtractGeneratorsOperator[var][schexp];
     var = Append[var, "generators" -> generators];
     If[Lookup[var, "display result", False], Print[schexp]];
