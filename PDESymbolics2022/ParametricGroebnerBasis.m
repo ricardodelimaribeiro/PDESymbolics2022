@@ -292,7 +292,7 @@ PiecewiseApplyConditionOperator[variables_][px_Piecewise] :=
 Clear[GrobOp];
 
 ComprehensiveGroebnerSystemOperator[variables_][ideal_]:=
-Kleisli[GrobOp][variables][ideal];
+Kleisli[GrobOp][variables][ideal]//PiecewiseBeautifyOperator[variables];
 
 hasFailed[x_] :=
     MemberQ[$Failed][x];
