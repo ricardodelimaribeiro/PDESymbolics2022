@@ -407,7 +407,7 @@ Reduction[variables_Association][schemeexpression_Association] :=
   (* DG code *)  
     
     
-    normalred= PiecewisePolynomialReduceRemainderOperator[Append[variables, "generators"->polyvars]][schexp["exp"],scheme];
+    normalred= PiecewisePolynomialRemainderOperator[Append[variables, "generators"->polyvars]][schexp["exp"],scheme];
      
      (*
     Print["original scheme = ", schexp["scheme"]];
@@ -486,7 +486,7 @@ VariableEliminationOperator[variables_Association][
        
        
         Gbasis=GrobOp[Append[variables, "generators"->polyvars]][schexp["scheme"]];  
-        schexp["exp"] = PiecewisePolynomialReduceRemainderOperator[Append[variables, "generators"->polyvars]][schexp["exp"], Gbasis];
+        schexp["exp"] = PiecewisePolynomialRemainderOperator[Append[variables, "generators"->polyvars]][schexp["exp"], Gbasis];
   
   
        

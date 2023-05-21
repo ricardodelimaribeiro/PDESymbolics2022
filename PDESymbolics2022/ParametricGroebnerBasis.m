@@ -25,8 +25,8 @@ PiecewiseDivisionOperator::usage =
 AutoReduceOperator::usage =
 "AutoReduceOperator[variables][polylist] returns the reduced (smallest set generating the same ideal) polylist.";
 
-PiecewisePolynomialReduceRemainderOperator::usage =
-"PiecewisePolynomialReduceRemainderOperator[variables][p, polylist] returns a Piecewise remainder for the reductions.";
+PiecewisePolynomialRemainderOperator::usage =
+"PiecewisePolynomialRemainderOperator[variables][p, polylist] returns a Piecewise remainder for the reductions.";
 
 PiecewiseApplyConditionOperator::usage =
 "PiecewiseApplyConditionOperator[variables][px] Simplifies the expressions with conditions as Assumptions";
@@ -37,6 +37,9 @@ ComprehensiveGroebnerSystemOperator::usage =
 GrobOp::usage =
 "GrobOp[variables][preGrobner] returns a piecewise expression with groebner basis for each set of conditions.";
 
+(*backward compatibility*)
+PiecewisePolynomialReduceRemainderOperator::usage=
+"This is PiecewisePolynomialRemainderOperator"
 (*Debuging*)
 SPolynomialOperator::usage = "";
 
@@ -48,6 +51,11 @@ MonicOperator::usage = "";
 
 AllCasesOperator::usage = "";
 Begin["`Private`"]
+
+PiecewisePolynomialReduceRemainderOperator[variables]=
+	PiecewisePolynomialRemainderOperator[variables]
+	
+	
 InferGeneratorsOperator[variables_][xplist_List] :=
     With[ {glc = First@EchoLabel["InferGenerators: gLc"]@GenericLinearCombinationOperator[variables][EchoLabel["InferGenerators: input"]@xplist]},
         InferGeneratorsOperator[variables][glc]
@@ -220,7 +228,7 @@ AutoReduceStep[variables_][polylist_List] :=
             Module[ {unrefined},
                 unrefined = 
                   Table[
-                   PiecewisePolynomialReduceRemainderOperator[Append["generators"->generators]@variables][ps[[i]],
+                   PiecewisePolynomialRemainderOperator[Append["generators"->generators]@variables][ps[[i]],
                      ps[[i + 1 ;;]]], {i, 1, Length@ps}];
                 unrefined = DeleteCases[0]@EchoLabel["AutoReduceStep: unrefined"]@unrefined;
                 PiecewiseDivisionOperator[variables][unrefined, 
@@ -235,10 +243,10 @@ AutoReduceOperator[variables_][polylist_] :=
 
 
 PPRRO[$Failed, _] = $Failed;
-PiecewisePolynomialReduceRemainderOperator[variables_][f_, g_Piecewise] :=
-	PiecewiseMap[PiecewisePolynomialReduceRemainderOperator[variables][f, #]&,g]
+PiecewisePolynomialRemainderOperator[variables_][f_, g_Piecewise] :=
+	PiecewiseMap[PiecewisePolynomialRemainderOperator[variables][f, #]&,g]
 
-PiecewisePolynomialReduceRemainderOperator[variables_][f_, g_List] :=
+PiecewisePolynomialRemainderOperator[variables_][f_, g_List] :=
     Module[ {preliminary, generators},
         generators = 
          Lookup[variables, "generators", 
@@ -363,14 +371,14 @@ GrobOp[variables_][preGrobner_List, sPolynomials_List] :=
             $Failed,
             fstSPoly = First@sPolynomials;
             fstSPoly = (*EchoLabel["GrobOp2: monic S poly"]@*)MonicOperator[variables][fstSPoly];
-            reduced = (*EchoLabel["GrobOp2: S poly reduced"]@*)PiecewisePolynomialReduceRemainderOperator[variables][fstSPoly, newPreGrobner];
+            reduced = (*EchoLabel["GrobOp2: S poly reduced"]@*)PiecewisePolynomialRemainderOperator[variables][fstSPoly, newPreGrobner];
             reduced = EchoLabel["GrobOp2: monic S poly reduced"]@MonicOperator[variables][reduced];
             fstSPoly = Simplify[First@sPolynomials];
             (*lc = LeadingCoefficientOperator[variables][fstSPoly];*)
             (*fstSPoly = (*PiecewiseEliminateEqualitiesOperator[variables]@*)
              PiecewiseDivisionOperator[variables][fstSPoly, lc] // Expand;*)
             (*reduced = 
-             PiecewisePolynomialReduceRemainderOperator[variables][fstSPoly, 
+             PiecewisePolynomialRemainderOperator[variables][fstSPoly, 
               newPreGrobner];*)
             (*lc = LeadingCoefficientOperator[variables][reduced];*)
             (*reduced = PiecewiseDivisionOperator[variables][reduced, lc];*)
