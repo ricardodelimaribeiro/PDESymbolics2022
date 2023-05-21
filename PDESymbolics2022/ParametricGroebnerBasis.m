@@ -362,9 +362,10 @@ GrobOp[variables_][preGrobner_List, sPolynomials_List] :=
         If[ Reduce[facts] === False,
             $Failed,
             fstSPoly = First@sPolynomials;
-            fstSPoly = (*EchoLabel["GrobOp2: monic S poly"]@*)MonicOperator[variables][fstSPoly];
+            fstSPoly = EchoLabel["GrobOp2: Apply! 1st S poly"]@PiecewiseApplyConditionOperator[variables][fstSPoly];
+            fstSPoly = (*EchoLabel["GrobOp2: monic S poly"]@*)AllCasesOperator[variables][fstSPoly];
             reduced = (*EchoLabel["GrobOp2: S poly reduced"]@*)PiecewisePolynomialReduceRemainderOperator[variables][fstSPoly, newPreGrobner];
-            reduced = EchoLabel["GrobOp2: monic S poly reduced"]@MonicOperator[variables][reduced];
+            reduced = EchoLabel["GrobOp2: allCases S poly reduced"]@AllCasesOperator[variables][reduced];
             fstSPoly = Simplify[First@sPolynomials];
             (*lc = LeadingCoefficientOperator[variables][fstSPoly];*)
             (*fstSPoly = (*PiecewiseEliminateEqualitiesOperator[variables]@*)
@@ -418,7 +419,8 @@ GrobOp[variables_][preGrobner_List] :=
         newVariables = Append["reduce"->reduce]@Append["generators"->generators]@variables;
         If[ facts === False,
             $Failed,
-            newPreGrobner = EchoLabel["monic preGrobner"]@ MonicOperator[newVariables][preGrobner];
+            (*newPreGrobner = EchoLabel["monic preGrobner"]@ MonicOperator[newVariables][preGrobner];*)
+            newPreGrobner = EchoLabel["allCases preGrobner"]@ AllCasesOperator[newVariables][preGrobner];
             sPolynomials = PiecewiseSPolynomialOperator[newVariables][newPreGrobner];
             newArgs = {newPreGrobner, sPolynomials} // PiecewiseExpand // PiecewiseApplyConditionOperator[newVariables];
             PiecewiseOperatorMap[GrobOp, newVariables, newArgs] //PiecewiseExpand// PiecewiseBeautifyOperator[newVariables]
