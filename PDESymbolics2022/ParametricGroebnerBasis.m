@@ -213,18 +213,18 @@ AutoReduceStepOperator[variables_][polylist_] :=
 AutoReduceStep[variables_][polylist_List] :=
     Module[ {generators},
         generators = 
-         EchoLabel["AutoReduceStep: generators"]@Lookup[variables, "generators", 
+         (*EchoLabel["AutoReduceStep: generators"]@*)Lookup[variables, "generators", 
           InferGeneratorsOperator[variables][EchoLabel["AutoReduceStep: input"]@polylist]];
         With[ {ps = 
            EchoLabel["AutoReduceStep: ps"]@ReverseSortBy[First[MonomialList[#, generators]] &]@polylist},
             Module[ {unrefined},
                 unrefined = 
                   Table[
-                   PiecewisePolynomialReduceRemainderOperator[Append["generators"->generators]@variables][ps[[i]],
+                   (Denominator[#]*#&)@PiecewisePolynomialReduceRemainderOperator[Append["generators"->generators]@variables][ps[[i]],
                      ps[[i + 1 ;;]]], {i, 1, Length@ps}];
-                unrefined = DeleteCases[0]@EchoLabel["AutoReduceStep: unrefined"]@unrefined;
-                PiecewiseDivisionOperator[variables][unrefined, 
-                 LeadingCoefficientOperator[variables]@unrefined]
+                unrefined = DeleteCases[0]@EchoLabel["AutoReduceStep: unrefined"]@unrefined
+                (*PiecewiseDivisionOperator[variables][unrefined, 
+                 LeadingCoefficientOperator[variables]@unrefined]*)
             ]
         ]
     ];
@@ -267,24 +267,16 @@ PiecewiseApplyConditionOperator[variables_][px_List] :=
     PiecewiseApplyConditionOperator[variables] /@ px;
 
 PiecewiseApplyConditionOperator[variables_][px_Piecewise] :=
-    Module[ {facts, cleanList, newPx=EchoLabel["PACO: input"]@px, generators},
+    Module[ {facts, cleanList,newPx=EchoLabel["PACO: input"]@px},
         facts = Lookup[variables, "facts", True];
         If[ Reduce[facts] === False,
             $Failed,
-            newPx = EchoLabel["PACO: newPx"][
-             SplitOr @@@ 
-              PiecewiseLastCaseClean[
-               (*EchoLabel["PACO: first beautify"]@*)PiecewiseBeautifyOperator[variables][px]]];
-            generators = (*EchoLabel["PACO: generators"]@*)Lookup[variables, "generators", InferGeneratorsOperator[variables][Piecewise@newPx]];
-            If[ AnyTrue[First@newPx,Head[#]===List&],
-            	(*Print["1"];*)
-                cleanList = Function[dd,
-                Assuming[dd[[2]], {(*EchoLabel["PACO: simplifyed this"]@*)
-                	If[dd[[1]]===$Failed,{$Failed,dd[[2]]},{Total@Expand@Simplify@MonomialList[#,generators]&/@dd[[1,1]],dd[[1,2]]}], dd[[2]]}]] /@ newPx,
-                (*Print["2"];*)
-                cleanList = Function[dd,
-                 Assuming[dd[[2]], {Total@Expand@Simplify@MonomialList[(*EchoLabel["PACO: simplifying that"]@*)dd[[1]],generators], dd[[2]]}]] /@ newPx
-            ];
+            newPx = EchoLabel["PACO: newPx"][SplitOr @@@ 
+              PiecewiseLastCaseClean[PiecewiseBeautifyOperator[variables][px]]];
+            cleanList= 
+                Function[dd,
+                Assuming[dd[[2]], EchoLabel["PACO: simplifyed this"]@
+                	{Expand@Simplify@dd[[1]],dd[[2]]}]] /@ newPx;                
             EchoLabel["PACO: output"][(*EchoLabel["PACO: before second beautify"]@*)(Piecewise[cleanList])//PiecewiseBeautifyOperator[variables]]
         ]
     ];
@@ -351,7 +343,7 @@ GrobOp[variables_][grobner_List, {}] :=
         facts = Simplify@Lookup[variables, "facts", True];
         If[ facts===False,
             $Failed,
-            AutoReduceOperator[variables][grobner] // PiecewiseExpand
+            AutoReduceOperator[variables][EchoLabel["GrobOp 3: all cases"]@AllCasesOperator[variables]@grobner] // PiecewiseExpand
         ]
     ];
 
@@ -363,8 +355,9 @@ GrobOp[variables_][preGrobner_List, sPolynomials_List] :=
             $Failed,
             fstSPoly = First@sPolynomials;
             fstSPoly = EchoLabel["GrobOp2: Apply! 1st S poly"]@PiecewiseApplyConditionOperator[variables][fstSPoly];
-            fstSPoly = (*EchoLabel["GrobOp2: monic S poly"]@*)AllCasesOperator[variables][fstSPoly];
-            reduced = (*EchoLabel["GrobOp2: S poly reduced"]@*)PiecewisePolynomialReduceRemainderOperator[variables][fstSPoly, newPreGrobner];
+            fstSPoly = EchoLabel["GrobOp2: allCases S poly"]@AllCasesOperator[variables][fstSPoly];
+            reduced = EchoLabel["GrobOp2: S poly reduced"]@PiecewisePolynomialReduceRemainderOperator[variables][fstSPoly, newPreGrobner];
+            reduced = EchoLabel["no ratios?"][Denominator[reduced] reduced];
             reduced = EchoLabel["GrobOp2: allCases S poly reduced"]@AllCasesOperator[variables][reduced];
             fstSPoly = Simplify[First@sPolynomials];
             (*lc = LeadingCoefficientOperator[variables][fstSPoly];*)
