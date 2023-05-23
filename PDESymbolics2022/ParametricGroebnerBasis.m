@@ -284,7 +284,7 @@ PiecewiseApplyConditionOperator[variables_][px_Piecewise] :=
               PiecewiseLastCaseClean[
                (*EchoLabel["PACO: first beautify"]@*)PiecewiseBeautifyOperator[variables][px]]];
             generators = (*EchoLabel["PACO: generators"]@*)Lookup[variables, "generators", InferGeneratorsOperator[variables][Piecewise@newPx]];
-            If[ AnyTrue[First@newPx,Head[#]===List&],
+            (*If[ AnyTrue[First@newPx,Head[#]===List&],
             	(*Print["1"];*)
                 cleanList = Function[dd,
                 Assuming[dd[[2]], {(*EchoLabel["PACO: simplifyed this"]@*)
@@ -292,12 +292,20 @@ PiecewiseApplyConditionOperator[variables_][px_Piecewise] :=
                 (*Print["2"];*)
                 cleanList = Function[dd,
                  Assuming[dd[[2]], {Total@Expand@Simplify@MonomialList[(*EchoLabel["PACO: simplifying that"]@*)dd[[1]],generators], dd[[2]]}]] /@ newPx
-            ];
-            EchoLabel["PACO: output"][(*EchoLabel["PACO: before second beautify"]@*)(Piecewise[cleanList])//PiecewiseBeautifyOperator[variables]]
+            ];*)
+            If[AnyTrue[First@newPx,Head[#]===List&],
+    	cleanList = Function[dd,
+    	(*Print["list: ",dd, facts];*)
+    	Assuming[dd[[2]], {Simplify[dd[[1]]], dd[[2]]}]] /@ newPx,
+       cleanList = Function[dd,
+    	(*Print["just piecewise: ",dd, facts];*)
+    	Assuming[dd[[2]], {Total@Simplify@MonomialList[dd[[1]],generators], dd[[2]]}]] /@ newPx
+   ];
+          EchoLabel["PACO: output"][(*EchoLabel["PACO: before second beautify"]@*)(Piecewise[cleanList])//PiecewiseBeautifyOperator[variables]]
         ]
     ];
-Clear[PiecewiseApplyConditionOperator];
-PiecewiseApplyConditionOperator[variables_][px_] := px
+(*Clear[PiecewiseApplyConditionOperator];
+PiecewiseApplyConditionOperator[variables_][px_] := px*)
  
    
 Clear[GrobOp];
@@ -363,7 +371,7 @@ GrobOp[variables_][grobner_List, {}] :=
         If[ facts===False,
             $Failed,
             AutoReduceOperator[variables][grobner] // PiecewiseExpand
-        ]
+        ]//PiecewiseApplyConditionOperator[variables]
     ];
 
 GrobOp[variables_][preGrobner_List, sPolynomials_List] :=
