@@ -173,7 +173,7 @@ PiecewiseExtractGeneratorsOperator[variables_Association][expression_] :=
    Head[expression] === Piecewise,
    Module[
     {xp},
-    (*TODO iuse PiecewiseLastCaseClean and not [[1]]. Later, DeleteCases[$Failed].*)
+    (*TODO use PiecewiseLastCaseClean and not [[1]]. Later, DeleteCases[$Failed].*)
     xp = (List @@ expression)[[1]];
     xp = First /@ xp // Flatten;
     PiecewiseExtractGeneratorsOperator[variables][xp]
@@ -390,7 +390,7 @@ Reduction[variables_Association][schemeexpression_Association] :=
     Print["polylist = ",polylist];
     Print["polyvars = ",polyvars];
     *)
-  scheme=GrobOp[Append[variables, "generators"->polyvars]][polylist];  
+  scheme=ComprehensiveGroebnerSystemOperator[Append[variables, "generators"->polyvars]][polylist];  
     
    (*
     Print["polyscheme = ", scheme]; 
@@ -485,7 +485,8 @@ VariableEliminationOperator[variables_Association][
        PolynomialReduce[schexp["exp"], Gbasis, polyvars, CoefficientDomain -> RationalFunctions, MonomialOrder -> ordermatrix] // Last;*)
        
        
-        Gbasis=GrobOp[Append[variables, "generators"->polyvars]][schexp["scheme"]];  
+        Gbasis=ComprehensiveGroebnerSystemOperator[Append[variables, "generators"->polyvars]][schexp["scheme"]];
+        (*Gbasis=GroebnerBasis[schexp["scheme"], polyvars, CoefficientDomain -> RationalFunctions, MonomialOrder -> ordermatrix]*);
         schexp["exp"] = PiecewisePolynomialRemainderOperator[Append[variables, "generators"->polyvars]][schexp["exp"], Gbasis];
   
   

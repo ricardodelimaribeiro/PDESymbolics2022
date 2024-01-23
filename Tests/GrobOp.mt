@@ -73,7 +73,7 @@ template = Association[
 	"expression" -> {u[x],u[x]^2},
    "result" -> {u[x]}
 ]
-Get[test]
+(*Get[test]*)
 
 label = "from GroebnerBasis documentation"
 template = Association[

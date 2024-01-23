@@ -37,6 +37,8 @@ ComprehensiveGroebnerSystemOperator::usage =
 GrobOp::usage =
 "GrobOp[variables][preGrobner] returns a piecewise expression with groebner basis for each set of conditions.";
 
+GrobOpReduced::usage = "
+GrobOpReduced[variables][preGrobner] returns a piecewise expression with reduced groebner basis for each set of conditions.";
 (*backward compatibility*)
 PiecewisePolynomialReduceRemainderOperator::usage=
 "This is PiecewisePolynomialRemainderOperator"
@@ -311,7 +313,7 @@ PiecewiseApplyConditionOperator[variables_][px_] := px*)
 Clear[GrobOp];
 
 ComprehensiveGroebnerSystemOperator[variables_][ideal_]:=
-Kleisli[GrobOp][variables][ideal]//PiecewiseBeautifyOperator[variables];
+Kleisli[GrobOpReduced][variables][ideal]//PiecewiseBeautifyOperator[variables];
 
 hasFailed[x_] :=
     MemberQ[$Failed][x];
@@ -327,25 +329,15 @@ GrobOp[variables_][{x_List, y_List}] :=
 
 GrobOp[variables_][{}] = {};
 
-GrobOp[variables_][_, _?hasFailed] :=
-    ((*Print["checking..."];*)
-     $Failed);
+GrobOp[variables_][_, _?hasFailed] := $Failed;
 
-GrobOp[variables_][_, $Failed] :=
-    ((*Print["checking... 2"];*)
-     $Failed);
+GrobOp[variables_][_, $Failed] := $Failed;
 
-GrobOp[variables_][_?hasFailed, _] :=
-    ((*Print[
-    "checking... 3"];*)
-     $Failed);
+GrobOp[variables_][_?hasFailed, _] := $Failed;
 
-GrobOp[variables_][$Failed, _] :=
-    ((*Print["checking... 4"];*)
-     $Failed);
+GrobOp[variables_][$Failed, _] := $Failed;
 
-GrobOp[variables_][$Failed] :=
-    $Failed;
+GrobOp[variables_][$Failed] := $Failed;
 
 GrobOp[variables_][x_?hasZero] :=
     GrobOp[variables][DeleteCases[0][x]];
@@ -370,14 +362,23 @@ GrobOp[variables_][grobner_List, {}] :=
         facts = Simplify@Lookup[variables, "facts", True];
         If[ facts===False,
             $Failed,
-            AutoReduceOperator[variables][grobner] // PiecewiseExpand
+            grobner
+		]
+    ];
+
+GrobOpReduced[variables_][grobner_List] :=
+    Module[ {facts},
+        facts = Simplify@Lookup[variables, "facts", True];
+        If[ facts===False,
+            $Failed,
+            AutoReduceOperator[variables][GrobOp[variables]@grobner] // PiecewiseExpand
         ]//PiecewiseApplyConditionOperator[variables]
     ];
 
 GrobOp[variables_][preGrobner_List, sPolynomials_List] :=
     Module[ {facts, fstSPoly, newPreGrobner = preGrobner, reduced, newArgs, 
       newSPolynomials},
-      Print["in the second part"];
+      (*Print["in the second part"];*)
 
         facts = Reduce@Lookup[variables, "facts", True];
         If[ Reduce[facts] === False,
