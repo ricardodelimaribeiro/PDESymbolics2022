@@ -384,8 +384,8 @@ GrobOp[variables_][preGrobner_List, sPolynomials_List] :=
         If[ Reduce[facts] === False,
             $Failed,
             fstSPoly = First@sPolynomials;
-            fstSPoly = (*EchoLabel["GrobOp2: monic S poly"]@*)MonicOperator[variables][fstSPoly];
-            reduced = (*EchoLabel["GrobOp2: S poly reduced"]@*)PiecewisePolynomialRemainderOperator[variables][fstSPoly, newPreGrobner];
+            fstSPoly = EchoLabel["GrobOp2: monic S poly"]@MonicOperator[variables][fstSPoly];
+            reduced = EchoLabel["GrobOp2: S poly reduced"]@PiecewisePolynomialRemainderOperator[variables][fstSPoly, newPreGrobner];
             reduced = EchoLabel["GrobOp2: monic S poly reduced"]@MonicOperator[variables][reduced];
             fstSPoly = Simplify[First@sPolynomials];
             (*lc = LeadingCoefficientOperator[variables][fstSPoly];*)
