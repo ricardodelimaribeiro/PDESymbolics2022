@@ -59,7 +59,7 @@ RangeSchemeTranslationsOperator[variables_Association][masterstencil_,stencil_] 
       stencil // PiecewiseExpand // PiecewiseListClean, 
    True,
    Module[
-   	{sten = stencil, masten = masterstencil, stenkeys, mastenkeys, rangelist, stencillist, translist},
+   	{sten = EchoLabel["RangeSchemeTranslationsOperator: stencil"]@stencil, masten = EchoLabel["RangeSchemeTranslationsOperator: master stencil"]@masterstencil, stenkeys, mastenkeys, rangelist, stencillist, translist},
     stenkeys = Select[sten, (# // Flatten) === {} &] // Keys;
     sten = KeyDrop[sten, stenkeys];
     mastenkeys = Select[masten, (# // Flatten) === {} &] // Keys;
@@ -67,27 +67,27 @@ RangeSchemeTranslationsOperator[variables_Association][masterstencil_,stencil_] 
     If[ 
      sten === Association[] || masten === Association[] || !SubsetQ[Keys[masten], Keys[sten]],
      {},
-     rangelist =  
+     rangelist =  EchoLabel["RangeSchemeTranslationsOperator: rangelist"][
       Association @@ 
        Map[# -> 
           Transpose[{Min /@ Transpose[masten[#]], 
-            Max /@ Transpose[masten[#]]}] &, Keys[sten]];
-     stencillist = 
+            Max /@ Transpose[masten[#]]}] &, Keys[sten]]];
+     stencillist = EchoLabel["RangeSchemeTranslationsOperator: stencillist"][
       Association @@ 
        Map[# -> 
           Transpose[{Min /@ Transpose[sten[#]], 
-            Max /@ Transpose[sten[#]]}] &, Keys[sten]]; 
-     rangelist = rangelist[#] & /@ Keys[sten];
-     stencillist = stencillist[#] & /@ Keys[sten];
-     If[
+            Max /@ Transpose[sten[#]]}] &, Keys[sten]]]; 
+     rangelist = EchoLabel["RangeSchemeTranslationsOperator: rangelist"][rangelist[#] & /@ Keys[sten]];
+     stencillist = EchoLabel["RangeSchemeTranslationsOperator: stencillist"][stencillist[#] & /@ Keys[sten]];
+     EchoLabel["RangeSchemeTranslationsOperator: translist"]@If[
       Lookup[variables, "intersect", False],
+      Print["intersect True"];
       translist = 
        MapThread[
-        MapThread[{#1[[1]] - #2[[2]], #1[[2]] - #2[[
-              1]]} &, {#1, #2}] &, {rangelist, stencillist}],
+        MapThread[{#1[[1]] - #2[[2]], #1[[2]] - #2[[1]]} &, {#1, #2}] &, {rangelist, stencillist}],
       translist = rangelist - stencillist
       ];
-     translist = Map[Table[k, {k, #[[1]], #[[2]], 1}] &, translist, {2}];
+     translist = EchoLabel["RangeSchemeTranslationsOperator: translist"][Map[Table[k, {k, #[[1]], #[[2]], 1}] &, translist, {2}]];
      translist = MapThread[Intersection, translist] // Tuples
        ]
       ]
@@ -337,14 +337,15 @@ ReduceModScheme[variables_Association][schemeexpression_Association] :=
     ! KeyExistsQ[var, "sortoperator"],
     var = Append[var, "sortoperator" -> SortBy[Simplify`SimplifyCount]]
     ];
-   schexp = PiecewiseAssociationOperator[IntegralEquivalenceClassOperator][var,"exp", schexp]
+   schexp = EchoLabel["ReduceModScheme: schwexp"]@PiecewiseAssociationOperator[IntegralEquivalenceClassOperator][var,"exp", schexp]
    ];
-  reducelist = ReductionOperator[var][schexp];
+  reducelist = EchoLabel["ReduceModScheme: reducelist"]@ReductionOperator[var][schexp];
   If[
    Lookup[var, "reduce Beautify", True],
    reducelist = PiecewiseAssociationOperator[IntegralEquivalenceClassOperator][var, "exp", reducelist]
    ];
-   reducelist = PiecewiseMap[Association["exp"->(#["exp"]&/@#),"scheme"->(Lookup[#//First,"scheme"])]&,reducelist];
+   reducelist = EchoLabel["ReduceModScheme: reducelist"]@
+   PiecewiseMap[Association["exp"->(#["exp"]&/@#),"scheme"->(Lookup[#//First,"scheme"])]&,reducelist];
   schexp = PiecewiseAssociationOperator[TimeInstancesSmallestOperator][var,"exp",reducelist]
   ];
 
@@ -353,26 +354,26 @@ ReductionOperator[variables_Association][schemeexpression_]:=
 
 Reduction[variables_Association][schemeexpression_Association] :=
 	Module[
-	{var = variables, schexp = schemeexpression, masterstencil,
+	{var = variables, schexp = EchoLabel["Reduction: scheme "]@schemeexpression, masterstencil,
 		stencil, transl, polylist, polyvars, scheme, normalred, eliminationlist, reducelist},
-	masterstencil = StencilOperator[var][schexp["exp"]];
-  stencil = StencilOperator[var][schexp["scheme"]];
+	masterstencil = EchoLabel["Reduction: masterstencil "]@StencilOperator[var][schexp["exp"]];
+  stencil = EchoLabel["Reduction: stencil "]@StencilOperator[var][schexp["scheme"]];
   transl = 
-   RangeSchemeTranslationsOperator[var][masterstencil, #] & /@ stencil;
+   EchoLabel["Reduction: translations "]@RangeSchemeTranslationsOperator[var][masterstencil, #] & /@ stencil;
   g[nscheme_, trans_List] := 
    If[
    	(trans // Flatten) =!= {}, 
     Map[MKF[var["indVars"], nscheme] @@ # &, 
      trans + Table[var["indVars"], Length[trans]]],
     {}];
-  polylist =MapThread[g, {schexp["scheme"], transl}] // Flatten;
+  polylist = EchoLabel["Reduction: polylist"]@MapThread[g, {schexp["scheme"], transl}] // Flatten;
   If[polylist === {}, polylist = schexp["scheme"]];
   polyvars = 
    Complement[
     Union[polylist // Variables // Flatten, 
       schexp["exp"] // Variables // Flatten] // Flatten, 
     Lookup[var, "pars", {}]];
- polyvars = Sort[polyvars, TimeOrderedQOperator[Append[variables,"elimOrder"->"explicit"]]];
+ polyvars = EchoLabel["Reduction: polyvars"]@Sort[polyvars, TimeOrderedQOperator[Append[variables,"elimOrder"->"explicit"]]];
  
  (*from here *)
  
@@ -390,7 +391,7 @@ Reduction[variables_Association][schemeexpression_Association] :=
     Print["polylist = ",polylist];
     Print["polyvars = ",polyvars];
     *)
-  scheme=ComprehensiveGroebnerSystemOperator[Append[variables, "generators"->polyvars]][polylist];  
+  scheme=EchoLabel["Reduction: scheme"]@QuietEcho@ComprehensiveGroebnerSystemOperator[Append[variables, "generators"->polyvars]][polylist];  
     
    (*
     Print["polyscheme = ", scheme]; 
@@ -407,7 +408,7 @@ Reduction[variables_Association][schemeexpression_Association] :=
   (* DG code *)  
     
     
-    normalred= PiecewisePolynomialRemainderOperator[Append[variables, "generators"->polyvars]][schexp["exp"],scheme];
+    normalred= EchoLabel["Reduction: normalred"]@PiecewisePolynomialRemainderOperator[Append[variables, "generators"->polyvars]][schexp["exp"],scheme];
      
      (*
     Print["original scheme = ", schexp["scheme"]];
@@ -418,18 +419,17 @@ Reduction[variables_Association][schemeexpression_Association] :=
      *)
      
      
-   normalred = Association["exp"->normalred,"scheme"->scheme]//PiecewiseExpandAssociation;
+   normalred = EchoLabel["Reduction: normalred"]@Association["exp"->normalred,"scheme"->scheme]//PiecewiseExpandAssociation;
    (* set up list of lists with elimination order, i.e. 
   order of variables in which they are eliminated , 
   default is permutations, 
   specify function that does that by function name*)
  
   eliminationlist = 
-   Lookup[var, "EliminationListOperator", EliminationListOperator][
-     Append[var, "scheme" -> polylist]][
-    schexp["exp"]]; (*list of lists*)
+   Lookup[var, "EliminationListOperator", EliminationListOperator]
+   	[Append[var, "scheme" -> polylist]][schexp["exp"]]; (*list of lists*)
   reducelist = VariableEliminationOperator[Append[var,"elimOrder"->Lookup[var,"elimOrder","explicit"]]][#, schexp] & /@ eliminationlist;
-   Append[reducelist, normalred] // PiecewiseExpand // PiecewiseListClean
+   EchoLabel["Reduction: append expand"][EchoLabel["Reduction: append..."]@Append[reducelist, normalred] // PiecewiseExpand] // PiecewiseListClean
    
    (* to here there are some picewise objects *)
    
