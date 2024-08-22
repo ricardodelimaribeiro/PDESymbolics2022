@@ -85,36 +85,29 @@ SolveVarProb[Lag_, DVars_List, IndpVars_List] :=
 
 PartialDVarDOperator[variables_Association][expression_] :=
     Which[
-         expression === $Failed, 
-                 $Failed,
-         Head[expression] === Piecewise, 
-                 PiecewiseMap[PartialDVarDOperator[variables], expression],
-         Head[expression] === List, 
-                 
-    Map[PartialDVarDOperator[variables], expression] // 
-     PiecewiseExpand // PiecewiseListClean,
-    Sort[variables["indVars"]] === Sort[variables["timeVars"]],
-    expression, 
-         Lookup[variables, "order", 1] === 1,
-                 
-    Module[ {depVars = Lookup[variables, "depVars", {}], 
-    indVars = Lookup[variables, "indVars", {}], 
-    timeVars = Lookup[variables, "timeVars", {}]},
-        PartialDVarD[expression, #, indVars, timeVars] & /@ depVars
-    ],
-         Lookup[variables, "order", 1] > 1, 
-             
-    Module[ {localexpression, 
-    depVars = Lookup[variables, "depVars", {}], 
-    indVars = Lookup[variables, "indVars", {}], 
-    timeVars = Lookup[variables, "timeVars", {}]},
-        localexpression = 
-         PartialDVarD[expression, #, indVars, timeVars] & /@ depVars;
-        PartialDVarDOperator[
-          Append[variables, "order" -> (variables["order"] - 1)]][
-         localexpression]
-    ]
-     ]
+    	expression === $Failed,
+    		$Failed,
+        Head[expression] === Piecewise, 
+            PiecewiseMap[PartialDVarDOperator[variables], expression],
+        Head[expression] === List, 
+    		Map[PartialDVarDOperator[variables], expression] // PiecewiseExpand // PiecewiseListClean,
+    	Sort[variables["indVars"]] === Sort[variables["timeVars"]],
+    		expression, 
+        Lookup[variables, "order", 1] === 1,
+        	Module[ {depVars = Lookup[variables, "depVars", {}], 
+    			indVars = Lookup[variables, "indVars", {}], 
+    			timeVars = Lookup[variables, "timeVars", {}]},
+        		PartialDVarD[expression, #, indVars, timeVars] & /@ depVars
+    		],
+        Lookup[variables, "order", 1] > 1, 
+    		Module[ {localexpression, 
+    			depVars = Lookup[variables, "depVars", {}], 
+    			indVars = Lookup[variables, "indVars", {}], 
+    			timeVars = Lookup[variables, "timeVars", {}]},
+        		localexpression = PartialDVarD[expression, #, indVars, timeVars] & /@ depVars;
+        		PartialDVarDOperator[Append[variables, "order" -> (variables["order"] - 1)]][localexpression]
+    		]
+	]
 
 KroneckerDeltaOperator[n_List] :=
     KroneckerDeltaOperator@@Select[n, #=!=0&]
