@@ -85,7 +85,7 @@ RangeSchemeTranslationsOperator[variables_Association][masterstencil_,stencil_] 
       translist = 
        MapThread[
         MapThread[{#1[[1]] - #2[[2]], #1[[2]] - #2[[1]]} &, {#1, #2}] &, {rangelist, stencillist}],
-      translist = rangelist - stencillist
+      translist = rangelist - Map[Reverse,stencillist,2]
       ];
      translist = EchoLabel["RangeSchemeTranslationsOperator: translist"][Map[Table[k, {k, #[[1]], #[[2]], 1}] &, translist, {2}]];
      translist = MapThread[Intersection, translist] // Tuples
