@@ -76,7 +76,7 @@ LeadingTerm[variables_Association][xp_?NotPiecewise] :=
   Module[{order, generators, MonList, rules,facts},
   	facts = Simplify@Lookup[variables,"facts",True]; 
   	If[facts===False,$Failed,
-   order = Lookup[variables, "ordering", "Lexicographic"];
+   order = Lookup[variables, "ordering", DegreeLexicographic];
    generators = 
     Lookup[variables, "generators", 
      InferGeneratorsOperator[variables][xp]];
@@ -98,7 +98,7 @@ LeadingCoefficient[variables_Association][xp_?NotPiecewise] :=
    If[facts===False,$Failed,
    	(*Assuming[facts,*)
    		(*Print["coeff facts:, "facts];*)
-   order = Lookup[variables, "ordering", "Lexicographic"];
+   order = Lookup[variables, "ordering", DegreeLexicographic];
    generators = 
     Lookup[variables, "generators", 
      InferGeneratorsOperator[variables][xp]];
