@@ -81,7 +81,7 @@ DiscreteInferGeneratorsOperator[vars_][xp_] :=
 Module[{generators, indvars, depvars},
  generators = PiecewiseExtractGeneratorsOperator[vars][xp];
  indvars = Lookup[variables, "indVars", {}]; 
-     depvars = LexicographicSort[Lookup[variables, "depVars", {}]];
+ depvars = LexicographicSort[Lookup[variables, "depVars", {}]];
 (*TODO make this work for any number of independent variables, not just 2.*)
  SortBy[
   generators, {-Abs[#[[2]] /. indvars[[2]] -> 0], 
@@ -110,7 +110,7 @@ NotPiecewise[xp_] :=
 LeadingTerm[variables_Association][xp_?NotPiecewise] :=
     Module[ {order, generators, MonList, rules,facts},
         facts = Lookup[variables,"facts",True];
-        order = Lookup[variables, "ordering", "Lexicographic"];
+        order = Lookup[variables, "ordering", DegreeLexicographic];
         generators = 
          Lookup[variables, "generators", 
           InferGeneratorsOperator[variables][xp]];
@@ -129,7 +129,7 @@ LeadingCoefficient[variables_Association][xp_?NotPiecewise] :=
         If[ EchoLabel["LeadingCoeff: simplified facts"]@facts===False,
             $Failed,
             Assuming[facts,
-            order = Lookup[variables, "ordering", "Lexicographic"];
+            order = Lookup[variables, "ordering", DegreeLexicographic];
             generators = 
              Lookup[variables, "generators", 
               InferGeneratorsOperator[variables][xp]];
@@ -369,10 +369,17 @@ GrobOp[variables_][grobner_List, {}] :=
 GrobOpReduced[variables_][grobner_List] :=
     Module[ {facts},
         facts = Simplify@Lookup[variables, "facts", True];
-        If[ facts===False,
+        (*If[ facts===False,
             $Failed,
             AutoReduceOperator[variables][GrobOp[variables]@grobner] // PiecewiseExpand
-        ]//PiecewiseApplyConditionOperator[variables]
+        ]//PiecewiseApplyConditionOperator[variables]*)
+        Which[ facts===False,
+            $Failed,
+            Lookup[variables,"pars",{}]==={},
+            GroebnerBasis[Echo@grobner, Echo@Lookup[variables, "generators",{}], MonomialOrder->Echo@Lookup[variables, "ordering", DegreeLexicographic]],
+            True,
+            AutoReduceOperator[variables][GrobOp[variables]@grobner] // PiecewiseExpand //PiecewiseApplyConditionOperator[variables]
+        ]
     ];
 
 GrobOp[variables_][preGrobner_List, sPolynomials_List] :=
@@ -437,7 +444,7 @@ GrobOp[variables_][preGrobner_List] :=
         (*if "VarDOperator" is DVarDOperator*)
         generators = Lookup[variables, "generators", DiscreteInferGeneratorsOperator[variables][preGrobner]]
         ];
-        newVariables = Append["facts"->facts]@Append["reduce"->reduce]@Append["generators"->generators]@variables;
+        newVariables = Append[{"facts"->facts,"reduce"->reduce,"generators"->generators}]@variables;
         If[ facts === False,
             $Failed,
             newPreGrobner = DeleteCases[0]@EchoLabel["simplified"]@Simplify[preGrobner,facts];
@@ -446,6 +453,18 @@ GrobOp[variables_][preGrobner_List] :=
             newArgs = {newPreGrobner, sPolynomials} // PiecewiseExpand // PiecewiseApplyConditionOperator[newVariables];
             PiecewiseOperatorMap[GrobOp, newVariables, newArgs] //PiecewiseExpand// PiecewiseBeautifyOperator[newVariables]
         ]
+        (*Which[ facts === False,
+            $Failed,
+            Lookup[variables,"pars",{}]==={},
+            Print["not parametric"];
+            Echo@GroebnerBasis[preGrobner, generators, MonomialOrder->Lookup[variables, "ordering", "Lexicographic"]],
+            True,
+            newPreGrobner = DeleteCases[0]@EchoLabel["simplified"]@Simplify[preGrobner,facts];
+            newPreGrobner = EchoLabel["monic preGrobner"]@ MonicOperator[newVariables][newPreGrobner];
+            sPolynomials = PiecewiseSPolynomialOperator[newVariables][newPreGrobner];
+            newArgs = {newPreGrobner, sPolynomials} // PiecewiseExpand // PiecewiseApplyConditionOperator[newVariables];
+            PiecewiseOperatorMap[GrobOp, newVariables, newArgs] //PiecewiseExpand// PiecewiseBeautifyOperator[newVariables]
+        ]*)
     ];
 
 AllCasesOperator[variables_][xp_] :=
