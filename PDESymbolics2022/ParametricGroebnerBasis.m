@@ -4,7 +4,7 @@
 InferGeneratorsOperator::usage =
 "InferGeneratorsOperator[variables][xplist] infers the generators of xplist. It works with \"continuous\" expressions.";
 
-DiscreteInferGeneratorsOperator::usage= 
+DiscreteInferGeneratorsOperator::usage = 
 "DiscreteInferGeneratorsOperator[vars][xp] infers the generators of xp. It works with discrete expressions.";
 
 PiecewisePolynomialLCM::usage =
@@ -40,7 +40,7 @@ GrobOp::usage =
 GrobOpReduced::usage = "
 GrobOpReduced[variables][preGrobner] returns a piecewise expression with reduced groebner basis for each set of conditions.";
 (*backward compatibility*)
-PiecewisePolynomialReduceRemainderOperator::usage=
+PiecewisePolynomialReduceRemainderOperator::usage =
 "This is PiecewisePolynomialRemainderOperator"
 (*Debuging*)
 SPolynomialOperator::usage = "";
@@ -54,10 +54,10 @@ MonicOperator::usage = "";
 AllCasesOperator::usage = "";
 Begin["`Private`"]
 
-PiecewisePolynomialReduceRemainderOperator[variables]=
-	PiecewisePolynomialRemainderOperator[variables]
-	
-	
+PiecewisePolynomialReduceRemainderOperator[variables] =
+    PiecewisePolynomialRemainderOperator[variables]
+    
+    
 InferGeneratorsOperator[variables_][xplist_List] :=
     With[ {glc = First@EchoLabel["InferGenerators: gLc"]@GenericLinearCombinationOperator[variables][EchoLabel["InferGenerators: input"]@xplist]},
         InferGeneratorsOperator[variables][glc]
@@ -77,23 +77,23 @@ InferGenerators[variables_Association][xp_] :=
            depvars]
     ];
     
-DiscreteInferGeneratorsOperator[vars_][xp_] := 
-Module[{generators, indvars, depvars},
- generators = PiecewiseExtractGeneratorsOperator[vars][xp];
- indvars = Lookup[variables, "indVars", {}]; 
- depvars = LexicographicSort[Lookup[variables, "depVars", {}]];
-(*TODO make this work for any number of independent variables, not just 2.*)
- SortBy[
-  generators, {-Abs[#[[2]] /. indvars[[2]] -> 0], 
-    Sign[#[[2]] /. 
-      indvars[[2]] -> 0], -Abs[#[[1]] /.  indvars[[1]] -> 0], 
-    Sign[#[[1]] /.  indvars[[1]] -> 0]} &]
- ]
+DiscreteInferGeneratorsOperator[vars_][xp_] :=
+    Module[ {generators, indvars, depvars},
+        generators = PiecewiseExtractGeneratorsOperator[vars][xp];
+        indvars = Lookup[variables, "indVars", {}];
+        depvars = LexicographicSort[Lookup[variables, "depVars", {}]];
+       (*TODO make this work for any number of independent variables, not just 2.*)
+        SortBy[
+         generators, {-Abs[#[[2]] /. indvars[[2]] -> 0], 
+           Sign[#[[2]] /. 
+             indvars[[2]] -> 0], -Abs[#[[1]] /.  indvars[[1]] -> 0], 
+           Sign[#[[1]] /.  indvars[[1]] -> 0]} &]
+    ]
  
  DiscreteInferGeneratorsOperator[variables_][xplist_List] :=
-   With[{glc = 
-    First@GenericLinearCombinationOperator[variables][xplist]},
-     DiscreteInferGeneratorsOperator[variables][glc]
+     With[ {glc = 
+      First@GenericLinearCombinationOperator[variables][xplist]},
+         DiscreteInferGeneratorsOperator[variables][glc]
      ];
      
 (*TODO how is this behaving with the parameters?*)
@@ -150,10 +150,10 @@ Division[variables_][a_?NotPiecewise,b_?NotPiecewise] :=
         If[ Head[a]===List,
             MapThread[Division[variables],{a,b}],
             Module[ {pars = Lookup[variables,"pars",{}],except = Variables[b],q,r,
-            	generators = Lookup[variables,"generators",InferGeneratorsOperator[variables][{a,b}]]},
+                generators = Lookup[variables,"generators",InferGeneratorsOperator[variables][{a,b}]]},
                 {{q},r} = PolynomialReduce[a,{b},Complement[pars,except]];
                 EchoLabel["Division: total"]@Total[Simplify[MonomialList[q+r/b,generators]]]
-               	(*Module[ {pars = Lookup[variables,"pars",{}],except = Variables[b],q,r},
+            (*Module[ {pars = Lookup[variables,"pars",{}],except = Variables[b],q,r},
                 {{q},r} = PolynomialReduce[a,{b},Complement[pars,except]];
                 q+r/b*)
             ]
@@ -161,7 +161,8 @@ Division[variables_][a_?NotPiecewise,b_?NotPiecewise] :=
     ];
 
 PiecewiseDivisionOperator[variables_][a_,b_] :=
-    (*EchoLabel["PDO: division b4 beautify"]@*)EchoLabel["PDO: division expanded"][PiecewiseExpand@(*EchoLabel["PDO: unexpanded division"]@*)Division[variables][a,b]]//PiecewiseBeautifyOperator[variables];
+    (*EchoLabel["PDO: division b4 beautify"]@*)
+    EchoLabel["PDO: division expanded"][PiecewiseExpand@(*EchoLabel["PDO: unexpanded division"]@*)Division[variables][a,b]]//PiecewiseBeautifyOperator[variables];
 
 Clear[SPolynomialOperator];
 SPolynomialOperator[variables_][f_?NotPiecewise,
@@ -194,7 +195,7 @@ PiecewiseSPolynomialOperator[variables_][f_, g_] :=
     FixedPoint[PiecewiseExpand, 
       SPolynomialOperator[variables][f, g]] // Expand;
       
-PiecewiseSPolynomialOperator[_][$Failed]=$Failed;
+PiecewiseSPolynomialOperator[_][$Failed] = $Failed;
 
 PiecewiseSPolynomialOperator[variables_][f_Piecewise] :=
     ((*Print[piecewise];*)
@@ -202,7 +203,7 @@ PiecewiseSPolynomialOperator[variables_][f_Piecewise] :=
 
 PiecewiseSPolynomialOperator[variables_][f_List] :=
     Which[
-    	Length[f]===2,
+        Length[f]===2,
         (*Print[2];*)
         {PiecewiseSPolynomialOperator[variables]@@f},
         Length[f]>2,
@@ -246,7 +247,7 @@ AutoReduceOperator[variables_][polylist_] :=
 
 PPRRO[$Failed, _] = $Failed;
 PiecewisePolynomialRemainderOperator[variables_][f_, g_Piecewise] :=
-	PiecewiseMap[PiecewisePolynomialRemainderOperator[variables][f, #]&,g]
+    PiecewiseMap[PiecewisePolynomialRemainderOperator[variables][f, #]&,g]
 
 PiecewisePolynomialRemainderOperator[variables_][f_, g_List] :=
     Module[ {preliminary, generators},
@@ -277,7 +278,7 @@ PiecewiseApplyConditionOperator[variables_][px_List] :=
     PiecewiseApplyConditionOperator[variables] /@ px;
 
 PiecewiseApplyConditionOperator[variables_][px_Piecewise] :=
-    Module[ {facts, cleanList, newPx=EchoLabel["PACO: input"]@px, generators},
+    Module[ {facts, cleanList, newPx = EchoLabel["PACO: input"]@px, generators},
         facts = Lookup[variables, "facts", True];
         If[ Reduce[facts] === False,
             $Failed,
@@ -285,25 +286,25 @@ PiecewiseApplyConditionOperator[variables_][px_Piecewise] :=
              SplitOr @@@ 
               PiecewiseLastCaseClean[
                (*EchoLabel["PACO: first beautify"]@*)PiecewiseBeautifyOperator[variables][px]]];
-            generators = (*EchoLabel["PACO: generators"]@*)Lookup[variables, "generators", InferGeneratorsOperator[variables][Piecewise@newPx]];
+            generators = (*EchoLabel["PACO: generators"]@*) Lookup[variables, "generators", InferGeneratorsOperator[variables][Piecewise@newPx]];
             (*If[ AnyTrue[First@newPx,Head[#]===List&],
-            	(*Print["1"];*)
+                (*Print["1"];*)
                 cleanList = Function[dd,
                 Assuming[dd[[2]], {(*EchoLabel["PACO: simplifyed this"]@*)
-                	If[dd[[1]]===$Failed,{$Failed,dd[[2]]},{Total@Expand@Simplify@MonomialList[#,generators]&/@dd[[1,1]],dd[[1,2]]}], dd[[2]]}]] /@ newPx,
+                    If[dd[[1]]===$Failed,{$Failed,dd[[2]]},{Total@Expand@Simplify@MonomialList[#,generators]&/@dd[[1,1]],dd[[1,2]]}], dd[[2]]}]] /@ newPx,
                 (*Print["2"];*)
                 cleanList = Function[dd,
                  Assuming[dd[[2]], {Total@Expand@Simplify@MonomialList[(*EchoLabel["PACO: simplifying that"]@*)dd[[1]],generators], dd[[2]]}]] /@ newPx
             ];*)
-            If[AnyTrue[First@newPx,Head[#]===List&],
-    	cleanList = Function[dd,
-    	(*Print["list: ",dd, facts];*)
-    	Assuming[dd[[2]], {Simplify[dd[[1]]], dd[[2]]}]] /@ newPx,
-       cleanList = Function[dd,
-    	(*Print["just piecewise: ",dd, facts];*)
-    	Assuming[dd[[2]], {Total@Simplify@MonomialList[dd[[1]],generators], dd[[2]]}]] /@ newPx
-   ];
-          EchoLabel["PACO: output"][(*EchoLabel["PACO: before second beautify"]@*)(Piecewise[cleanList])//PiecewiseBeautifyOperator[variables]]
+            If[ AnyTrue[First@newPx,Head[#]===List&],
+                cleanList = Function[dd,
+                (*Print["list: ",dd, facts];*)
+                Assuming[dd[[2]], {Simplify[dd[[1]]], dd[[2]]}]] /@ newPx,
+                cleanList = Function[dd,
+                 (*Print["just piecewise: ",dd, facts];*)
+                 Assuming[dd[[2]], {Total@Simplify@MonomialList[dd[[1]],generators], dd[[2]]}]] /@ newPx
+            ];
+            EchoLabel["PACO: output"][(*EchoLabel["PACO: before second beautify"]@*)(Piecewise[cleanList])//PiecewiseBeautifyOperator[variables]]
         ]
     ];
 (*Clear[PiecewiseApplyConditionOperator];
@@ -312,8 +313,8 @@ PiecewiseApplyConditionOperator[variables_][px_] := px*)
    
 Clear[GrobOp];
 
-ComprehensiveGroebnerSystemOperator[variables_][ideal_]:=
-Kleisli[GrobOpReduced][variables][ideal]//PiecewiseBeautifyOperator[variables];
+ComprehensiveGroebnerSystemOperator[variables_][ideal_] :=
+    Kleisli[GrobOpReduced][variables][ideal]//PiecewiseBeautifyOperator[variables];
 
 hasFailed[x_] :=
     MemberQ[$Failed][x];
@@ -329,15 +330,20 @@ GrobOp[variables_][{x_List, y_List}] :=
 
 GrobOp[variables_][{}] = {};
 
-GrobOp[variables_][_, _?hasFailed] := $Failed;
+GrobOp[variables_][_, _?hasFailed] :=
+    $Failed;
 
-GrobOp[variables_][_, $Failed] := $Failed;
+GrobOp[variables_][_, $Failed] :=
+    $Failed;
 
-GrobOp[variables_][_?hasFailed, _] := $Failed;
+GrobOp[variables_][_?hasFailed, _] :=
+    $Failed;
 
-GrobOp[variables_][$Failed, _] := $Failed;
+GrobOp[variables_][$Failed, _] :=
+    $Failed;
 
-GrobOp[variables_][$Failed] := $Failed;
+GrobOp[variables_][$Failed] :=
+    $Failed;
 
 GrobOp[variables_][x_?hasZero] :=
     GrobOp[variables][DeleteCases[0][x]];
@@ -363,7 +369,7 @@ GrobOp[variables_][grobner_List, {}] :=
         If[ facts===False,
             $Failed,
             grobner
-		]
+        ]
     ];
 
 GrobOpReduced[variables_][grobner_List] :=
@@ -386,7 +392,6 @@ GrobOp[variables_][preGrobner_List, sPolynomials_List] :=
     Module[ {facts, fstSPoly, newPreGrobner = preGrobner, reduced, newArgs, 
       newSPolynomials},
       (*Print["in the second part"];*)
-
         facts = Reduce@Lookup[variables, "facts", True];
         If[ Reduce[facts] === False,
             $Failed,
@@ -439,10 +444,10 @@ GrobOp[variables_][preGrobner_List] :=
     Module[ {newPreGrobner, sPolynomials, newArgs, facts ,newVariables, generators,reduce},
         facts = Reduce@Lookup[variables, "facts", True];
         reduce = Lookup[variables, "reduce", Resolve];
-        If[Lookup[variables,"VarDOperator",VarDOperator] === VarDOperator,
-        generators = Lookup[variables, "generators", InferGeneratorsOperator[variables][preGrobner]],
-        (*if "VarDOperator" is DVarDOperator*)
-        generators = Lookup[variables, "generators", DiscreteInferGeneratorsOperator[variables][preGrobner]]
+        If[ Lookup[variables,"VarDOperator",VarDOperator] === VarDOperator,
+            generators = Lookup[variables, "generators", InferGeneratorsOperator[variables][preGrobner]],
+            (*if "VarDOperator" is DVarDOperator*)
+            generators = Lookup[variables, "generators", DiscreteInferGeneratorsOperator[variables][preGrobner]]
         ];
         newVariables = Append[{"facts"->facts,"reduce"->reduce,"generators"->generators}]@variables;
         If[ facts === False,
@@ -453,7 +458,7 @@ GrobOp[variables_][preGrobner_List] :=
             newArgs = {newPreGrobner, sPolynomials} // PiecewiseExpand // PiecewiseApplyConditionOperator[newVariables];
             PiecewiseOperatorMap[GrobOp, newVariables, newArgs] //PiecewiseExpand// PiecewiseBeautifyOperator[newVariables]
         ]
-        (*Which[ facts === False,
+    (*Which[ facts === False,
             $Failed,
             Lookup[variables,"pars",{}]==={},
             Print["not parametric"];
@@ -473,8 +478,8 @@ AllCasesOperator[variables_][xp_] :=
 AllCases[variables_][xp_] :=
     Module[ {generators,MonList,lt},
         generators = Lookup[variables,"generators",InferGeneratorsOperator[variables][xp]];
-        MonList = (*EchoLabel["AllCases: MonList"]@*)MonomialList[xp,generators];
-        lt = (*EchoLabel["AllCases: leading terms"]@*)(LeadingTermOperator[variables] /@ MonList);
+        MonList = (*EchoLabel["AllCases: MonList"]@*) MonomialList[xp,generators];
+        lt = (*EchoLabel["AllCases: leading terms"]@*) (LeadingTermOperator[variables] /@ MonList);
         EchoLabel["AllCases: output"]@PiecewiseExpand@Total[lt]
     ]//QuietEcho;
 
@@ -485,7 +490,7 @@ MonicOperator[variables_][xp_] :=
         generators = Lookup[variables,"generators",InferGeneratorsOperator[variables][xp]];
         allCases = EchoLabel["Monic: ac"]@AllCasesOperator[variables][xp];
         lc = EchoLabel["Monic: lc"]@LeadingCoefficientOperator[variables][allCases];
-        divided = (*EchoLabel["Monic: divided"]@*)PiecewiseDivisionOperator[variables][allCases,lc]//PiecewiseApplyConditionOperator[variables];
+        divided = (*EchoLabel["Monic: divided"]@*) PiecewiseDivisionOperator[variables][allCases,lc]//PiecewiseApplyConditionOperator[variables];
         (*divided=PiecewiseMap[Simplify@MonomialList[#, generators] &,divided];
         Print["divided: simplified: ",divided];*)
         (*Which[Head[divided]===Piecewise,
