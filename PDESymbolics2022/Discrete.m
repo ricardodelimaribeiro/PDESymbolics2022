@@ -525,7 +525,8 @@ VariableEliminationOperator[variables_Association][
                          (*When we take comlement, the variables of scheme not in the expression are ordered by Mathematica!*)
                          polyvars = EchoLabel["VariableEliminationOperator: EliminationListOperator with polyvars not in expvars appended"]@Join[EliminationListOperator[variables][Plus@@expvars]//First, Complement[polyvars,expvars]]
                      ];
-                     n1 = EchoLabel["n1"]@Position[polyvars,elem]//First//First;
+                     (*this is a weird part of the algorithm: if the position is the last of ordered expvars, then we would eliminate all the variables from the expression from the groebner base (but with this ordering, we still manage to see them in the base: it is NOT an elimination ideal, so whatever appears is simpler, which is what we need! The good thing is that Friedemann didn't use the elimination option from the builtin GroebnerBasis.*)
+                     n1 = EchoLabel["n1"]@FirstPosition[polyvars,elem]//First;
                      n2 = EchoLabel["n2"]@Length[polyvars];
                      ordermatrix = elimMatrix[n1,n2];
                      
