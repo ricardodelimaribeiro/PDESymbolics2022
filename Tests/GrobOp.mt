@@ -75,7 +75,7 @@ template = Association[
 ]
 (*Get[test]*)
 
-label = "from GroebnerBasis documentation"
+label = "from GroebnerBasis documentation Degree Lex"
 template = Association[
 	"variables" -> Association[
 		"depVars" -> {u}, 
@@ -83,10 +83,24 @@ template = Association[
 		],
 	"operator" -> ComprehensiveGroebnerSystemOperator,
 	"expression" -> {u'[x]^2 - 2 u[x]^2, u'[x] u[x] - 3},
-   "result" -> {-(2/3) u[x]^3 + Derivative[1][u][x], -(9/2) + u[x]^4}
+   (*MonomialOrder -> DegreeLexicographic*)
+   "result" -> {-3 + u[x]*Derivative[1][u][x], 2*u[x]^2 - Derivative[1][u][x]^2, -6*u[x] + Derivative[1][u][x]^3}
 ]
 Get[test]
 
+label = "from GroebnerBasis documentation Lex"
+template = Association[
+	"variables" -> Association[
+		"depVars" -> {u}, 
+		"indVars" -> {x}, 
+		"ordering" -> Lexicographic
+		],
+	"operator" -> ComprehensiveGroebnerSystemOperator,
+	"expression" -> {u'[x]^2 - 2 u[x]^2, u'[x] u[x] - 3},
+	(*MonomialOrder -> Lexicographic*)
+   "result" -> {-18 + Derivative[1][u][x]^4, 6*u[x] - Derivative[1][u][x]^3}
+]
+Get[test]
 
 (*Sometimes it is safe to use "reduce"->Reduce from the start.*)
 label = "piecewise result four segments and $Failed"

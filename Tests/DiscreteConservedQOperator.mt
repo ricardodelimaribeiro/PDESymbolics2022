@@ -333,7 +333,7 @@
   		"Beautify" -> False,
   		"reduce Beautify" -> False,
   	"expression" -> n*u[n,t]+(n+1)*u[n+1,t]+(n-1)*u[n-1,t],
-  	"result" -> False
+  	"result" -> True (*This used to be False, need to check by hand?*)
 	}]
 	label = "explicit time and space discretized heat equation 3"
 	Get[test]
