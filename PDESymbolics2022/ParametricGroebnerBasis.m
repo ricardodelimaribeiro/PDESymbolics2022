@@ -375,7 +375,7 @@ GrobOpReduced[variables_][grobner_List] :=
         ]//PiecewiseApplyConditionOperator[variables]*)
         Which[ facts===False,
             $Failed,
-            Lookup[variables,"pars",{}]==={},
+            (*Lookup[variables,"pars",{}]==={}||*)FreeQQ[grobner,Lookup[variables,"pars",{}]],
             GroebnerBasis[Echo@grobner, Echo@Lookup[variables, "generators",{}], MonomialOrder->Echo@Lookup[variables, "ordering", DegreeLexicographic]],
             True,
             AutoReduceOperator[variables][GrobOp[variables]@grobner] // PiecewiseExpand //PiecewiseApplyConditionOperator[variables]
