@@ -4,22 +4,24 @@ MKF::usage =
 "MKF is a function of two variables [argument, value] that works like
 Function[Evaluate[argument], Evaluate[value]]";
 
-getVars::usage=
+getVars::usage =
 "getVars[expr, depVars, opt, level] internal function that gets all variables such as derivatives of dependent variables from an expression";
 
 GetVarsOperator::usage = 
 "GetVarsOperator[variables][xp] operator version of getVars"
 
-FreeQQ::usage=
+FreeQQ::usage =
 "FreeQQ[expr, form] returns FreeQ[expr, form] or And@@Map[FreeQ[expr, #]&, forms] if forms is a list."
 
-zeroq::usage=
+zeroq::usage =
 "zeroq[xp] returns xp == 0 or a conjuntion of such equations if xp is a list."
 
 Begin["`Private`"] (* Begin Private Context *) 
-zeroq[xp_List] := And @@ zeroq /@ xp;
+zeroq[xp_List] :=
+    And @@ zeroq /@ xp;
 
-zeroq[xp_] := (xp // Expand // Simplify) == 0
+zeroq[xp_] :=
+    (xp // Expand // Simplify) == 0
 
 MKF = Function[#1, #2] &;
 
@@ -31,7 +33,8 @@ getVars[expr_, depVars_List, opt_:Default, level_:{0,Infinity}] :=
         ]
     ];
     
-getVarsOperator[variables_][expr_]:= getVars[expr, Lookup[variables,"depVars",{}]]
+getVarsOperator[variables_][expr_] :=
+    getVars[expr, Lookup[variables,"depVars",{}]]
 
 GetVarsOperator = Kleisli[getVarsOperator]
 

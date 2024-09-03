@@ -27,58 +27,60 @@ IntegrateByPartsStep::usage = "IntegrateByPartsStep[x][expresssion] does an inte
 (**********************************************************************)
 (*TODO use Kreisli and KeyAbsent = "Key `1` is missing. Trying to go on with `2`";*)
 Clear[IntegrateByPartsOperator];
-IntegrateByPartsOperator[variables_][expression_]:=KleisliListable[IntegrateByPartsO][variables][expression];
+IntegrateByPartsOperator[variables_][expression_] :=
+    KleisliListable[IntegrateByPartsO][variables][expression];
 
-IntegrateByPartsO[variables_][expression_]:=(IntegrateByParts@@Lookup[variables, "intVars", (*keyAbsentMessage[IntegrateByPartsOperator]["\"intVars\""]*)Lookup[variables, "indVars", {}]])[expression];
+IntegrateByPartsO[variables_][expression_] :=
+    (IntegrateByParts@@Lookup[variables, "intVars", (*keyAbsentMessage[IntegrateByPartsOperator]["\"intVars\""]*)Lookup[variables, "indVars", {}]])[expression];
 
 IntegrateByPartsStep[exp_, indVar_Symbol, OptionsPattern[]] :=
-Module[{print = DebugPrint[False, "[IBP]"], expr = Expand @ exp, maxDer, maxDerVar, Ders, varsToDers},
-	print["expr = ", expr];
-	Which[
-		Head @ expr === Plus, 
-			Total @ Map[IntegrateByPartsStep[#, indVar]&, List @@ expr],
-		Head @ expr === Times, 
-            varsToDers = Merge[Cases[expr, Derivative[d__][_][v__] :> AssociationThread[{v}->{d}], {0, Infinity}], Identity];
-            If[ !MemberQ[Keys @ varsToDers, indVar],
-                print @ "1. Calculation has stoped by Return command:no derivatives";
-                Return @ expr
-            ];
-            If[ Position[Integrate[expr, indVar], Integrate] === {},
-                print @ "2. Calculation has stoped by Return command:complete derivative";
-                Return[0]
-            ];
-            Ders = varsToDers[indVar];
-            print["varsToDers = ", varsToDers];
-            print["Ders = ", Ders];
-            maxDer = Max @ Ders;
-            If[ MemberQ[Ders, maxDer - 1] || maxDer < 2,
-                print @ "3. Calculation has stoped by Return command:maxDer";
-                Return @ expr
-            ];
-            maxDerVar = Cases[expr, Derivative[d__][_][v__] /; AssociationThread[{v}->{d}][indVar] == maxDer, {0, Infinity}];
-            print["maxDer, maxDerVar = ", maxDer, maxDerVar];
-            print[{Length @ maxDerVar == 1, !MemberQ[Ders, maxDer - 1], Exponent[expr, First @ maxDerVar] === 1}];
-            If[ Length @ maxDerVar == 1 && Exponent[expr, First @ maxDerVar] === 1,
-                Simplify[-D[expr/First @ maxDerVar, indVar] Integrate[First @ maxDerVar, indVar]],
+    Module[ {print = DebugPrint[False, "[IBP]"], expr = Expand @ exp, maxDer, maxDerVar, Ders, varsToDers},
+        print["expr = ", expr];
+        Which[
+            Head @ expr === Plus, 
+                Total @ Map[IntegrateByPartsStep[#, indVar]&, List @@ expr],
+            Head @ expr === Times, 
+                varsToDers = Merge[Cases[expr, Derivative[d__][_][v__] :> AssociationThread[{v}->{d}], {0, Infinity}], Identity];
+                If[ !MemberQ[Keys @ varsToDers, indVar],
+                    print @ "1. Calculation has stoped by Return command:no derivatives";
+                    Return @ expr
+                ];
+                If[ Position[Integrate[expr, indVar], Integrate] === {},
+                    print @ "2. Calculation has stoped by Return command:complete derivative";
+                    Return[0]
+                ];
+                Ders = varsToDers[indVar];
+                print["varsToDers = ", varsToDers];
+                print["Ders = ", Ders];
+                maxDer = Max @ Ders;
+                If[ MemberQ[Ders, maxDer - 1] || maxDer < 2,
+                    print @ "3. Calculation has stoped by Return command:maxDer";
+                    Return @ expr
+                ];
+                maxDerVar = Cases[expr, Derivative[d__][_][v__] /; AssociationThread[{v}->{d}][indVar] == maxDer, {0, Infinity}];
+                print["maxDer, maxDerVar = ", maxDer, maxDerVar];
+                print[{Length @ maxDerVar == 1, !MemberQ[Ders, maxDer - 1], Exponent[expr, First @ maxDerVar] === 1}];
+                If[ Length @ maxDerVar == 1 && Exponent[expr, First @ maxDerVar] === 1,
+                    Simplify[-D[expr/First @ maxDerVar, indVar] Integrate[First @ maxDerVar, indVar]],
+                    exp
+                ],
+                Position[expr, indVar] != {} && Position[Integrate[expr, indVar], Integrate] === {},
+                print["Complete derivative"];
+                0,
+            True,
+                print["Nothing can do with it."];
                 exp
-            ],
-            Position[expr, indVar] != {} && Position[Integrate[expr, indVar], Integrate] === {},
-            print["Complete derivative"];
-            0,
-		True,
-            print["Nothing can do with it."];
-            exp
-	]
-]
+        ]
+    ]
 
 IntegrateByPartsStep[indVar_Symbol] :=
-IntegrateByPartsStep[#, indVar]&
+    IntegrateByPartsStep[#, indVar]&
 
 IntegrateByParts[indVar_] :=
-FixedPoint[IntegrateByPartsStep[indVar], #]&;
+    FixedPoint[IntegrateByPartsStep[indVar], #]&;
 
 IntegrateByParts[indVars___, OptionsPattern[]] :=
-RightComposition[Sequence @@ (IntegrateByParts[#]& /@ {indVars})];
+    RightComposition[Sequence @@ (IntegrateByParts[#]& /@ {indVars})];
 
 (* ##########            Function: RemoveDers              ########### *)
 (***********************************************************************)
@@ -89,74 +91,76 @@ RightComposition[Sequence @@ (IntegrateByParts[#]& /@ {indVars})];
 (*          list of independent variables                              *)
 (* Output:  expression containing no derivatives of depVars            *)
 (***********************************************************************)
-RemoveDersOperator[variables_][expression_] := Kleisli[RemoveDers][variables][expression];
+RemoveDersOperator[variables_][expression_] :=
+    Kleisli[RemoveDers][variables][expression];
 
 RemoveDersStep[exp_, depVar_, indVar_, OptionsPattern[]] :=
-Module[ {print = DebugPrint[False, "[rm-ders]"], expr = Expand @ exp, depVarExpr, params}, 
-	Which[
-		Head @ expr === Plus,
-        	print["expr = ", expr];
-        	Total @ Map[RemoveDersStep[#, depVar, indVar]&, List @@ expr],
-        Head @ expr === Times,
-        	print["expr = ", expr];
-        	params = DeleteDuplicates @ Cases[expr, depVar[Sequence[___,indVar,___]] | Derivative[___][depVar][Sequence[___,indVar,___]], {0, Infinity}]; 
-        	print["params = ", params];
-        	If[ params === {},
-        		Return[expr]
-        	];
-        	depVarExpr = ExtractCoefficient[expr, params];
-        	print["depVarExpr = ", depVarExpr];
-        	If[ FreeQ[Integrate[depVarExpr, indVar], Integrate],
-        		Simplify[-D[expr/depVarExpr, indVar]Integrate[depVarExpr, indVar]], expr],
-        True,
-        	expr
-	]
-]
+    Module[ {print = DebugPrint[False, "[rm-ders]"], expr = Expand @ exp, depVarExpr, params},
+        Which[
+            Head @ expr === Plus,
+                print["expr = ", expr];
+                Total @ Map[RemoveDersStep[#, depVar, indVar]&, List @@ expr],
+            Head @ expr === Times,
+                print["expr = ", expr];
+                params = DeleteDuplicates @ Cases[expr, depVar[Sequence[___,indVar,___]] | Derivative[___][depVar][Sequence[___,indVar,___]], {0, Infinity}];
+                print["params = ", params];
+                If[ params === {},
+                    Return[expr]
+                ];
+                depVarExpr = ExtractCoefficient[expr, params];
+                print["depVarExpr = ", depVarExpr];
+                If[ FreeQ[Integrate[depVarExpr, indVar], Integrate],
+                    Simplify[-D[expr/depVarExpr, indVar]Integrate[depVarExpr, indVar]],
+                    expr
+                ],
+            True,
+                expr
+        ]
+    ]
 
 Options[RemoveDers] = Options[RemoveDersStep];
 
 (* Function form *)
 RemoveDers[exp_, depVar_Symbol, indVar_Symbol, OptionsPattern[]] :=
-FixedPoint[RemoveDersStep[#, depVar, indVar]&, exp];
+    FixedPoint[RemoveDersStep[#, depVar, indVar]&, exp];
 
 (* Operator form *)
 RemoveDers[depVar_Symbol, indVar_Symbol, OptionsPattern[]] :=
-RemoveDers[#, depVar, indVar]&;
+    RemoveDers[#, depVar, indVar]&;
 
 (* Operator form *)
 RemoveDers[depVar_Symbol, indVars_List, OptionsPattern[]] :=
-RightComposition[Sequence @@ (RemoveDers[depVar, #]& /@ indVars)];
+    RightComposition[Sequence @@ (RemoveDers[depVar, #]& /@ indVars)];
 
 (* Function form *)
 RemoveDers[exp_, depVar_, indVars_List, OptionsPattern[]] :=
-RemoveDers[depVar, indVars][exp];
+    RemoveDers[depVar, indVars][exp];
 
 (* Operator form *)
 RemoveDers[depVars_List, indVars_List, OptionsPattern[]] :=
-RightComposition[Sequence @@ (RemoveDers[#, indVars]& /@ depVars)];
+    RightComposition[Sequence @@ (RemoveDers[#, indVars]& /@ depVars)];
 
 (* Function form *)
 RemoveDers[exp_, depVars_List, indVars_List, OptionsPattern[]] :=
-
-RemoveDers[depVars, indVars][exp];
+    RemoveDers[depVars, indVars][exp];
 
 RemoveDers[variables_Association][expression_] :=
-
-RemoveDers[expression, Lookup[variables, "rdVars", {}], Lookup[variables, "indVars", keyAbsentMessage[RemoveDersOperator]["\"rdVars\" or \"indVars\""][{}]]];
+    RemoveDers[expression, Lookup[variables, "rdVars", {}], Lookup[variables, "indVars", keyAbsentMessage[RemoveDersOperator]["\"rdVars\" or \"indVars\""][{}]]];
 
 
 
 Clear[BeautifyOperator];
-BeautifyOperator[variables_][expression_]:= KleisliListable[Beautify][variables][expression];
+BeautifyOperator[variables_][expression_] :=
+    KleisliListable[Beautify][variables][expression];
 
 Beautify[variables_Association][expression_] :=
-Module[ {},
-    	If[Lookup[variables, "VarDOperator", (*keyAbsentMessage[BeautifyOperator]["\"VarDOperator\""]@*)VarDOperator]===VarDOperator, 
-	   IntegralEquivalenceClassOperator[KeyDrop["basis"] @ variables][
-	   	IntegrateByPartsOperator[variables][expression]],
-	   IntegralEquivalenceClassOperator[KeyDrop["basis"] @ variables][expression]
-    	]
-     ];
+    Module[ {},
+        If[ Lookup[variables, "VarDOperator", (*keyAbsentMessage[BeautifyOperator]["\"VarDOperator\""]@*)VarDOperator]===VarDOperator,
+            IntegralEquivalenceClassOperator[KeyDrop["basis"] @ variables][
+                IntegrateByPartsOperator[variables][expression]],
+            IntegralEquivalenceClassOperator[KeyDrop["basis"] @ variables][expression]
+        ]
+    ];
 End[] (* End Private Context *)
 
 (*EndPackage[]*)

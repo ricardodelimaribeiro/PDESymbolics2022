@@ -49,22 +49,22 @@ TimeDerOperator[variables_Association][expression_Association] :=
               Nest[(Lookup[variables, "VarDOperator", VarDOperator][Append[variables,"order" -> 1]][#] . Lookup[variables, "eqRhs", {}])&, expression, Lookup[variables, "timederivativeorder", 1] ]
           ]
     ];*)
-TimeDerOperator[variables_][expression_] := KleisliListable[TimeDer][variables][expression];
+TimeDerOperator[variables_][expression_] :=
+    KleisliListable[TimeDer][variables][expression];
 
 TimeDer[variables_Association][expression_] :=
     If[ Lookup[variables, "Beautify", keyAbsentMessage[TimeDerOperator]["Beautify"][False]],
-            
-              With[ {bo = 
-                  If[ Lookup[variables, "VarDOperator", keyAbsentMessage[TimeDerOperator]["VarDOperator"][VarDOperator]] === VarDOperator,
-                      BeautifyOperator[variables][#]&, (*integrate by parts, then represent without predefined basis*)
-                      RepresentModNullLagrangiansOperator[KeyDrop["basis"][variables]][#]&
-                  (*just represent without predefined basis*)
+        With[ {bo = 
+            If[ Lookup[variables, "VarDOperator", keyAbsentMessage[TimeDerOperator]["VarDOperator"][VarDOperator]] === VarDOperator,
+                BeautifyOperator[variables][#]&, (*integrate by parts, then represent without predefined basis*)
+                RepresentModNullLagrangiansOperator[KeyDrop["basis"][variables]][#]&
+            (*just represent without predefined basis*)
                           ]
-              },
-                  Nest[(bo[Lookup[variables, "VarDOperator", VarDOperator][Append[variables,"order" -> 1]][#] . Lookup[variables, "eqRhs", {}]])&, expression, Lookup[variables, "timederivativeorder", 1] ]
-              ],
-              Nest[(Lookup[variables, "VarDOperator", VarDOperator][Append[variables,"order" -> 1]][#] . Lookup[variables, "eqRhs", {}])&, expression, Lookup[variables, "timederivativeorder", 1] ]
-          ];
+        },
+            Nest[(bo[Lookup[variables, "VarDOperator", VarDOperator][Append[variables,"order" -> 1]][#] . Lookup[variables, "eqRhs", {}]])&, expression, Lookup[variables, "timederivativeorder", 1] ]
+        ],
+        Nest[(Lookup[variables, "VarDOperator", VarDOperator][Append[variables,"order" -> 1]][#] . Lookup[variables, "eqRhs", {}])&, expression, Lookup[variables, "timederivativeorder", 1] ]
+    ];
     
 
 expand :=
@@ -91,7 +91,6 @@ FindConservedQuantityOperator[variables_Association][problem_] :=
              "Beautify"->False
              }]
               ][#[[1]]]]]&,glc]//PiecewiseExpand;
-       
          sol = PiecewiseMap[
          If[ #[[1]] === $Failed || #[[2]] === $Failed,
              $Failed,
@@ -100,7 +99,7 @@ FindConservedQuantityOperator[variables_Association][problem_] :=
          ] &,
          PiecewiseExpand[{glc, conservationcondition}]];
          PiecewiseMap[First, PiecewiseReplace[glc, sol]]
-         ]
+     ]
      ];
    
  FindConservedQuantityBasisOperator[variables_Association][problem_] :=
@@ -163,16 +162,16 @@ ConservedQ::usage =
   (*ConservedQ*)
 ConservedQ[exp_, RHSEq_List, DepVars_List, IndVars_List] :=
     FullSimplify@VarD[TimeDer[exp, RHSEq, DepVars,IndVars],  
-    	DepVars,IndVars] == 0;
+        DepVars,IndVars] == 0;
 
 ConservedQ[exp_, RHSEq_List, DepVars_List, IndVars_List , n_] :=
     FullSimplify@VarD[TimeDer[exp, RHSEq, DepVars,IndVars, n],  
-    	DepVars,IndVars] == 0;
+        DepVars,IndVars] == 0;
           
-ConservedQOperator[variables_][expression_]:=
-	Module[{},
-		EqualToZeroOperator[variables]@TimeDerOperator[variables][expression]
-	]
+ConservedQOperator[variables_][expression_] :=
+    Module[ {},
+        EqualToZeroOperator[variables]@TimeDerOperator[variables][expression]
+    ]
 
 End[]
 (*EndPackage[]*)

@@ -127,48 +127,56 @@ Numerizer[monomial_, parameters_List] :=
 (* parametric refining expressions *)
 (*TODO include functions such as KroneckerDelta in the generators in the variables
     Complement[xp//Variables, Lookup[variables, "pars",{}] still leaves the dependent variables in the list, but these are genFuns...*)
-ParametricRefineOperator[variables_][xp_] := KleisliListable[ParametricRefine][variables][xp];
+ParametricRefineOperator[variables_][xp_] :=
+    KleisliListable[ParametricRefine][variables][xp];
 
-ParametricRefine[variables_Association][xp_] := 
-With[ {xpp = RegroupParametersOperator[variables][xp]},
-    	PiecewiseSimplifyOperator[variables][
+ParametricRefine[variables_Association][xp_] :=
+    With[ {xpp = RegroupParametersOperator[variables][xp]},
+        PiecewiseSimplifyOperator[variables][
         PiecewiseMap[xpp /. # &, 
         MonomialDependenceOperator[variables][
         If[ Head[xpp] === Plus,
             List @@ xpp,
-            	{xpp}
+            {xpp}
         ]]]]
-];
+    ];
 
 (* regroup parameters tries to write expressions with parameters as \
 coefficients in a nicer way for example
 1+a x +a^2 x becomes 1+(a +a^2) x *)
-RegroupParametersOperator[variables_][rawxp_] := KleisliListable[RegroupParameters][variables][rawxp];
+RegroupParametersOperator[variables_][rawxp_] :=
+    KleisliListable[RegroupParameters][variables][rawxp];
 
-RegroupParameters[variables_Association][rawxp_] := 
- With[{xp = Expand@rawxp(*expanding a Plus may NOT lead to a Plus*)}, 
-  If[Head[xp] === Plus, 
-   Module[{monomiallist, numerizedmonomiallist, individualmonomials, 
-     grouped}, 
-    monomiallist = 
-     Flatten[
-      If[Head[#] === Plus, List @@ #, #] & /@ 
-       Expand /@ 
-        Factor /@ Select[List @@ xp, # =!= 0 && # =!= 0. &]];
-    numerizedmonomiallist = 
-     Numerizer[#, Lookup[variables, "pars", keyAbsentMessage[RegroupParametersOperator]["\"pars\""]@{}]] & /@ monomiallist;
-    individualmonomials = 
-     removemultiples@
-      DeleteDuplicates[Simplify[numerizedmonomiallist[[All, 1]]]];
-    grouped = 
-     Function[
-       mon, {mon, 
-        Select[numerizedmonomiallist, 
-         NumberQ[Simplify[First[#]/mon]] &]}] /@ individualmonomials;
-    Total[#[[
-         1]] ((Simplify /@ (#[[2, All, 1]]/#[[1]])) . #[[2, All, 
-           2]]) & /@ grouped]],
-   xp]];
+RegroupParameters[variables_Association][rawxp_] :=
+    With[ {xp = Expand@rawxp(*expanding a Plus may NOT lead to a Plus*)},
+        If[ Head[xp] === Plus,
+            Module[ {monomiallist, numerizedmonomiallist, individualmonomials, 
+              grouped},
+                monomiallist = 
+                 Flatten[
+                  If[ Head[#] === Plus,
+                      List @@ #,
+                      #
+                  ] & /@ 
+                   Expand /@ 
+                    Factor /@ Select[List @@ xp, # =!= 0 && # =!= 0. &]];
+                numerizedmonomiallist = 
+                 Numerizer[#, Lookup[variables, "pars", keyAbsentMessage[RegroupParametersOperator]["\"pars\""]@{}]] & /@ monomiallist;
+                individualmonomials = 
+                 removemultiples@
+                  DeleteDuplicates[Simplify[numerizedmonomiallist[[All, 1]]]];
+                grouped = 
+                 Function[
+                   mon, {mon, 
+                    Select[numerizedmonomiallist, 
+                     NumberQ[Simplify[First[#]/mon]] &]}] /@ individualmonomials;
+                Total[#[[
+                     1]] ((Simplify /@ (#[[2, All, 1]]/#[[1]])) . #[[2, All, 
+                       2]]) & /@ grouped]
+            ],
+            xp
+        ]
+    ];
 
 removemultiples[indmon_] :=
     removemultiples[{}, indmon];
@@ -188,12 +196,13 @@ removemultiples[processedmon_, indmon_] :=
     ];
 
 (* BASIS OPERATOR *)
-BasisOperator[variables_][MonList_] := Kleisli[Basis][variables][MonList];
-Options[BasisOperator]={"sortoperator"->Sort};
+BasisOperator[variables_][MonList_] :=
+    Kleisli[Basis][variables][MonList];
+Options[BasisOperator] = {"sortoperator"->Sort};
 
-Basis[variables_Association][MonList_] := 
-Module[ {sortedList = Lookup[variables, "sortoperator", (*keyAbsentMesage[BasisOperator]["\"sortopertor\""]@*)Sort][MonList], 
-		coeffList, localvariables = variables, matrix, reducedmatrix, faux},
+Basis[variables_Association][MonList_] :=
+    Module[ {sortedList = Lookup[variables, "sortoperator", (*keyAbsentMesage[BasisOperator]["\"sortopertor\""]@*)Sort][MonList], 
+            coeffList, localvariables = variables, matrix, reducedmatrix, faux},
         coeffList = Table[Subscript[\[FormalA], i], {i, Length@sortedList}];
         AssociateTo[localvariables, {
         "pars" -> Lookup[localvariables, "pars", {}], 
@@ -353,11 +362,15 @@ UndeterminedCoefficientsFactors[expr_, coeffs_List, pars_List:{} ] :=
         factors = Select[Union@Map[Keys,Flatten@factorsToCoeffsMapping], !(#===0)&]
     ];
 
-SolveUndeterminedCoefficientsOperator[variables_][xp_] := Kleisli[SolveUndeterminedCoefficients][variables][xp];
+SolveUndeterminedCoefficientsOperator[variables_][xp_] :=
+    Kleisli[SolveUndeterminedCoefficients][variables][xp];
 
-SolveUndeterminedCoefficients[variables_Association][xp_] := 
-	Module[{xp0 = If[Head[xp] === List, xp, {xp}], uceinfo},
-		uceinfo = UndeterminedCoefficientsOperator[variables][xp0];
+SolveUndeterminedCoefficients[variables_Association][xp_] :=
+    Module[ {xp0 = If[ Head[xp] === List,
+                       xp,
+                       {xp}
+                   ], uceinfo},
+        uceinfo = UndeterminedCoefficientsOperator[variables][xp0];
         LinearSystemSolveOperator[Append[variables, "sign" -> -1]][
         PiecewiseMap[Append[#, "unknowns" -> variables["coefficients"]] &, uceinfo]]
     ];
@@ -424,24 +437,25 @@ DependentCoefficients[exp_, coeffs_List, pars_List] :=
 
 (* MONOMIAL DEPENDENCE FOR UCE/UCM *)
 
-rulesclean::usage ="takes a list of rules, transforms into a system and solves it back, returning a list of rules.";
+rulesclean::usage = "takes a list of rules, transforms into a system and solves it back, returning a list of rules.";
 rulesclean = (Solve[And @@ (# /. Rule -> Equal)] // Flatten) &;
 
 Clear[MonomialDependenceOperator];
-MonomialDependenceOperator[variables_][monomials_] := Kleisli[MonomialDependence][variables][monomials];
+MonomialDependenceOperator[variables_][monomials_] :=
+    Kleisli[MonomialDependence][variables][monomials];
 Options[MonomialDependenceOperator] = {"depVars->"{},"indVars"->{},"genFuns"->{},"generators"->{}, "refineconstantmonomials"->False, "refine"->True};
 
 MonomialDependence[variables_Association][monomials_List] :=
-Module[ {generators, depVars, indVars, pars, localvariables, 
-    zerosofmonomials, quotients, derivatives, zerosofderivatives, 
-    constantmonomials},
-     (* generic functions are handled here like dependent variables *)
+    Module[ {generators, depVars, indVars, pars, localvariables, 
+        zerosofmonomials, quotients, derivatives, zerosofderivatives, 
+        constantmonomials},
+         (* generic functions are handled here like dependent variables *)
         depVars = Join[Lookup[variables, "depVars", (*keyAbsentMessage[MonomialDependenceOperator]["\"depVars\""]@*) {}], 
-        	Lookup[variables, "genFuns", (*keyAbsentMessage[MonomialDependenceOperator]["\"genFuns\""]@*){}]]; 
+            Lookup[variables, "genFuns", (*keyAbsentMessage[MonomialDependenceOperator]["\"genFuns\""]@*){}]]; 
 
         (* generators are handled like independent variables *)(*TODO KroenckerDelta should be included here...*)
         indVars = Join[Lookup[variables, "indVars", (*keyAbsentMessage[MonomialDependenceOperator]["\"indVars\""]@*){}], 
-        	Lookup[variables, "generators", keyAbsentMessage[MonomialDependenceOperator]["\"generators\""]@{}]];
+            Lookup[variables, "generators", keyAbsentMessage[MonomialDependenceOperator]["\"generators\""]@{}]];
         pars = Lookup[variables, "pars", keyAbsentMessage[MonomialDependenceOperator]["\"pars\""]@{}];
 
         (* compute the generators from the expressions *)
@@ -475,7 +489,6 @@ UndeterminedCoefficientsEquationOperator[variables_Association][expression_] :=
         If[ Lookup[variables,"refine", (*keyAbsentMessage[UndeterminedCoefficientsEquationOperator]["\"refine\""]@*)True],
             Module[ {factors, mdep},
                 factors = UndeterminedCoefficientsFactors[expression//Expand//RegroupParametersOperator[variables], variables["coefficients"], Lookup[variables,"pars",{}]];
-                 
                 mdep = MonomialDependenceOperator[variables][factors];
                 PiecewiseMap[
                 If[ #=!=$Failed,
@@ -547,80 +560,82 @@ EE :=
     Exists[#1,#2]&;
 
 (*TODO this implementation does not use facts explicitly, check ImprovedHomogeneousSolveAlwaysOperator.*)
-ImprovedHomogeneousSolveAlwaysOperator[variables_][eqs_] := Kleisli[ImprovedHomogeneousSolveAlways][variables][eqs];     
+ImprovedHomogeneousSolveAlwaysOperator[variables_][eqs_] :=
+    Kleisli[ImprovedHomogeneousSolveAlways][variables][eqs];     
 Options[ImprovedHomogeneousSolveAlwaysOperator] = {"domain"};
 
 ImprovedHomogeneousSolveAlways[variables_Association][eqs0_] :=
-Module[ {spa, spap, eqs, sol, dom, vrs, facts, localvariables},
-     (* variables *)
-              vrs = Lookup[variables, "generators", {}];
+    Module[ {spa, spap, eqs, sol, dom, vrs, facts, localvariables},
+         (* variables *)
+        vrs = Lookup[variables, "generators", {}];
 
               (*If exponents are present and are not numeric, we work with reals otherwise complexes*)
               (*Domain can be set to reals or complexes*)
-              dom = Lookup[variables, "domain", If[ FreeQ[eqs, Power[a___, z__?(! NumberQ[#] &)]],
-                                                    dom = Complexes,
-                                                    dom = Reals
-                                                ]];
+        dom = Lookup[variables, "domain", If[ FreeQ[eqs, Power[a___, z__?(! NumberQ[#] &)]],
+                                              dom = Complexes,
+                                              dom = Reals
+                                          ]];
 
               (* "facts" are assumptions that should be added to the problem *)
-              facts = Lookup[variables, "facts", True];
+        facts = Lookup[variables, "facts", True];
 
               (*transforms lists of equations in conjunctions*)
-              eqs = (If[ Head[eqs0] === List,
-                         And @@ eqs0,
-                         eqs0
-                     ] /. Equal[x___, 0] :> (With[ {ft = Factor[x]},
-                                                 ft == 0
-                                             ])) && facts;
+        eqs = (If[ Head[eqs0] === List,
+                   And @@ eqs0,
+                   eqs0
+               ] /. Equal[x___, 0] :> (With[ {ft = Factor[x]},
+                                           ft == 0
+                                       ])) && facts;
               (*the code below replaces the original expression according to the rules:
               A/B=0 if A=0 and B is non-zero 
               products=0 are equivalent to factors=0 
               powers=0 are equivalent to argument=0 if exponent is positive or 1/argument=0 if negative*)
-              spa = FixedPoint[# /. Equal[Power[xx_, yy_], 0] :> 
-              ((xx == 0 && Reduce[FA[vrs, yy > 0], dom]) || (Factor[1/xx] == 0 && Reduce[FA[vrs, yy < 0], dom])) /. 
-              (Equal[xx___, 0] :> (Numerator[xx] == 0 && 
-              Reduce[EE[vrs, With[ {den = Denominator[xx]},
-                                 If[ Head[den] === Power,
-                                     First[den] != 0,
-                                     den =!= 0
-                                 ]
-                             ]], dom])) /. 
-              (Equal[Times[xx_, yy___], 0] :> Or @@ (# == 0 & /@ ({xx, yy} // Flatten))) &, eqs];
-              localvariables = Append[variables, "coefficients" -> {}];
-              spap = spa /. Equal[Plus[xx___], 0] :>
-              If[ FreeQ[xx, Alternatives @@ vrs],
-                  xx==0,
-                  With[ {pre = ParametricRefineOperator[localvariables][xx]},
-                      Module[ {aux},
-                          aux =
-                          PiecewiseMap[(And @@ (((# == 0) &) /@ #)) &,
-                          PiecewiseMap[UndeterminedCoefficientsOperator[localvariables][#]["vector"] &, pre]];
-                          If[ Head[#] === Piecewise,
-                              Or @@ And @@@ (#[[1]]),
-                              #
-                          ] &[aux]
-                      ]
-                  ]
-              ];
+        spa = FixedPoint[# /. Equal[Power[xx_, yy_], 0] :> 
+        ((xx == 0 && Reduce[FA[vrs, yy > 0], dom]) || (Factor[1/xx] == 0 && Reduce[FA[vrs, yy < 0], dom])) /. 
+        (Equal[xx___, 0] :> (Numerator[xx] == 0 && 
+        Reduce[EE[vrs, With[ {den = Denominator[xx]},
+                           If[ Head[den] === Power,
+                               First[den] != 0,
+                               den =!= 0
+                           ]
+                       ]], dom])) /. 
+        (Equal[Times[xx_, yy___], 0] :> Or @@ (# == 0 & /@ ({xx, yy} // Flatten))) &, eqs];
+        localvariables = Append[variables, "coefficients" -> {}];
+        spap = spa /. Equal[Plus[xx___], 0] :>
+        If[ FreeQ[xx, Alternatives @@ vrs],
+            xx==0,
+            With[ {pre = ParametricRefineOperator[localvariables][xx]},
+                Module[ {aux},
+                    aux =
+                    PiecewiseMap[(And @@ (((# == 0) &) /@ #)) &,
+                    PiecewiseMap[UndeterminedCoefficientsOperator[localvariables][#]["vector"] &, pre]];
+                    If[ Head[#] === Piecewise,
+                        Or @@ And @@@ (#[[1]]),
+                        #
+                    ] &[aux]
+                ]
+            ]
+        ];
 
               (*the output is a list of replacement rules (like solve always) AND conditions*)
-              sol = ({Flatten[ToRules /@ Select[#, Head[#] === Equal &]], And @@ #}) & /@ 
-              (If[ Head[#] === And,
-                   List @@ #,
-                   {#}
-               ] & /@ If[ Head[#] === Or,
-                          List @@ #,
-                          {#}
-                      ] &
-              [BooleanConvert[Reduce[FA[vrs, spap], dom]]])
-          ];
+        sol = ({Flatten[ToRules /@ Select[#, Head[#] === Equal &]], And @@ #}) & /@ 
+        (If[ Head[#] === And,
+             List @@ #,
+             {#}
+         ] & /@ If[ Head[#] === Or,
+                    List @@ #,
+                    {#}
+                ] &
+        [BooleanConvert[Reduce[FA[vrs, spap], dom]]])
+    ];
     
 (*TODO this implementation does not use facts explicitly, check ImprovedHomogeneousSolveAlwaysOperator.*)
 
-EqualToZeroOperator[variables_][XP_] := Kleisli[EqualToZero][variables][XP];
+EqualToZeroOperator[variables_][XP_] :=
+    Kleisli[EqualToZero][variables][XP];
 
-EqualToZero[variables_][XP_] := 
-If[Head[XP]===List,
+EqualToZero[variables_][XP_] :=
+    If[ Head[XP]===List,
         If[ And @@ ((# === 0)||(#===0.) & /@ XP),
             True,
             If[ Cases[XP, _?(MemberQ[Lookup[variables, "pars", keyAbsentMessage[EqualToZeroOperator]["\"pars\""][{}]], #] &), {0, Infinity}] == {},
@@ -634,7 +649,7 @@ If[Head[XP]===List,
             ]
         ],
         EqualToZero[variables][{XP}]
-];
+    ];
    
 
 (**** SolveAlwaysOperator *****)
@@ -644,7 +659,8 @@ If[Head[XP]===List,
 convention - empty list of rules
 means no solution, list of an empty list means anything is a solution and works like the solvealways
 *)
-SolveAlwaysOperator[variables_][xp_] := Kleisli[SolveAlwaysO][variables][xp];
+SolveAlwaysOperator[variables_][xp_] :=
+    Kleisli[SolveAlwaysO][variables][xp];
     
 SolveAlwaysO[variables_Association][xp_] :=
     Which[
@@ -659,7 +675,8 @@ SolveAlwaysO[variables_Association][xp_] :=
 (*************************************************************)
 
 (*logicalcleaner = Function[lst, Simplify/@MapThread[And[!#1,#2]&, {FoldList[Or,False, lst][[;;-2]], lst}]]*)
-logicalcleaner[lst_List] := Simplify/@MapThread[And[!#1,#2]&, {Most@FoldList[Or,False, lst], lst}];
+logicalcleaner[lst_List] :=
+    Simplify/@MapThread[And[!#1,#2]&, {Most@FoldList[Or,False, lst], lst}];
 
 (* ######mini-Function: CompareRows ######## *)
 (*************************************************************)
@@ -837,8 +854,7 @@ RecursiveRowBranchingGaussianElimination[ matrix_, vector_, generators_, paramet
                         specialcasescleaned =
                          With[ {lc = logicalcleaner[specialcases[[All,3]]]},
                              Select[Append[(specialcases//Transpose)[[;;-2]], lc]//Transpose, #[[-1]]=!=False &]
-                             
-                            ],
+                         ],
                         specialcasescleaned = specialcases
                     ];
                     Join[genericcase, Join @@ (
@@ -997,56 +1013,58 @@ SolvableVariables[matrix_, variables_] :=
     (First@Select[Transpose[{#, variables}], Function[z, z[[1]]=!=0&&z[[1]]=!=0.]]&/@matrix)[[All,2]];
 
 GaussianEliminationOperator[field_Association][system_] :=
-     Kleisli[GaussianElimination][field][system];
+    Kleisli[GaussianElimination][field][system];
      
-GaussianElimination[field_Association][system_]:=
-Module[ {expandedsys},
-              expandedsys = PiecewiseExpandAssociation[system];
-              Which[
-              Head[expandedsys] === Piecewise,
-              PiecewiseOperatorMap[GaussianEliminationOperator, field, expandedsys] // PiecewiseExpand,
-              True, 
-              Module[ {matrix, vector, generators, parameters, cond, sol},
-                        matrix = Lookup[system, "matrix", keyAbsentMessage[GaussianEliminationOperator]["\"matrix\""]@{}];
-                        vector = Lookup[system, "vector", keyAbsentMessage[GaussianEliminationOperator]["\"vector\""]@PiecewiseMap[ZdM, matrix]];
-                        generators = Lookup[field, "generators", keyAbsentMessage[GaussianEliminationOperator]["\"generators\""]@{}];
-                        parameters = Lookup[field, "pars", keyAbsentMessage[GaussianEliminationOperator]["\"pars\""]@{}];
-                        cond = Lookup[field, "facts", keyAbsentMessage[GaussianEliminationOperator]["\"facts\""]@True];
-                        sol = BranchingGaussianElimination[matrix, vector, generators, parameters, cond];
-                        If[ sol =!= $Failed,
-                            Piecewise[{Association[
-                            If[ #[[2]] === {},
-                                {"matrix" -> {}, "vector" -> {}},
-                                {"matrix" -> #[[2, 1]], "vector" -> #[[2, 2]]}
-                            ]
-                            ], #[[1]]} & /@ sol, $Failed
-                            ],
-                            $Failed
-                        ]
-                    ]
-              ]
-          ]
-MatrixInverseOperator[field_][matrix_] := Kleisli[MatrixInverse][field][matrix];
+GaussianElimination[field_Association][system_] :=
+    Module[ {expandedsys},
+        expandedsys = PiecewiseExpandAssociation[system];
+        Which[
+        Head[expandedsys] === Piecewise,
+        PiecewiseOperatorMap[GaussianEliminationOperator, field, expandedsys] // PiecewiseExpand,
+        True, 
+        Module[ {matrix, vector, generators, parameters, cond, sol},
+            matrix = Lookup[system, "matrix", keyAbsentMessage[GaussianEliminationOperator]["\"matrix\""]@{}];
+            vector = Lookup[system, "vector", keyAbsentMessage[GaussianEliminationOperator]["\"vector\""]@PiecewiseMap[ZdM, matrix]];
+            generators = Lookup[field, "generators", keyAbsentMessage[GaussianEliminationOperator]["\"generators\""]@{}];
+            parameters = Lookup[field, "pars", keyAbsentMessage[GaussianEliminationOperator]["\"pars\""]@{}];
+            cond = Lookup[field, "facts", keyAbsentMessage[GaussianEliminationOperator]["\"facts\""]@True];
+            sol = BranchingGaussianElimination[matrix, vector, generators, parameters, cond];
+            If[ sol =!= $Failed,
+                Piecewise[{Association[
+                If[ #[[2]] === {},
+                    {"matrix" -> {}, "vector" -> {}},
+                    {"matrix" -> #[[2, 1]], "vector" -> #[[2, 2]]}
+                ]
+                ], #[[1]]} & /@ sol, $Failed
+                ],
+                $Failed
+            ]
+        ]
+        ]
+    ]
+MatrixInverseOperator[field_][matrix_] :=
+    Kleisli[MatrixInverse][field][matrix];
 
 MatrixInverse[field_Association][matrix_] :=
     If[
-     (* if the matrix is not square inversefails *)
-     Quiet[matrix==={}||Length[matrix] =!= Length[Transpose[matrix]]], $Failed,
-     With[ {l = Length[matrix]},
-         PiecewiseMap[
-         If[ Length[#["matrix"]]===l&&#["matrix"]=!=$Failed,
-             #["vector"],
-             $Failed
-         ] &, 
-         (GaussianEliminationOperator[field][Association[{"matrix" -> matrix,"vector"->(IdM@matrix)}]])
-         ]
-     ]
+     (* if the matrix is not square inversefails *) Quiet[matrix==={}||Length[matrix] =!= Length[Transpose[matrix]]],
+        $Failed,
+        With[ {l = Length[matrix]},
+            PiecewiseMap[
+            If[ Length[#["matrix"]]===l&&#["matrix"]=!=$Failed,
+                #["vector"],
+                $Failed
+            ] &, 
+            (GaussianEliminationOperator[field][Association[{"matrix" -> matrix,"vector"->(IdM@matrix)}]])
+            ]
+        ]
     ];
      
 
 (* linear system solve solves a linear system by branching gaussian elimination with respect
 to a list of variables *)
-LinearSystemSolveOperator[field_][system_] := Kleisli[LinearSystemSolve][field][system];
+LinearSystemSolveOperator[field_][system_] :=
+    Kleisli[LinearSystemSolve][field][system];
 
 LinearSystemSolve[field_Association][system_] :=
     With[ {sol = GaussianEliminationOperator[field][system]},
@@ -1065,10 +1083,10 @@ LinearSystemSolve[field_Association][system_] :=
          ]
     ];
 
-GenericLinearCombinationOperator[variables_][MonList_] := Kleisli[GenericLinearCombination][variables][PiecewiseExpand[MonList]]
+GenericLinearCombinationOperator[variables_][MonList_] :=
+    Kleisli[GenericLinearCombination][variables][PiecewiseExpand[MonList]]
 
-GenericLinearCombination[variables_Association][MonList_] := 
-    
+GenericLinearCombination[variables_Association][MonList_] :=
     Module[ {A},
         A = Table[
         If[ Lookup[variables,"unique", False],
@@ -1078,21 +1096,21 @@ GenericLinearCombination[variables_Association][MonList_] :=
         {MonList . A//RegroupParametersOperator[variables], A}
     ]
 
-MatrixKernelOperator[variables_][xp_] := Kleisli[MatrixKernel][variables][xp];
+MatrixKernelOperator[variables_][xp_] :=
+    Kleisli[MatrixKernel][variables][xp];
 
 MatrixKernel[variables_Association][xp_] :=
-    If[
-    xp === {}||xp === {{}},
-    Print["Warning: kernel of an empty matrix"];
-    $Failed,
-    Module[ {sol, vars, zero, zerov},
-        vars = Unique["z"] & /@ First[xp];
-        zero = 0 & /@ xp;
-        zerov = 0 & /@ vars;
-        sol = LinearSystemSolveOperator[variables][
-        Association["matrix" -> xp, "vector" -> zero, "unknowns" -> vars]];
-        PiecewiseMap[Select[Transpose[#], (# =!= zerov) &] &, PiecewiseMap[Grad[#, vars] &, PiecewiseReplace[vars, sol]]]
-    ]
+    If[ xp === {}||xp === {{}},
+        Print["Warning: kernel of an empty matrix"];
+        $Failed,
+        Module[ {sol, vars, zero, zerov},
+            vars = Unique["z"] & /@ First[xp];
+            zero = 0 & /@ xp;
+            zerov = 0 & /@ vars;
+            sol = LinearSystemSolveOperator[variables][
+            Association["matrix" -> xp, "vector" -> zero, "unknowns" -> vars]];
+            PiecewiseMap[Select[Transpose[#], (# =!= zerov) &] &, PiecewiseMap[Grad[#, vars] &, PiecewiseReplace[vars, sol]]]
+        ]
     ];
     
 End[] (* End Private Context *)

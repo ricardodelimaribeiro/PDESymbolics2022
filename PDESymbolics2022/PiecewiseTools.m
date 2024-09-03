@@ -125,10 +125,10 @@ PiecewiseOperatorMap[Operator_, variables_, XPO_] :=
                  Module[ {gg},
                      gg = Transpose[{G[[All, 1]], qq}];
                      Piecewise[{
-                     	If[ #[[1]] =!= $Failed,
-                     		Operator[Append[variables, "facts" -> Lookup[variables, "facts", True] && #[[2]]]][#[[1]]], 
-                     		$Failed
-                     	], #[[2]]} & /@ gg, $Failed
+                         If[ #[[1]] =!= $Failed,
+                             Operator[Append[variables, "facts" -> Lookup[variables, "facts", True] && #[[2]]]][#[[1]]],
+                             $Failed
+                         ], #[[2]]} & /@ gg, $Failed
                      ]
                  ]
              ] // PiecewiseExpand
