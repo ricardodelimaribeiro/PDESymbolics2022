@@ -110,7 +110,7 @@ NotPiecewise[xp_] :=
 LeadingTerm[variables_Association][xp_?NotPiecewise] :=
     Module[ {order, generators, MonList, rules,facts},
         facts = Lookup[variables,"facts",True];
-        order = Lookup[variables, "ordering", DegreeLexicographic];
+        order = Lookup[variables, "ordering", (*Degree*)Lexicographic];
         generators = 
          Lookup[variables, "generators", 
           InferGeneratorsOperator[variables][xp]];
@@ -129,7 +129,7 @@ LeadingCoefficient[variables_Association][xp_?NotPiecewise] :=
         If[ EchoLabel["LeadingCoeff: simplified facts"]@facts===False,
             $Failed,
             Assuming[facts,
-            order = Lookup[variables, "ordering", DegreeLexicographic];
+            order = Lookup[variables, "ordering", (*Degree*)Lexicographic];
             generators = 
              Lookup[variables, "generators", 
               InferGeneratorsOperator[variables][xp]];
@@ -382,7 +382,7 @@ GrobOpReduced[variables_][grobner_List] :=
         Which[ facts===False,
             $Failed,
             (*Lookup[variables,"pars",{}]==={}||*)FreeQQ[grobner,Lookup[variables,"pars",{}]],
-            GroebnerBasis[Echo@grobner, Echo@Lookup[variables, "generators",{}], MonomialOrder->Echo@Lookup[variables, "ordering", DegreeLexicographic]],
+            GroebnerBasis[Echo@grobner, Echo@Lookup[variables, "generators",{}], MonomialOrder->Echo@Lookup[variables, "ordering", (*Degree*)Lexicographic]],
             True,
             AutoReduceOperator[variables][GrobOp[variables]@grobner] // PiecewiseExpand //PiecewiseApplyConditionOperator[variables]
         ]
