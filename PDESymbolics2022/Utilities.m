@@ -11,7 +11,7 @@ GetVarsOperator::usage =
 "GetVarsOperator[variables][xp] operator version of getVars"
 
 FreeQQ::usage=
-"FreeQQ"
+"FreeQQ[expr, form] returns FreeQ[expr, form] or And@@Map[FreeQ[expr, #]&, forms] if forms is a list."
 
 zeroq::usage=
 "zeroq[xp] returns xp == 0 or a conjuntion of such equations if xp is a list."
