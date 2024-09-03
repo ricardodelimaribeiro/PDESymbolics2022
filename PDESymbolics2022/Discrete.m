@@ -89,9 +89,9 @@ RangeSchemeTranslationsOperator[variables_Association][masterstencil_,stencil_] 
       translist = 
        MapThread[
         MapThread[{#1[[1]] - #2[[2]], #1[[2]] - #2[[1]]} &, {#1, #2}] &, {rangelist, stencillist}],
-      translist = EchoLabel["reversed????"]@(rangelist - Map[Reverse,stencillist,{2}])
+      translist = (rangelist - Map[Reverse,stencillist,{2}])
       ];
-     translist = EchoLabel["RangeSchemeTranslationsOperator: translist"][Map[Table[k, {k, #[[1]], #[[2]], 1}] &, translist, {2}]];
+     translist = EchoLabel["RangeSchemeTranslationsOperator: new translist"][Map[Table[k, {k, #[[1]], #[[2]], 1}] &, translist, {2}]];
      translist = MapThread[Intersection, translist] // Tuples
        ]
       ]
@@ -356,7 +356,6 @@ ReduceModScheme[variables_Association][schemeexpression_Association] :=
    (*the result is an association like schexp*)
    ];
   reducelist = EchoLabel["ReduceModScheme: result of ReductionOperator"]@ReductionOperator[var][schexp];
-  Print["AAA"];
   If[
    Lookup[var, "reduce Beautify", True],
    reducelist = EchoLabel["ReduceModScheme: result of IntegralEquivalenceClassOperator"]@PiecewiseAssociationOperator[IntegralEquivalenceClassOperator][var, "exp", reducelist]
@@ -373,10 +372,11 @@ Reduction[variables_Association][schemeexpression_Association] :=
 	Module[
 	{var = variables, schexp = (*EchoLabel["Reduction: scheme "]@*)schemeexpression, masterstencil,
 		stencil, transl, polylist, polyvars, scheme, normalred, eliminationlist, reducelist, expvars},
-		If[schexp["exp"]===0,
-   	Print["End now!\nschexp = ",schexp];
-   	Return[List[schexp,schexp],Module],
-   	Print["Don't end now!\nschexp = ",schexp]
+		If[(*schexp["exp"]===0*)
+			EqualToZeroOperator[var][ schexp["exp"]],
+   	(*Print["End now!\nschexp = ",schexp];*)
+   	Return[List[schexp,schexp],Module](*,
+   	Print["Don't end now!\nschexp = ",schexp]*)
 		];
 	masterstencil = (*EchoLabel["Reduction: masterstencil "]@*)StencilOperator[var][schexp["exp"]];
   stencil = (*EchoLabel["Reduction: stencil "]@*)StencilOperator[var][schexp["scheme"]];
@@ -389,8 +389,10 @@ Flatten[schemma /. %] // Expand
   transl = 
    EchoLabel["Reduction: RangeSchemeTranslationsOperator"][(*QuietEcho@*)RangeSchemeTranslationsOperator[var][masterstencil, #] & /@ stencil];
   If[(transl//Flatten)==={}, 
-  	(*transl = Echo@Table[Table[0,Length[schexp["indVars"]]],Length[schexp["depVars"]]];*)
-  	transl = Table[{Table[0,Length@var["indvars"]],Append[-1]@Table[0,Length@var["indvars"]-1]},Length[var["depvars"]]]
+  	transl = Echo@Table[Table[0,Length@var["indVars"]](*,Append[-1]@Table[0,Length@var["indVars"]-1]*), Length@schexp["scheme"]]
+  
+
+  	(*transl = Echo@{Table[Table[0,Length@var["indVars"]],Append[-1]@Table[0,Length@var["indVars"]-1],Length@Echo@var["depVars"]]}*)
   	
   ];
 
@@ -399,10 +401,10 @@ Flatten[schemma /. %] // Expand
      trans + Table[var["indVars"], Length[trans]]
      ];
     
-  polylist = EchoLabel["Reduction: translations of the scheme"]@(MapThread[g, {schexp["scheme"], transl}] // Flatten);
+  polylist = EchoLabel["Reduction: translations of the scheme"]@(DeleteDuplicates[MapThread[g, {schexp["scheme"], transl}] // Flatten]);
 
-  (*Print["Pause"];
-  Pause[10];*)
+	Print["Pause"];
+  Pause[10];  
   If[polylist === {}, polylist = schexp["scheme"]];
   polyvars = Complement[Union[polylist // Variables // Flatten, schexp["exp"] // Variables // Flatten] // Flatten, 
     Lookup[var, "pars", {}]];
@@ -475,20 +477,21 @@ Flatten[schemma /. %] // Expand
      
    normalred = EchoLabel["Reduction: reduced expression and gb of translations of scheme"]@Association["exp"->normalred,"scheme"->scheme]//PiecewiseExpandAssociation;
    Which[
-   	normalred["exp"]===0,
-   	Print["End now!\nnormalred = ",normalred];
+   	EqualToZeroOperator[var][ normalred["exp"]],
+   	(*Print["2)End now!\nnormalred = ",normalred];*)
    	Return[List[schexp,normalred],Module],
    	
+   	(*
    	normalred["exp"]=!=schexp["exp"],
-   	Print["Would use variable elimination operator, but we stop here!"];
+   	Print["Would use variable elimination operator, but we stop here!\n",normalred["exp"]];
    	Return[List[schexp,normalred],Module],
-   	
+   	*)
    	var["ordering"]=!=DegreeReverseLexicographic,
-   	Print["Reduce again...!"];
+   	(*Print["Reduce again...!\nnormalred = ", normalred];*)
    	Return[Reduction[Append["ordering"->DegreeReverseLexicographic]@var][schexp],Module],
    	
    	True,
-   	Print["Will use variable elimination operator."]
+   	Print["Will use variable elimination operator.\nnormalred = ",normalred]
    ];
    (*TODO there is a chance that the algorithm could have stoped here: check if normalred["exp"]==0?????*)
    
@@ -505,8 +508,9 @@ Flatten[schemma /. %] // Expand
   	Lookup[var, "EliminationListOperator", EliminationListOperator][
   		Echo@Append[var, "scheme" -> polylist]][schexp["exp"]]]; (*list of lists*)
   reducelist = EchoLabel["Reduction: VariableEliminationOperator"][
-  	VariableEliminationOperator[Append[var,"elimOrder"->Lookup[var,"elimOrder","explicit"]]][#, (*TODO Should we change the scheme?? After trying with the translations, the code crashed ... Append["scheme"->polylist]@*)schexp] & /@ eliminationlist];
-  EchoLabel["Reduction: output"][EchoLabel["Reduction: append..."][Append[reducelist, normalred]] // PiecewiseExpand] // PiecewiseListClean
+  	VariableEliminationOperator[Append[var,"elimOrder"->Lookup[var,"elimOrder","explicit"]]][#, 
+  		(*TODO Should we change the scheme?? After trying with the translations, the code crashed ... Append["scheme"->polylist]@*)schexp] & /@ eliminationlist];
+  Append[reducelist, normalred] // PiecewiseExpand // PiecewiseListClean
    
    (* to here there are some picewise objects *)
    
@@ -535,13 +539,14 @@ VariableEliminationOperator[variables_Association][
    VariableEliminationOperator[variables][eliminationlist, #] & /@ 
       schemeexpression // PiecewiseExpand // PiecewiseListClean,
    True,
-   Module[{var = variables, schexp = schemeexpression, elimlist = eliminationlist, elem, 
+   Module[{var = variables, schexp = schemeexpression, scheme, elimlist = eliminationlist, elem, 
      Gbasis, polyvars, n1, n2, ordermatrix, expvars},
+     scheme = schexp["scheme"];
     If[
      Length[elimlist] === 1 || elimlist === {},
      schexp,
      elem = EchoLabel["VariableEliminationOperator: element"][elimlist[[1]]];
-     polyvars = EchoLabel["VariableEliminationOperator: polyvars"][schexp["scheme"]//Variables//Flatten];
+     polyvars = EchoLabel["VariableEliminationOperator: polyvars"][scheme//Variables//Flatten];
      expvars = EchoLabel["VariableEliminationOperator: expvars"][schexp["exp"]//Variables//Flatten];
      If[
       polyvars =!= {},
@@ -559,13 +564,13 @@ VariableEliminationOperator[variables_Association][
       	
       (* from here *)	
       	(* Friedmann code *)
-      (*Gbasis = GroebnerBasis[schexp["scheme"], polyvars, CoefficientDomain -> RationalFunctions, MonomialOrder -> ordermatrix];*)
+      (*Gbasis = GroebnerBasis[scheme, polyvars, CoefficientDomain -> RationalFunctions, MonomialOrder -> ordermatrix];*)
       (*schexp["exp"] = 
        PolynomialReduce[schexp["exp"], Gbasis, polyvars, CoefficientDomain -> RationalFunctions, MonomialOrder -> ordermatrix] // Last;*)
        
        
-        Gbasis=EchoLabel["VariableEliminationOperator: elimination groebner base"]@QuietEcho@ComprehensiveGroebnerSystemOperator[Append[{"ordering"-> ordermatrix,"generators"->polyvars}]@variables][schexp["scheme"]];
-        (*Gbasis=GroebnerBasis[schexp["scheme"], polyvars, CoefficientDomain -> RationalFunctions, MonomialOrder -> ordermatrix]*);
+        Gbasis=EchoLabel["VariableEliminationOperator: elimination groebner base"]@QuietEcho@ComprehensiveGroebnerSystemOperator[Append[{"ordering"-> ordermatrix,"generators"->polyvars}]@variables][scheme];
+        (*Gbasis=GroebnerBasis[scheme, polyvars, CoefficientDomain -> RationalFunctions, MonomialOrder -> ordermatrix]*);
         schexp["exp"] = EchoLabel["VariableEliminationOperator: PiecewisePolynomialRemainderOperator"]@PiecewisePolynomialRemainderOperator[Append[variables, {"ordering"-> ordermatrix, "generators"->polyvars}]][schexp["exp"], Gbasis];
   
   
@@ -594,7 +599,7 @@ TimeInstancesSmallestOperator[variables_Association][expression_] :=
     expression],
    True,
    Module[
-    {var = variables, exp = EchoLabel["TimeInstancesSmallestOperator: input"]@expression, 
+    {var = variables, exp = (*EchoLabel["TimeInstancesSmallestOperator: input"]@*)expression, 
      t = variables["indVars"] // Last, varlist},
     varlist = 
      Complement[# // Variables, Lookup[var, "pars", {}]] & /@ exp;
