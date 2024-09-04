@@ -83,7 +83,7 @@ SolveVarProb[Lag_, DVars_List, IndpVars_List] :=
 
 
 
-PartialDVarDOperator[variables_Association][expression_] :=
+(*PartialDVarDOperator[variables_Association][expression_] :=
     Which[
     	expression === $Failed,
     		$Failed,
@@ -107,7 +107,38 @@ PartialDVarDOperator[variables_Association][expression_] :=
         		localexpression = PartialDVarD[expression, #, indVars, timeVars] & /@ depVars;
         		PartialDVarDOperator[Append[variables, "order" -> (variables["order"] - 1)]][localexpression]
     		]
-	]
+	]*)
+
+PartialDVarDOperator[variables_Association][expression_] := 
+  Module[{depVars, indVars, timeVars, order},
+    {depVars, indVars, timeVars} = Lookup[variables, {"depVars", "indVars", "timeVars"}, {}];
+    order = Lookup[variables, "order", 1];
+    
+    Which[
+      (*expression === $Failed,
+        $Failed,*)
+      
+      MatchQ[expression, _Piecewise],
+        PiecewiseMap[PartialDVarDOperator[variables], expression],
+      
+      MatchQ[expression, _List],
+        expression // Map[PartialDVarDOperator[variables]] // PiecewiseExpand // PiecewiseListClean,
+      
+      Sort[indVars] === Sort[timeVars],
+        expression,
+      
+      order >= 1,
+        With[{localExpression = Map[PartialDVarD[expression, #, indVars, timeVars] &, depVars]},
+          If[order > 1,
+            PartialDVarDOperator[Append[variables, "order" -> (order - 1)]][localExpression],
+            localExpression
+          ]
+        ],
+      
+      True,
+        $Failed  (* Default case to handle unexpected situations *)
+    ]
+  ]
 
 KroneckerDeltaOperator[n_List] :=
     KroneckerDeltaOperator@@Select[n, #=!=0&]
@@ -333,7 +364,7 @@ IntegralEquivalenceClassOperator[variables_Association][expression_] :=
                  xpatzero = xpatzero /. replacementrule;
                  (*this is a fix for when the expression involves powers of u and/or its derivatives.*)
                  (*xpatzero = xpatzero/.Power[0,___]->0;*)
-                 PiecewiseMap[If[xpatzero=!=$Failed, #+ xpatzero, $Failed]&, RepresentModNullLagrangiansOperator[variables][expression - xpatzero]] //PiecewiseExpand
+                 PiecewiseMap[If[xpatzero=!=$Failed, #+ xpatzero, $Failed]&, RepresentModNullLagrangiansOperator[variables][(expression - xpatzero)]] //PiecewiseExpand
              ]
     ]
 
