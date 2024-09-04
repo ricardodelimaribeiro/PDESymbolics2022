@@ -39,11 +39,24 @@ template = Association[
 ]
 Get[test]
 
-label = "has zero and a constant"
+label = "has zero and a constant, without generators"
 template = Association[
 	"variables" -> Association[
 		"depVars" -> {u}, 
 		"indVars" -> {x}
+		],
+	"operator" -> ComprehensiveGroebnerSystemOperator,
+	"expression" -> {9,0},
+   "result" -> {9}
+]
+Get[test]
+
+label = "has zero and a constant, with generators"
+template = Association[
+	"variables" -> Association[
+		"depVars" -> {u}, 
+		"indVars" -> {x},
+		"generators" -> {u[x],x}
 		],
 	"operator" -> ComprehensiveGroebnerSystemOperator,
 	"expression" -> {9,0},
@@ -79,11 +92,13 @@ label = "from GroebnerBasis documentation Degree Lex"
 template = Association[
 	"variables" -> Association[
 		"depVars" -> {u}, 
-		"indVars" -> {x}
+		"indVars" -> {x},
+		"ordering" -> (*MonomialOrder*) DegreeLexicographic,
+		"generators" -> {u[x], u'[x]}
 		],
 	"operator" -> ComprehensiveGroebnerSystemOperator,
 	"expression" -> {u'[x]^2 - 2 u[x]^2, u'[x] u[x] - 3},
-   (*MonomialOrder -> DegreeLexicographic*)
+   
    "result" -> {-3 + u[x]*Derivative[1][u][x], 2*u[x]^2 - Derivative[1][u][x]^2, -6*u[x] + Derivative[1][u][x]^3}
 ]
 Get[test]
