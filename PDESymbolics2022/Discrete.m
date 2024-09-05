@@ -46,6 +46,9 @@ VariableEliminationOperator::usage =
 ImplicitVariationalTimeDifferenceOperator::usage =
 "ImplicitVariationalTimeDifferenceOperator for debugging";
 
+PiecewiseAssociationOperator::usage = 
+"PiecewiseAssociationOperator[Operator][variables, key, association] returns Join[<|key -> Op[variables][association[key]]|>, KeyDrop[key][association]]";
+
 
 
 Begin["`Private`"] (* Begin Private Context *) 
@@ -319,7 +322,7 @@ ReduceModScheme[variables_Association][schemeexpression_Association] :=
         var["VarDOperator"] = Lookup[var,"VarDOperator",
             If[ KeyExistsQ[var,"timeVars"],
                 PartialDVarDOperator,
-                "VarDOperator"->DVarDOperator
+                DVarDOperator
             ]
             ];
         If[ Lookup[var, "reduce Beautify", True],
@@ -327,7 +330,7 @@ ReduceModScheme[variables_Association][schemeexpression_Association] :=
                 var = Append[var, "sortoperator" -> SortBy[Simplify`SimplifyCount]]
             ];
             (*are we repeating this procedure??? it does not take a lot of time.*)
-            schexp = EchoLabel["ReduceModScheme: result of IntegralEquivalenceClassOperator"]@PiecewiseAssociationOperator[IntegralEquivalenceClassOperator][var,"exp", EchoLabel["ReduceModScheme: schExp"]@schexp]
+        		schexp = EchoLabel["ReduceModScheme: result of IntegralEquivalenceClassOperator"]@PiecewiseAssociationOperator[IntegralEquivalenceClassOperator][var, "exp", schexp]
         (*the result is an association like schexp*)
         ];
         reducelist = EchoLabel["ReduceModScheme: result of ReductionOperator"]@ReductionOperator[var][schexp];
@@ -592,7 +595,7 @@ VariableEliminationOperator[variables_Association][eliminationList_List, schemeE
           expVars = Variables[exp] // Flatten;
           
           If[polyVars =!= {} && MemberQ[polyVars, elem],
-            polyVars = If[var["elimOrder"] === "permutations",
+            polyVars = EchoLabel["generators for new GB"]@If[var["elimOrder"] === "permutations",
               Sort[Union[expVars, polyVars], TimeOrderedQOperator[variables]],
               Join[
                 First @ EliminationListOperator[variables][Plus @@ expVars],
@@ -600,10 +603,10 @@ VariableEliminationOperator[variables_Association][eliminationList_List, schemeE
               ]
             ];
             
-            {n1, n2} = {FirstPosition[polyVars, elem][[1]], Length[polyVars]};
+            {n1, n2} = Echo@{FirstPosition[polyVars, elem][[1]], Length[polyVars]};
             orderMatrix = elimMatrix[n1, n2];
             
-            gBasis = QuietEcho @ ComprehensiveGroebnerSystemOperator[
+            gBasis = EchoLabel["New GB"]@QuietEcho @ ComprehensiveGroebnerSystemOperator[
               Append[{"ordering" -> orderMatrix, "generators" -> polyVars}] @ variables
             ][scheme];
             
@@ -637,11 +640,8 @@ TimeInstancesSmallestOperator[variables_Association][expression_] :=
     True,
     Module[ {var = variables, exp = (*EchoLabel["TimeInstancesSmallestOperator: input"]@*) expression, 
       t = variables["indVars"] // Last, varlist},
-        varlist = 
-         Complement[# // Variables, Lookup[var, "pars", {}]] & /@ exp;
-        varlist = 
-         varlist /. ((#[x___] :> Last[List @@ #[x]]) & /@ 
-            var["depVars"]);
+        varlist = Complement[# // Variables, Lookup[var, "pars", {}]] & /@ exp;
+        varlist = varlist /. ((#[x___] :> Last[List @@ #[x]]) & /@ var["depVars"]);
         varlist = varlist /. (KroneckerDeltaOperator[x___] :> x);
         varlist = DeleteDuplicates[#] & /@ varlist;
         varlist = Union[Cases[#, _ + t], Cases[#, t]] & /@ varlist;
@@ -766,7 +766,7 @@ TimeOrderOperator[variables_Association][xlist_List, ylist_List] :=
 TimeDifferenceOperator[variables_Association][expression_] :=
     HeaderOperator[TimeDifference][variables][expression]
 
-TimeDifference[variables_Association][schemeexpression_Association] :=
+(*TimeDifference[variables_Association][schemeexpression_Association] :=
     Module[ {schexp = (*Echo@*) schemeexpression, exp, var = variables, t},
         exp = schexp["exp"];
         If[ EqualToZeroOperator[var][exp],
@@ -799,19 +799,96 @@ TimeDifference[variables_Association][schemeexpression_Association] :=
         var["timederivativeorder"] = var["timederivativeorder"] - 1;
         If[ var["timederivativeorder"] > 0,
             TimeDifferenceOperator[var][schexp],
+            
             If[ KeyExistsQ[schexp, "scheme"],
                 If[ Lookup[var, "Beautify", True],
-                    schexp = EchoLabel["TimeDifference: result of IntegralEquivalenceClassOperator"]@PiecewiseAssociationOperator[IntegralEquivalenceClassOperator][var, "exp", schexp]
+                    schexp = PiecewiseAssociationOperator[IntegralEquivalenceClassOperator][var, "exp", schexp]
                 ];
                 schexp = EchoLabel["TimeDifference: result of ReduceModSchemeOperator"]@ReduceModSchemeOperator[var][schexp]
             ];
             If[ Lookup[var, "Beautify", True],
-                schexp = EchoLabel["TimeDifference: result of IntegralEquivalenceClassOperator on time difference"]@PiecewiseAssociationOperator[IntegralEquivalenceClassOperator][var, "exp", schexp]
+                schexp = PiecewiseAssociationOperator[IntegralEquivalenceClassOperator][var, "exp", schexp]
             ];
             PiecewiseAssociationFunction[Expand]["exp", schexp]
         ]
-    ]
+    ]*)
   
+TimeDifference[variables_Association, schemeexpression_Association] := Module[
+  {schexp = schemeexpression, exp, var = variables, t},
+  
+  exp = schexp["exp"];
+  
+  If[EqualToZeroOperator[var][exp], Return[schexp, Module]];
+  
+  var = UpdateVariables[var, schexp];
+  
+  var["timederivativeorder"] = Lookup[var, "timederivativeorder", 1];
+  
+  schexp = UpdateSchemeExpression[var, schexp];
+  
+  var["timederivativeorder"] = var["timederivativeorder"] - 1;
+  
+  If[var["timederivativeorder"] > 0,
+    TimeDifferenceOperator[var][schexp],
+    FinalizeExpression[var, schexp]
+  ]
+]
+
+UpdateVariables[var_, schexp_] := Module[{},
+  If[KeyExistsQ[schexp, "rhs"],
+  	var["VarDOperator"] = Lookup[var, "VarDOperator", DVarDOperator],
+    UpdateTimeVariables[var]
+  ]
+]
+
+UpdateTimeVariables[var_] := Module[{t},
+  t = If[KeyExistsQ[var, "timeVars"], 
+  	Last[var["timeVars"]], 
+  	
+  	Last[var["indVars"]]
+  	];
+  var = Append[var, "timeVars" -> {t}];
+  If[!KeyExistsQ[var, "VarDOperator"] || var["VarDOperator"] === DVarDOperator,
+    Append[var, "VarDOperator" -> PartialDVarDOperator],
+    var
+  ]
+]
+
+UpdateSchemeExpression[var_, schexp_] := Module[{},
+  If[KeyExistsQ[schexp, "rhs"],
+    UpdateWithRHS[var, schexp],
+    UpdateWithoutRHS[var, schexp]
+  ]
+]
+
+UpdateWithRHS[var_, schexp_] := Module[{replacementrule},
+  replacementrule = MapThread[#1 -> MKF[var["indVars"], #2] &, {var["depVars"], schexp["rhs"]}];
+  schexp["exp"] = (schexp["exp"] /. replacementrule) - schexp["exp"];
+  schexp
+]
+
+UpdateWithoutRHS[var_, schexp_] := Module[{},
+  If[KeyExistsQ[var, "timedifference"],
+    schexp["exp"] = var["timedifference"] @ schexp["exp"],
+    schexp["exp"] = (schexp["exp"] /. t :> t + 1) - schexp["exp"]
+  ];
+  schexp
+]
+
+FinalizeExpression[var_, schexp_] := Module[{},
+  If[KeyExistsQ[schexp, "scheme"] && Lookup[var, "Beautify", True],
+    schexp = PiecewiseAssociationOperator[IntegralEquivalenceClassOperator][var, "exp", schexp]
+  ];
+  
+  schexp = EchoLabel["TimeDifference: result of ReduceModSchemeOperator"] @
+    ReduceModSchemeOperator[var][schexp];
+  
+  If[Lookup[var, "Beautify", True],
+    schexp = PiecewiseAssociationOperator[IntegralEquivalenceClassOperator][var, "exp", schexp]
+  ];
+  
+  PiecewiseAssociationFunction[Expand]["exp", schexp]
+]
   
 expand :=
     Expand[#] /. Power[x_, y_] :> Power[Expand[Power[x, -y]], -1] &;
