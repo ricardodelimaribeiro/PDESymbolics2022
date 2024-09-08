@@ -246,7 +246,7 @@ ImplicitVariationalTimeDifference[variables_Association][schemeexpression_Associ
             var = Append[var, "timeVars" -> {Lookup[var, "indVars"] // Last}]
         ];
         schexp = EchoLabel["ImplicitVariationalTimeDifference: result of TimeDifferenceOperator"]@TimeDifferenceOperator[var][schexp];
-        schexp = EchoLabel["ImplicitVariationalTimeDifference: result of ParametricRefineOperator"]@PiecewiseAssociationOperator[ParametricRefineOperator][Echo@var, "exp", schexp];
+        schexp = EchoLabel["ImplicitVariationalTimeDifference: result of ParametricRefineOperator"]@PiecewiseAssociationOperator[ParametricRefineOperator][var, "exp", schexp];
          (*(partial) variational derivative of the expression*)
         (*schexp = EchoLabel["ImplicitVariationalTimeDifference: result of 'DVarDOperator'"]@
         PiecewiseAssociationOperator[var["VarDOperator"]][
@@ -591,7 +591,7 @@ VariableEliminationOperator[variables_Association][eliminationList_List, schemeE
           elem = elimList[[1]];
           scheme = schExp["scheme"];
           exp = schExp["exp"];
-          polyVars = Variables[scheme] // Flatten;
+          polyVars = Echo@EchoLabel["polyvars"]@Variables[scheme] // Flatten;
           expVars = Variables[exp] // Flatten;
           
           If[polyVars =!= {} && MemberQ[polyVars, elem],
@@ -622,7 +622,7 @@ VariableEliminationOperator[variables_Association][eliminationList_List, schemeE
             ]
           ];
           
-          VariableEliminationOperator[var][Drop[elimList, 1], schExp]
+          VariableEliminationOperator[var][Echo@Drop[elimList, 1], schExp]
         ],
       
       True,
@@ -766,7 +766,9 @@ TimeOrderOperator[variables_Association][xlist_List, ylist_List] :=
 TimeDifferenceOperator[variables_Association][expression_] :=
     HeaderOperator[TimeDifference][variables][expression]
 
-(*TimeDifference[variables_Association][schemeexpression_Association] :=
+Clear[TimeDifference];
+
+TimeDifference[variables_Association][schemeexpression_Association] :=
     Module[ {schexp = (*Echo@*) schemeexpression, exp, var = variables, t},
         exp = schexp["exp"];
         If[ EqualToZeroOperator[var][exp],
@@ -811,16 +813,16 @@ TimeDifferenceOperator[variables_Association][expression_] :=
             ];
             PiecewiseAssociationFunction[Expand]["exp", schexp]
         ]
-    ]*)
+    ]
   
-TimeDifference[variables_Association, schemeexpression_Association] := Module[
-  {schexp = schemeexpression, exp, var = variables, t},
+(*TimeDifference[variables_Association, schemeexpression_Association] := Module[
+  {schexp = Echo@schemeexpression, exp, var = variables, t},
   
-  exp = schexp["exp"];
+  exp = Echo@schexp["exp"];
   
-  If[EqualToZeroOperator[var][exp], Return[schexp, Module]];
+  If[Echo@EqualToZeroOperator[var][exp], Return[schexp, Module]];
   
-  var = UpdateVariables[var, schexp];
+  var = Echo@UpdateVariables[var, schexp];
   
   var["timederivativeorder"] = Lookup[var, "timederivativeorder", 1];
   
@@ -832,7 +834,7 @@ TimeDifference[variables_Association, schemeexpression_Association] := Module[
     TimeDifferenceOperator[var][schexp],
     FinalizeExpression[var, schexp]
   ]
-]
+]*)
 
 UpdateVariables[var_, schexp_] := Module[{},
   If[KeyExistsQ[schexp, "rhs"],
