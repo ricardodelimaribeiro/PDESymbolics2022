@@ -486,9 +486,20 @@ Reduction[variables_Association][schemeexpression_Association] :=
     ];
     
 (*The folloing two are Daniel Lichtblaum's functions as in https://mathematica.stackexchange.com/questions/184632/default-weight-matrix-for-eliminationorder *)
-drlMatrix[n_] :=
-    Prepend[Table[-KroneckerDelta[j + k - (n + 1)], {j, n - 1}, {k, n}],
-      Table[1, {n}]];
+
+drlMatrix::usage =
+  "drlMatrix[n] gives a weight matrix for the degree reverse \
+lexicographic monomial ordering.";
+
+drlMatrix[n_] := 
+  Prepend[Table[-KroneckerDelta[j + k - (n + 1)], {j, n - 1}, {k, n}],
+    Table[1, {n}]];
+
+elimMatrix::usage =
+  "elimMatrix[k,n] gives a weight matrix for the elimination order. \
+It is used to calculate the elimination ideal, eliminating the first \
+k out of the n variables.";
+
 elimMatrix[n1_, n2_] :=
     Module[ {row1, rest},
         row1 = Join[Table[1, {n1}], Table[0, {n2 - n1}]];
