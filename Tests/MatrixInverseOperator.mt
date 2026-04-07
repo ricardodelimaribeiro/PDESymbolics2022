@@ -1,5 +1,5 @@
 (* Wolfram Language Test file *)
-	test = "Tests/MatrixInverseOperatorChild.mt";
+	test = FileNameJoin[{DirectoryName[$TestFileName], "MatrixInverseOperatorChild.mt"}];
 		Print["   MatrixInverseOperator"];
 
 
@@ -36,4 +36,52 @@ template = <|
 
 |>
 Get[test]
-(*TODO include more from documentation*)
+
+label = "piecewise matrix from documentation"
+template = <|
+	"variables" -> <|
+		"pars" -> {a},
+		"generators" -> {x},
+		"facts" -> True
+	|>,
+	"expression" -> Piecewise[
+		{
+			{{{0, 0, 2}, {0, 1 + x, 2}, {0, 0, 1}}, a == 1},
+			{{{0, 0, 2}, {0, -1 + x, 2}, {0, 0, 1}}, a == -1},
+			{{{(a^2 - 1) x, 0, 2}, {0, a + x, 2}, {0, 0, 1}}, a^2 != 1}
+		},
+		$Failed
+	],
+	"result" -> Piecewise[
+		{
+			{$Failed, a^2 == 1},
+			{{{1/((a^2 - 1) x), 0, -2/((a^2 - 1) x)}, {0, 1/(a + x), -2/(a + x)}, {0, 0, 1}}, True}
+		},
+		$Failed
+	]
+|>
+Get[test]
+
+label = "piecewise matrix with default branch from documentation"
+template = <|
+	"variables" -> <|
+		"pars" -> {a},
+		"generators" -> {x},
+		"facts" -> True
+	|>,
+	"expression" -> Piecewise[
+		{
+			{{{0, 0, 2}, {0, 1 + x, 2}, {0, 0, 1}}, a == 1},
+			{{{0, 0, 2}, {0, -1 + x, 2}, {0, 0, 1}}, a == -1}
+		},
+		{{(a^2 - 1) x, 0, 2}, {0, a + x, 2}, {0, 0, 1}}
+	],
+	"result" -> Piecewise[
+		{
+			{$Failed, a^2 == 1},
+			{{{1/((a^2 - 1) x), 0, -2/((a^2 - 1) x)}, {0, 1/(a + x), -2/(a + x)}, {0, 0, 1}}, True}
+		},
+		$Failed
+	]
+|>
+Get[test]

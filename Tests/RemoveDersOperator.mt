@@ -1,5 +1,5 @@
 (* Wolfram Language Test file *)
-test = "Tests/RemoveDersOperatorChild.mt"
+test = FileNameJoin[{DirectoryName[$TestFileName], "RemoveDersOperatorChild.mt"}];
 		Print["   RemoveDersOperator"];
 	variables = Association[
 	"expression" -> $Failed, 

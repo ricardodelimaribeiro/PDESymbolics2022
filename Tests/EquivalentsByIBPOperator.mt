@@ -1,5 +1,5 @@
 (* Wolfram Language Test file *)
-test = "Tests/EquivalentsByIBPOperatorChild.mt"
+test = FileNameJoin[{DirectoryName[$TestFileName], "EquivalentsByIBPOperatorChild.mt"}];
 		Print["   EquivalentsByIBPOperator"];
 (*/PDESymbolics2020/Tests/EquivalentsByIBPOperatorChild.mt*)
 variables = Association[

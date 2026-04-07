@@ -1,5 +1,5 @@
 (* Wolfram Language Test file *)
-	test = "Tests/MatrixKernelOperatorChild.mt";
+	test = FileNameJoin[{DirectoryName[$TestFileName], "MatrixKernelOperatorChild.mt"}];
 		Print["   MatrixKernelOperator"];
 
 
@@ -63,4 +63,3 @@ template = Association[
   	"result" -> {}
 ]
 Get[test]
-

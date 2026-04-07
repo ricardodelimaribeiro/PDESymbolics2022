@@ -1,5 +1,5 @@
 (* Wolfram Language Test file *)
-test = "Tests/PiecewiseBeautifyChild.mt";
+test = FileNameJoin[{DirectoryName[$TestFileName], "PiecewiseBeautifyChild.mt"}];
 Print["   PiecewiseBeautify"];
 
 label = "$Failed"
@@ -42,8 +42,8 @@ variables = Association[
 	(*Piecewise[{{{2, -2*u[x, y]*Derivative[1, 0][u][x, y] + Derivative[1, 0][v][x, y]}, b == 0 && a == 0}, {{2*u[x, y]^b, b*u[x, y]^(-1 + b)*v[x, y]*Derivative[1, 0][u][x, y] - 2*u[x, y]*v[x, y]^b*Derivative[1, 0][u][x, y] + u[x, y]^b*Derivative[1, 0][v][x, y] - b*u[x, y]^2*v[x, y]^(-1 + b)*Derivative[1, 0][v][x, y]}, (a - b == 0 && -2*b + b^2 != 0) || (a - b == 0 && -b + b^2 != 0) || (a - b == 0 && 2*b - 3*b^2 + b^3 != 0)}, {{1 + u[x, y]^b, -2*u[x, y]*v[x, y]^b*Derivative[1, 0][u][x, y] + Derivative[1, 0][v][x, y] - b*u[x, y]^2*v[x, y]^(-1 + b)*Derivative[1, 0][v][x, y]}, a == 0 && b != 0}, {{1 + u[x, y]^a, -2*u[x, y]*Derivative[1, 0][u][x, y] + a*u[x, y]^(-1 + a)*v[x, y]*Derivative[1, 0][u][x, y] + u[x, y]^a*Derivative[1, 0][v][x, y]}, b == 0 && a != 0}, {{u[x, y]*(1 + u[x, y]), 0}, b == 1 && a == 2}, {{u[x, y]^a + u[x, y]^b, a*u[x, y]^(-1 + a)*v[x, y]*Derivative[1, 0][u][x, y] - 2*u[x, y]*v[x, y]^b*Derivative[1, 0][u][x, y] + u[x, y]^a*Derivative[1, 0][v][x, y] - b*u[x, y]^2*v[x, y]^(-1 + b)*Derivative[1, 0][v][x, y]}, -2*a^2*b + a^3*b + 2*a*b^2 - a^2*b^2 != 0 || -(a^2*b) + a*b^2 + a^2*b^2 - a*b^3 != 0}}, $Failed]*)
 	(*Piecewise[{{{2, -2*u[x, y]*Derivative[1, 0][u][x, y] + Derivative[1, 0][v][x, y]}, b == 0 && a == 0}, {{2*u[x, y]^a, a*u[x, y]^(-1 + a)*v[x, y]*Derivative[1, 0][u][x, y] - 2*u[x, y]*v[x, y]^a*Derivative[1, 0][u][x, y] + u[x, y]^a*Derivative[1, 0][v][x, y] - a*u[x, y]^2*v[x, y]^(-1 + a)*Derivative[1, 0][v][x, y]}, (a - b == 0 && -2*b + b^2 != 0) || (a - b == 0 && -b + b^2 != 0) || (a - b == 0 && 2*b - 3*b^2 + b^3 != 0)}, {{1 + u[x, y]^b, -2*u[x, y]*v[x, y]^b*Derivative[1, 0][u][x, y] + Derivative[1, 0][v][x, y] - b*u[x, y]^2*v[x, y]^(-1 + b)*Derivative[1, 0][v][x, y]}, a == 0 && b != 0}, {{1 + u[x, y]^a, -2*u[x, y]*Derivative[1, 0][u][x, y] + a*u[x, y]^(-1 + a)*v[x, y]*Derivative[1, 0][u][x, y] + u[x, y]^a*Derivative[1, 0][v][x, y]}, b == 0 && a != 0}, {{u[x, y]*(1 + u[x, y]), 0}, b == 1 && a == 2}, {{u[x, y]^a + u[x, y]^b, a*u[x, y]^(-1 + a)*v[x, y]*Derivative[1, 0][u][x, y] - 2*u[x, y]*v[x, y]^b*Derivative[1, 0][u][x, y] + u[x, y]^a*Derivative[1, 0][v][x, y] - b*u[x, y]^2*v[x, y]^(-1 + b)*Derivative[1, 0][v][x, y]}, -2*a^2*b + a^3*b + 2*a*b^2 - a^2*b^2 != 0 || -(a^2*b) + a*b^2 + a^2*b^2 - a*b^3 != 0}}, $Failed]*) (*see a=b case*)
 ];
-(*Get[test]*)
-(*TODO what is wrong with this test?*)	
+Get[test]
+
 label = "empty"
 variables = Association[
 	"depVars" -> {u},

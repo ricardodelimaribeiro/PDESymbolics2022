@@ -1,5 +1,5 @@
 (* Wolfram Language Test file *)
-	test = "Tests/TimeOrderedQOperatorChild.mt";
+	test = FileNameJoin[{DirectoryName[$TestFileName], "TimeOrderedQOperatorChild.mt"}];
 		Print["   TimeOrderedQOperator"];
 
    variables = Association[{

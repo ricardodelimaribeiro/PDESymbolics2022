@@ -1,5 +1,5 @@
 (* Wolfram Language Test file *)
-test = "Tests/EquivalentsByIntegrationByPartsOperatorChild.mt"
+test = FileNameJoin[{DirectoryName[$TestFileName], "EquivalentsByIntegrationByPartsOperatorChild.mt"}];
 		Print["   EquivalentsByIntegrationByPartsOperator"];
 
 label = "$Failed"
@@ -110,7 +110,9 @@ variables = Association[{
 	}];
 Test[
 	With[{expression = variables["expression"]},
-    	EquivalentsByIntegrationByPartsOperator[variables][expression]/.a->1
+    	With[{result = EquivalentsByIntegrationByPartsOperator[variables][expression]},
+    		result /. a -> 1
+    	]
 	]
     ,
     With[{result = variables["result"]},

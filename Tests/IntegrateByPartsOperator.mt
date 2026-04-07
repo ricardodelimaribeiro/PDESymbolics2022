@@ -1,5 +1,5 @@
 (* Wolfram Language Test file *)
-test = "Tests/IntegrateByPartsOperatorChild.mt"
+test = FileNameJoin[{DirectoryName[$TestFileName], "IntegrateByPartsOperatorChild.mt"}];
 		Print["   IntegrateByPartsOperator"];
 
 variables = Association[

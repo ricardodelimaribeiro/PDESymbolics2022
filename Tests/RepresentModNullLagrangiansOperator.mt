@@ -1,5 +1,5 @@
 (* Wolfram Language Test file *)
-test = "Tests/RepresentModNullLagrangiansOperatorChild.mt"
+test = FileNameJoin[{DirectoryName[$TestFileName], "RepresentModNullLagrangiansOperatorChild.mt"}];
 		Print["   RepresentModNullLagrangiansOperator"];
 
 variables = Association[

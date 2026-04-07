@@ -1,35 +1,20 @@
 (* Wolfram Language Test file *)
 
 Test[
-	
-(* OLD CODE *)	
-	
-	With[{expression = variables["expression"]},
-    	PiecewiseBeautify[expression]
-	]
-    ,
-    With[{result = variables["result"]},
-    	result
+    With[{expression = variables["expression"], result = variables["result"]},
+        With[{computation = PiecewiseBeautify[expression]},
+            Which[
+                Expand[result] === Expand[computation],
+                True,
+                PiecewiseEqualOperator[variables][result, computation] === True,
+                True,
+                True,
+                {computation, variables}
+            ]
+        ]
     ]
-    
-(* NEW CODE *)    
-    
-(*	With[{expression = variables["expression"],result = variables["result"]},
-		With[{computation=ParametricRefineOperator[variables][expression]},
-    	Which[
-    		result===computation,
-    		True, 
-    		PiecewiseEqualOperator[variables][result, computation]===True,
-    		True,
-    		True,
-    		False
-    	]
-		]
-    	
-	]
     ,
-    True    *)
-    
+    True
     ,
     TestID -> "PiecewiseBeautify-20210121-K6RH82_" <> label
 ]

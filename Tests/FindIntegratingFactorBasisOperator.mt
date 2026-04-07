@@ -1,5 +1,5 @@
 (* Wolfram Language Test file *)
-	test = "Tests/FindIntegratingFactorBasisOperatorChild.mt";
+	test = FileNameJoin[{DirectoryName[$TestFileName], "FindIntegratingFactorBasisOperatorChild.mt"}];
 		Print["   FindIntegratingFactorBasisOperator"];
 
 

@@ -1,5 +1,5 @@
 (* Wolfram Language Test file *)
-	test = "Tests/GenericLinearCombinationOperatorChild.mt";
+	test = FileNameJoin[{DirectoryName[$TestFileName], "GenericLinearCombinationOperatorChild.mt"}];
         Print["   GenericLinearCombinationOperator"];
         
         
@@ -28,5 +28,4 @@ options = <|"pars"->{},"unique"->True, "result"->{Subscript[\[FormalA], 1] u[x] 
    1], Subscript[\[FormalA], 2]}}|>;
 list = {u[x], u'[x]};
 Get[test]
-
 

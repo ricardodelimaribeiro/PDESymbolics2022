@@ -64,7 +64,11 @@ InferGeneratorsOperator[variables_][xplist_List] :=
     ]//QuietEcho;
 
 InferGeneratorsOperator[variables_Association][xp_] :=
-    Kleisli[InferGenerators][variables][xp];
+    If[
+        Lookup[variables, "VarDOperator", PDESymbolics2022`VarDOperator] === PDESymbolics2022`VarDOperator,
+        Kleisli[InferGenerators][variables][xp],
+        DiscreteInferGeneratorsOperator[variables][xp]
+    ];
    
 InferGenerators[variables_Association][xp_] :=
     With[ {indvars = Lookup[variables, "indVars", {}], 
@@ -77,17 +81,21 @@ InferGenerators[variables_Association][xp_] :=
            depvars]
     ];
     
-DiscreteInferGeneratorsOperator[vars_][xp_] :=
-    Module[ {generators, indvars, depvars},
-        generators = PiecewiseExtractGeneratorsOperator[vars][xp];
-        indvars = Lookup[variables, "indVars", {}];
-        depvars = LexicographicSort[Lookup[variables, "depVars", {}]];
-       (*TODO make this work for any number of independent variables, not just 2.*)
+DiscreteInferGeneratorsOperator[vars_Association][xp_] :=
+    Module[ {generators, indvars, depvars, offsetKey},
+        depvars = LexicographicSort[Lookup[vars, "depVars", {}]];
+        generators =
+            Select[
+                PDESymbolics2022`PiecewiseExtractGeneratorsOperator[vars][xp],
+                MemberQ[depvars, Head[#]] &
+            ];
+        indvars = Lookup[vars, "indVars", {}];
+        offsetKey[generator_] :=
+            Flatten @ Reverse @ ({-Abs[#], Sign[#]} & /@ (List @@ (generator /. Thread[indvars -> 0])));
         SortBy[
-         generators, {-Abs[#[[2]] /. indvars[[2]] -> 0], 
-           Sign[#[[2]] /. 
-             indvars[[2]] -> 0], -Abs[#[[1]] /.  indvars[[1]] -> 0], 
-           Sign[#[[1]] /.  indvars[[1]] -> 0]} &]
+            generators,
+            offsetKey
+        ]
     ]
  
  DiscreteInferGeneratorsOperator[variables_][xplist_List] :=
@@ -444,7 +452,7 @@ GrobOp[variables_][preGrobner_List] :=
     Module[ {newPreGrobner, sPolynomials, newArgs, facts ,newVariables, generators,reduce},
         facts = Reduce@Lookup[variables, "facts", True];
         reduce = Lookup[variables, "reduce", Resolve];
-        If[ Lookup[variables,"VarDOperator",VarDOperator] === VarDOperator,
+        If[ Lookup[variables,"VarDOperator",PDESymbolics2022`VarDOperator] === PDESymbolics2022`VarDOperator,
             generators = Lookup[variables, "generators", InferGeneratorsOperator[variables][preGrobner]],
             (*if "VarDOperator" is DVarDOperator*)
             generators = Lookup[variables, "generators", DiscreteInferGeneratorsOperator[variables][preGrobner]]

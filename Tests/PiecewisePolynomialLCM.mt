@@ -1,6 +1,6 @@
 (* Wolfram Language Test file *)
 
-test = "Tests/PiecewisePolynomialLCMChild.mt";
+test = FileNameJoin[{DirectoryName[$TestFileName], "PiecewisePolynomialLCMChild.mt"}];
 		Print["   Template"];
 
 
