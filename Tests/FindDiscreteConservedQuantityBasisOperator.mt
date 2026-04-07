@@ -1,6 +1,6 @@
 (* Wolfram Language Test file *)
 
-test = "Tests/FindDiscreteConservedQuantityBasisOperatorChild.mt";
+test = FileNameJoin[{DirectoryName[$TestFileName], "FindDiscreteConservedQuantityBasisOperatorChild.mt"}];
 		Print["   FindDiscreteConservedQuantityBasisOperator"];
 
 	variables = Association[{

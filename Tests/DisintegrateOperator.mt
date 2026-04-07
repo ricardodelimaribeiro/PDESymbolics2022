@@ -1,5 +1,5 @@
 (* Wolfram Language Test file *)
-test = "Tests/DisintegrateOperatorChild.mt"
+test = FileNameJoin[{DirectoryName[$TestFileName], "DisintegrateOperatorChild.mt"}];
 		Print["   DisintegrateOperator"];
 
 label = "$Failed"

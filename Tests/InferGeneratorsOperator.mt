@@ -1,6 +1,6 @@
 (* Wolfram Language Test file *)
 
-test = "Tests/InferGeneratorsOperatorChild.mt";
+test = FileNameJoin[{DirectoryName[$TestFileName], "InferGeneratorsOperatorChild.mt"}];
 		Print["   Template"];
 
 
@@ -99,5 +99,4 @@ template = Association[
   	"expression" -> {u[x+1]+u[x]},
   	"result" -> {u[x+1],u[x]}
 ]
-(*TODO need to code something for the discrete case!!!  we will need to check what we have in Friedemann's part of the code.
-Get[test]*)
+Get[test]

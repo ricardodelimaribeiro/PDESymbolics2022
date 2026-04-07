@@ -1,5 +1,5 @@
 (* Wolfram Language Test file *)
-	test = "Tests/GrobOpChild.mt";
+	test = FileNameJoin[{DirectoryName[$TestFileName], "GrobOpChild.mt"}];
 		Print["   ComprehensiveGroebnerSystemOperator"];
 
 

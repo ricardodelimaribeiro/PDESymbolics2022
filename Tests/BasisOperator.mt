@@ -1,5 +1,5 @@
 (* Wolfram Language Test file *)
-test = "Tests/BasisOperatorChild.mt"
+test = FileNameJoin[{DirectoryName[$TestFileName], "BasisOperatorChild.mt"}];
 Print["   BasisOperator"];
 
 label = "$Failed"

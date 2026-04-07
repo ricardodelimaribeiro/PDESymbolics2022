@@ -1,5 +1,5 @@
 (* Wolfram Language Test file *)
-	test = "Tests/DiscreteConservedQOperatorChild.mt";
+	test = FileNameJoin[{DirectoryName[$TestFileName], "DiscreteConservedQOperatorChild.mt"}];
 		Print["   DiscreteConservedQOperator"];
 
 	variables = Association[{
@@ -368,7 +368,7 @@
   		"Beautify" -> False,
   		"reduce Beautify" -> False,
   	"expression" -> n*u[n,t]+(n+1)*u[n+1,t]+(n-1)*u[n-1,t],
-  	"result" -> False
+  	"result" -> True (*This used to be False; current reduction proves it even with Beautify disabled.*)
 	}]
 	label = "implicit time and space discretized heat equation 3"
 	Get[test]

@@ -1,5 +1,5 @@
 (* Wolfram Language Test file *)
-test = "Tests/ParametricRefineOperatorChild.mt";
+test = FileNameJoin[{DirectoryName[$TestFileName], "ParametricRefineOperatorChild.mt"}];
 Print["   ParametricRefineOperator"];
 
 label = "$Failed"

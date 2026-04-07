@@ -1,5 +1,5 @@
 (* Wolfram Language Test file *)
-test = "Tests/ImprovedHomogeneousSolveAlwaysOperatorChild.mt";
+test = FileNameJoin[{DirectoryName[$TestFileName], "ImprovedHomogeneousSolveAlwaysOperatorChild.mt"}];
 		Print["   ImprovedHomogeneousSolveAlwaysOperator"];
 
 label = "$Failed"

@@ -1,5 +1,5 @@
 (* Wolfram Language Test file *)
-	test = "Tests/GaussianEliminationOperatorChild.mt";
+	test = FileNameJoin[{DirectoryName[$TestFileName], "GaussianEliminationOperatorChild.mt"}];
         Print["   GaussianEliminationOperator"];
 (*variables = Association[
     "expression" -> $Failed, 

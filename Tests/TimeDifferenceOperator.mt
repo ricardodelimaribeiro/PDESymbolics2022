@@ -1,5 +1,5 @@
 (* Wolfram Language Test file *)
-	test = "Tests/TimeDifferenceOperatorChild.mt";
+	test = FileNameJoin[{DirectoryName[$TestFileName], "TimeDifferenceOperatorChild.mt"}];
 		Print["   TimeDifferenceOperator"];
 
    variables = Association[{

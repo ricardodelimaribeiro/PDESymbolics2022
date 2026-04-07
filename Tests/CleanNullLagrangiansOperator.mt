@@ -1,6 +1,6 @@
 (* Wolfram Language Test file *)
 
-test = "Tests/CleanNullLagrangiansOperatorChild.mt";
+test = FileNameJoin[{DirectoryName[$TestFileName], "CleanNullLagrangiansOperatorChild.mt"}];
 		Print["   CleanNullLagrangiansOperator"];
 
 variables = Association[
@@ -104,5 +104,4 @@ label = "Parameter"
 label = label <> Operator
 
 Get[ test ]*)
-
 

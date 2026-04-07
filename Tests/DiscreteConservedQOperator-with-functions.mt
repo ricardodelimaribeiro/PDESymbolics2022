@@ -1,5 +1,5 @@
 (* Wolfram Language Test file *)
-	test = "Tests/DiscreteConservedQOperatorChild.mt";
+	test = FileNameJoin[{DirectoryName[$TestFileName], "DiscreteConservedQOperatorChild.mt"}];
 		Print["   DiscreteConservedQOperator"];
 
 RangeSchemeTranslationsOperator[variables_Association][masterstencil_,stencil_] :=

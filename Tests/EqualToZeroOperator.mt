@@ -1,5 +1,5 @@
 (* Wolfram Language Test file *)
-test = "Tests/EqualToZeroOperatorChild.mt";
+test = FileNameJoin[{DirectoryName[$TestFileName], "EqualToZeroOperatorChild.mt"}];
 		Print["   EqualToZeroOperator"];
 
 TestEqualToZero[variables_, xp_] := 

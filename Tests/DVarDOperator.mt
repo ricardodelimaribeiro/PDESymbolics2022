@@ -1,5 +1,5 @@
 (* Wolfram Language Test file *)
-	test = "Tests/DVarDOperatorChild.mt";
+	test = FileNameJoin[{DirectoryName[$TestFileName], "DVarDOperatorChild.mt"}];
 		Print["   DVarDOperator"];
 
 label = "$Failed"
@@ -191,7 +191,9 @@ Test[
    		expression = variables["expression"],
    		newexpression = expression},
  			newexpression =  expression - (expression /. {u -> Function[k, 0]});
- 			DVarDOperator[variables][newexpression - First@DVarDOperator[variables][newexpression] u[n]] /. {u -> Function[k, 0]}
+ 			With[{result = DVarDOperator[variables][newexpression - First@DVarDOperator[variables][newexpression] u[n]]},
+ 				result /. {u -> Function[k, 0]}
+ 			]
  	]
  	,
  	{0}
@@ -212,7 +214,9 @@ Test[
    		expression = variables["expression"],
    		newexpression = expression},
  			newexpression =  expression - (expression /. {u -> Function[k, 0]});
- 			DVarDOperator[variables][newexpression - First@DVarDOperator[variables][newexpression] u[n]] /. {u -> Function[k, 0]}
+ 			With[{result = DVarDOperator[variables][newexpression - First@DVarDOperator[variables][newexpression] u[n]]},
+ 				result /. {u -> Function[k, 0]}
+ 			]
  	]
  	,
  	{0}

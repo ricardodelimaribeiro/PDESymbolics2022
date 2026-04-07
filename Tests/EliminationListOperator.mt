@@ -1,5 +1,5 @@
 (* Wolfram Language Test file *)
-	test = "Tests/EliminationListOperatorChild.mt";
+	test = FileNameJoin[{DirectoryName[$TestFileName], "EliminationListOperatorChild.mt"}];
 		Print["   EliminationListOperator"];
 
    variables = Association[{

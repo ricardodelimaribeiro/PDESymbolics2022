@@ -1,5 +1,5 @@
 (* Wolfram Language Test file *)
-test = "Tests/BeautifyOperatorChild.mt"
+test = FileNameJoin[{DirectoryName[$TestFileName], "BeautifyOperatorChild.mt"}];
 		Print["   BeautifyOperator"];
 
 variables = Association[

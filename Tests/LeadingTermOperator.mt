@@ -1,6 +1,6 @@
 (* Wolfram Language Test file *)
 
-test = "Tests/LeadingTermOperatorChild.mt";
+test = FileNameJoin[{DirectoryName[$TestFileName], "LeadingTermOperatorChild.mt"}];
 		Print["   Template"];
 
 

@@ -1,5 +1,5 @@
 (* Wolfram Language Test file *)
-test = "Tests/MonomialDependenceOperatorChild.mt";
+test = FileNameJoin[{DirectoryName[$TestFileName], "MonomialDependenceOperatorChild.mt"}];
 		Print["   MonomialDependenceOperator"];
 
 label = "$Failed"

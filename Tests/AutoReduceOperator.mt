@@ -1,6 +1,6 @@
 (* Wolfram Language Test file *)
 
-test = "Tests/AutoReduceOperatorChild.mt";
+test = FileNameJoin[{DirectoryName[$TestFileName], "AutoReduceOperatorChild.mt"}];
 		Print["   Template"];
 
 

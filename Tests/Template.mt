@@ -1,5 +1,5 @@
 (* Wolfram Language Test file *)
-	test = "Tests/TemplateChild.mt";
+	test = FileNameJoin[{DirectoryName[$TestFileName], "TemplateChild.mt"}];
 		Print["   Template"];
 
 
